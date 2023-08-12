@@ -16,24 +16,25 @@
                         <div class="header-left d-flex align-items-center">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src="../assets/img/logo/logo.png" alt=""></a>
+                                <a href="../main/main.do"><img src="../assets/img/logo/logo.png" alt=""></a>
                             </div>
                             <!-- Main-menu -->
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="../shionhouse-master/Doc/index.html">Home</a></li> 
-                                        <li><a href="../shionhouse-master/shop.html">shop</a></li>
-                                        <li><a href="../shionhouse-master/about.html">About</a></li>
-                                        <li><a href="../shionhouse-master/blog.html">Blog</a>
+                                        <li><a href="../main/main.do">home</a></li> 
+                                        <li><a href="../shionhouse-master/shop.html">.zip 사러가기</a></li>
+                                        <li><a href="../shionhouse-master/about.html">.zip 인테리어하기 </a></li>
+                                        <li><a href="../shionhouse-master/blog.html">.zip 가구 사기</a>
                                             <ul class="submenu">
-                                                <li><a href="../shionhouse-master/blog.html">Blog</a></li>
-                                                <li><a href="../shionhouse-master/blog_details.html">Blog Details</a></li>
-                                                <li><a href="../shionhouse-master/elements.html">Elements</a></li>
-                                                <li><a href="../shionhouse-master/product_details.html">Product Details</a></li>
+                                                <li><a href="../shionhouse-master/blog.html">내용1</a></li>
+                                                <li><a href="../shionhouse-master/blog_details.html">내용2</a></li>
+                                                <li><a href="../shionhouse-master/elements.html">내용3</a></li>
+                                                <li><a href="../shionhouse-master/product_details.html">내용4</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="../shionhouse-master/contact.html">Contact</a></li>
+                                        <li><a href="../shionhouse-master/contact.html">zip 청소하기</a></li>
+                                        <li><a href="../shionhouse-master/contact.html">zip 이사하기</a></li>
                                     </ul>
                                 </nav>
                             </div>   
@@ -41,9 +42,11 @@
                         <div class="header-right1 d-flex align-items-center">
                             <!-- Social -->
                             <div class="header-social d-none d-md-block">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <!-- <a href="#"><i class="fab fa-twitter"></i></a>
                                 <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fab fa-pinterest-p"></i></a> -->
+                                <a href="#"><span>login</span></a> / 
+                                <a href="#"><span>join</span></a>
                             </div>
                             <!-- Search Box -->
                             <div class="search d-none d-md-block">
