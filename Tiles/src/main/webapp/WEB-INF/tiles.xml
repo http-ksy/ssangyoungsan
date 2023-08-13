@@ -17,6 +17,6 @@
      <put-attribute name="body" value="/WEB-INF/notice/list.jsp"/>
    </definition> -->
    <definition name="*/*" extends="main">     
-     <put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
+     <put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp"/>
    </definition>
 </tiles-definitions>

@@ -5,6 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- vue script  start-->
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style type="text/css">
+.container{
+ margin-top: 50px;
+}
+.row{
+ margin: 0px auto;
+ width: 900px;
+}
+</style>
+<!-- vue script end -->
 </head>
 <body>
 	    <header>
@@ -40,13 +55,30 @@
                             </div>   
                         </div>
                         <div class="header-right1 d-flex align-items-center">
-                            <!-- Social -->
-                            <div class="header-social d-none d-md-block">
-                                <!-- <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a> -->
-                                <a href="#"><span>login</span></a> / 
-                                <a href="#"><span>join</span></a>
+                          <b-button v-b-modal.modal-lg>login</b-button>
+								  <b-modal id="modal-lg" title="로그인" hide-footer>
+								    <table class="table">
+								        <tr>
+								          <th width=25% class="text-right">ID</th>
+								          <td width=75%>
+								            <input type=text ref="id" size=15 class="input-sm" v-model="id">
+								          </td>
+								        </tr>
+								        <tr>
+								          <th width=25% class="text-right">Password</th>
+								          <td width=75%>
+								            <input type=password ref="pwd" size=15 class="input-sm" v-model="pwd">
+								          </td>
+								        </tr>
+								        <tr>
+								          <td colspan="2" class="text-center">
+								           <input type=button value="로그인" class="btn btn-sm" v-on:click="login()">
+								           <a href="../member/join.do" class="btn btn-sm">회원가입</a>
+								          </td>
+								        </tr>
+								      </table>
+								  </b-modal>
+								  <b-button class="btn btn-sm"><span>join</span></b-button>
                             </div>
                             <!-- Search Box -->
                             <div class="search d-none d-md-block">
@@ -85,5 +117,21 @@
         </form>
     </div>
 </div>
+<script>
+new Vue({
+	el:'.header-area',
+	data:{
+		isShow:false;
+	},
+	mounted:function(){
+		this.showLogin();
+	},
+
+	methods:{
+		showLogin:function(){
+		}
+	}
+})
+</script>
 </body>
 </html>
