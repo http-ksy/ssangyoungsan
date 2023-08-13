@@ -32,4 +32,14 @@ public class MemberDAO {
 	{
 		return mapper.memberIdCheck(id);
 	}
+	public int memberNickCheck(String nickname)
+	{
+		return mapper.memberNickCheck(nickname);
+	}
+	// 이메일 체크
+			//@Select("SELECT COUNT(*) FROM amem WHERE email=#{email}")
+	public int memberEmailCheck(String email)
+	{
+		return mapper.memberEmailCheck(email);
+	}
 }

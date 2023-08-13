@@ -6,19 +6,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- vue script  start-->
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style type="text/css">
-.container{
- margin-top: 50px;
-}
-.row{
- margin: 0px auto;
- width: 900px;
-}
-</style>
+ .container{ 
+  margin-top: 50px; 
+ } 
+ .row{ 
+  margin: 0px auto; 
+  width: 900px; 
+ } 
+</style> 
 <!-- vue script end -->
 </head>
 <body>
@@ -77,8 +80,8 @@
 								          </td>
 								        </tr>
 								      </table>
-								  </b-modal>
-								  <b-button class="btn btn-sm"><span>join</span></b-button>
+								  </b-modal>&nbsp;
+								  <b-button class="btn btn-sm"><a href="../member/join.do"><span>join</span></a></b-button>
                             </div>
                             <!-- Search Box -->
                             <div class="search d-none d-md-block">
@@ -119,18 +122,8 @@
 </div>
 <script>
 new Vue({
-	el:'.header-area',
-	data:{
-		isShow:false;
-	},
-	mounted:function(){
-		this.showLogin();
-	},
-
-	methods:{
-		showLogin:function(){
-		}
-	}
+	el:'.header-area'
+	
 })
 </script>
 </body>

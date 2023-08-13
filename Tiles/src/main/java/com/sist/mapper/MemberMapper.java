@@ -37,5 +37,10 @@ public interface MemberMapper {
 	// 아이디 췌크
 	@Select("SELECT COUNT(*) FROM amem WHERE id=#{id}")
 	public int memberIdCheck(String id);
-	
+	// 닉네임 체크
+	@Select("SELECT COUNT(*) FROM amem WHERE nickname=#{nickname}")
+	public int memberNickCheck(String nickname);
+	// 이메일 체크
+		@Select("SELECT COUNT(*) FROM amem WHERE email=#{email}")
+		public int memberEmailCheck(String email);
 }
