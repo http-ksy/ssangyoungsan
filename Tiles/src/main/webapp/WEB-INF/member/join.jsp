@@ -6,11 +6,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+<script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+// $(function(){
+// 	$('#postBtn').click(function(){
+// 		new daum.Postcode({
+// 			oncomplete:function(data) {
+// 				$('#post').val(data.zonecode)
+// 				$('#addr1').val(data.address)
+// 			}
+// 		}).open()
+// 	})
+// })
+</script>
 <style type="text/css">
 .container{
  margin-top: 50px;
@@ -93,10 +106,17 @@
       	     <input type=text ref="phone" size=30 class="input-sm" v-model="phone" placeholder="010-0000-0000">
       	   </td>
       	 </tr>
+      	 <tr>
+      	   <td width=20% class="text-right">post</td>
+      	   <td width=80%>
+      	     <input type=text ref="post"  size=30 class="input-sm" v-model="post">
+      	     <input type=button value="우편번호검색" id="postBtn" @click="findPost()">
+      	   </td>
+      	 </tr>
       	  <tr>
       	   <td width=20% class="text-right">addr1</td>
       	   <td width=80%>
-      	     <input type=text ref="addr1" size=30 class="input-sm" v-model="addr1">
+      	     <input type=text ref="addr1"  size=30 class="input-sm" v-model="addr1">
       	   </td>
       	 </tr>
       	  <tr>
@@ -105,12 +125,7 @@
       	     <input type=text ref="addr2" size=30 class="input-sm" v-model="addr2">
       	   </td>
       	 </tr>
-      	 <tr>
-      	   <td width=20% class="text-right">post</td>
-      	   <td width=80%>
-      	     <input type=text ref="post" size=30 class="input-sm" v-model="post">
-      	   </td>
-      	 </tr>
+      	 
       	  <tr>
            <td colspan="2" class="text-center">
             <input type=button value="회원가입" class="btn btn-sm btn-danger" @click="join()">
@@ -208,6 +223,12 @@
     				return;
     				
     			}
+    			let post=this.$refs.post.value;
+    			if(post.trim()==="")
+    			{
+    				this.$refs.post.focus()
+    				return;
+    			}
     			let addr1=this.$refs.addr1.value;
     			if(addr1.trim()==="")
     			{
@@ -220,12 +241,7 @@
     				this.$refs.addr2.focus()
     				return;
     			}
-    			let post=this.$refs.post.value;
-    			if(post.trim()==="")
-    			{
-    				this.$refs.post.focus()
-    				return;
-    			}
+    			
     			//alert(this.sex)
     			axios.post('../member/join_ok.do',null,{
     				params:{
@@ -352,6 +368,16 @@
     					this.$refs.email.focus()
     				}
     			})
+    		},
+    		findPost:function(){
+    			let _this=this;
+    			new daum.Postcode({
+	 			oncomplete:function(data) {
+	 				console.log(data.zonecode)
+   	 				_this.post=data.zonecode
+    	 			_this.addr1=data.address
+   	 			}
+   	 		}).open()
     		}
     	}
     })
