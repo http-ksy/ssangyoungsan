@@ -41,18 +41,23 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="../main/main.do">home</a></li> 
-                                        <li><a href="../shionhouse-master/shop.html">.zip 사러가기</a></li>
-                                        <li><a href="../shionhouse-master/about.html">.zip 인테리어하기 </a></li>
-                                        <li><a href="../shionhouse-master/blog.html">.zip 가구 사기</a>
-                                            <ul class="submenu">
-                                                <li><a href="../shionhouse-master/blog.html">내용1</a></li>
-                                                <li><a href="../shionhouse-master/blog_details.html">내용2</a></li>
-                                                <li><a href="../shionhouse-master/elements.html">내용3</a></li>
-                                                <li><a href="../shionhouse-master/product_details.html">내용4</a></li>
-                                            </ul>
+                                        <li><a href="../zip/zip_list.do">.zip 사러가기</a></li>
+                                        <li><a href="../inte/inte_list.do">.zip 인테리어하기 </a></li>
+                                        <li><a href="../product/productList.do">.zip 가구 사기</a>
+<!--                                             <ul class="submenu"> -->
+<!--                                                 <li><a href="../shionhouse-master/blog.html">내용1</a></li> -->
+<!--                                                 <li><a href="../shionhouse-master/blog_details.html">내용2</a></li> -->
+<!--                                                 <li><a href="../shionhouse-master/elements.html">내용3</a></li> -->
+<!--                                                 <li><a href="../shionhouse-master/product_details.html">내용4</a></li> -->
+<!--                                             </ul> -->
                                         </li>
-                                        <li><a href="../shionhouse-master/contact.html">zip 청소하기</a></li>
-                                        <li><a href="../shionhouse-master/contact.html">zip 이사하기</a></li>
+                                        <li><a href="#">.zip 마무리</a></li>
+                                         <ul class="submenu">
+                                                <li><a href="../clean/list.do">.zip 청소하기</a></li>
+                                                <li><a href="../move/list.do">.zip 이사하기</a></li>
+                                                
+                                            </ul>
+                                        <li><a href="../sotong/haeyo.do">.zip 커뮤니티</a></li>
                                     </ul>
                                 </nav>
                             </div>   
