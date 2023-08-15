@@ -1,5 +1,7 @@
 package com.sist.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -91,6 +93,40 @@ public String member_email_check(String email)
 		else
 		{
 			result="no";
+		}
+	}catch(Exception ex)
+	{
+		ex.printStackTrace();
+	}
+	return result;
+}
+@PostMapping(value="member/login_ok.do",produces="text/plain;charset=UTF-8")
+public String member_login(String id, String pwd,HttpSession session)
+{
+	String result="";
+	try
+	{
+		int count=service.memberIdCheck(id);
+		if(count==0)
+		{
+			result="noid";
+		}
+		else //count=1 아이디 있음 => pwd 비교
+		{
+			MemberVO vo= service.memberLogin(id);
+			if(encoder.matches(pwd, vo.getPwd())) // pwd 일치
+			{
+				session.setAttribute("name", vo.getName());
+				session.setAttribute("sex", vo.getSex());
+				session.setAttribute("id", vo.getId());
+				session.setAttribute("admin", vo.getAdmin());
+				session.setAttribute("nickname", vo.getNickname());
+				result="yes";
+			}
+			else // pwd다름
+			{
+				result="nopwd";
+			}
 		}
 	}catch(Exception ex)
 	{

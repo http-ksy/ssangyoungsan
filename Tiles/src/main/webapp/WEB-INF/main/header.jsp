@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,14 +63,17 @@
                                 </nav>
                             </div>   
                         </div>
-                        <div class="header-right1 d-flex align-items-center">
+                        
+                        <div class="header-right1 d-flex align-items-center" v-if="!bool">
+                        <!-- login Button  session = ''  bool => false  v-if => true 출력  !bool ->  true -->
+                        
                           <b-button v-b-modal.modal-lg>login</b-button>
 								  <b-modal id="modal-lg" title="로그인" hide-footer>
 								    <table class="table">
 								        <tr>
 								          <th width=25% class="text-right">ID</th>
 								          <td width=75%>
-								            <input type=text ref="id" size=15 class="input-sm" v-model="id">
+								            <input type=text ref="id" size=15 class="input-sm" v-model="id" >
 								          </td>
 								        </tr>
 								        <tr>
@@ -79,15 +83,33 @@
 								          </td>
 								        </tr>
 								        <tr>
+								          <th width=25% class="text-right">아이디 저장</th> <!-- 아직 미완성 -->
+								          <td width=75%>
+								            <input type=checkbox  size=15 class="input-sm" ref="ck" checked>
+								          </td>
+								        </tr>
+								        <tr>
 								          <td colspan="2" class="text-center">
 								           <input type=button value="로그인" class="btn btn-sm" v-on:click="login()">
-								           <a href="../member/join.do" class="btn btn-sm">회원가입</a>
+								           <a href="../member/find.do" class="btn btn-sm">아이디/비밀번호 찾기</a>
 								          </td>
 								        </tr>
 								      </table>
 								  </b-modal>&nbsp;
+								  <!-- 조인 버튼 -->
 								  <b-button class="btn btn-sm"><a href="../member/join.do"><span>join</span></a></b-button>
+								  
+								  <!-- 로그인 버튼 끝 -->
                             </div>
+                          
+                            
+                             <div class="header-right1 d-flex align-items-center" v-if="bool">
+                             <!-- sessionck ='' bool =>false sessionck='hong' => bool true  -->
+                             <div>${sessionScope.name }님(${sessionScope.admin })</div>
+                             <a href="../member/logout.do" class="btn btn-sm">logout</a>
+                            
+                             </div>
+                             
                             <!-- Search Box -->
                             <div class="search d-none d-md-block">
                                 <ul class="d-flex align-items-center">
@@ -127,7 +149,73 @@
 </div>
 <script>
 new Vue({
-	el:'.header-area'
+	el:'.header-area',
+	data:{
+		id:'',
+		pwd:'',
+		sessionck:'',
+		bool:false,
+		//ck:false
+	},
+	mounted:function(){
+		
+		this.sessionck= '${sessionScope.name}'
+		console.log(this.sessionck);
+		this.bool = this.sessionck==''? false:true;
+		console.log(this.bool);
+		//console.log(this.$refs.ck)
+		
+	},
+	methods:{
+		login:function(){
+			let id= this.id;
+			let pwd= this.pwd;
+			 //this.ck=this.$refs.ck.checked
+			if(id.trim()=='')
+			{
+				this.$refs.id.focus()
+				alert('아이디 입력해주세용')
+				return
+			}
+			if(pwd.trim()=='')
+			{
+				this.$refs.pwd.focus()
+				alert('비밀번호 입려가세요')
+				return
+			}
+			axios.post('../member/login_ok.do',null,{
+				params:{
+					id:id,
+					pwd:pwd
+				}
+			}).then(response=>{
+				let res=response.data;
+				// yes nopwd , noid
+				if(res=='yes'){
+					
+					
+					location.reload();
+					
+				}
+				else if(res=='noid')
+				{
+				   alert('id가없습니다')
+				   this.$refs.id.value=''
+				   this.$refs.id.focus()
+				   return;
+				}
+				else 
+				{
+					  alert('pwd가없습니다')
+					   this.$refs.pwd.value=''
+					   this.$refs.pwd.focus()
+					   return
+				}
+			}).catch(error=>{
+				console.log(error.response)
+			})
+		}
+	}
 	
 })
 </script>
