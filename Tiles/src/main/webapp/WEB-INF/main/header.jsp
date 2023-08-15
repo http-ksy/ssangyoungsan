@@ -52,7 +52,7 @@
 <!--                                                 <li><a href="../shionhouse-master/product_details.html">내용4</a></li> -->
 <!--                                             </ul> -->
                                         </li>
-                                        <li><a href="#">.zip 마무리</a></li>
+                                        <li><a href="#">.zip 마무리하기</a></li>
                                          <ul class="submenu">
                                                 <li><a href="../clean/list.do">.zip 청소하기</a></li>
                                                 <li><a href="../move/list.do">.zip 이사하기</a></li>
