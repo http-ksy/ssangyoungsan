@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class MoveVO {
 	private int mno,reviewcount;
-	private String name,content,career, responsetime, poster ,count,link;
+	private String title,content,address,carrer,INTRODUCE, EMPLO,contanttime, service,poster ,count,link,category;
 	private double score;
 }

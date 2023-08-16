@@ -8,10 +8,11 @@
     <title>Fashion | Teamplate</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="/manifest" href="/site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
-
     <!-- CSS here -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>	
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/slicknav.css">
@@ -26,6 +27,11 @@
     <link rel="stylesheet" href="../assets/css/slick.css">
     <link rel="stylesheet" href="../assets/css/nice-select.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
 </head>
 <body class="full-wrapper">
@@ -130,307 +136,48 @@
                         <!--? New Arrival Start -->
                         <div class="new-arrival new-arrival2">
                             <div class="row">
-
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" v-for="vo in clean_list">
                                     <div class="single-new-arrival mb-50 text-center">
                                         <div class="popular-img">
-                                            <img src="../assets/img/gallery/arrival2.png" alt="">
+                                            <img :src="vo.poster" alt="">
                                             <div class="favorit-items">
                                                 <!-- <span class="flaticon-heart"></span> -->
                                                 <img src="../assets/img/gallery/favorit-card.png" alt="">
                                             </div>
                                         </div>
                                         <div class="popular-caption">
-                                         <h3><a href="product_details.html">Knitted Jumper</a></h3>
+                                         <h3><a :href="'../clean/detail.do?cno='+vo.cno">{{vo.title}}</a></h3>
                                          <div class="rating mb-10">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
-                                        </div>
-                                        <span>$ 30.00</span>
+                                        </div> 
+                                        <span>{{vo.score}}점</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                <div class="single-new-arrival mb-50 text-center">
-                                    <div class="popular-img">
-                                        <img src="../assets/img/gallery/arrival3.png" alt="">
-                                        <div class="favorit-items">
-                                            <!-- <span class="flaticon-heart"></span> -->
-                                            <img src="../assets/img/gallery/favorit-card.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popular-caption">
-                                     <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                                     <div class="rating mb-10">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span>$ 30.00</span>
-                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                            <div class="single-new-arrival mb-50 text-center">
-                                <div class="popular-img">
-                                    <img src="../assets/img/gallery/arrival4.png" alt="">
-                                    <div class="favorit-items">
-                                        <!-- <span class="flaticon-heart"></span> -->
-                                        <img src="../assets/img/gallery/favorit-card.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="popular-caption">
-                                 <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                                 <div class="rating mb-10">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <span>$ 30.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl43 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-arrival mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="../assets/img/gallery/arrival5.png" alt="">
-                                <div class="favorit-items">
-                                    <!-- <span class="flaticon-heart"></span> -->
-                                    <img src="../assets/img/gallery/favorit-card.png" alt="">
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                             <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                             <div class="rating mb-10">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span>$ 30.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-new-arrival mb-50 text-center">
-                        <div class="popular-img">
-                            <img src="../assets/img/gallery/arrival6.png" alt="">
-                            <div class="favorit-items">
-                                <!-- <span class="flaticon-heart"></span> -->
-                                <img src="../assets/img/gallery/favorit-card.png" alt="">
-                            </div>
-                        </div>
-                        <div class="popular-caption">
-                         <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                         <div class="rating mb-10">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span>$ 30.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                <div class="single-new-arrival mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/arrival7.png" alt="">
-                        <div class="favorit-items">
-                            <!-- <span class="flaticon-heart"></span> -->
-                            <img src="../assets/img/gallery/favorit-card.png" alt="">
-                        </div>
-                    </div>
-                    <div class="popular-caption">
-                     <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                     <div class="rating mb-10">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <span>$ 30.00</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-            <div class="single-new-arrival mb-50 text-center">
-                <div class="popular-img">
-                    <img src="../assets/img/gallery/arrival8.png" alt="">
-                    <div class="favorit-items">
-                        <!-- <span class="flaticon-heart"></span> -->
-                        <img src="../assets/img/gallery/favorit-card.png" alt="">
-                    </div>
-                </div>
-                <div class="popular-caption">
-                 <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                 <div class="rating mb-10">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <span>$ 30.00</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="single-new-arrival mb-50 text-center">
-            <div class="popular-img">
-                <img src="../assets/img/gallery/arrival1.png" alt="">
-                <div class="favorit-items">
-                    <!-- <span class="flaticon-heart"></span> -->
-                    <img src="../assets/img/gallery/favorit-card.png" alt="">
-                </div>
-            </div>
-            <div class="popular-caption">
-             <h3><a href="product_details.html">Knitted Jumper</a></h3>
-             <div class="rating mb-10">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <span>$ 30.00</span>
-        </div>
-    </div>
-</div>
-</div>
 <!-- Button -->
-<div class="row justify-content-center">
-    <div class="room-btn mt-20">
-        <a href="catagori.html" class="border-btn">Browse More</a>
-    </div>
-</div>
+			
+				<div>
+					<div class="text-center">
+					<ul class="pagination" style="background-color: black;">
+					  <li v-if="startPage>1"><a href="#" v-on:click="prev()">&lt;</a></li>
+					  <li v-for="i in range(startPage,endPage)"	:class="i==curpage?'active':''"><a href="#" v-on:click="selectPage(i)">{{i}}</a></li>
+					  <li v-if="endPage<totalpage"><a href="#" v-on:click="next()">&gt;</a></li>
+					</ul>
+					</div>
+					<%-- <li class="active"><a href="#">2</a></li> --%>
+				</div>
+			</div>
+	</div>
 </div>
 <!--? New Arrival End -->
 </div>
 </div>
 </div>
-</div>
-<!-- listing-area Area End -->
-<!--? Popular Items Start -->
-<div class="popular-items">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular1.png" alt="">
-                        <div class="img-cap">
-                            <span>Glasses</span>
-                        </div>
-                        <div class="favorit-items">
-                            <a href="shop.html" class="btn">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular2.png" alt="">
-                        <div class="img-cap">
-                            <span>Watches</span>
-                        </div>
-                        <div class="favorit-items">
-                         <a href="shop.html" class="btn">Shop Now</a>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="single-popular-items mb-50 text-center">
-                <div class="popular-img">
-                    <img src="../assets/img/gallery/popular3.png" alt="">
-                    <div class="img-cap">
-                        <span>Jackets</span>
-                    </div>
-                    <div class="favorit-items">
-                     <a href="shop.html" class="btn">Shop Now</a>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="single-popular-items mb-50 text-center">
-            <div class="popular-img">
-                <img src="../assets/img/gallery/popular4.png" alt="">
-                <div class="img-cap">
-                    <span>Clothes</span>
-                </div>
-                <div class="favorit-items">
-                 <a href="shop.html" class="btn">Shop Now</a>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
-</div>
-</div>
-<!-- Popular Items End -->
-<!--? Services Area Start -->
-<div class="categories-area section-padding40 gray-bg">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-50">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services1.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-50">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services2.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-30">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services3.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services4.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!--? Services Area End -->
 </main>
@@ -451,6 +198,60 @@
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
+<script>
+	new Vue({
+		el:'.category-area',
+		data:{
+			clean_list:[],
+			curpage:1,
+			totalpage:0,
+			startPage:0,
+			endPage:0
+		},
+		mounted:function(){
+			this.send();
+		},
+		methods:{
+			send:function(){
+				axios.get("http://localhost/web/clean/list_vue.do",{
+					params:{
+						page:this.curpage
+					}
+				}).then(response=>{
+					console.log(response.data)
+					this.clean_list=response.data;
+					this.curpage=response.data[0].curpage;
+					this.totalpage=response.data[0].totalpage;
+					this.startPage=response.data[0].startPage;
+					this.endPage=response.data[0].endPage;
+				}).catch(error=>{
+					console.log(error.response)
+				})
+			},
+			range:function(start,end){
+				let arr=[];
+				let length=end-start;
+				for(let i=0;i<=length;i++){
+					arr[i]=start;
+					start++;
+				}
+				return arr;
+			},
+			selectPage:function(page){
+				this.curpage=page;
+				this.send();
+			},
+			prev:function(){
+				this.curpage=this.startPage-1;
+				this.send()
+			},
+			next:function(){
+				this.curpage=this.endPage+1;
+				this.send()
+			}
+		}
+	})
+</script>
 <script src="../assets/js/vendor/modernizr-3.5.0.min.js"></script>
 <script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="../assets/js/popper.min.js"></script>
