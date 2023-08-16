@@ -1,5 +1,7 @@
 package com.sist.web;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,7 +103,7 @@ public String member_email_check(String email)
 	return result;
 }
 @PostMapping(value="member/login_ok.do",produces="text/plain;charset=UTF-8")
-public String member_login(String id, String pwd,HttpSession session)
+public String member_login(String id, String pwd,boolean ck,HttpSession session,HttpServletResponse response)
 {
 	String result="";
 	try
@@ -122,6 +124,20 @@ public String member_login(String id, String pwd,HttpSession session)
 				session.setAttribute("admin", vo.getAdmin());
 				session.setAttribute("nickname", vo.getNickname());
 				result="yes";
+				if(ck==true)
+				{
+					Cookie cookie=new Cookie("id", id);
+					cookie.setPath("/");
+					cookie.setMaxAge(60*60*24);
+					response.addCookie(cookie);
+					
+					cookie=new Cookie("name", vo.getName());
+					cookie.setPath("/");
+					cookie.setMaxAge(60*60*24);
+					response.addCookie(cookie);
+					
+					
+				}
 			}
 			else // pwd다름
 			{

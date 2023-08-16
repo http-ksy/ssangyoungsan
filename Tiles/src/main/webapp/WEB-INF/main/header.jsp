@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +73,7 @@
 								        <tr>
 								          <th width=25% class="text-right">ID</th>
 								          <td width=75%>
-								            <input type=text ref="id" size=15 class="input-sm" v-model="id" >
+								            <input type=text ref="id" size=15 class="input-sm" v-model="id" value="${id }">
 								          </td>
 								        </tr>
 								        <tr>
@@ -84,8 +84,9 @@
 								        </tr>
 								        <tr>
 								          <th width=25% class="text-right">아이디 저장</th> <!-- 아직 미완성 -->
-								          <td width=75%>
-								            <input type=checkbox  size=15 class="input-sm" ref="ck" checked>
+								           
+								          <td width=75% >
+								            <input type=checkbox  size=15 class="input-sm" ref="ck" v-model="ck" >
 								          </td>
 								        </tr>
 								        <tr>
@@ -151,11 +152,12 @@
 new Vue({
 	el:'.header-area',
 	data:{
-		id:'',
+		id:'${id}',
 		pwd:'',
 		sessionck:'',
 		bool:false,
-		//ck:false
+		ck:true
+		
 	},
 	mounted:function(){
 		
@@ -170,6 +172,9 @@ new Vue({
 		login:function(){
 			let id= this.id;
 			let pwd= this.pwd;
+    		
+			
+			alert("ck="+this.ck)
 			 //this.ck=this.$refs.ck.checked
 			if(id.trim()=='')
 			{
@@ -186,7 +191,8 @@ new Vue({
 			axios.post('../member/login_ok.do',null,{
 				params:{
 					id:id,
-					pwd:pwd
+					pwd:pwd,
+					ck:this.ck
 				}
 			}).then(response=>{
 				let res=response.data;
