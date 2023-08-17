@@ -97,7 +97,7 @@
       	  <tr>
       	   <td width=20% class="text-right">birthday</td>
       	   <td width=80%>
-      	   	<input type="text" ref="birthday" size=30 class="input-sm" v-model="birthday" placeholder="YYYY-MM-DD">
+      	   	<input type="date" ref="birthday" size=30 class="input-sm" v-model="birthday" placeholder="YYYY-MM-DD">
       	   </td>
       	 </tr>
       	  <tr>
@@ -158,7 +158,8 @@
     		addr2:'',
     		post:'',
     		pwdmsg:'',
-    		colors:''
+    		colors:'',
+    		
     	},
     	methods:{
     		join:function(){
@@ -287,16 +288,65 @@
     			})
     		},
     		equal:function(pwd,pwdcheck){
-    			if(pwd==pwdcheck){
+    			let pwdck = String(pwd);
+    			let num = pwdck.search(/[0-9]/g)
+    			let eng = pwdck.search(/[a-z]/ig)
+    			if(pwdck.length<8 || pwd.length>20)
+    			{
+    				this.pwdmsg='비밀번호는 8자리~20자리 이내로 입력하세요'
+    				return;
+    				
+    			}
+    			else if(pwdck.search(/\s/)!=-1)
+    			{
+    				this.pwdmsg='비밀번호는 공백없이 입력해라'
+    				return;
+    			}
+    			else if(num<0 || eng<0)
+    			{
+    				this.pwdmsg='비밀번호는 영문,숫자를 혼합해서 써야돼요'
+    				return;
+    			}
+    			else if(pwd==pwdcheck){
     				this.pwdmsg='비밀번호가 맞습니다.';
-    			} else{
+    				return;
+    				
+    			} else if(pwd!=pwdcheck){
     				this.pwdmsg='비밀번호가 달라.';
+    				return;
     			}
     		},
     		idCheck:function(){
     			let id = this.id;
+    			let idck=String(id);
+    			let num=idck.search(/[0-9]/g)
+    			let eng=idck.search(/[a-z]/ig)
+    			if(idck.length<6 || idck.length>12)
+    			 {
+    				alert('아이디는 6자리 ~ 12자리 이내로 입력하세요')
+    				this.$refs.id.value=''
+    				this.$refs.id.focus()
+    				return;
+    			 }
+    			else if(idck.search(/\s/)!=-1)
+    			{
+    				// 그 아이디를 가입할때 스페이스바 못누르게 처리s
+    				alert('아이디에 공백은 넣을 수 없습니다. ')
+    				this.$refs.id.value=''
+    				this.$refs.id.focus()
+    				return;
+    			}
+    			else if(num<0 || eng<0)
+    			{
+    				alert('아이디는 영문,숫자를 혼합해서 입력하세요')
+    				this.$refs.id.value=''
+    				this.$refs.id.focus()
+    				return;
+    			}
     			if(id.trim()==''){
-    				alert('공백은 사용할 수 없습니다.')
+    				alert('아이디를 입력하세요.')
+    				this.$refs.id.value=''
+    				this.$refs.id.focus()
     				return
     			}
     			axios.get('../member/id_check.do',{

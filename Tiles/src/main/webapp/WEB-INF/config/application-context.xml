@@ -3,13 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan base-package="com.sist.*"/>
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" 
 	  p:definitions="/WEB-INF/tiles.xml"
 	/>
+	<mvc:annotation-driven/>
+    <mvc:interceptors>
+      <mvc:interceptor>
+       <mvc:mapping path="/main/main.do"/>
+       <bean id="autoLoginIntercepter" class="com.sist.intercepter.AutoLogininterceptor"/>
+      </mvc:interceptor>
+    </mvc:interceptors>
 	<bean id="tilesResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver" 
 	  p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView"
 	  p:order="0"
