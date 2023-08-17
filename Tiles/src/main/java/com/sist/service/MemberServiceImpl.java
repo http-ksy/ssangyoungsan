@@ -37,5 +37,11 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.memberEmailCheck(email);
 	}
+
+	@Override
+	public int memberPhoneCheck(String phone) {
+		// TODO Auto-generated method stub
+		return dao.memberPhoneCheck(phone);
+	}
  
 }

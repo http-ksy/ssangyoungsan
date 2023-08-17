@@ -67,13 +67,13 @@
                         <div class="header-right1 d-flex align-items-center" v-if="!bool">
                         <!-- login Button  session = ''  bool => false  v-if => true 출력  !bool ->  true -->
                         
-                          <b-button v-b-modal.modal-lg>login</b-button>
+                          <b-button class="genric-btn info-border circle arrow" v-b-modal.modal-lg >login</b-button>
 								  <b-modal id="modal-lg" title="로그인" hide-footer>
 								    <table class="table">
 								        <tr>
 								          <th width=25% class="text-right">ID</th>
 								          <td width=75%>
-								            <input type=text ref="id" size=15 class="input-sm" v-model="id" value="${id }">
+								            <input type=text  ref="id" size=15 class="input-sm" v-model="id" >
 								          </td>
 								        </tr>
 								        <tr>
@@ -91,14 +91,14 @@
 								        </tr>
 								        <tr>
 								          <td colspan="2" class="text-center">
-								           <input type=button value="로그인" class="btn btn-sm" v-on:click="login()">
-								           <a href="../member/find.do" class="btn btn-sm">아이디/비밀번호 찾기</a>
+								           <input type=button value="로그인" class="genric-btn info-border circle arrow" v-on:click="login()">
+								           <a href="../member/find.do" class="genric-btn info-border circle arrow">아이디/비밀번호 찾기</a>
 								          </td>
 								        </tr>
 								      </table>
 								  </b-modal>&nbsp;
 								  <!-- 조인 버튼 -->
-								  <b-button class="btn btn-sm"><a href="../member/join.do"><span>join</span></a></b-button>
+<!-- 								  <b-button class="genric-btn info-border circle arrow">--><a href="../member/join.do" class="genric-btn info-border circle arrow">join</a> 
 								  
 								  <!-- 로그인 버튼 끝 -->
                             </div>
@@ -106,9 +106,13 @@
                             
                              <div class="header-right1 d-flex align-items-center" v-if="bool">
                              <!-- sessionck ='' bool =>false sessionck='hong' => bool true  -->
-                             <div>${sessionScope.name }님(${sessionScope.admin })</div>
-                             <a href="../member/logout.do" class="btn btn-sm">logout</a>
-                            
+                             <div v-if="sessionck=='관리자'"><a href="#" class="genric-btn info-border circle arrow ">${sessionScope.name }님(${sessionScope.admin })</a></div>
+                             <div v-if="sessionck=='사용자'"><a href="#" class="genric-btn info-border circle arrow ">${sessionScope.name }님(${sessionScope.admin })</a></div>
+                             <div v-if="sessionck=='사장님'"><a href="#" class="genric-btn info-border circle arrow ">${sessionScope.name }님(${sessionScope.admin })</a></div>
+<!--                              <a href="#" v-if="sessionck=='사용자'">My🏠</a> -->
+<!--                              <a href="#" v-if="sessionck=='사장님'">C🏠</a> -->
+                             &nbsp;<a href="../member/logout.do" class="genric-btn info-border circle arrow">logout</a>
+                             
                              </div>
                              
                             <!-- Search Box -->
@@ -156,12 +160,12 @@ new Vue({
 		pwd:'',
 		sessionck:'',
 		bool:false,
-		ck:true
+		ck:false
 		
 	},
 	mounted:function(){
 		
-		this.sessionck= '${sessionScope.name}'
+		this.sessionck= '${sessionScope.admin}'
 		console.log(this.sessionck);
 		this.bool = this.sessionck==''? false:true;
 		console.log(this.bool);
@@ -174,8 +178,9 @@ new Vue({
 			let pwd= this.pwd;
     		
 			
-			alert("ck="+this.ck)
-			 //this.ck=this.$refs.ck.checked
+// 			alert("ck="+this.ck)
+			this.ck=this.$refs.ck.checked
+			
 			if(id.trim()=='')
 			{
 				this.$refs.id.focus()

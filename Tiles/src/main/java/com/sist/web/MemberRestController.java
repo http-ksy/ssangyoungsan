@@ -102,6 +102,27 @@ public String member_email_check(String email)
 	}
 	return result;
 }
+@GetMapping(value="member/phone_check.do",produces="text/plain;charset=UTF-8")
+public String member_phone_check(String phone)
+{
+	String result="";
+	try
+	{
+		int count=service.memberPhoneCheck(phone);
+		if(count==0)
+		{
+			result="yes";
+		}
+		else
+		{
+			result="no";
+		}
+	}catch(Exception ex)
+	{
+		ex.printStackTrace();
+	}
+	return result;
+}
 @PostMapping(value="member/login_ok.do",produces="text/plain;charset=UTF-8")
 public String member_login(String id, String pwd,boolean ck,HttpSession session,HttpServletResponse response)
 {
@@ -124,9 +145,10 @@ public String member_login(String id, String pwd,boolean ck,HttpSession session,
 				session.setAttribute("admin", vo.getAdmin());
 				session.setAttribute("nickname", vo.getNickname());
 				result="yes";
+				Cookie cookie=null;
 				if(ck==true)
 				{
-					Cookie cookie=new Cookie("id", id);
+					cookie=new Cookie("id", id);
 					cookie.setPath("/");
 					cookie.setMaxAge(60*60*24);
 					response.addCookie(cookie);
@@ -137,6 +159,14 @@ public String member_login(String id, String pwd,boolean ck,HttpSession session,
 					response.addCookie(cookie);
 					
 					
+				}
+				else
+				{
+					if(cookie!=null)
+					{
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);
+					}
 				}
 			}
 			else // pwd다름

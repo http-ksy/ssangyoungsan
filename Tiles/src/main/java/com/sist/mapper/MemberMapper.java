@@ -41,6 +41,9 @@ public interface MemberMapper {
 	@Select("SELECT COUNT(*) FROM amem WHERE nickname=#{nickname}")
 	public int memberNickCheck(String nickname);
 	// 이메일 체크
-		@Select("SELECT COUNT(*) FROM amem WHERE email=#{email}")
-		public int memberEmailCheck(String email);
+	@Select("SELECT COUNT(*) FROM amem WHERE email=#{email}")
+	public int memberEmailCheck(String email);
+	// 핸드폰 번호 체크
+	@Select("SELECT COUNT(*) FROM amem WHERE phone=#{phone}")
+	public int memberPhoneCheck(String phone);
 }

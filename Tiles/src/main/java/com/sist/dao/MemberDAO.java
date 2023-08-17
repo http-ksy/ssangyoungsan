@@ -42,4 +42,9 @@ public class MemberDAO {
 	{
 		return mapper.memberEmailCheck(email);
 	}
+	//@Select("SELECT COUNT(*) FROM amem WHERE phone=${phone}")
+	public int memberPhoneCheck(String phone)
+	{
+		return mapper.memberPhoneCheck(phone);
+	}
 }

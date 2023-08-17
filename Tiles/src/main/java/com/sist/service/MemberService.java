@@ -20,4 +20,7 @@ public interface MemberService {
 	// 이메일 체크
 		//	@Select("SELECT COUNT(*) FROM amem WHERE email=#{email}")
 	public int memberEmailCheck(String email);
+	 // 핸드폰 번호 체크
+	//@Select("SELECT COUNT(*) FROM amem WHERE phone=${phone}")
+	public int memberPhoneCheck(String phone);
 }

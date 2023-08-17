@@ -42,8 +42,8 @@
       	 <tr>
       	   <td width=20% class="text-right">ID</td>
       	   <td width=80%>
-      	     <input type=text ref="id" size=30 class="input-sm" v-model="id" @keyup="idcheck=false">
-      	     <input type="button" value="중복체크" @click="idCheck()">
+      	     <input type=text ref="id" size=30 class="input-sm" v-model="id" @keyup="idcheck=false" v-bind:readonly="lock" v-if="lock==true ? colors1='background-color:#F2E0F7;color1:black':'colors1:red'" :style="colors1">
+      	     <input type="button" value="중복체크" @click="idCheck()" class="genric-btn info-border circle">
       	   </td>
       	 </tr>
       	  <tr>
@@ -69,15 +69,15 @@
       	  <tr>
       	   <td width=20% class="text-right">Nickname</td>
       	   <td width=80%>
-      	     <input type=text ref="nickname" size=30 class="input-sm" v-model="nickname" @keyup="nickcheck=false">
-      	     <input type="button" value="중복체크" @click="nickCheck()">
+      	     <input type=text ref="nickname" size=30 class="input-sm" v-model="nickname" @keyup="nickcheck=false" v-bind:readonly="lock1" v-if="lock1==true ? colors2='background-color:#F2E0F7;color:black':'color:red'" :style="colors2">
+      	     <input type="button" value="중복체크" @click="nickCheck()" class="genric-btn info-border circle">
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=20% class="text-right">email</td>
       	   <td width=80%>
-      	     <input type="email" ref="email" size=30 class="input-sm" v-model="email" @keyup="emailcheck=false" placeholder="xxxx@xxxx.xxx">
-      	     <input type="button" value="중복체크" @click="emailCheck()" >
+      	     <input type="email" ref="email" size=30 class="input-sm" v-model="email" @keyup="emailcheck=false" v-bind:readonly="lock2" v-if="lock2==true ? colors3='background-color:#F2E0F7;color:black':'color:red'" :style="colors3" placeholder="xxxx@xxxx.xxx">
+      	     <input type="button" value="중복체크" @click="emailCheck()" class="genric-btn info-border circle">
       	   </td>
       	 </tr>
       	  <tr>
@@ -103,14 +103,15 @@
       	  <tr>
       	   <td width=20% class="text-right">phone</td>
       	   <td width=80%>
-      	     <input type=text ref="phone" size=30 class="input-sm" v-model="phone" placeholder="010-0000-0000">
+      	     <input type=text ref="phone" size=30 class="input-sm" v-model="phone" @keyup="phonecheck=false" v-bind:readonly="lock3" v-if="lock3==true ? colors4='background-color:#ECCEF5;color:black':'color:red'" :style="colors4" placeholder="010-0000-0000">
+      	     <input type="button" value="중복체크" @click="phoneCheck()" class="genric-btn info-border circle">
       	   </td>
       	 </tr>
       	 <tr>
       	   <td width=20% class="text-right">post</td>
       	   <td width=80%>
       	     <input type=text ref="post"  size=30 class="input-sm" v-model="post">
-      	     <input type=button value="우편번호검색" id="postBtn" @click="findPost()">
+      	     <input type=button class="genric-btn info-border circle" value="우편번호검색" id="postBtn" @click="findPost()">
       	   </td>
       	 </tr>
       	  <tr>
@@ -128,8 +129,8 @@
       	 
       	  <tr>
            <td colspan="2" class="text-center">
-            <input type=button value="회원가입" class="btn btn-sm btn-danger" @click="join()">
-             <input type=button value="취소" class="btn btn-sm btn-danger"
+            <input type=button value="회원가입" class="genric-btn info-border circle" @click="join()">
+             <input type=button value="취소" class="genric-btn info-border circle"
               onclick="javascript:history.back()"
              >
            </td>
@@ -154,11 +155,20 @@
     		admin:'사용자',
     		birthday:'',
     		phone:'',
+    		phonecheck:false,
     		addr1:'',
     		addr2:'',
     		post:'',
     		pwdmsg:'',
-    		colors:'',
+    		colors:'', // 비번 텍스트 색깔
+    		colors1:'', // 아이디 창 색깔
+    		colors2:'', // 닉네임 창 색깔
+    		colors3:'', //이메일 창 색깔
+    		colors4:'', // 폰번호 창 색깔
+    		lock:false, // 아이디 잠금
+    		lock1:false, // 닉네임 잠금
+    		lock2:false, // 이메일 잠금
+    		lock3:false
     		
     	},
     	methods:{
@@ -166,10 +176,11 @@
     			let checkBirth = /^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/
     			//  /^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/
     			///[0-9]{8,8}$/
-    			let checkPhone = /^\d{3}-\d{3,4}-\d{4}$/;
+    			//let checkPhone = /^\d{3}-\d{3,4}-\d{4}$/;
     				///[0-9]{11,11}$/
 //     			let checkEmail = /^[A-Za-z0-9_\\.\\-]+@[A-Za-z0-9\\-]+\.[A-Za-z0-9\\-]+/
     			let id=this.$refs.id.value;
+    			
     			if(id.trim()==="")
     			{
     				this.$refs.id.focus()
@@ -217,13 +228,14 @@
     			{
     				this.$refs.phone.focus()
     				return;
-    			} else if(!checkPhone.test(phone)){
-    				this.$refs.phone.focus()
-    				this.$refs.phone.value=''
-    				alert('핸드폰번호를 다시 입력해주세용')
-    				return;
+     			} 
+//     			else if(!checkPhone.test(phone)){
+//     				this.$refs.phone.focus()
+//    				this.$refs.phone.value=''
+//     				alert('핸드폰번호를 다시 입력해주세용')
+//     				return;
     				
-    			}
+//     			}
     			let post=this.$refs.post.value;
     			if(post.trim()==="")
     			{
@@ -360,6 +372,7 @@
     				if(result=='yes'){
     					this.idcheck=true;
     					alert("사용가능한 아이디입니다.!!!!!")
+    					this.lock=true;
     				} else {
     					alert("이미 사용중인 아이디입니다.!!!!!")
     					this.$refs.id.value=''
@@ -382,6 +395,7 @@
     				if(result=='yes'){
     					this.nickcheck = true;
     					alert("사용가능한 닉네임입니다.")
+    					this.lock1 = true;
     				} else{
     					alert("사용불가 닉네임입니다.")
     					this.$refs.nickname.value=''
@@ -412,10 +426,42 @@
     				if(result=='yes'){
     					this.emailcheck = true;
     					alert("사용가능한 이메일입니다.")
+    					this.lock2 = true;
     				} else{
     					alert("불가 이메일입니다.")
     					this.$refs.email.value=''
     					this.$refs.email.focus()
+    				}
+    			})
+    		},
+    		phoneCheck:function(){
+    			let phone =this.phone
+    			let phoneck = /^\d{3}-\d{3,4}-\d{4}$/
+    			if(!phoneck.test(phone)){
+    				this.$refs.phone.focus()
+    				this.$refs.phone.value=''
+    				alert('핸드폰번호를 다시 입력해주세용')
+    				return;
+    				
+    			}
+    			if(phone.trim()==''){
+    				alert('공백안됨')
+    				return
+    			}
+    			axios.get('../member/phone_check.do',{
+    				params:{
+    					phone:phone
+    				}
+    			}).then(response=>{
+    				let result=response.data
+    				if(result=='yes'){
+    					this.phonecheck = true;
+    					alert("사용가능한 번호입니다.")
+    					this.lock3 = true;
+    				} else{
+    					alert("이미 가입된 번호 입니다.")
+    					this.$refs.phone.value=''
+    					this.$refs.phone.focus()
     				}
     			})
     		},
