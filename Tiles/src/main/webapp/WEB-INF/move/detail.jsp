@@ -13,21 +13,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/slicknav.css">
-    <link rel="stylesheet" href="../assets/css/flaticon.css">
-    <link rel="stylesheet" href="../assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="../assets/css/gijgo.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/animated-headline.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../assets/css/themify-icons.css">
-    <link rel="stylesheet" href="../assets/css/slick.css">
-    <link rel="stylesheet" href="../assets/css/nice-select.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    
+
+    <style type="text/css">
+		.blur {-webkit-filter: blur(4px);filter: blur(4px);}
+    </style>
 </head>
 <body class="full-wrapper">
     <main class="main">
@@ -40,12 +29,15 @@
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">shop</a></li> 
-                                <li class="breadcrumb-item"><a href="#">Clean Details</a></li> 
+                                <li class="breadcrumb-item"><a href="#">Move Details</a></li> 
                             </ol>
                         </nav>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container-fluid blur">
+        	<img :src="move_detail.poster" style="width: 100%" height="200px;">
         </div>
         <!-- breadcrumb End-->
         <!--?  Details start -->
@@ -55,44 +47,37 @@
                     <div class="col-lg-8">
                         <div class="small-tittle mb-20">
                             <h2>{{move_detail.title}}</h2>
+                            <p>{{move_detail.category}}</p>
                         </div>
                         <div class="directory-cap mb-40">
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
+                            <p>가능지역 : <img src="https://png.pngtree.com/png-vector/20191003/ourmid/pngtree-gps-icon-png-image_1787000.jpg"style="width: 25px;height: 25px;">{{move_detail.address}}</p>
+                            <p>경력 : {{move_detail.carrer}}</p>
+                            <p>직원 수 : {{move_detail.emplo}}명</p>
+                            <p>연락 가능 시간대 : {{move_detail.contanttime}}</p>
                         </div>
                         <div class="small-tittle mb-20">
-                            <h2>Description</h2>
+                            <h2>{{move_detail.introduce}}</h2>
                         </div>
                         <div class="gallery-img">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <img src="../assets/img/gallery/gallery1.png" class="mb-30" alt="">
-                                </div>
-                                <div class="col-lg-6">
-                                    <img src="../assets/img/gallery/gallery2.png" class="mb-30" alt="">
-                                </div>
-                                <div class="col-lg-6">
-                                    <img src="../assets/img/gallery/gallery3.png"  class="mb-30"alt="">
-                                </div>
-                                <div class="col-lg-6">
-                                    <img src="../assets/img/gallery/gallery4.png"  class="mb-30"alt="">
-                                </div>
+                            <div class="row1">
+                                {{move_detail.service}}
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="map">
-                            <img src="../assets/img/gallery/map.png" alt="">
+                            <img :src="move_detail.poster">
                         </div>
-                        <!-- <div class="form-wrapper pt-80">
-                            <div class="row ">
+                        <div class="form-wrapper pt-80">
+                            <div class="row1">
                                 <div class="col-xl-12">
                                     <div class="small-tittle mb-30">
-                                        <h2>Contact</h2>
+                                        <h2>댓글</h2>
                                     </div>
                                 </div>
-                            </div>
+                            
                             <form id="contact-form" action="#" method="POST">
-                                <div class="row">
+                                <div class="row1">
                                     <div class="col-lg-12">
                                         <div class="form-box user-icon mb-15">
                                             <input type="text" name="name" placeholder="Your name">
@@ -112,8 +97,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form> 
-                        </div> -->
+                            </form>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>

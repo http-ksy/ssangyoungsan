@@ -11,8 +11,8 @@
     <link rel="/manifest" href="/site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <!-- CSS here -->
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
-	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>	
+<!--     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>	 -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/slicknav.css">
@@ -27,11 +27,11 @@
     <link rel="stylesheet" href="../assets/css/slick.css">
     <link rel="stylesheet" href="../assets/css/nice-select.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<!--     <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 	<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
     
 </head>
 <body class="full-wrapper">
@@ -139,7 +139,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" v-for="vo in move_list">
                                     <div class="single-new-arrival mb-50 text-center">
                                         <div class="popular-img">
-                                            <img :src="vo.poster" alt="">
+                                            <a :href="'../move/detail.do?mno='+vo.mno"><img :src="vo.poster" alt=""></a>
                                             <div class="favorit-items">
                                                 <!-- <span class="flaticon-heart"></span> -->
                                                 <img src="../assets/img/gallery/favorit-card.png" alt="">
@@ -237,59 +237,6 @@
 </div>
 </div>
 </div>
-<!-- Popular Items End -->
-<!--? Services Area Start -->
-<div class="categories-area section-padding40 gray-bg">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-50">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services1.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-50">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services2.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-30">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services3.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services4.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--? Services Area End -->
 </main>
 <!--? Search model Begin -->
 <div class="search-model-box">

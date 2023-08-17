@@ -11,23 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-    <!-- CSS here -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/slicknav.css">
-    <link rel="stylesheet" href="../assets/css/flaticon.css">
-    <link rel="stylesheet" href="../assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="../assets/css/gijgo.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/animated-headline.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../assets/css/themify-icons.css">
-    <link rel="stylesheet" href="../assets/css/slick.css">
-    <link rel="stylesheet" href="../assets/css/nice-select.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
     
+    <!-- CSS here -->
+    <style type="text/css">
+	.blur {-webkit-filter: blur(20px);filter: blur(20px);}
+    </style>
 </head>
 <body class="full-wrapper">
     <main class="main">
@@ -40,7 +28,7 @@
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">shop</a></li> 
-                                <li class="breadcrumb-item"><a href="#">Clean Details</a></li> 
+                                <li class="breadcrumb-item"><a href="#">clean Details</a></li> 
                             </ol>
                         </nav>
                     </div>
@@ -49,38 +37,45 @@
         </div>
         <!-- breadcrumb End-->
         <!--?  Details start -->
+        <div class="container-fluid blur">
+        	<img :src="clean_detail.poster" style="width: 100%" height="200px;">
+        </div>
         <div class="directory-details pt-padding">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="small-tittle mb-20">
-                            <h2>{{clean_detail.title}}</h2>
+                    <div class="col-lg-8">
+                        <div class="large-tittle mb-20">
+                            <h1>{{clean_detail.title}}</h1>
+                            <h2>{{clean_detail.category}}</h2>
                         </div>
                         <div class="directory-cap mb-40">
-                        <p>{{clean_detail.INTRODUCE}}</p>
+                            <p>가능지역 : <img src="https://png.pngtree.com/png-vector/20191003/ourmid/pngtree-gps-icon-png-image_1787000.jpg"style="width: 25px;height: 25px;">{{clean_detail.address}}</p>
+                            <p>경력 : {{clean_detail.carrer}}</p>
+                            <p>직원 수 : {{clean_detail.emplo}}명</p>
+                            <p>연락 가능 시간대 : {{clean_detail.contanttime}}</p>
                         </div>
                         <div class="small-tittle mb-20">
-                            <h2>서비스</h2>
+                            <h2>{{clean_detail.introduce}}</h2>
                         </div>
                         <div class="gallery-img">
-                            <pre>{{clean_detail.service}}</pre>
+                            <div class="row1">
+                                {{clean_detail.service}}
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="map">
-                            <img src="../assets/img/gallery/map.png" alt="">
+                            <img :src="clean_detail.poster" alt="">
                         </div>
-                        <!-- <div class="form-wrapper pt-80">
-                            <div class="row ">
+                        <div class="form-wrapper pt-80">
+                            <div class="row1">
                                 <div class="col-xl-12">
                                     <div class="small-tittle mb-30">
-                                        <h2>Contact</h2>
+                                        <h2>댓글</h2>
                                     </div>
                                 </div>
-                            </div>
-                            <form id="contact-form" action="#" method="POST">
-                                <div class="row">
+                             <form id="contact-form" action="#" method="POST">
+                                <div class="row1">
                                     <div class="col-lg-12">
                                         <div class="form-box user-icon mb-15">
                                             <input type="text" name="name" placeholder="Your name">
@@ -101,7 +96,8 @@
                                     </div>
                                 </div>
                             </form> 
-                        </div> -->
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>

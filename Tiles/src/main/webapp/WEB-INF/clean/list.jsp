@@ -11,8 +11,8 @@
     <link rel="/manifest" href="/site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <!-- CSS here -->
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
-	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>	
+<!--     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>	 -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/slicknav.css">
@@ -136,10 +136,10 @@
                         <!--? New Arrival Start -->
                         <div class="new-arrival new-arrival2">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" v-for="vo in clean_list">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-5" v-for="vo in clean_list">
                                     <div class="single-new-arrival mb-50 text-center">
                                         <div class="popular-img">
-                                            <img :src="vo.poster" alt="">
+                                            <a :href="'../clean/detail.do?cno='+vo.cno"><img :src="vo.poster" alt=""></a>
                                             <div class="favorit-items">
                                                 <!-- <span class="flaticon-heart"></span> -->
                                                 <img src="../assets/img/gallery/favorit-card.png" alt="">
@@ -175,8 +175,6 @@
 	</div>
 </div>
 <!--? New Arrival End -->
-</div>
-</div>
 </div>
 </div>
 <!--? Services Area End -->
