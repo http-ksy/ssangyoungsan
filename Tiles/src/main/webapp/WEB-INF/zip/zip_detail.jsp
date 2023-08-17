@@ -100,8 +100,8 @@
 			</table>
 		</div>
 <!-- #######################     딜러       ################################# -->
-		<div class="row" style="height:20px;"></div>
-		<div class="row" style="width:440px;float:left">
+		<div class="row"style="height:20px;"></div>
+		<div class="row" style="width:440px;margin-top:20px;float:left">
 			<h3 class="text-center">공인중개사 정보</h3>
 			<table class="table">
 				<tr>
@@ -130,7 +130,32 @@
 				</tr>
 			</table>
 		</div>
-	</div>
+		<div class="row" style="width:440px;float:left">
+            <div class="form-wrapper">
+                 <h3 class="text-center">공인중개사에게 질문하기</h3>
+                 <form id="contact-form" action="#" method="POST">
+                     <div class="col-lg-12">
+                          <div class="form-box user-icon mb-15">
+                               <input type="text" name="name" placeholder="Your name">
+                          </div>
+                     </div>
+                     <div class="col-lg-12">
+                          <div class="form-box email-icon mb-15">
+                               <input type="text" name="email" placeholder="Email address">
+                          </div>
+                     </div>
+                     <div class="col-lg-12">
+                          <div class="form-box message-icon mb-15">
+                               <textarea name="message" id="message" placeholder="Comment"></textarea>
+                          </div>
+                          <div class="submit-info">
+                               <button class="submit-btn2" type="submit">Send Message</button>
+                          </div>
+                     </div>
+                     </form>
+               </div> 
+          </div>
+     </div>
 </div>
 <script>
 	new Vue({

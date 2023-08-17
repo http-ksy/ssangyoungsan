@@ -131,8 +131,8 @@
                                             </div>
                                         </div>
                                         <div class="popular-caption" >
-                                        <img :src="vo.img" style="width:260px;height:200px;">
-                                         <h3><a :href="'../zip/zip_detail.do?no='+vo.no">{{vo.no}}/{{vo.name}}</a></h3>
+                                        <a :href="'../zip/zip_detail.do?no='+vo.no"><img :src="vo.img" style="width:225px;height:200px;"></a>
+                                         <h3><a :href="'../zip/zip_detail.do?no='+vo.no">{{vo.name}}</a></h3>
                                          <input type="hidden" ref="no" v-model="no" name="no" value="vo.no">
                                         <span>{{addr1}}</span>
                                         
