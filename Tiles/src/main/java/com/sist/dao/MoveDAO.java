@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.MoveMapper;
+import com.sist.vo.CleanVO;
 import com.sist.vo.MoveVO;
 
 @Repository
@@ -25,5 +26,13 @@ public class MoveDAO {
 	
 	public MoveVO MoveDetailData(int mno) {
 		return mapper.MoveDetailData(mno);
+	}
+	
+	public List<MoveVO> moveFindData(Map map){
+		return mapper.moveFindData(map);
+	}
+	
+	public int moveFindTotalPage(Map map) {
+		return mapper.moveFindTotalPage(map);
 	}
 }

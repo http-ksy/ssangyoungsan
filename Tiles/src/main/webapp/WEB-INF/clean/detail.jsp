@@ -26,9 +26,9 @@
                     <div class="col-lg-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">shop</a></li> 
-                                <li class="breadcrumb-item"><a href="#">clean Details</a></li> 
+                                <li class="breadcrumb-item"><a href="../main/main.do">Home</a></li>
+                                <li class="breadcrumb-item"><a href="../clean/list.do">.zip청소하기</a></li> 
+                                <li class="breadcrumb-item">.zip청소하기 상세</li> 
                             </ol>
                         </nav>
                     </div>

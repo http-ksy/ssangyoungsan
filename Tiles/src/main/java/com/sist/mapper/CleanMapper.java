@@ -19,4 +19,9 @@ public interface CleanMapper {
 			+ "FROM clean_detail "
 			+ "WHERE cno=#{cno}")
 	public CleanVO CleanDetailData(int cno);
+	
+//	<select id="cleanFindData" resultType="CleanVO" parameterType="hashmap">
+	public List<CleanVO> cleanFindData(Map map);
+// 	<select id="cleanFindTotalPage" resultType="int" parameterType="hashmap">
+	public int cleanFindTotalPage(Map map);
 }

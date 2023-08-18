@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
+import com.sist.vo.CleanVO;
 import com.sist.vo.MoveVO;
 
 public interface MoveMapper {
@@ -22,4 +23,7 @@ public interface MoveMapper {
 			+ "FROM move_detail "
 			+ "WHERE mno=#{mno}")
 	public MoveVO MoveDetailData(int mno);
+	
+	public List<MoveVO> moveFindData(Map map);
+	public int moveFindTotalPage(Map map);
 }

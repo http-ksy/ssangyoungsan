@@ -14,4 +14,8 @@ public interface CleanService {
 	public int CleanTotalPage();
 	
 	public CleanVO CleanDetailData(int cno);
+	
+	public List<CleanVO> cleanFindData(Map map);
+	
+	public int cleanFindTotalPage(Map map);
 }

@@ -13,26 +13,12 @@
     <!-- CSS here -->
 <!--     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
 	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>	 -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/slicknav.css">
-    <link rel="stylesheet" href="../assets/css/flaticon.css">
-    <link rel="stylesheet" href="../assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="../assets/css/gijgo.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/animated-headline.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../assets/css/themify-icons.css">
-    <link rel="stylesheet" href="../assets/css/slick.css">
-    <link rel="stylesheet" href="../assets/css/nice-select.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
 <!--     <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 	<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body class="full-wrapper">
     <main>
@@ -43,8 +29,8 @@
                     <div class="col-lg-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Shop</a></li> 
+                                <li class="breadcrumb-item"><a href="../main/main">Home</a></li>
+                                <li class="breadcrumb-item">.zip이사하기</li> 
                             </ol>
                         </nav>
                     </div>
@@ -57,8 +43,17 @@
                 <div class="row">
                     <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-50">
-                            <h2>Shop with us</h2>
-                            <p>Browse from 230 latest items</p>
+                            <h2>.Zip 이사하기</h2>
+	                           <div class="select-job-items2">
+	  	                            <select name="select2" ref="column">
+		                            	<option value="all">전체</option>
+		                            	<option value="title">업체명</option>
+		                            	<option value="address">지역</option>
+		                            	<option value="category">분류(철거/용달)</option>
+		                            </select>
+		                        <input type="text" ref="fd" class="input-sm" size="25" style="height: 41px;" v-model="fd">
+	          					<input type="button" class="btn btn-sm btn-default" style="height: 43px;" value="검색" @click="find()">
+		                        </div>
                         </div>
                     </div>
                 </div>
@@ -177,66 +172,6 @@
 </div>
 </div>
 </div>
-<!-- listing-area Area End -->
-<!--? Popular Items Start -->
-<div class="popular-items">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular1.png" alt="">
-                        <div class="img-cap">
-                            <span>Glasses</span>
-                        </div>
-                        <div class="favorit-items">
-                            <a href="shop.html" class="btn">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular2.png" alt="">
-                        <div class="img-cap">
-                            <span>Watches</span>
-                        </div>
-                        <div class="favorit-items">
-                         <a href="shop.html" class="btn">Shop Now</a>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="single-popular-items mb-50 text-center">
-                <div class="popular-img">
-                    <img src="../assets/img/gallery/popular3.png" alt="">
-                    <div class="img-cap">
-                        <span>Jackets</span>
-                    </div>
-                    <div class="favorit-items">
-                     <a href="shop.html" class="btn">Shop Now</a>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="single-popular-items mb-50 text-center">
-            <div class="popular-img">
-                <img src="../assets/img/gallery/popular4.png" alt="">
-                <div class="img-cap">
-                    <span>Clothes</span>
-                </div>
-                <div class="favorit-items">
-                 <a href="shop.html" class="btn">Shop Now</a>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
-</div>
-</div>
 </main>
 <!--? Search model Begin -->
 <div class="search-model-box">
@@ -259,6 +194,8 @@
 	new Vue({
 		el:'.category-area',
 		data:{
+			column:'all',
+			fd:'',
 			move_list:[],
 			curpage:1,
 			totalpage:0,
@@ -272,15 +209,29 @@
 			send:function(){
 				axios.get("http://localhost/web/move/list_vue.do",{
 					params:{
+						column:this.column,
+						fd:this.fd,
 						page:this.curpage
 					}
 				}).then(response=>{
 					console.log(response.data)
 					this.move_list=response.data;
-					this.curpage=response.data[0].curpage;
-					this.totalpage=response.data[0].totalpage;
-					this.startPage=response.data[0].startPage;
-					this.endPage=response.data[0].endPage;
+				}).catch(error=>{
+					console.log(error.response)
+				})
+				axios.get('http://localhost/web/move/page_vue.do',{
+					params:{
+						column:this.column,
+						fd:this.fd,
+						page:this.curpage
+					}
+				}).then(response=>{
+					console.log(response.data)
+					this.page_list=response.data;
+					this.curpage=this.page_list.curpage;
+					this.totalpage=this.page_list.totalpage;
+					this.startPage=this.page_list.startPage;
+					this.endPage=this.page_list.endPage;
 				})
 			},
 			range:function(start,end){
@@ -303,47 +254,15 @@
 			next:function(){
 				this.curpage=this.endPage+1;
 				this.send()
+			},find:function(){
+				this.column=this.$refs.column.value
+				console.log('fd : '+this.fd)
+				this.curpage=1;
+				this.send();
 			}
 		}
 	})
 </script>
-<script src="../assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="../assets/js/popper.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-
-<!-- Slick-slider , Owl-Carousel ,slick-nav -->
-<script src="../assets/js/owl.carousel.min.js"></script>
-<script src="../assets/js/slick.min.js"></script>
-<script src="../assets/js/jquery.slicknav.min.js"></script>
-
-<!-- One Page, Animated-HeadLin, Date Picker -->
-<script src="../assets/js/wow.min.js"></script>
-<script src="../assets/js/animated.headline.js"></script>
-<script src="../assets/js/jquery.magnific-popup.js"></script>
-<script src="../assets/js/gijgo.min.js"></script>
-
-<!-- Nice-select, sticky,Progress -->
-<script src="../assets/js/jquery.nice-select.min.js"></script>
-<script src="../assets/js/jquery.sticky.js"></script>
-<script src="../assets/js/jquery.barfiller.js"></script>
-
-<!-- counter , waypoint,Hover Direction -->
-<script src="../assets/js/jquery.counterup.min.js"></script>
-<script src="../assets/js/waypoints.min.js"></script>
-<script src="../assets/js/jquery.countdown.min.js"></script>
-<script src="../assets/js/hover-direction-snake.min.js"></script>
-
-<!-- contact js -->
-<script src="../assets/js/contact.js"></script>
-<script src="../assets/js/jquery.form.js"></script>
-<script src="../assets/js/jquery.validate.min.js"></script>
-<script src="../assets/js/mail-script.js"></script>
-<script src="../assets/js/jquery.ajaxchimp.min.js"></script>
-
-<!-- Jquery Plugins, main Jquery -->	
-<script src="../assets/js/plugins.js"></script>
-<script src="../assets/js/main.js"></script>
 
 </body>
 </html>

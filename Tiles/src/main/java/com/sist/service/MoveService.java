@@ -15,4 +15,8 @@ public interface MoveService {
 	public int MoveTotalPage();
 	
 	public MoveVO MoveDetailData(int mno);
+	
+	public List<MoveVO> moveFindData(Map map);
+	
+	public int moveFindTotalPage(Map map);
 }

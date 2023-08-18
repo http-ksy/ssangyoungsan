@@ -28,4 +28,16 @@ public class MoveServiceImpl implements MoveService {
 	public MoveVO MoveDetailData(int mno) {
 		return dao.MoveDetailData(mno);
 	}
+
+	@Override
+	public List<MoveVO> moveFindData(Map map) {
+		// TODO Auto-generated method stub
+		return dao.moveFindData(map);
+	}
+
+	@Override
+	public int moveFindTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.moveFindTotalPage(map);
+	}
 }

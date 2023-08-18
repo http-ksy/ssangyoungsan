@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.MoveMapper">
+	<select id="moveFindData" resultType="moveVO" parameterType="hashmap">
+		SELECT mno,title,poster,carrer, score,num
+		FROM (SELECT mno,title,poster,carrer, score,rownum as num
+		FROM (SELECT mno,title,poster,carrer, score
+		FROM move_detail
+			<if test="column!='all'">
+				WHERE ${column} LIKE '%'||#{fd}||'%'
+			</if>
+			ORDER BY mno ASC
+		))	
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	<select id="moveFindTotalPage" resultType="int" parameterType="hashmap">
+		SELECT CEIL(COUNT(*)/12.0) 
+		FROM move_detail
+			<if test="column!='all'">
+				WHERE ${column} LIKE '%'||#{fd}||'%'
+			</if>
+	</select>
+</mapper>

@@ -27,9 +27,9 @@
                     <div class="col-lg-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">shop</a></li> 
-                                <li class="breadcrumb-item"><a href="#">Move Details</a></li> 
+                                <li class="breadcrumb-item"><a href="../main/main.do">Home</a></li>
+                                <li class="breadcrumb-item"><a href="../move/list.do">.zip이사하기</a></li> 
+                                <li class="breadcrumb-item">.zip이사하기</li> 
                             </ol>
                         </nav>
                     </div>

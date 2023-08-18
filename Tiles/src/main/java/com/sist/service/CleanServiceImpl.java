@@ -27,4 +27,16 @@ public class CleanServiceImpl implements CleanService {
 		return dao.CleanDetailData(cno);
 	}
 
+	@Override
+	public List<CleanVO> cleanFindData(Map map) {
+		// TODO Auto-generated method stub
+		return dao.cleanFindData(map);
+	}
+
+	@Override
+	public int cleanFindTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.cleanFindTotalPage(map);
+	}
+
 }

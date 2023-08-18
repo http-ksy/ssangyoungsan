@@ -26,4 +26,11 @@ public class CleanDAO {
 	public CleanVO CleanDetailData(int cno) {
 		return mapper.CleanDetailData(cno);
 	}
+	
+	public List<CleanVO> cleanFindData(Map map){
+		return mapper.cleanFindData(map);
+	}
+	public int cleanFindTotalPage(Map map) {
+		return mapper.cleanFindTotalPage(map);
+	}
 }
