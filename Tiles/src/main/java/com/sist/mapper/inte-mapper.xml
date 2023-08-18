@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.sist.mapper.InteMapper">
+	
+	<select id="inteListData" resultType="InteVO" parameterType="hashmap">
+	  SELECT no,title,poster,jiyoek,price,gubun,num 
+	  FROM (SELECT no,title,poster,jiyoek,price,gubun,rownum as num 
+	  FROM (SELECT no,title,poster,jiyoek,price,gubun 
+	  FROM inte_detail 
+	   <if test="column!='all'">
+	    WHERE ${column} LIKE '%'||#{fd}||'%' 
+	   </if>
+	  ORDER BY no ASC)) 
+	  WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="inteTotalPage" resultType="int" parameterType="hashmap">
+	 SELECT CEIL(COUNT(*)/12.0)
+	 FROM inte_detail
+	 <if test="column!='all'">
+	   WHERE ${column} LIKE '%'||#{fd}||'%' 
+	 </if>
+	</select>
+	
+</mapper>
