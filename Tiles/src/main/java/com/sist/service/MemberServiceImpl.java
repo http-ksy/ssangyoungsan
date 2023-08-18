@@ -43,5 +43,11 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.memberPhoneCheck(phone);
 	}
+
+	@Override
+	public MemberVO memberInfo(String id) {
+		// TODO Auto-generated method stub
+		return dao.memberInfo(id);
+	}
  
 }

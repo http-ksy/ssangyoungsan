@@ -23,4 +23,7 @@ public interface MemberService {
 	 // 핸드폰 번호 체크
 	//@Select("SELECT COUNT(*) FROM amem WHERE phone=${phone}")
 	public int memberPhoneCheck(String phone);
+	/*@Select("SELECT id,pwd,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin FROM amem"
+			+ "WHERE id=#{id}")*/
+	public MemberVO memberInfo(String id);
 }

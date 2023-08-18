@@ -47,4 +47,10 @@ public class MemberDAO {
 	{
 		return mapper.memberPhoneCheck(phone);
 	}
+	/*@Select("SELECT id,pwd,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin FROM amem"
+			+ "WHERE id=#{id}")*/
+	public MemberVO memberInfo(String id)
+	{
+		return mapper.memberInfo(id);
+	}
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.MemberService;
 import com.sist.vo.MemberVO;
 
@@ -144,12 +144,7 @@ public String member_login(String id, String pwd,boolean ck,HttpSession session,
 				session.setAttribute("id", vo.getId());
 				session.setAttribute("admin", vo.getAdmin());
 				session.setAttribute("nickname", vo.getNickname());
-				session.setAttribute("email", vo.getEmail());
-				session.setAttribute("phone", vo.getPhone());
-				session.setAttribute("post", vo.getPost());
-				session.setAttribute("addr1", vo.getAddr1());
-				session.setAttribute("addr2", vo.getAddr2());
-				session.setAttribute("birthday", vo.getBirthday());
+				session.setAttribute("pwd", vo.getPwd());
 				result="yes";
 				Cookie cookie=null;
 				if(ck==true)
@@ -186,6 +181,13 @@ public String member_login(String id, String pwd,boolean ck,HttpSession session,
 	}
 	return result;
 }
-
-
+@GetMapping(value="member/mypage_vue.do",produces="text/plain;charset=UTF-8")
+public String memberInfo(String id) throws Exception
+{
+	
+	MemberVO vo=service.memberInfo(id);
+	ObjectMapper mapper=new ObjectMapper();
+	String json=mapper.writeValueAsString(vo);
+	return json;
+}
 }

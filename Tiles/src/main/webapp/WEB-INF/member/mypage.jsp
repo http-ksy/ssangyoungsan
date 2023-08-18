@@ -42,74 +42,74 @@
       	 <tr>
       	   <td width=40% class="text-center"><h2>ID</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{id}}</h1>
+      	     <h1>{{myinfo.id}}</h1>
       	     
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>Name</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{name}}</h1>
+      	     <h1>{{myinfo.name}}</h1>
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>Nickname</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{nickname}}</h1>
+      	     <h1>{{myinfo.nickname}}</h1>
       	    
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>email</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{email}}</h1>
+      	     <h1>{{myinfo.email}}</h1>
       	     
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>성별</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{sex}}</h1>
+      	     <h1>{{myinfo.sex}}</h1>
       	   </td>
       	 </tr>
       	  
       	  <tr>
       	   <td width=40% class="text-center"><h2>birthday</h2></td>
       	   <td width=60% class="text-left">
-      	   	<h1>{{birthday}}</h1>
+      	   	<h1>{{myinfo.birthday}}</h1>
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>phone</h2></td>
       	   <td width=60% class="text-left">
-      	    <h1>{{phone}}</h1>
+      	    <h1>{{myinfo.phone}}</h1>
       	   
       	   </td>
       	 </tr>
       	 <tr>
       	   <td width=40% class="text-center"><h2>post</h2></td>
       	   <td width=60% class="text-left">
-      	    <h1>{{post}}</h1>
+      	    <h1>{{myinfo.post}}</h1>
       	  
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>addr1</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{addr1}}</h1>
+      	     <h1>{{myinfo.addr1}}</h1>
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>addr2</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{addr2}}</h1>
+      	     <h1>{{myinfo.addr2}}</h1>
       	   </td>
       	 </tr>
       	  <tr>
            <td colspan="2" class="text-center">
-            <input type=button value="회원수정" class="genric-btn info-border circle">
+            <a href="../member/update.do"  class="genric-btn info-border circle">회원수정</a>
 
-             <a href="../main/main.do" class="genric-btn info-border circle">취소</a>
+             <a href="../main/main.do" class="genric-btn info-border circle">🏠</a>
            </td>
          </tr>
       	 
@@ -120,21 +120,22 @@
    new Vue({
 	   el:'.container',
 	   data:{
-		   id:'${sessionScope.id}',
-		   pwd:'${sessionScope.pwd}',
-		   name:'${sessionScope.name}',
-		   nickname:'${sessionScope.nickname}',
-		   email:'${sessionScope.email}',
-		   sex:'${sessionScope.sex}',
-		   birthday:'${sessionScope.birthday}',
-		   phone:'${sessionScope.phone}',
-		   post:'${sessionScope.post}',
-		   addr1:'${sessionScope.addr1}',
-		   addr2:'${sessionScope.addr2}'
+		 myinfo:{},
+		 id:'${sessionScope.id}'
 		   
 	   },
 	   mounted:function(){
-		 
+		   let id=String(this.id)
+		 axios.get('../member/mypage_vue.do',{
+			 params:{
+				 id:id
+			 }
+		 }).then(response=>{
+			 console.log(response.data)
+			 this.myinfo=response.data
+		 }).catch(error=>{
+			 console.log(error.response)
+		 })
 	   }
    })
    </script>
