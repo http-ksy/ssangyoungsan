@@ -98,7 +98,7 @@
 								      </table>
 								  </b-modal>&nbsp;
 								  <!-- 조인 버튼 -->
-<!-- 								  <b-button class="genric-btn info-border circle arrow">--><a href="../member/join.do" class="genric-btn info-border circle arrow">join</a> 
+<!-- 								  <b-button class="genric-btn info-border circle arrow">--><a href="../member/join.do" class="genric-btn info-border circle arrow btn">join</a> 
 								  
 								  <!-- 로그인 버튼 끝 -->
                             </div>
@@ -106,12 +106,12 @@
                             
                              <div class="header-right1 d-flex align-items-center" v-if="bool">
                              <!-- sessionck ='' bool =>false sessionck='hong' => bool true  -->
-                             <div v-if="sessionck=='관리자'"><a href="#" class="genric-btn info-border circle arrow ">${sessionScope.name }님(${sessionScope.admin })</a></div>
-                             <div v-if="sessionck=='사용자'"><a href="#" class="genric-btn info-border circle arrow ">${sessionScope.name }님(${sessionScope.admin })</a></div>
-                             <div v-if="sessionck=='사장님'"><a href="#" class="genric-btn info-border circle arrow ">${sessionScope.name }님(${sessionScope.admin })</a></div>
+                             <div v-if="sessionck=='관리자'"><a href="../member/admin.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
+                             <div v-if="sessionck=='사용자'"><a href="../member/mypage.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
+                             <div v-if="sessionck=='사장님'"><a href="../member/mypage.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
 <!--                              <a href="#" v-if="sessionck=='사용자'">My🏠</a> -->
 <!--                              <a href="#" v-if="sessionck=='사장님'">C🏠</a> -->
-                             &nbsp;<a href="../member/logout.do" class="genric-btn info-border circle arrow">logout</a>
+                             &nbsp;<a href="../member/logout.do" class="genric-btn info-border circle arrow btn">logout</a>
                              
                              </div>
                              

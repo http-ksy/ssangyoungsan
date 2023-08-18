@@ -31,7 +31,7 @@ public interface MemberMapper {
 			+ "#{post},#{admin},SYSDATE)")
 	public void MemberInsert(MemberVO vo);
 	// 로그인 
-	@Select("SELECT pwd,name,sex,admin FROM amem "
+	@Select("SELECT pwd,name,sex,admin,id,email,nickname,birthday,phone,addr1,addr2,post FROM amem "
 			+ "WHERE id=#{id}")
 	public MemberVO memberLogin(String id);
 	// 아이디 췌크
@@ -46,4 +46,6 @@ public interface MemberMapper {
 	// 핸드폰 번호 체크
 	@Select("SELECT COUNT(*) FROM amem WHERE phone=#{phone}")
 	public int memberPhoneCheck(String phone);
+	
+	
 }

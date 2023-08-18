@@ -144,6 +144,12 @@ public String member_login(String id, String pwd,boolean ck,HttpSession session,
 				session.setAttribute("id", vo.getId());
 				session.setAttribute("admin", vo.getAdmin());
 				session.setAttribute("nickname", vo.getNickname());
+				session.setAttribute("email", vo.getEmail());
+				session.setAttribute("phone", vo.getPhone());
+				session.setAttribute("post", vo.getPost());
+				session.setAttribute("addr1", vo.getAddr1());
+				session.setAttribute("addr2", vo.getAddr2());
+				session.setAttribute("birthday", vo.getBirthday());
 				result="yes";
 				Cookie cookie=null;
 				if(ck==true)
@@ -180,4 +186,6 @@ public String member_login(String id, String pwd,boolean ck,HttpSession session,
 	}
 	return result;
 }
+
+
 }

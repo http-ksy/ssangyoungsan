@@ -21,4 +21,10 @@ public class MemberController {
 	 session.invalidate();
 	 return "redirect:../main/main.do";
  }
+ 
+ @GetMapping("member/mypage.do")
+ public String member_mypage()
+ {
+	 return "member/mypage";
+ }
 }
