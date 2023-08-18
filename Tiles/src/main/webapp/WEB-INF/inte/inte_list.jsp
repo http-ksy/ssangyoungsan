@@ -34,14 +34,23 @@
         <div class="category-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-7 col-lg-8 col-md-10">
-                        <div class="section-tittle mb-50">
+                    <div class="col-xl-7 col-lg-8 col-md-12">
+                        <div class="section-tittle mb-20">
                             <h2>인테리어</h2>
                             <p>종합 리모델링</p>
                         </div>
                     </div>
-                    <div>
-                    dd
+                 <!-- 검색 -->   
+                    <div class="navbar-form navbar-left" style="width:100%;margin-top:10px; margin-bottom:20px;">
+                     <div class="select-job-items2">
+                      <select name="select2" ref="column">
+                       <option value="all">전체</option>
+                       <option value="title">제목</option>
+                       <option value="gubun">구분</option>
+                      </select>
+                     </div>
+                     <input type="text" ref="fd" v-model="fd" class="form-control" placeholder="Search" style="width:300px;height: 42px;">
+      				 <input type="button" class="btn btn-default" value="Search" @click="find()" style="height: 42px;">
                     </div>
                 </div>
                 <div class="row">
@@ -131,7 +140,7 @@
                                             </div>
                                         </div>
                                         <div class="popular-caption">
-                                         <h3><a href="product_details.html">{{vo.title}}</a></h3>
+                                         <h3><a :href="'../inte/inte_detail.do?no='+vo.no">{{vo.title}}</a></h3>
                                          <div class="rating mb-10">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
@@ -181,6 +190,8 @@
    new Vue({
 	 el:'.category-area',
 	 data: {
+		 column:'all',
+		 fd:'',
 		 inte_list:[],
 		 page_list:{},
 		 curpage:1,
@@ -193,8 +204,11 @@
 	 },
 	 methods: {
 		 send:function() {
-			 axios.get('http://localhost/web/inte/list_vue.do',{
+			 axios.post('http://localhost/web/inte/list_vue.do',null,{
 				 params: {
+					 //보내는 데이터
+					 column:this.column,
+					 fd:this.fd,
 					 page:this.curpage
 				 }
 			 }).then(response=>{
@@ -208,9 +222,12 @@
 			 //페이지
 			 axios.get('http://localhost/web/inte/inte_page_vue.do',{
 				 params: {
+					 column:this.column,
+					 fd:this.fd,
 					 page:this.curpage
 				 }
 			 }).then(response=>{
+				 console.log(response.data)
 				 this.page_list=response.data
 				 this.curpage = this.page_list.curpage
 				 this.totalpage = this.page_list.totalpage
@@ -219,6 +236,12 @@
 			 }).catch(error=>{
 				 console.log(error.response)
 			 })
+		 },
+		 find:function() {
+			 console.log(this.fd)
+			 this.column=this.$refs.column.value
+			this.curpage=1;
+			this.send()
 		 },
 		 range:function(start,end) {
 			 let arr=[]

@@ -22,7 +22,7 @@ public class InteDAO {
 	}
 	
 	//@Select("SELECT CEIL(COUNT(*)/12.0) FROM inte_detail")
-	public int inteTotalPage() {
-		return mapper.inteTotalPage();
+	public int inteTotalPage(Map map) {
+		return mapper.inteTotalPage(map);
 	}
 }

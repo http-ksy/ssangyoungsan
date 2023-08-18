@@ -11,10 +11,10 @@ import com.sist.vo.InteVO;
 
 @Service
 public class InteServiceImpl implements InteService {
-	@Autowired
-	private InteDAO dao;
+	//@Autowired
+	//private InteDAO dao;
 
-	@Override
+/*	@Override
 	public List<InteVO> inteListData(Map map) {
 		return dao.inteListData(map);
 	}
@@ -23,6 +23,6 @@ public class InteServiceImpl implements InteService {
 	public int inteTotalPage() {
 		return dao.inteTotalPage();
 	}
-	
+	*/
 	
 }

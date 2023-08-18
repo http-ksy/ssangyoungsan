@@ -14,9 +14,9 @@ public interface InteService {
 			+ "FROM (SELECT no,title,poster,jiyoek,price,gubun "
 			+ "FROM inte_detail ORDER BY no ASC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}") */
-	public List<InteVO> inteListData(Map map);
+	//public List<InteVO> inteListData(Map map);
 	
 	//@Select("SELECT CEIL(COUNT(*)/12.0) FROM inte_detail")
-	public int inteTotalPage();
+	//public int inteTotalPage();
 	
 }
