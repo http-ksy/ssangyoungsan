@@ -13,6 +13,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
 
     <!-- CSS here -->
+    
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/slicknav.css">
@@ -59,6 +60,7 @@
 <script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="../assets/js/popper.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
+
 
 <!-- Slick-slider , Owl-Carousel ,slick-nav -->
 <script src="../assets/js/owl.carousel.min.js"></script>

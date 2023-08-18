@@ -11,22 +11,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/slicknav.css">
-    <link rel="stylesheet" href="../assets/css/flaticon.css">
-    <link rel="stylesheet" href="../assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="../assets/css/gijgo.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/animated-headline.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../assets/css/themify-icons.css">
-    <link rel="stylesheet" href="../assets/css/slick.css">
-    <link rel="stylesheet" href="../assets/css/nice-select.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body class="full-wrapper">
     <main>
@@ -38,7 +23,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Shop</a></li> 
+                                <li class="breadcrumb-item"><a href="#">Shop</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -51,9 +36,12 @@
                 <div class="row">
                     <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-50">
-                            <h2>Shop with us</h2>
-                            <p>Browse from 230 latest items</p>
+                            <h2>인테리어</h2>
+                            <p>종합 리모델링</p>
                         </div>
+                    </div>
+                    <div>
+                    dd
                     </div>
                 </div>
                 <div class="row">
@@ -125,23 +113,25 @@
                         </div>
                         <!-- Job Category Listing End -->
                     </div>
-                    <!--?  Right content -->
+                   
+                   
+                   
+           <!--?  Right content -->
                     <div class="col-xl-9 col-lg-9 col-md-8 ">
                         <!--? New Arrival Start -->
                         <div class="new-arrival new-arrival2">
                             <div class="row">
-
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-5" v-for="vo in inte_list">
+                                    <div class="single-new-arrival mb-50 text-center" >
                                         <div class="popular-img">
-                                            <img src="../assets/img/gallery/arrival2.png" alt="">
+                                           <a :href="'../inte/inte_detail.do?no='+vo.no"><img :src="vo.poster" alt="" style="width:270px;height:180px"></a>
                                             <div class="favorit-items">
                                                 <!-- <span class="flaticon-heart"></span> -->
                                                 <img src="../assets/img/gallery/favorit-card.png" alt="">
                                             </div>
                                         </div>
                                         <div class="popular-caption">
-                                         <h3><a href="product_details.html">Knitted Jumper</a></h3>
+                                         <h3><a href="product_details.html">{{vo.title}}</a></h3>
                                          <div class="rating mb-10">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
@@ -149,289 +139,27 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                         </div>
-                                        <span>$ 30.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                <div class="single-new-arrival mb-50 text-center">
-                                    <div class="popular-img">
-                                        <img src="../assets/img/gallery/arrival3.png" alt="">
-                                        <div class="favorit-items">
-                                            <!-- <span class="flaticon-heart"></span> -->
-                                            <img src="../assets/img/gallery/favorit-card.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popular-caption">
-                                     <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                                     <div class="rating mb-10">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <span>$ 30.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                            <div class="single-new-arrival mb-50 text-center">
-                                <div class="popular-img">
-                                    <img src="../assets/img/gallery/arrival4.png" alt="">
-                                    <div class="favorit-items">
-                                        <!-- <span class="flaticon-heart"></span> -->
-                                        <img src="../assets/img/gallery/favorit-card.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="popular-caption">
-                                 <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                                 <div class="rating mb-10">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <span>$ 30.00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl43 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-new-arrival mb-50 text-center">
-                            <div class="popular-img">
-                                <img src="../assets/img/gallery/arrival5.png" alt="">
-                                <div class="favorit-items">
-                                    <!-- <span class="flaticon-heart"></span> -->
-                                    <img src="../assets/img/gallery/favorit-card.png" alt="">
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-                             <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                             <div class="rating mb-10">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span>$ 30.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-new-arrival mb-50 text-center">
-                        <div class="popular-img">
-                            <img src="../assets/img/gallery/arrival6.png" alt="">
-                            <div class="favorit-items">
-                                <!-- <span class="flaticon-heart"></span> -->
-                                <img src="../assets/img/gallery/favorit-card.png" alt="">
-                            </div>
-                        </div>
-                        <div class="popular-caption">
-                         <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                         <div class="rating mb-10">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span>$ 30.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                <div class="single-new-arrival mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/arrival7.png" alt="">
-                        <div class="favorit-items">
-                            <!-- <span class="flaticon-heart"></span> -->
-                            <img src="../assets/img/gallery/favorit-card.png" alt="">
-                        </div>
-                    </div>
-                    <div class="popular-caption">
-                     <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                     <div class="rating mb-10">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <span>$ 30.00</span>
-                </div>
-            </div>
+                                        <span><img src="../assets/img/inte/won.png" style="width:20px;height:20px">&nbsp;{{vo.price}}</span>
+                                        <span><img src="../assets/img/inte/zip.png" style="width:20px;height:20px">&nbsp;{{vo.gubun}}</span>
+                                       </div>
+                                   </div>
+                                </div>                          
+							</div>
+							
+		<div class="justify-content-center">
+         <ul class="pagination" style="margin-left:400px;">
+		   <li v-if="startPage>1"><a href="#" v-on:click="prev()">&laquo; Previous</a></li>
+		   <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''"><a href="#" v-on:click="pageChange(i)">{{i}}</a></li>
+		   <li v-if="endPage<totalpage"><a href="#" @click="next()">Next &raquo;</a></li>
+		 </ul>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-            <div class="single-new-arrival mb-50 text-center">
-                <div class="popular-img">
-                    <img src="../assets/img/gallery/arrival8.png" alt="">
-                    <div class="favorit-items">
-                        <!-- <span class="flaticon-heart"></span> -->
-                        <img src="../assets/img/gallery/favorit-card.png" alt="">
-                    </div>
-                </div>
-                <div class="popular-caption">
-                 <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                 <div class="rating mb-10">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <span>$ 30.00</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-        <div class="single-new-arrival mb-50 text-center">
-            <div class="popular-img">
-                <img src="../assets/img/gallery/arrival1.png" alt="">
-                <div class="favorit-items">
-                    <!-- <span class="flaticon-heart"></span> -->
-                    <img src="../assets/img/gallery/favorit-card.png" alt="">
-                </div>
-            </div>
-            <div class="popular-caption">
-             <h3><a href="product_details.html">Knitted Jumper</a></h3>
-             <div class="rating mb-10">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <span>$ 30.00</span>
-        </div>
-    </div>
+       </div>
+       
+      </div>
+	</div>
+   </div>
 </div>
-</div>
-<!-- Button -->
-<div class="row justify-content-center">
-    <div class="room-btn mt-20">
-        <a href="catagori.html" class="border-btn">Browse More</a>
-    </div>
-</div>
-</div>
-<!--? New Arrival End -->
-</div>
-</div>
-</div>
-</div>
-<!-- listing-area Area End -->
-<!--? Popular Items Start -->
-<div class="popular-items">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular1.png" alt="">
-                        <div class="img-cap">
-                            <span>Glasses</span>
-                        </div>
-                        <div class="favorit-items">
-                            <a href="shop.html" class="btn">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular2.png" alt="">
-                        <div class="img-cap">
-                            <span>Watches</span>
-                        </div>
-                        <div class="favorit-items">
-                         <a href="shop.html" class="btn">Shop Now</a>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="single-popular-items mb-50 text-center">
-                <div class="popular-img">
-                    <img src="../assets/img/gallery/popular3.png" alt="">
-                    <div class="img-cap">
-                        <span>Jackets</span>
-                    </div>
-                    <div class="favorit-items">
-                     <a href="shop.html" class="btn">Shop Now</a>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="single-popular-items mb-50 text-center">
-            <div class="popular-img">
-                <img src="../assets/img/gallery/popular4.png" alt="">
-                <div class="img-cap">
-                    <span>Clothes</span>
-                </div>
-                <div class="favorit-items">
-                 <a href="shop.html" class="btn">Shop Now</a>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
-</div>
-</div>
-<!-- Popular Items End -->
-<!--? Services Area Start -->
-<div class="categories-area section-padding40 gray-bg">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-50">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services1.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-50">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services2.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-30">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services3.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services4.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!--? Services Area End -->
 </main>
 <!--? Search model Begin -->
@@ -449,45 +177,76 @@
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
 
-<!-- JS here -->
-<!-- Jquery, Popper, Bootstrap -->
-<script src="../assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="../assets/js/popper.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-
-<!-- Slick-slider , Owl-Carousel ,slick-nav -->
-<script src="../assets/js/owl.carousel.min.js"></script>
-<script src="../assets/js/slick.min.js"></script>
-<script src="../assets/js/jquery.slicknav.min.js"></script>
-
-<!-- One Page, Animated-HeadLin, Date Picker -->
-<script src="../assets/js/wow.min.js"></script>
-<script src="../assets/js/animated.headline.js"></script>
-<script src="../assets/js/jquery.magnific-popup.js"></script>
-<script src="../assets/js/gijgo.min.js"></script>
-
-<!-- Nice-select, sticky,Progress -->
-<script src="../assets/js/jquery.nice-select.min.js"></script>
-<script src="../assets/js/jquery.sticky.js"></script>
-<script src="../assets/js/jquery.barfiller.js"></script>
-
-<!-- counter , waypoint,Hover Direction -->
-<script src="../assets/js/jquery.counterup.min.js"></script>
-<script src="../assets/js/waypoints.min.js"></script>
-<script src="../assets/js/jquery.countdown.min.js"></script>
-<script src="../assets/js/hover-direction-snake.min.js"></script>
-
-<!-- contact js -->
-<script src="../assets/js/contact.js"></script>
-<script src="../assets/js/jquery.form.js"></script>
-<script src="../assets/js/jquery.validate.min.js"></script>
-<script src="../assets/js/mail-script.js"></script>
-<script src="../assets/js/jquery.ajaxchimp.min.js"></script>
-
-<!-- Jquery Plugins, main Jquery -->	
-<script src="../assets/js/plugins.js"></script>
-<script src="../assets/js/main.js"></script>
+<script>
+   new Vue({
+	 el:'.category-area',
+	 data: {
+		 inte_list:[],
+		 page_list:{},
+		 curpage:1,
+		 totalpage:0,
+		 startPage:0,
+		 endPage:0
+	 },
+	 mounted: function() {
+		 this.send();
+	 },
+	 methods: {
+		 send:function() {
+			 axios.get('http://localhost/web/inte/list_vue.do',{
+				 params: {
+					 page:this.curpage
+				 }
+			 }).then(response=>{
+				 console.log(response.data)
+				this.inte_list=response.data
+				
+			 }).catch(error=>{
+				 console.log(error.response)
+			 })
+			 
+			 //페이지
+			 axios.get('http://localhost/web/inte/inte_page_vue.do',{
+				 params: {
+					 page:this.curpage
+				 }
+			 }).then(response=>{
+				 this.page_list=response.data
+				 this.curpage = this.page_list.curpage
+				 this.totalpage = this.page_list.totalpage
+				 this.startPage = this.page_list.startPage
+				 this.endPage = this.page_list.endPage
+			 }).catch(error=>{
+				 console.log(error.response)
+			 })
+		 },
+		 range:function(start,end) {
+			 let arr=[]
+			 let length=end-start
+			 for(let i=0; i<=length; i++) {
+				 arr[i]=start;
+				 start++;
+			 }
+			 return arr;
+		 },
+		 pageChange:function(page) {
+			 this.curpage = page
+			 this.send()
+		 },
+		 prev:function() {
+			 //조건안줬으면
+			 this.curpage = this.startPage>1?this.startPage-1:this.startPage
+			 //this.curpage=this.startPage-1;
+			 this.send()
+		 },
+		 next:function() {
+			 this.curpage=this.endPage<this.totalpage?this.endPage+1:this.endPage
+			 this.send()
+		 }
+	 }
+   })
+</script>
 
 </body>
 </html>
+        
