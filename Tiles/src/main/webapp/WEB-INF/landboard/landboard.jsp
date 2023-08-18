@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="section-top-border">
-<h2 class="mb-30 text-center">소통해요</h2>
+<h1 class="mb-30 text-center">소통해요</h1>
 	<div class="text-right">
 	
 													
@@ -27,7 +27,9 @@
 																<option value="1">청소</option>
 																<option value="1">이사</option>
 															</select>
-															<a class="genric-btn danger-border circle arrow text-right">new 글</a>
+															<a class="genric-btn danger-border circle arrow text-right"
+															href="../landboard/landinsert.do"
+															>new 글</a>
 														</div>
 
 													&nbsp;

@@ -10,4 +10,8 @@ public class landboardController {
 	public String landboard() {
 		return "landboard/landboard";
 	}
+	@GetMapping("landboard/landinsert.do")
+	public String landboard_insert() {
+		return "landboard/landinsert";
+	}
 }
