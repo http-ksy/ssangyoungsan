@@ -14,7 +14,7 @@
 <body>
 <div class="section-top-border">
 											<div class="row">
-<div class="col-lg-8 col-md-8">
+<div class="col-lg-12 col-md-12">
 														
 													<h1 class="mb-30 text-center">✍️글쓰기</h1>
 													<div class="input-group-icon mt-10">
@@ -29,7 +29,8 @@
 																</select>
 															</div>
 														</div>
-													<div style="display: flex;">
+														<!-- 태그 : 이름  -->
+													<!-- <div style="display: flex;">
 													<div class="mt-10" style="width: 30%">
 															<div class="form-select" id="default-select" >
 																<select>
@@ -46,7 +47,7 @@
 															onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required
 															class="single-input" >
 													</div>
-													</div>
+													</div> -->
 															<!-- <input type="text" name="first_name" placeholder="First Name"
 															onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required
 															class="single-input" style="width: 30%"> -->
@@ -99,31 +100,33 @@
 														</div> -->
 														<div class="mt-10">
 															<textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''"
-															onblur="this.placeholder = 'Message'" required></textarea>
+															onblur="this.placeholder = 'Message'" required style="height: 300px"></textarea>
 														</div>
-														<div class="mt-10">
-															<input type="text" name="first_name" placeholder="Primary color"
-															onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'" required
-															class="single-input-primary">
-														</div>
-														<div class="mt-10">
-															<input type="text" name="first_name" placeholder="Accent color"
-															onfocus="this.placeholder = ''" onblur="this.placeholder = 'Accent color'" required
-															class="single-input-accent">
-														</div>
-														<div class="mt-10">
-															<input type="text" name="first_name" placeholder="Secondary color"
-															onfocus="this.placeholder = ''" onblur="this.placeholder = 'Secondary color'"
-															required class="single-input-secondary">
-														</div>
+														 <b-form-group label="첨부파일" label-cols-sm="2" label-size="lg">
+														  <b-form-file multiple id="file-large" size="lg">
+														   <template slot="file-name" slot-scope="{ names }">
+														     <b-badge variant="dark">{{ names[0] }}</b-badge>
+														     <b-badge v-if="names.length > 1" variant="dark" class="ml-1">
+														       + {{ names.length - 1 }} More files
+														     </b-badge>
+														   </template>
+														  </b-form-file>
+														</b-form-group>
+														<div class="section-top-border text-right">
+													<a href="#" class="genric-btn primary-border e-large">upload👍</a>
+													&nbsp;
+													<a href="#" class="genric-btn danger-border e-large">cancel👎</a>
 												</div>
 												</div>
+												</div>
+												
 												</div>
 <script>
 new Vue({
 	el:'.section-top-border',
 	data:{
-		boardtype:1
+		boardtype:1,
+		names:[]
 	}
 })
 </script>
