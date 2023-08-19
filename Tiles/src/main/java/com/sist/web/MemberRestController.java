@@ -190,4 +190,37 @@ public String memberInfo(String id) throws Exception
 	String json=mapper.writeValueAsString(vo);
 	return json;
 }
+@PostMapping(value="member/pwd_ok.do",produces="text/plain;charset=UTF-8")
+public String memberPwdCheck(String id,String pwd)
+{
+	String result="";
+	String password=service.memberPwdCheck(id);
+	if(encoder.matches(pwd, password))
+	{
+		result="yes";
+	}
+	else
+	{
+		result="no";
+	}
+	return result;
+}
+@PostMapping(value="member/update.do",produces="text/plain;charset=UTF-8")
+public String memberUpdate(MemberVO vo)
+{
+	String result="";
+	System.out.println(vo.getId());
+	try
+	{
+		String en=encoder.encode(vo.getPwd());
+		vo.setPwd(en);
+		service.memberUpdate(vo);
+		result="yes";
+	}catch(Exception ex)
+	{
+		result="no";
+		ex.printStackTrace();
+	}
+	return result;		
+}
 }

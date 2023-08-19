@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /*
  *  id varchar2(50),
@@ -51,6 +52,12 @@ public interface MemberMapper {
 	@Select("SELECT id,pwd,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin FROM amem "
 			+ "WHERE id=#{id}")
 	public MemberVO memberInfo(String id);
+	// 비밀번호 확인 
+	@Select("SELECT pwd FROM amem WHERE id=#{id}")
+	public String memberPwdCheck(String id);
 	
+	@Update("UPDATE amem SET nickname=#{nickname},email=#{email},post=#{post},addr1=#{addr1},addr2=#{addr2},phone=#{phone},pwd=#{pwd} "
+			+ "WHERE id=#{id}")
+	public void memberUpdate(MemberVO vo);
 	
 }

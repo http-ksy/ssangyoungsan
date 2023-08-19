@@ -49,5 +49,17 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.memberInfo(id);
 	}
+
+	@Override
+	public String memberPwdCheck(String id) {
+		// TODO Auto-generated method stub
+		return dao.memberPwdCheck(id);
+	}
+
+	@Override
+	public void memberUpdate(MemberVO vo) {
+		// TODO Auto-generated method stub
+		dao.memberUpdate(vo);
+	}
  
 }

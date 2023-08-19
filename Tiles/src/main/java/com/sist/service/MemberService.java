@@ -1,6 +1,7 @@
 package com.sist.service;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sist.dao.MemberDAO;
@@ -26,4 +27,9 @@ public interface MemberService {
 	/*@Select("SELECT id,pwd,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin FROM amem"
 			+ "WHERE id=#{id}")*/
 	public MemberVO memberInfo(String id);
+	//@Select("SELECT pwd FROM amem WHERE id=#{id}")
+	public String memberPwdCheck(String id);
+	/*@Update("UPDATE amem SET nickname=#{nickname},email=#{email},post=#{post},addr1=#{addr1},addr2=#{addr2},phone=#{phone},pwd=#{pwd} "
+			+ "WHERE id=#{id}")*/
+	public void memberUpdate(MemberVO vo);
 }

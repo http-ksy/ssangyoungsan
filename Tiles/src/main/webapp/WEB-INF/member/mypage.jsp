@@ -42,74 +42,104 @@
       	 <tr>
       	   <td width=40% class="text-center"><h2>ID</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{myinfo.id}}</h1>
-      	     
+      	     <h1 v-if="readck==false">{{myinfo.id}}</h1>
+      	     <input v-if="readck==true" type=text ref="id" size=30 class="input-sm" v-model="id" readonly style="background-color:#F2E0F7" >
+      	   </td>
+      	 </tr>
+      	 <tr v-if="readck==true">
+      	   <td width=40% class="text-center"><h2>Password</h2></td>
+      	   <td width=60% class="text-left">
+      	     <input type=password ref="pwd" size=30 class="input-sm" v-model="pwd" @keyup="equal(pwd,pwdcheck)">
+      	   </td>
+      	 </tr>
+      	 <tr v-if="readck==true">
+      	   <td width=40% class="text-center"><h2>Password check</h2></td>
+      	   <td width=60%>
+      	     <input type=password ref="pwdcheck" size=30 class="input-sm" v-model="pwdcheck" @keyup="equal(pwd,pwdcheck)">
+      	     <h4 v-if="pwd==pwdcheck ? colors='color:blue' : colors='color:red'" :style="colors">
+      	     {{pwdmsg}}</h4>
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>Name</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{myinfo.name}}</h1>
+      	     <h1 v-if="readck==false">{{myinfo.name}}</h1>
+      	     <input v-if="readck==true" type=text  ref="name" size=30 class="input-sm" v-model="myinfo.name" readonly style="background-color:#F2E0F7">
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>Nickname</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{myinfo.nickname}}</h1>
-      	    
+      	     <h1 v-if="readck==false">{{myinfo.nickname}}</h1>
+      	     <input v-if="readck==true" type=text  ref="nickname" size=30 class="input-sm" v-model="myinfo.nickname" @keyup="nickcheck=false" v-bind:readonly="lock1">
+      	     <input v-if="readck==true" type="button" value="중복체크" @click="nickCheck()" class="genric-btn info-border circle">
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>email</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{myinfo.email}}</h1>
-      	     
+      	     <h1 v-if="readck==false">{{myinfo.email}}</h1>
+      	     <input v-if="readck==true" type=text  ref="email" size=30 class="input-sm" v-model="myinfo.email" v-model="email" @keyup="emailcheck=false" v-bind:readonly="lock2"
+      	     v-if="lock2==true ? colors3='background-color:#F2E0F7;color:black':'color:red'" :style="colors3">
+      	     <input v-if="readck==true" type="button" value="중복체크" @click="emailCheck()" class="genric-btn info-border circle">
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>성별</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{myinfo.sex}}</h1>
+      	     <h1 v-if="readck==false">{{myinfo.sex}}</h1>
+      	     <input v-if="readck==true" type=text  ref="sex" size=30 class="input-sm" v-model="myinfo.sex" readonly style="background-color:#F2E0F7">
       	   </td>
       	 </tr>
       	  
       	  <tr>
       	   <td width=40% class="text-center"><h2>birthday</h2></td>
       	   <td width=60% class="text-left">
-      	   	<h1>{{myinfo.birthday}}</h1>
+      	   	<h1 v-if="readck==false">{{myinfo.birthday}}</h1>
+      	   	<input v-if="readck==true" type=text  ref="birthday" size=30 class="input-sm" v-model="myinfo.birthday" readonly style="background-color:#F2E0F7">
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>phone</h2></td>
       	   <td width=60% class="text-left">
-      	    <h1>{{myinfo.phone}}</h1>
-      	   
+      	    <h1 v-if="readck==false">{{myinfo.phone}}</h1>
+      	   <input v-if="readck==true" type=text  ref="phone" size=30 class="input-sm" v-model="myinfo.phone" @keyup="phonecheck=false" v-bind:readonly="lock3">
+      	   <input v-if="readck==true" type="button" value="중복체크" @click="phoneCheck()" class="genric-btn info-border circle">
       	   </td>
       	 </tr>
       	 <tr>
       	   <td width=40% class="text-center"><h2>post</h2></td>
       	   <td width=60% class="text-left">
-      	    <h1>{{myinfo.post}}</h1>
-      	  
+      	    <h1 v-if="readck==false">{{myinfo.post}}</h1>
+      	  <input v-if="readck==true" type=text  ref="post" size=30 class="input-sm" v-model="myinfo.post" >
+      	  <input v-if="readck==true" type=button class="genric-btn info-border circle" value="우편번호검색" id="postBtn" @click="findPost()">
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>addr1</h2></td>
       	   <td width=60% class="text-left">
-      	     <h1>{{myinfo.addr1}}</h1>
+      	     <h1 v-if="readck==false">{{myinfo.addr1}}</h1>
+      	     <input v-if="readck==true" type=text  ref="addr1" size=30 class="input-sm" v-model="myinfo.addr1" >
       	   </td>
       	 </tr>
       	  <tr>
       	   <td width=40% class="text-center"><h2>addr2</h2></td>
-      	   <td width=60% class="text-left">
-      	     <h1>{{myinfo.addr2}}</h1>
+      	   <td width=60% class="text-left" >
+      	     <h1 v-if="readck==false">{{myinfo.addr2}}</h1>
+      	     <input v-if="readck==true" type=text  ref="addr2" size=30 class="input-sm" v-model="myinfo.addr2" >
       	   </td>
       	 </tr>
       	  <tr>
            <td colspan="2" class="text-center">
-            <a href="../member/update.do"  class="genric-btn info-border circle">회원수정</a>
-
-             <a href="../main/main.do" class="genric-btn info-border circle">🏠</a>
+            <b-button v-if="readck==false" v-b-modal.modal-lg variant="primary" class="genric-btn info-border circle arrow btn">회원수정</b-button>
+			<b-modal id="modal-lg" size="lg" title="비밀번호 모달 못띄우면 떄려 츼아라"  hide-footer>
+			<div>
+			<input type="password" size=20 ref="pwd" v-model="pwd">
+			<a href="#" @click="pwdCheck()" class="genric-btn info-border circle" >확인</a>
+			</div> 
+			</b-modal>
+			<input v-if="readck==true" type=button value="수정하기" class="genric-btn info-border circle arrow btn" v-on:click="update()">
+             <a href="../main/main.do" class="genric-btn info-border circle btn">🏠</a>
            </td>
          </tr>
       	 
@@ -121,8 +151,18 @@
 	   el:'.container',
 	   data:{
 		 myinfo:{},
-		 id:'${sessionScope.id}'
-		   
+		 id:'${sessionScope.id}',
+		 pwdmsg:'',
+		 pwdcheck:'',
+		 colors:'',
+		 pwd:'',
+		 lock2:false,
+		 colors3:'',
+ 		readck:false,
+ 		nickcheck:false,
+ 		lock1:false,
+ 		phonecheck:false,
+ 		lock3:false
 	   },
 	   mounted:function(){
 		   let id=String(this.id)
@@ -136,6 +176,253 @@
 		 }).catch(error=>{
 			 console.log(error.response)
 		 })
+	   },
+	   methods:{
+		   update:function(){
+   			
+   			let pwd=this.$refs.pwd.value;
+   			let pwdcheck=this.$refs.pwdcheck.value;
+   			if(pwd.trim()==="")
+   			{
+   				this.$refs.pwd.focus()
+   				return;
+   			}
+   			if(pwdcheck.trim()==="")
+   			{
+   				this.$refs.pwdcheck.focus()
+   				return;
+   			}
+   			let name=this.$refs.name.value;
+   			if(name.trim()==="")
+   			{
+   				this.$refs.name.focus()
+   				return;
+   			}
+   			let nickname=this.$refs.nickname.value;
+   			if(nickname.trim()==="")
+   			{
+   			  this.$refs.nickname.focus()
+   			  return;
+   			}
+   			let email=this.$refs.email.value;
+   			if(email.trim()==="")
+   			{
+   			  this.$refs.email.focus()
+   			  return;
+   			}
+   			let phone=this.$refs.phone.value;
+   			if(phone.trim()==="")
+   			{
+   				this.$refs.phone.focus()
+   				return;
+    		} 
+   			let post=this.$refs.post.value;
+   			if(post.trim()==="")
+   			{
+   				this.$refs.post.focus()
+   				return;
+   			}
+   			let addr1=this.$refs.addr1.value;
+   			if(addr1.trim()==="")
+   			{
+   				this.$refs.addr1.focus()
+   				return;
+   			}
+   			let addr2=this.$refs.addr2.value;
+   			if(addr2.trim()==="")
+   			{
+   				this.$refs.addr2.focus()
+   				return;
+   			}
+   			axios.post('../member/update.do',null,{
+   				params:{
+   					id:this.myinfo.id,
+					pwd:this.pwd,
+					name:this.myinfo.name,
+					email:this.myinfo.email,
+					nickname:this.myinfo.nickname,
+					sex:this.myinfo.sex,
+					admin:this.myinfo.admin,
+					birthday:this.myinfo.birthday,
+					phone:this.myinfo.phone,
+					addr1:this.myinfo.addr1,
+					addr2:this.myinfo.addr2,
+					post:this.myinfo.post
+   					
+   				}
+   			}).then(response=>{
+   				let res=response.data;
+   				console.log(res);
+   				if(res==='no')
+   				{
+   					alert("회원 수정 실패")
+   					
+   				}
+   				else
+   				{
+   					location.href="../member/mypage.do";
+   				}
+   			}).catch(error=>{
+   				console.log(error.response)
+   			})
+   		},
+		   pwdCheck:function(){
+			   let id=this.id
+			   let pwd=this.pwd
+			   if(pwd.trim()=='')
+				{
+					this.$refs.pwd.focus()
+					alert('비밀번호 입려가세요')
+					return
+				}
+			   axios.post('../member/pwd_ok.do',null,{
+				   params:{
+					   id:id,
+					   pwd:pwd
+				   }
+			   }).then(response=>{
+				   let res=response.data
+				   if(res=='yes'){
+						
+						
+						alert('야호')
+						this.readck=true
+						this.hwakin=true
+					}
+				   else{
+					   alert('비밀번호를 다시 입력하세요')
+					   this.$refs.pwd.value=''
+					   this.$refs.pwd.focus()
+					   return
+				   }
+			   }).catch(error=>{
+				   console.log(error.response)
+			   })
+		   },
+		   findPost:function(){
+				let _this=this;
+				new daum.Postcode({
+				oncomplete:function(data) {
+					console.log(data.zonecode)
+		 				_this.myinfo.post=data.zonecode
+		 			   _this.myinfo.addr1=data.address
+		 			}
+		 		}).open()
+			},
+			equal:function(pwd,pwdcheck){
+    			let pwdck = String(pwd);
+    			let num = pwdck.search(/[0-9]/g)
+    			let eng = pwdck.search(/[a-z]/ig)
+    			if(pwdck.length<8 || pwd.length>20)
+    			{
+    				this.pwdmsg='비밀번호는 8자리~20자리 이내로 입력하세요'
+    				return;
+    				
+    			}
+    			else if(pwdck.search(/\s/)!=-1)
+    			{
+    				this.pwdmsg='비밀번호는 공백없이 입력해라'
+    				return;
+    			}
+    			else if(num<0 || eng<0)
+    			{
+    				this.pwdmsg='비밀번호는 영문,숫자를 혼합해서 써야돼요'
+    				return;
+    			}
+    			else if(pwd==pwdcheck){
+    				this.pwdmsg='비밀번호가 맞습니다.';
+    				return;
+    				
+    			} else if(pwd!=pwdcheck){
+    				this.pwdmsg='비밀번호가 달라.';
+    				return;
+    			}
+    		},
+    		emailCheck:function(){
+    			let email=this.myinfo.email
+    			let emailck= /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+    			if(!emailck.test(email)){
+    				this.$refs.email.focus()
+    				this.$refs.email.value=''
+    				alert('이메일를 다시 입력해주세용')
+    				return;
+    				
+    			}
+    			if(email.trim()==''){
+    				alert('공백안됨')
+    				return
+    			}
+    			axios.get('../member/email_check.do',{
+    				params:{
+    					email:email
+    				}
+    			}).then(response=>{
+    				let result=response.data
+    				if(result=='yes'){
+    					this.emailcheck = true;
+    					alert("사용가능한 이메일입니다.")
+    					this.lock2 = true;
+    				} else{
+    					alert("사용중인 이메일입니다.")
+    					this.$refs.email.value=''
+    					this.$refs.email.focus()
+    				}
+    			})
+    		},
+    		nickCheck:function(){
+    			let nickname=this.myinfo.nickname
+    			if(nickname.trim()==''){
+    				alert('공백안됨')
+    				return
+    			}
+    			axios.get('../member/nick_check.do',{
+    				params:{
+    					nickname:nickname
+    				}
+    			}).then(response=>{
+    				let result=response.data
+    				if(result=='yes'){
+    					this.nickcheck = true;
+    					alert("사용가능한 닉네임입니다.")
+    					this.lock1 = true;
+    				} else{
+    					alert("사용불가 닉네임입니다.")
+    					this.$refs.nickname.value=''
+    					this.$refs.nickname.focus()
+    				}
+    			})
+    		},
+    		phoneCheck:function(){
+    			let phone =this.myinfo.phone
+    			let phoneck = /^\d{3}\d{3,4}\d{4}$/
+    			if(!phoneck.test(phone)){
+    				this.$refs.phone.focus()
+    				this.$refs.phone.value=''
+    				alert('핸드폰번호를 다시 입력해주세용')
+    				return;
+    				
+    			}
+    			if(phone.trim()==''){
+    				alert('공백안됨')
+    				return
+    			}
+    			axios.get('../member/phone_check.do',{
+    				params:{
+    					phone:phone
+    				}
+    			}).then(response=>{
+    				let result=response.data
+    				if(result=='yes'){
+    					this.phonecheck = true;
+    					alert("사용가능한 번호입니다.")
+    					this.lock3 = true;
+    				} else{
+    					alert("이미 가입된 번호 입니다.")
+    					this.$refs.phone.value=''
+    					this.$refs.phone.focus()
+    				}
+    			})
+    		},
 	   }
    })
    </script>

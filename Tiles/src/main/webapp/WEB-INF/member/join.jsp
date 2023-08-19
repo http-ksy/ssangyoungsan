@@ -436,7 +436,7 @@
     		},
     		phoneCheck:function(){
     			let phone =this.phone
-    			let phoneck = /^\d{3}-\d{3,4}-\d{4}$/
+    			let phoneck = /^\d{3}\d{3,4}\d{4}$/
     			if(!phoneck.test(phone)){
     				this.$refs.phone.focus()
     				this.$refs.phone.value=''

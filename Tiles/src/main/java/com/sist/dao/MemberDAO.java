@@ -4,6 +4,7 @@ import com.sist.mapper.*;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -52,5 +53,16 @@ public class MemberDAO {
 	public MemberVO memberInfo(String id)
 	{
 		return mapper.memberInfo(id);
+	}
+	//@Select("SELECT pwd FROM amem WHERE id=#{id}")
+	public String memberPwdCheck(String id)
+	{
+		return mapper.memberPwdCheck(id);
+	}
+	/*@Update("UPDATE amem SET nickname=#{nickname},email=#{email},post=#{post},addr1=#{addr1},addr2=#{addr2},phone=#{phone},pwd=#{pwd} "
+			+ "WHERE id=#{id}")*/
+	public void memberUpdate(MemberVO vo)
+	{
+		mapper.memberUpdate(vo);
 	}
 }
