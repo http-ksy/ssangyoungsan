@@ -26,64 +26,59 @@
 </script>
 
 </head>
-<body class="full-wrapper">
- <div class="category-area">
+<body >
+ 
    <div class="container">
-     
+  <div class="row">
+  <template>
+  <div>
+    <b-button v-b-toggle.sidebar-border class="genric-btn primary-border small">Mypage</b-button>
+    <b-sidebar id="sidebar-border" title="MYPAGE!!" sidebar-class="border-right border-danger" width="250px">
+      <div class="px-3 py-2">
+      <table>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+        <td>
+        <input type="button" class="genric-btn success circle btn" value="예약현황">
+        </td>
+      </tr>  
+       <tr style="height:30px;">
+        <td>
+           <input type="button" class="genric-btn success circle btn" value="구매현황">
+        </td>
+      </tr>  
+       <tr style="height:30px;">
+        <td>
+           <input type="button" class="genric-btn success circle btn" value="찜 목록">
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <input type="button" class="genric-btn success circle btn" value="장바구니">
+        </td>
+      </tr> 
+       <tr style="height:30px;">
+        <td>
+           <input type="button" class="genric-btn success circle btn" value="문의하기">
+        </td>
+      </tr> 
+        </table>
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FSpongebob_UIB%2Fstatus%2F990890566706544642&psig=AOvVaw1omWyfKchCYw-55p5W7WlE&ust=1692613764838000&source=images&cd=vfe&opi=89978449&ved=0CA4QjRxqFwoTCPD08-SD64ADFQAAAAAdAAAAABAD" fluid thumbnail>
+      </div>
+    </b-sidebar>
+  </div>
+</template>
+  </div>
+  <br>
      <div class="row">
-                    <div class="col-xl-7 col-lg-8 col-md-10">
-                        <div class=" mb-50">
-                            <h1 class="text-left"><b>마이페이지</b></h1>
-                            
-                        </div>
-                    </div>
-                </div>
-     <div class="row">
-     <!--? Left content -->
-                    <div class="col-xl-3 col-lg-3 col-md-4 ">
-                        <!-- Job Category Listing start -->
-                        <div class="category-listing mb-50">
-                            <!-- single one -->
-                            <div class="single-listing">
-                                <!-- Select City items start -->
-                                <div class="select-job-items2" >
-                                	<table>
-                                	<tr>
-                                		<td>
-                                    		<input type=button class="genric-btn success circle btn" style="width:150px" value="찜목록" >
-                                    	</td>
-                                    </tr>
-                                    <tr><td style="height:30px;"></td></tr>
-                                    <tr>
-                                		<td>
-		                                    <input type=button class="genric-btn success circle btn" style="width:150px" value="구매현황" >
-		                            	</td>
-                                    </tr>
-                                    <tr><td style="height:30px;"></td></tr>
-                                    <tr>
-                                		<td>
-		                                    <input type=button class="genric-btn success circle btn" style="width:150px" value="예약현황" >
-		                            	</td>
-                                    </tr>
-                                    <tr><td style="height:30px;"></td></tr>
-                                    <tr>
-                                		<td>
-		                                    <input type=button class="genric-btn success circle btn" style="width:150px" value="장바구니" >
-		                            	</td>
-                                    </tr>
-                                   
-<!--                                     <option value="2">오피스텔</option>                                 -->
-<!--                                     <option value="3">분양권</option> -->
-<!--                                     <option value="4">주택</option> -->
-<!--                                     <option value="5">원룸</option> -->
-                                	</table>
-                                </div>
-                                <!--  Select km items End-->
-                            </div>
-                        </div>
-                        <!-- Job Category Listing End -->
-                    </div>
-     <div class="col-xl-9 col-lg-9 col-md-8 ">
+
      <h1 class="text-center"><b>회원정보</b></h1>
       <table class="table">
       	 <tr>
@@ -199,9 +194,9 @@
       	 
       </table>
       </div>
-     </div>
+     
    </div>
-   </div>
+   
    <script>
    new Vue({
 	   el:'.container',
