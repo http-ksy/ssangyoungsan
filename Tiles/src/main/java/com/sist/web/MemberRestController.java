@@ -223,4 +223,21 @@ public String memberUpdate(MemberVO vo)
 	}
 	return result;		
 }
+@PostMapping(value="member/delete_ok.do",produces="text/plain;charset=UTF-8")
+public String memberDelete(String id,String pwd,HttpSession session)
+{
+	String result="";
+	String password=service.memberPwdCheck(id);
+	if(encoder.matches(pwd, password))
+	{
+		session.invalidate();
+		result="yes";
+		service.memberDelete(id);
+	}
+	else
+	{
+		result="no";
+	}
+	return result;
+}
 }

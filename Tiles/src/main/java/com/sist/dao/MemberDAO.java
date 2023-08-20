@@ -2,6 +2,7 @@ package com.sist.dao;
 import com.sist.vo.*;
 import com.sist.mapper.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -64,5 +65,10 @@ public class MemberDAO {
 	public void memberUpdate(MemberVO vo)
 	{
 		mapper.memberUpdate(vo);
+	}
+	//@Delete("DELETE FROM amem WHERE id=#{id}")
+	public void memberDelete(String id)
+	{
+		mapper.memberDelete(id);
 	}
 }

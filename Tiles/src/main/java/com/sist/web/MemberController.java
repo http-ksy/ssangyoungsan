@@ -27,5 +27,9 @@ public class MemberController {
  {
 	 return "member/mypage";
  }
-
+ @GetMapping("member/admin.do")
+ public String member_admin()
+ {
+	 return "member/admin";
+ }
 }

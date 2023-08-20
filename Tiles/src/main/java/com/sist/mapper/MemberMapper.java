@@ -1,6 +1,7 @@
 package com.sist.mapper;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -55,9 +56,18 @@ public interface MemberMapper {
 	// 비밀번호 확인 
 	@Select("SELECT pwd FROM amem WHERE id=#{id}")
 	public String memberPwdCheck(String id);
-	
+	// 개인정보 수정
 	@Update("UPDATE amem SET nickname=#{nickname},email=#{email},post=#{post},addr1=#{addr1},addr2=#{addr2},phone=#{phone},pwd=#{pwd} "
 			+ "WHERE id=#{id}")
 	public void memberUpdate(MemberVO vo);
+	// 회원 탈퇴 
+	@Delete("DELETE FROM amem WHERE id=#{id}")
+	public void memberDelete(String id);
+	
+	
+	
+	
+	
+	
 	
 }

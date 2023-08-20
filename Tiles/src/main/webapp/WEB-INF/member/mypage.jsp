@@ -24,20 +24,67 @@
 // 	})
 // })
 </script>
-<style type="text/css">
-.container{
- margin-top: 50px;
-}
-.row{
- margin: 0px auto;
- width: 900px;
-}
-</style>
+
 </head>
-<body>
+<body class="full-wrapper">
+ <div class="category-area">
    <div class="container">
-     <h1 class="text-center"><b>회원정보</b></h1>
+     
      <div class="row">
+                    <div class="col-xl-7 col-lg-8 col-md-10">
+                        <div class=" mb-50">
+                            <h1 class="text-left"><b>마이페이지</b></h1>
+                            
+                        </div>
+                    </div>
+                </div>
+     <div class="row">
+     <!--? Left content -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 ">
+                        <!-- Job Category Listing start -->
+                        <div class="category-listing mb-50">
+                            <!-- single one -->
+                            <div class="single-listing">
+                                <!-- Select City items start -->
+                                <div class="select-job-items2" >
+                                	<table>
+                                	<tr>
+                                		<td>
+                                    		<input type=button class="genric-btn success circle btn" style="width:150px" value="찜목록" >
+                                    	</td>
+                                    </tr>
+                                    <tr><td style="height:30px;"></td></tr>
+                                    <tr>
+                                		<td>
+		                                    <input type=button class="genric-btn success circle btn" style="width:150px" value="구매현황" >
+		                            	</td>
+                                    </tr>
+                                    <tr><td style="height:30px;"></td></tr>
+                                    <tr>
+                                		<td>
+		                                    <input type=button class="genric-btn success circle btn" style="width:150px" value="예약현황" >
+		                            	</td>
+                                    </tr>
+                                    <tr><td style="height:30px;"></td></tr>
+                                    <tr>
+                                		<td>
+		                                    <input type=button class="genric-btn success circle btn" style="width:150px" value="장바구니" >
+		                            	</td>
+                                    </tr>
+                                   
+<!--                                     <option value="2">오피스텔</option>                                 -->
+<!--                                     <option value="3">분양권</option> -->
+<!--                                     <option value="4">주택</option> -->
+<!--                                     <option value="5">원룸</option> -->
+                                	</table>
+                                </div>
+                                <!--  Select km items End-->
+                            </div>
+                        </div>
+                        <!-- Job Category Listing End -->
+                    </div>
+     <div class="col-xl-9 col-lg-9 col-md-8 ">
+     <h1 class="text-center"><b>회원정보</b></h1>
       <table class="table">
       	 <tr>
       	   <td width=40% class="text-center"><h2>ID</h2></td>
@@ -132,10 +179,17 @@
       	  <tr>
            <td colspan="2" class="text-center">
             <b-button v-if="readck==false" v-b-modal.modal-lg variant="primary" class="genric-btn info-border circle arrow btn">회원수정</b-button>
-			<b-modal id="modal-lg" size="lg" title="비밀번호 모달 못띄우면 떄려 츼아라"  hide-footer>
+			<b-modal id="modal-lg" size="lg" title="회원수정"  hide-footer>
 			<div>
 			<input type="password" size=20 ref="pwd" v-model="pwd">
 			<a href="#" @click="pwdCheck()" class="genric-btn info-border circle" >확인</a>
+			</div> 
+			</b-modal>
+			<b-button v-if="readck==false" v-b-modal.modal-lg2 variant="primary" class="genric-btn info-border circle arrow btn">회원탈퇴</b-button>
+			<b-modal id="modal-lg2" size="lg" title="회원 탈퇴"  hide-footer>
+			<div>
+			<input type="password" size=20 ref="pwd" v-model="pwd">
+			<a href="#" @click="memberDelete()" class="genric-btn info-border circle" >확인</a>
 			</div> 
 			</b-modal>
 			<input v-if="readck==true" type=button value="수정하기" class="genric-btn info-border circle arrow btn" v-on:click="update()">
@@ -144,7 +198,9 @@
          </tr>
       	 
       </table>
+      </div>
      </div>
+   </div>
    </div>
    <script>
    new Vue({
@@ -288,6 +344,38 @@
 						alert('야호')
 						this.readck=true
 						this.hwakin=true
+					}
+				   else{
+					   alert('비밀번호를 다시 입력하세요')
+					   this.$refs.pwd.value=''
+					   this.$refs.pwd.focus()
+					   return
+				   }
+			   }).catch(error=>{
+				   console.log(error.response)
+			   })
+		   },
+		   memberDelete:function(){
+			   let id=this.id
+			   let pwd=this.pwd
+			   if(pwd.trim()=='')
+				{
+					this.$refs.pwd.focus()
+					alert('비밀번호 입려가세요')
+					return
+				}
+			   axios.post('../member/delete_ok.do',null,{
+				   params:{
+					   id:id,
+					   pwd:pwd
+				   }
+			   }).then(response=>{
+				   let res=response.data
+				   if(res=='yes'){
+						
+						
+						alert('회원 탈퇴 되셨습니다')
+						location.href="../main/main.do";
 					}
 				   else{
 					   alert('비밀번호를 다시 입력하세요')
