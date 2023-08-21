@@ -30,11 +30,11 @@
 														</div> -->
 <div>
   <b-tabs content-class="mt-3" fill align="left" style="color:black;">
-    <b-tab title="전체보기" title-link-class="text-primary"></b-tab>
-    <b-tab title="부동산" title-link-class="text-primary"></b-tab>
-    <b-tab title="이사/청소" title-link-class="text-primary"></b-tab>
-    <b-tab title="가구" title-link-class="text-primary"></b-tab>
-    <b-tab title="인테리어" title-link-class="text-primary"></b-tab>
+    <b-tab title="자유게시판" title-link-class="text-primary" @click="getList(1)"></b-tab>
+    <b-tab title="부동산" title-link-class="text-primary" @click="getList(2)"></b-tab>
+    <b-tab title="이사/청소" title-link-class="text-primary" @click="getList(3)"></b-tab>
+    <b-tab title="가구" title-link-class="text-primary" @click="getList(4)"></b-tab>
+    <b-tab title="인테리어" title-link-class="text-primary" @click="getList(5)"></b-tab>
   </b-tabs>
 </div>
 											<div class="progress-table-wrap">
@@ -46,47 +46,18 @@
 														<div class="serial">등록일</div>
 														<div class="serial">조회수</div>
 													</div>
-													<div class="table-row">
-														<div class="serial">01</div>
-														<div class="percentage">Canada</div>
-														<div class="serial">645032</div>
-														<div class="serial">22-12-21</div>
-														<div class="serial text-right !important ">작성자</div>
-													</div>
-													<div class="table-row">
-														<div class="serial">01</div>
-														<div class="percentage">Canada</div>
-														<div class="serial">645032</div>
-														<div class="serial">22-12-21</div>
-														<div class="serial">작성자</div>
-													</div>
-													<div class="table-row">
-														<div class="serial">01</div>
-														<div class="percentage">Canada</div>
-														<div class="serial">645032</div>
-														<div class="serial">22-12-21</div>
-														<div class="serial">작성자</div>
-													</div>
-													<div class="table-row">
-														<div class="serial">01</div>
-														<div class="percentage">Canada</div>
-														<div class="serial">645032</div>
-														<div class="serial">22-12-21</div>
-														<div class="serial">작성자</div>
-													</div>
-													<div class="table-row">
-														<div class="serial">01</div>
-														<div class="percentage">Canada</div>
-														<div class="serial">645032</div>
-														<div class="serial">22-12-21</div>
-														<div class="serial">작성자</div>
-													</div>
-													
+													<div class="table-row" v-for="vo in landboard_list">
+														<div class="serial">{{vo.no}}</div>
+														<div class="percentage">{{vo.title}}</div>
+														<div class="serial">{{vo.id}}</div>
+														<div class="serial">{{vo.dbday}}</div>
+														<div class="serial text-right !important ">{{vo.hit}}</div>
+													</div>													
 												</div>
 											</div>
 											<hr>
 <div class="text-right">
-	<a class="genric-btn danger-border circle arrow text-right"href="../landboard/landinsert.do">🐦‍⬛글</a>
+	<a v-if="${sessionScope.id!=null }" class="genric-btn danger-border circle arrow text-right" href="../landboard/landinsert.do">🐦‍⬛글</a>
 </div>
 <template >
   <div class="overflow-auto">
@@ -114,7 +85,25 @@
 new Vue({
 	el:'.section-top-border',
 	data:{
-		currentPage:1
+		currentPage:1,
+		landboard_list:[]
+	},
+	mounted:function(){
+		this.getList(1)
+	},
+	methods:{
+		getList:function(bno){
+			axios.get('http://localhost/web/landboard/landboard_list.do',{
+				params:{
+					bno:bno
+				}
+			}).then(res=>{
+				console.log(res.data)
+				this.landboard_list=res.data
+			}).catch(error=>{
+				console.log(error.res)
+			})
+		}
 	}
 })
 </script>

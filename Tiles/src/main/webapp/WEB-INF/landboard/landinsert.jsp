@@ -27,13 +27,13 @@
 													<div class="input-group-icon mt-10">
 														<div class="icon"><b>🛹</b></div>
 															<div class="form-select" id="default-select">
-																<select ref="column">
+																<select ref="bno">
 																	<option disabled value="">게시판 선택</option>
-																	<option value="자유게시판">자유게시판</option>
-																	<option value="부동산">부동산</option>
-																	<option value="가구">가구</option>
-																	<option value="청소/이사">청소/이사</option>
-																	<option value="인테리어">인테리어</option>
+																	<option value="1">자유게시판</option>
+																	<option value="2">부동산</option>
+																	<option value="3">가구</option>
+																	<option value="4">청소/이사</option>
+																	<option value="5">인테리어</option>
 																</select>
 															</div>
 														</div>
@@ -70,7 +70,7 @@
 														
 														<div class="mt-10">
 															<textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''"
-															onblur="this.placeholder = 'Message'" required style="height: 300px" v-model="msg"></textarea>
+															onblur="this.placeholder = 'Message'" required style="height: 300px" v-model="subject"></textarea>
 														</div>
 														 <b-form-group label="첨부파일" label-cols-sm="2" label-size="lg">
 														  <b-form-file multiple id="file-large" size="lg" :file-name-formatter="formatNames">
@@ -90,23 +90,23 @@ new Vue({
 	el:'.row',
 	data:{
 		title:'',
-		msg:'',
+		subject:'',
 		files:[],
-		column:'all'
+		bno:'1'
 	},
 	mounted:function(){
-		this.column = this.$refs.column.value;
+		this.bno = this.$refs.bno.value;
 	}
 	,
 	updated:function(){	
 		/* this.selected = $('#default-select & div & span').val(); */
-		this.column = this.$refs.column.value;
+		this.bno = this.$refs.bno.value;
 		console.log('title : '+this.title)
 		console.log('files : '+this.files)
-		console.log('msg : '+this.msg)
+		console.log('subject : '+this.subject)
 		/* console.log('current : '+this.current)
 		console.log('selected : '+selected) */
-		console.log('column : '+ this.column)
+		console.log('bno : '+ this.bno)
 	},methods:{
 		formatNames(files) {
 			let fileNames=[];
@@ -122,24 +122,27 @@ new Vue({
 	      }
 		,
 		boardInsert:function(){
-			if(this.files==null){
-				axios.post('http://localhost/web/landboard/landboard_insert.do',null,{
-					params:{
-						column:this.column,
-						title:this.title,
-						msg:msg
-					}
-				})
-			} else{
-				axios.post('http://localhost/web/landboard/landboard_insert_file.do',null,{
-					params:{
-						column:this.column,
-						title:this.title,
-						msg:msg,
-						files:this.files
-					}
-				})
+			if(this.title=='' || this.subject==''){
+				alert('제목 or 제목을 입력하세요!');
+				return
 			}
+			
+			axios.post('http://localhost/web/landboard/landboard_insert.do',null,{
+				params:{
+					title:this.title,
+					subject:this.subject,
+					bno:this.bno
+				}
+			}).then(res=>{
+				console.log(res.data)
+				if(res.data=='yes'){
+					location.href='../sotong/haeyo.do'
+				} else {
+					alert("글등록 실패")
+				}
+			}).catch(error=>{
+				console.log(error.res)
+			})
 		}
 	}
 })
