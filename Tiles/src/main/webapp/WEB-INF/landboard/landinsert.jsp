@@ -77,9 +77,9 @@
 														  </b-form-file>
 														</b-form-group>
 														<div class="section-top-border text-right">
-													<a href="#" class="genric-btn primary-border e-large">upload👍</a>
+													<button class="genric-btn primary-border e-large" @click="boardInsert()">upload👍</button>
 													&nbsp;
-													<a href="#" class="genric-btn danger-border e-large">cancel👎</a>
+													<button class="genric-btn danger-border e-large">cancel👎</button>
 												</div>
 												</div>
 												</div>
@@ -92,8 +92,6 @@ new Vue({
 		title:'',
 		msg:'',
 		files:[],
-		selected:'',
-		current:'',
 		column:'all'
 	},
 	mounted:function(){
@@ -122,6 +120,27 @@ new Vue({
 			this.files = fileNames
 	        return fileNames.toString()+' selected'
 	      }
+		,
+		boardInsert:function(){
+			if(this.files==null){
+				axios.post('http://localhost/web/landboard/landboard_insert.do',null,{
+					params:{
+						column:this.column,
+						title:this.title,
+						msg:msg
+					}
+				})
+			} else{
+				axios.post('http://localhost/web/landboard/landboard_insert_file.do',null,{
+					params:{
+						column:this.column,
+						title:this.title,
+						msg:msg,
+						files:this.files
+					}
+				})
+			}
+		}
 	}
 })
 </script>
