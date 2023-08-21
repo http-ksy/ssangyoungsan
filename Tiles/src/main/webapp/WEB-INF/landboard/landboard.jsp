@@ -15,11 +15,8 @@
 </head>
 <body>
 <div class="section-top-border">
-<h1 class="mb-30 text-center">소통해요</h1>
-	<div class="text-right">
-	
-													
-														<div class="default-select" id="default-select">
+<h1 class="mb-30 text-center">🙋🏾소통해요🙋🏼‍♂️</h1>
+														<!-- <div class="default-select" id="default-select">
 															<select>
 																<option value="1">부동산</option>
 																<option value="1">인테리어</option>
@@ -30,11 +27,16 @@
 															<a class="genric-btn danger-border circle arrow text-right"
 															href="../landboard/landinsert.do"
 															>new 글</a>
-														</div>
-
-													&nbsp;
-	
-	</div>
+														</div> -->
+<div>
+  <b-tabs content-class="mt-3" fill align="left" style="color:black;">
+    <b-tab title="전체보기" title-link-class="text-primary"></b-tab>
+    <b-tab title="부동산" title-link-class="text-primary"></b-tab>
+    <b-tab title="이사/청소" title-link-class="text-primary"></b-tab>
+    <b-tab title="가구" title-link-class="text-primary"></b-tab>
+    <b-tab title="인테리어" title-link-class="text-primary"></b-tab>
+  </b-tabs>
+</div>
 											<div class="progress-table-wrap">
 												<div class="progress-table table-striped">
 													<div class="table-head">
@@ -82,6 +84,10 @@
 													
 												</div>
 											</div>
+											<hr>
+<div class="text-right">
+	<a class="genric-btn danger-border circle arrow text-right"href="../landboard/landinsert.do">🐦‍⬛글</a>
+</div>
 <template >
   <div class="overflow-auto">
     <b-pagination
