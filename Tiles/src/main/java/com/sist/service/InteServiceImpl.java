@@ -11,8 +11,14 @@ import com.sist.vo.InteVO;
 
 @Service
 public class InteServiceImpl implements InteService {
-	//@Autowired
-	//private InteDAO dao;
+	@Autowired
+	private InteDAO dao;
+	
+	@Override
+	public InteVO inteDetailData(int no) {
+		return dao.inteDetailData(no);
+	}
+	
 
 /*	@Override
 	public List<InteVO> inteListData(Map map) {

@@ -64,5 +64,26 @@ public class InteRestController {
 		 String json = mapper.writeValueAsString(vo);
 		 return json;
 	}
+	
+	@GetMapping(value = "inte/inte_detail_vue.do", produces = "text/plain;charset=UTF-8")
+	public String inte_detail(int no) throws Exception {
+		InteVO vo = dao.inteDetailData(no);
+	//	System.out.println(vo.getGubun());
 		
+		/*List<InteVO> list = dao.inteDetailData(no);
+		for(InteVO vo : list) {
+			String hashtag = vo.getHashtag();
+			int start=hashtag.indexOf("#");
+			int end=hashtag.indexOf("#", start+1);
+			hashtag = hashtag.substring(start, end);
+			vo.setHashtag(hashtag);
+		}*/
+		
+		//System.out.println(vo.getHashtag());
+	
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(vo);
+		return json;
+	}
+	
 }

@@ -16,7 +16,10 @@ public interface InteService {
 			+ "WHERE num BETWEEN #{start} AND #{end}") */
 	//public List<InteVO> inteListData(Map map);
 	
-	//@Select("SELECT CEIL(COUNT(*)/12.0) FROM inte_detail")
-	//public int inteTotalPage();
+	
+	/*@Select("SELECT no,title,subject,poster,poster2,hashtag,gubun,price,jiyoek "
+			+ "FROM inte_detail "
+			+ "WHERE no=#{no}") */
+	public InteVO inteDetailData(int no);
 	
 }

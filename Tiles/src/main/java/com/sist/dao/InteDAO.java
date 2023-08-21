@@ -15,6 +15,7 @@ public class InteDAO {
 	@Autowired
 	private InteMapper mapper;
 	
+	
 	//@Select("SELECT no,title,poster,jiyoek,price "
 	//		+ "FROM inte_detail ORDER BY no ASC")
 	public List<InteVO> inteListData(Map map) {
@@ -24,5 +25,9 @@ public class InteDAO {
 	//@Select("SELECT CEIL(COUNT(*)/12.0) FROM inte_detail")
 	public int inteTotalPage(Map map) {
 		return mapper.inteTotalPage(map);
+	}
+	
+	public InteVO inteDetailData(int no) {
+		return mapper.inteDetailData(no);
 	}
 }

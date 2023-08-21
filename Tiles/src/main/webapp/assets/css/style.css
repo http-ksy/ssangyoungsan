@@ -37,7 +37,7 @@
     color:#9F78FF !important;
     display:inline-block;
     padding:18px 44px;
-    font-family:"Cinzel",serif;
+   /*  font-family:"Cinzel",serif; */
     font-size:14px;
     font-weight:400;
     border:0;
@@ -106,16 +106,16 @@ body{
     font-style:normal;
     font-size:16px
 }
-h1,h2,h3,h4,h5,h6{
+/* h1,h2,h3,h4,h5,h6{
     font-family:"Cinzel",serif;
     color:#140C40;
     margin-top:0px;
     font-style:normal;
     font-weight:500;
     text-transform:normal
-}
+} */
 p{
-    font-family:"Poppins",sans-serif;
+    /* font-family:"Poppins",sans-serif; */
     color:#646D77;
     font-size:14px;
     line-height:30px;
@@ -189,9 +189,9 @@ input:focus::-moz-placeholder{
 .capitalize{
     text-transform:capitalize
 }
-h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{
+/* h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{
     color:inherit
-}
+} */
 ul{
     margin:0px;
     padding:0px
@@ -2778,7 +2778,7 @@ hr{
     font-size:30px;
     font-weight:400;
     text-transform:uppercase;
-    font-family:"Cinzel",serif
+   /*  font-family:"Cinzel",serif */
 }
 .popular-items .single-popular-items .popular-img .favorit-items{
     position:absolute;
@@ -3825,7 +3825,7 @@ hr{
     color:#3a3a3a;
     text-transform:uppercase;
     font-size:14px;
-    font-family:"Cinzel",serif;
+    /* font-family:"Cinzel",serif; */
     color:#3a3a3a
 }
 .home-blog-area .home-blog-single .blog-img-cap .blog-cap .more-btn:hover{
@@ -3844,7 +3844,7 @@ hr{
     margin-bottom:70px
 }
 .blog_area a{
-    color:"Cinzel",serif !important;
+    /* color:"Cinzel",serif !important; */
     text-decoration:none;
     transition:.4s
 }
@@ -4971,7 +4971,7 @@ hr{
     color:#fff;
     font-weight:900;
     margin-bottom:0;
-    font-family:"Cinzel",serif;
+    /* font-family:"Cinzel",serif; */
     text-transform:capitalize
 }
 @media (max-width: 767px){
