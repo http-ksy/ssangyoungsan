@@ -64,9 +64,9 @@ public interface MemberMapper {
 	@Delete("DELETE FROM amem WHERE id=#{id}")
 	public void memberDelete(String id);
 	
-	
-	
-	
+	/// 관리자 페이지 관리자가 유저 정보 보기
+	public List<MemberVO> memberFindData(Map map);
+	public int memberTotalPage(Map map);
 	
 	
 	

@@ -180,8 +180,8 @@
 			<a href="#" @click="pwdCheck()" class="genric-btn info-border circle" >확인</a>
 			</div> 
 			</b-modal>
-			<b-button v-if="readck==false" v-b-modal.modal-lg2 variant="primary" class="genric-btn info-border circle arrow btn">회원탈퇴</b-button>
-			<b-modal id="modal-lg2" size="lg" title="회원 탈퇴"  hide-footer>
+			<b-button v-if="readck==false" v-b-modal.modal-lg2 variant="primary" class="genric-btn info-border circle arrow btn" >회원탈퇴</b-button>
+			<b-modal v-if="hwakin==true" id="modal-lg2" size="lg" title="회원 탈퇴"  hide-footer>
 			<div>
 			<input type="password" size=20 ref="pwd" v-model="pwd">
 			<a href="#" @click="memberDelete()" class="genric-btn info-border circle" >확인</a>
@@ -213,7 +213,8 @@
  		nickcheck:false,
  		lock1:false,
  		phonecheck:false,
- 		lock3:false
+ 		lock3:false,
+ 		hwakin:true
 	   },
 	   mounted:function(){
 		   let id=String(this.id)
@@ -336,9 +337,11 @@
 				   if(res=='yes'){
 						
 						
-						alert('야호')
+// 						alert('야호')
 						this.readck=true
-						this.hwakin=true
+						this.hwakin=false
+						
+						return
 					}
 				   else{
 					   alert('비밀번호를 다시 입력하세요')
@@ -353,9 +356,10 @@
 		   memberDelete:function(){
 			   let id=this.id
 			   let pwd=this.pwd
+			   this.hwakin=true
 			   if(pwd.trim()=='')
 				{
-					this.$refs.pwd.focus()
+					this.$refs.pwd1.focus()
 					alert('비밀번호 입려가세요')
 					return
 				}

@@ -1,5 +1,9 @@
 package com.sist.web;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.MemberService;
 import com.sist.vo.MemberVO;
+import com.sist.vo.PageVO;
 
 @RestController
 public class MemberRestController {
@@ -240,4 +245,46 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	}
 	return result;
 }
+ @GetMapping(value="member/member_find.do",produces="text/plain;charset=UTF-8")
+ public String member_find(int page,String col,String fd) throws Exception
+ {
+	 
+	 Map map=new HashMap();
+	 map.put("col", col);
+	 map.put("fd", fd);
+	 int rowSize=10;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=rowSize*page;
+	 map.put("start",start);
+	 map.put("end", end);
+	 List<MemberVO> mlist=service.memberFindData(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(mlist);
+	 return json;
+ }
+ @GetMapping(value="member/member_page.do",produces="text/plain;charset=UTF-8")
+ public String member_page(int page,String col,String fd) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("col", col);
+	 map.put("fd", fd);
+	 int totalpage=service.memberTotalPage(map);
+	 
+	 final int BLOCK=5;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+	 
+ }
 }

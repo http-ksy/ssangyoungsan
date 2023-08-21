@@ -2,6 +2,9 @@ package com.sist.dao;
 import com.sist.vo.*;
 import com.sist.mapper.*;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -70,5 +73,13 @@ public class MemberDAO {
 	public void memberDelete(String id)
 	{
 		mapper.memberDelete(id);
+	}
+	public List<MemberVO> memberFindData(Map map)
+	{
+		return mapper.memberFindData(map);
+	}
+	public int memberTotalPage(Map map)
+	{
+		return mapper.memberTotalPage(map);
 	}
 }

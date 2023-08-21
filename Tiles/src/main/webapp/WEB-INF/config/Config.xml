@@ -7,11 +7,13 @@
       <typeAlias type="com.sist.vo.InteVO"/>
       <typeAlias type="com.sist.vo.CleanVO" alias="CleanVO"/>
  	  <typeAlias type="com.sist.vo.MoveVO" alias="MoveVO"/>
+ 	  <typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
     </typeAliases>
     
    <mappers>
  	  <mapper resource="com/sist/mapper/inte-mapper.xml"/>
  	  <mapper resource="com/sist/mapper/clean-mapper.xml"/>
   	  <mapper resource="com/sist/mapper/move-mapper.xml"/>
+  	  <mapper resource="com/sist/mapper/member-mapper.xml"/>
  	</mappers> 
  </configuration>

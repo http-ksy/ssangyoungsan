@@ -67,5 +67,17 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		dao.memberDelete(id);
 	}
+
+	@Override
+	public List<MemberVO> memberFindData(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberFindData(map);
+	}
+
+	@Override
+	public int memberTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.memberTotalPage(map);
+	}
  
 }

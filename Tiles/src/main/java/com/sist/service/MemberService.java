@@ -1,5 +1,8 @@
 package com.sist.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -35,4 +38,7 @@ public interface MemberService {
 	public void memberUpdate(MemberVO vo);
 	//@Delete("DELETE FROM amem WHERE id=#{id}")
 	public void memberDelete(String id);
+	
+	public List<MemberVO> memberFindData(Map map);
+	public int memberTotalPage(Map map);
 }

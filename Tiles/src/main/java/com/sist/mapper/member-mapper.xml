@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.MemberMapper">
+  <select id="memberFindData" resultType="MemberVO" parameterType="hashmap">
+  SELECT id,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin,num
+  FROM(SELECT id,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin,rownum as num
+  FROM (SELECT id,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin 
+  FROM amem
+  <if test="col!='all'">
+   WHERE ${col} LIKE '%'||#{fd}||'%'
+  </if>
+  	ORDER BY id ASC
+  ))
+  WHERE num BETWEEN #{start} AND #{end}
+  </select>
+  <select id="memberTotalPage" resultType="int" parameterType="hashmap">
+   SELECT CEIL(COUNT(*)/10.0)
+   FROM amem
+   <if test="col!='all'">
+     WHERE ${col} LIKE '%'||#{fd}||'%'
+   </if>
+  </select>
+</mapper>
