@@ -287,4 +287,20 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	 return json;
 	 
  }
+ @PostMapping(value="member/member_ban.do",produces="text/plain;charset=UTF-8")
+ public String member_ban(String id)
+ {
+	 
+	 String result="";
+	try
+	{
+		
+	  service.memberDelete(id);
+	  result="yes";
+	}catch(Exception ex) {
+	  result="no";	
+	}
+	return result;
+	
+ }
 }

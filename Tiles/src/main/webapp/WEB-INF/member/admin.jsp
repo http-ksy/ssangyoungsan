@@ -7,11 +7,11 @@
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> -->
-<!-- <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script> -->
-<!-- <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script> -->
-<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
 // $(function(){
 // 	$('#postBtn').click(function(){
@@ -30,6 +30,7 @@
  
    <div class="container">
   <div class="row">
+  
   <template>
   <div>
     <b-button v-b-toggle.sidebar-border1 class="genric-btn primary-border small">관리자페이지</b-button>
@@ -76,11 +77,30 @@
   </div>
 </template>
   </div>
+  
   <br>
-     <div class="row">
-
-     <h1 class="text-center"><b>회원정보</b></h1>
-     <div class="row">
+     <div class="container">
+	 <div class="row">
+     <h1 class="text-left"><b>회원정보</b></h1>
+     </div>
+     
+     <div class="container ">
+        
+           
+           <div class="input-group mb-4">
+           <select name="select" class="nice-select " ref="col" style="width:200px; ">
+            <option value="all">전체</option>
+            <option value="id">아이디</option>
+            <option value="name">이름</option>
+            <option value="nickname">닉네임</option>
+           
+           </select>
+           <input type=text ref="fd" class="form-control" size=20 v-model="fd" style="width:200px; height:40px;">
+           <input type="button" class="genric-btn info-border" value="🔍︎" @click="search()" style="height:40px;">
+        	</div>
+      </div >
+      <br>
+      
       <table class="table">
        <tr>
         <th>아이디</th>
@@ -99,7 +119,14 @@
         <td>{{vo.email}}</td>
         <td>{{vo.post}}</td>
         <td>
-        <input type="button" class="genric-btn success circle btn" value="정지">
+    <input type="button" class="genric-btn success circle btn" value="정지" style="background-color:red" @click="memberDelete(vo.id)"> 
+<!--             <b-button  v-b-modal.modal-lg2 variant="primary" class="genric-btn info-border circle arrow btn" >정지</b-button> -->
+<!-- 			<b-modal  id="modal-lg2" size="lg" title="회원 탈퇴"  hide-footer> -->
+<!-- 			<div> -->
+<!-- 			<input type="password" size=20 > -->
+<!-- 			<a href="#" @click="memberDelete()" class="genric-btn info-border circle" >확인</a> -->
+<!-- 			</div>  -->
+<!-- 			</b-modal> -->
         </td>
        </tr>
       </table>
@@ -115,7 +142,7 @@
       </div>
       </div>
      </div>
-   </div>
+   
 <script type="text/javascript">
 new Vue({
 	el:'.container',
@@ -126,7 +153,9 @@ new Vue({
 	 curpage:1,
 	 totalpage:0,
 	 startPage:0,
-	 endPage:0
+	 endPage:0,
+	 fd:'',
+	 id:''
 	 
 	},
 	mounted:function(){
@@ -159,6 +188,10 @@ new Vue({
 			   this.endPage=this.mpage_list.endPage
 		   })
 		},search:function(){
+			console.log(this.fd)
+			
+			this.col=this.$refs.col.value
+			console.log(this.col)
 			this.curpage=1;
 			this.memData();
 		},
@@ -183,7 +216,30 @@ new Vue({
 		next:function(){
 			this.curpage=this.endPage+1;
 			this.memData();
+		},
+		memberDelete:function(id){
+			
+			axios.post('http://localhost/web/member/member_ban.do',null,{
+				params:{
+					id:id
+				}
+			}).then(response=>{
+				console.log(id);
+				let res=response.data
+				if(res=='yes')
+				{
+				alert('회원 정지 ')
+				location.href="../member/admin.do";
+				}
+				else
+				{
+					alert('회원 탈퇴 불가')
+				}	
+			}).catch(error=>{
+				console.log(error.response)
+			})
 		}
+		
 	}
 })
 </script>   
