@@ -17,11 +17,11 @@ public class ZipRestController {
 	private ZipService service;
 	
 	@GetMapping(value="zip/zip_list_vue.do",produces = "text/plain;charset=UTF-8")
-	public String zip_list(int num) throws Exception
+	public String zip_list(int etype) throws Exception
 	{
 		String page=null;
 
-		System.out.println(num);
+		System.out.println(etype);
 		Map map=new HashMap();
 			if(page==null)
 				page="1";
@@ -31,79 +31,26 @@ public class ZipRestController {
 			int end=rowSize*curpage;
 			map.put("start", start);
 			map.put("end", end);
-			int totalpage=service.aptTotalPage();
-			int total=service.apttotaldata();
+			map.put("etype", etype);
+			int totalpage=service.EstateTotalPage(etype);
+			int total=service.EstateTotalData(etype);
 			int BLOCK=5;
 			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
-			List list=new ArrayList();
-		if(num==1)
-		{
-			List<AptVO> alist=service.aptListData(map);
-			for(AptVO vo:alist)
+			List<EstateDetailVO> list=service.EstateListData(map);
+			for(EstateDetailVO vo:list)
 			{
 				
 				String img=vo.getImg();
 				img=img.substring(0,img.indexOf("^"));
 				vo.setImg(img);
 			}
-			list=alist;
-		}
-		else if(num==2)
-		{
-			List<OpVO> olist=service.opListData(map);
-			for(OpVO vo:olist)
-			{
-				
-				String img=vo.getImg();
-				img=img.substring(0,img.indexOf("^"));
-				vo.setImg(img);
-			}
-			list=olist;
-		}
-		else if(num==3)
-		{
-			List<BunVO> blist=service.bunListData(map);
-			for(BunVO vo:blist)
-			{
-				
-				String img=vo.getImg();
-				img=img.substring(0,img.indexOf("^"));
-				vo.setImg(img);
-			}
-			list=blist;
-		}
-		else if(num==4)
-		{
-			List<HouseVO> hlist=service.houseListData(map);
-			for(HouseVO vo:hlist)
-			{
-				
-				String img=vo.getImg();
-				img=img.substring(0,img.indexOf("^"));
-				vo.setImg(img);
-			}
-			list=hlist;
-		}
-		else if(num==5)
-		{
-			List<RoomVO> rlist=service.roomListData(map);
-			for(RoomVO vo:rlist)
-			{
-				
-				String img=vo.getImg();
-				img=img.substring(0,img.indexOf("^"));
-				vo.setImg(img);
-			}
-			list=rlist;
-		}
-
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
 		return json;
 	}
 	@GetMapping(value="zip/zip_page_vue.do",produces = "text/plain;charset=UTF-8")
-	public String page_data(String page) throws Exception
+	public String page_data(String page, int etype) throws Exception
 	{
 		if(page==null)
 			 page="1";
@@ -111,8 +58,8 @@ public class ZipRestController {
 		 int rowSize=16;
 		 int start=(rowSize*curpage)-(rowSize-1);
 		 int end=rowSize*curpage;
-		 int totalpage=service.aptTotalPage();
-		 int total=service.apttotaldata();
+		 int totalpage=service.EstateTotalPage(etype);
+		 int total=service.EstateTotalData(etype);
 		 int BLOCK=5;
 		 int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		 int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -128,7 +75,7 @@ public class ZipRestController {
 	@GetMapping(value="zip/zip_detail_vue.do",produces = "text/plain;charset=UTF-8")
 	public String apt_detail(int no) throws Exception
 	{
-		AptVO vo=service.aptDetailData(no);
+		EstateDetailVO vo=service.EstateDetailData(no);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(vo);
 		return json;

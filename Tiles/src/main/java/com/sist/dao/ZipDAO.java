@@ -19,43 +19,31 @@ public class ZipDAO {
 //				+ "FROM apt_estate)) "
 //				+ "WHERE num BETWEEN #{start} AND #{end} "
 //				+ "ORDER BY no ASC")
-		public List<AptVO> aptListData(Map map)
-		{
-			return mapper.aptListData(map);
-		}
-		public List<OpVO> opListData(Map map)
-		{
-			return mapper.opListData(map);
-		}
-		public List<BunVO> bunListData(Map map)
-		{
-			return mapper.bunListData(map);
-		}
-		public List<HouseVO> houseListData(Map map)
-		{
-			return mapper.houseListData(map);
-		}
-		public List<RoomVO> roomListData(Map map)
-		{
-			return mapper.roomListData(map);
-		}
-		// 아파트 상세 정보
-//		@Select("SELECT no,name,type,completion,room,floor,addr1,addr2,area,"
-//				+ "structure,parking,heating,trafic,payment,people,tel,email,phone,compony,reg,state,moveday,bathroom,img,num "
-//				+ "FROM apt_estate "
-//				+ "WHERE no=#{no}")
-		public AptVO aptDetailData(int no)
-		{
-			return mapper.aptDetailData(no);
-		}
-//		@Select("SELECT NVL(COUNT(*)/16) FROM apt_estate")
-		public int aptTotalPage()
-		{
-			return mapper.aptTotalPage();
-		}
-//		@Select("SELECT COUNT(*) FROM apt_estate")
-		public int apttotaldata()
-		{
-			return mapper.apttotaldata();
-		}
+//	@Select("SELECT no,name,type,addr,dprice,compony,img,num "
+//			+ "FROM (SELECT no,name,type,addr,dprice,compony,img,rownum as num "
+//			+ "FROM (SELECT no,name,type,addr,dprice,compony,img "
+//			+ "FROM estate_detail ORDER BY no ASC)) "
+//			+ "WHERE etype=#{etype} AND num BETWEEN #{start} AND #{end} ")
+	public List<EstateDetailVO> estateListData(Map map)
+	{
+		return mapper.estateListData(map);
+	}
+	
+	// 아파트 상세 정보
+//	@Select("SELECT * FROM estate_detail "
+//			+ "WHERE no=#{no}")
+	public EstateDetailVO estateDetailData(int no)
+	{
+		return mapper.estateDetailData(no);
+	}
+//	@Select("SELECT CEIL(COUNT(*)/16) FROM estate_detail WHERE etype=#{etype}")
+	public int estateTotalPage(int etype)
+	{
+		return mapper.estateTotalPage(etype);
+	}
+//	@Select("SELECT COUNT(*) FROM estate_detail WHERE etype=#{etype}")
+	public int estateTotalData(int etype)
+	{
+		return mapper.estateTotalData(etype);
+	}
 }

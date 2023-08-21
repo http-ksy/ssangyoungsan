@@ -103,6 +103,18 @@
 		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="원룸" @click="ListData(5)">   
 		                            	</td>
                                     </tr>   
+                                    <tr><td style="height:5px;"></td></tr>
+                                    <tr>
+                                		<td>
+		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="상가" @click="ListData(6)">   
+		                            	</td>
+                                    </tr>   
+                                    <tr><td style="height:5px;"></td></tr>
+                                    <tr>
+                                		<td>
+		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="사무실" @click="ListData(7)">   
+		                            	</td>
+                                    </tr>   
 <!--                                     <option value="2">오피스텔</option>                                 -->
 <!--                                     <option value="3">분양권</option> -->
 <!--                                     <option value="4">주택</option> -->
@@ -134,10 +146,10 @@
                                         <a :href="'../zip/zip_detail.do?no='+vo.no"><img :src="vo.img" style="width:225px;height:200px;"></a>
                                          <h3><a :href="'../zip/zip_detail.do?no='+vo.no">{{vo.name}}</a></h3>
                                          <input type="hidden" ref="no" v-model="no" name="no" value="vo.no">
-                                        <span>{{addr1}}</span>
+                                        <span>{{vo.addr}}</span>
                                         
-                                        <span v-if="num!=3">{{vo.payment}}/{{vo.type}}</span>
-                                        <span v-if="num==3">{{vo.saletype}}/{{vo.type}}</span>
+                                        <span>{{vo.dprice}}/{{vo.type}}</span>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -234,16 +246,16 @@
 		data:{
 			list_data:[],
 			page_data:{},
-			num:1
+			etype:1
 		}, 	
 		mounted:function(){
 			 this.ListData(1)
 		 },
 		 methods:{
-			 ListData:function(num){
+			 ListData:function(etype){
 				 axios.get('http://localhost/web/zip/zip_list_vue.do',{
 					 params:{
-						 num:num
+						 etype:etype
 					 }
 				 })
 				 .then(response=>{

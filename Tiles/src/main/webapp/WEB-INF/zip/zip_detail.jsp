@@ -20,7 +20,7 @@
 		<div class="row">
 			<table class="table">
 				<tr>
-					<td class="text-center" v-for="img in apt_img">
+					<td class="text-center" v-for="img in estate_img">
 					<img :src="img" style="width: 100%">
 					</td>
 				</tr>
@@ -31,73 +31,50 @@
 			<table class="table">
 				<tr>
 					<th>name</th>
-					<td>{{apt_detail.name}}</td>
+					<td>{{estate_detail.name}}</td>
 				</tr>
 				<tr>
 					<th>type</th>
-					<td>{{apt_detail.type}}</td>
-				</tr>
-				<tr>
-					<th>completion</th>
-					<td>{{apt_detail.completion}}</td>
-				</tr>
-				<tr>
-					<th>room</th>
-					<td>{{apt_detail.room}}</td>
-				</tr>
-				<tr>
-					<th>floor</th>
-					<td>{{apt_detail.floor}}</td>
+					<td>{{estate_detail.type}}</td>
 				</tr>
 				<tr>
 					<th>addr</th>
-					<td>{{apt_detail.addr1}}/{{apt_detail.addr2}}</td>
+					<td>{{estate_detail.addr}}
+					<input type="hidden" value="'estate_detail.addr'" class="addr">
+					</td>
+					
 				</tr>
 				<tr>
 					<th>area</th>
-					<td>{{apt_detail.area}}</td>
+					<td>{{estate_detail.area}}</td>
 				</tr>
-				<tr>
-					<th>structure</th>
-					<td>{{apt_detail.structure}}</td>
-				</tr>
-			</table>
-		</div>
-		<div class="row" style="width:440px;float:left">
-			<table class="table">
 				<tr>
 					<th>parking</th>
-					<td>{{apt_detail.parking}}</td>
+					<td>{{estate_detail.parking}}</td>
 				</tr>
-				<tr>
-					<th>heating</th>
-					<td>{{apt_detail.heating}}</td>
-				</tr>
+				
 				<tr>
 					<th>state</th>
-					<td>{{apt_detail.state}}</td>
+					<td>{{estate_detail.state}}</td>
 				</tr>
 				<tr>
 					<th>moveday</th>
-					<td>{{apt_detail.moveday}}</td>
+					<td>{{estate_detail.moveday}}</td>
 				</tr>
-				<tr>
-					<th>bathroom</th>
-					<td>{{apt_detail.bathroom}}</td>
-				</tr>
-<!-- 				<tr> -->
-<!-- 					<th>img</th> -->
-<!-- 					<td>{{apt_detail.img}}</td> -->
-<!-- 				</tr> -->
-				<tr>
+				
 					<th>trafic</th>
-					<td>{{apt_detail.trafic}}</td>
+					<td>{{estate_detail.trafic}}</td>
 				</tr>
 				<tr>
-					<th>payment</th>
-					<td>{{apt_detail.payment}}</td>
+					<th>dprice</th>
+					<td>{{estate_detail.dprice}}</td>
 				</tr>
 			</table>
+		</div>
+		<div class="row" style="width:440px;float:right">
+			<div class="page-sidebar">
+				<div id="map" style="width:440px;height:340px;"></div>
+			</div>
 		</div>
 <!-- #######################     딜러       ################################# -->
 		<div class="row"style="height:20px;"></div>
@@ -105,31 +82,21 @@
 			<h3 class="text-center">공인중개사 정보</h3>
 			<table class="table">
 				<tr>
-					<th>people</th>
-					<td>{{apt_detail.people}}</td>
+					<th>manager</th>
+					<td>{{estate_detail.manager}}</td>
+				</tr>
+			
+				<tr>
+					<th>company</th>
+					<td>{{estate_detail.company}}</td>
 				</tr>
 				<tr>
-					<th>tel</th>
-					<td>{{apt_detail.tel}}</td>
-				</tr>
-				<tr>
-					<th>email</th>
-					<td>{{apt_detail.email}}</td>
-				</tr>
-				<tr>
-					<th>phone</th>
-					<td>{{apt_detail.phone}}</td>
-				</tr>
-				<tr>
-					<th>compony</th>
-					<td>{{apt_detail.compony}}</td>
-				</tr>
-				<tr>
-					<th>reg</th>
-					<td>{{apt_detail.reg}}</td>
+					<th>comaddr</th>
+					<td>{{estate_detail.comaddr}}</td>
 				</tr>
 			</table>
 		</div>
+		
 		<div class="row" style="width:440px;float:left">
             <div class="form-wrapper">
                  <h3 class="text-center">공인중개사에게 질문하기</h3>
@@ -157,27 +124,65 @@
           </div>
      </div>
 </div>
+<div style="height:100px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2633d4b49e21c9b14bd17316553d25a2&libraries=services"></script>
 <script>
 	new Vue({
 		el:'.container',
 		data:{
-			apt_detail:[],
-			apt_img:[],
+			estate_detail:[],
+			estate_img:[],
 			no:${no}
 		},
 		mounted:function(){
-			 this.aptDetailData(this.no)
+			 this.estateDetailData(this.no)
+			 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			 mapOption = {
+			     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			     level: 3 // 지도의 확대 레벨
+			 };  
+
+			 //지도를 생성합니다    
+			 var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+			 //주소-좌표 변환 객체를 생성합니다
+			 var geocoder = new kakao.maps.services.Geocoder();
+
+			 //주소로 좌표를 검색합니다
+			 geocoder.addressSearch('${addr}', function(result, status) {
+
+			 // 정상적으로 검색이 완료됐으면 
+			  if (status === kakao.maps.services.Status.OK) {
+
+			     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+			     // 결과값으로 받은 위치를 마커로 표시합니다
+			     var marker = new kakao.maps.Marker({
+			         map: map,
+			         position: coords
+			     });
+
+			     // 인포윈도우로 장소에 대한 설명을 표시합니다
+			     var infowindow = new kakao.maps.InfoWindow({
+			         content: '<div style="width:150px;text-align:center;padding:6px 0;">위치</div>'
+			     });
+			     infowindow.open(map, marker);
+
+			     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			     map.setCenter(coords);
+			 } 
+			 });  
 		},
 		methods:{
-			aptDetailData:function(no){
+			estateDetailData:function(no){
 				axios.get('../zip/zip_detail_vue.do',{
 					params:{
 						no:no
 					}
 				}).then(response=>{
 					console.log(response.data)
-					this.apt_detail=response.data
-					this.apt_img=this.apt_detail.img.split('^')
+					this.estate_detail=response.data
+					this.estate_img=this.estate_detail.img.split('^')
 				}).catch(error=>{
 					console.log(error.response)
 				})

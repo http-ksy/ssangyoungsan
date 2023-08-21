@@ -12,52 +12,33 @@ import com.sist.dao.*;
 public class ZipServiceImpl implements ZipService{
 	@Autowired
 	private ZipDAO dao;
+
 	@Override
-	public List<AptVO> aptListData(Map map) {
+	public List<EstateDetailVO> EstateListData(Map map) {
 		// TODO Auto-generated method stub
-		return dao.aptListData(map);
+		return dao.estateListData(map);
 	}
 
 	@Override
-	public AptVO aptDetailData(int no) {
+	public EstateDetailVO EstateDetailData(int no) {
 		// TODO Auto-generated method stub
-		return dao.aptDetailData(no);
+		return dao.estateDetailData(no);
 	}
 
 	@Override
-	public int aptTotalPage() {
+	public int EstateTotalPage(int etype) {
 		// TODO Auto-generated method stub
-		return dao.aptTotalPage();
+		return dao.estateTotalPage(etype);
 	}
 
 	@Override
-	public int apttotaldata() {
+	public int EstateTotalData(int etype) {
 		// TODO Auto-generated method stub
-		return dao.apttotaldata();
+		return dao.estateTotalData(etype);
 	}
 
-	@Override
-	public List<OpVO> opListData(Map map) {
-		// TODO Auto-generated method stub
-		return dao.opListData(map);
-	}
-
-	@Override
-	public List<BunVO> bunListData(Map map) {
-		// TODO Auto-generated method stub
-		return dao.bunListData(map);
-	}
-
-	@Override
-	public List<HouseVO> houseListData(Map map) {
-		// TODO Auto-generated method stub
-		return dao.houseListData(map);
-	}
-
-	@Override
-	public List<RoomVO> roomListData(Map map) {
-		// TODO Auto-generated method stub
-		return dao.roomListData(map);
-	}
+	
+	
+	
 
 }
