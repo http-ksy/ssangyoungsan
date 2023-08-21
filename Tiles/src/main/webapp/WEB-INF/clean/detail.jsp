@@ -158,7 +158,12 @@
 		data:{
 			cno:${cno}, // el 표현식
 			clean_detail:{}, // VO
-			poster:[]
+			poster:[],
+            reply_list:[],
+            sessionId:'${id}',
+            msg:'',
+            isShow:false,
+            no:0
 		},
 		mounted:function(){
 			axios.get('http://localhost/web/clean/detail_vue.do',{
@@ -169,47 +174,89 @@
 				console.log(response.data)
 				this.clean_detail=response.data
 			})
-		}
+		},
+        methods:{
+            replyRead:function (){
+                axios.get('../reply/clean_reply_read_vue.do',{
+                    params: {
+                        cno:this.cno
+                    }
+                }).then(response=>{
+                    console.log(response.data)
+                    this.reply_list=response.data
+                }).catch(error=>{
+                    console.log(error.response)
+                })
+            },
+            replyWrite:function (){
+                if(this.msg===""){
+                    this.$refs.msg.focus()
+                    return
+                }
+                axios.post('../reply/clean_reply_insert_vue.do',null,{
+                    params:{
+                        cno:this.cno,
+                        msg:this.msg
+                    }
+                }).then(response=>{
+                    console.log(response.data)
+                    this.reply_list=response.data
+                    this.msg='';
+                }).catch(error=>{
+                    console.log(error.response)
+                })
+            },
+            replyDelete:function (no){
+                axios.get('../reply/clean_reply_delete_vue.do',{
+                    params:{
+                        no:no,
+                        cno:this.cno
+                    }
+                }).then(response=>{
+                    console.log(response.data)
+                    this.reply_list=response.data
+                }).catch(error=>{
+                    console.log(error.response)
+                })
+            },
+            replyUpdateForm:function(no){
+                $('.updates').hide()
+                $('ups').text('수정');
+                if(this.no==0){
+                    $('#u+no').show();
+                    $('#up'+no).text('취소')
+                    this.no=1;
+                }else {
+                    $('#u'+no).hide();
+                    $('#up'+no).text('수정')
+                    this.no=0;
+                }
+            },
+            replyUpdate:function(no){
+                let msg=$('#msg').val();
+                if(msg.trim()===""){
+                    this.$refs.msg.focus()
+                    return;
+                }
+                axios.post('../reply/reply_update_vue.do',null,{
+                    params:{
+                        no:no,
+                        cno:this.cno,
+                        msg:msg
+                    }
+                }).then(response=>{
+                    console.log(response.data)
+                    this.reply_list=response.data
+                    $('#u'+no).hide();
+                    $('#up'+no).text('수정')
+                }).catch(error=>{
+                    console.log(error.response)
+                })
+            }
+        }
 	})
 </script>
 <!-- Jquery, Popper, Bootstrap -->
-<script src="../assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="../assets/js/popper.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-
-<!-- Slick-slider , Owl-Carousel ,slick-nav -->
-<script src="../assets/js/owl.carousel.min.js"></script>
-<script src="../assets/js/slick.min.js"></script>
-<script src="../assets/js/jquery.slicknav.min.js"></script>
-
-<!-- One Page, Animated-HeadLin, Date Picker -->
-<script src="../assets/js/wow.min.js"></script>
-<script src="../assets/js/animated.headline.js"></script>
-<script src="../assets/js/jquery.magnific-popup.js"></script>
-<script src="../assets/js/gijgo.min.js"></script>
-
-<!-- Nice-select, sticky,Progress -->
-<script src="../assets/js/jquery.nice-select.min.js"></script>
-<script src="../assets/js/jquery.sticky.js"></script>
-<script src="../assets/js/jquery.barfiller.js"></script>
-
-<!-- counter , waypoint,Hover Direction -->
-<script src="../assets/js/jquery.counterup.min.js"></script>
-<script src="../assets/js/waypoints.min.js"></script>
-<script src="../assets/js/jquery.countdown.min.js"></script>
-<script src="../assets/js/hover-direction-snake.min.js"></script>
-
-<!-- contact js -->
-<script src="../assets/js/contact.js"></script>
-<script src="../assets/js/jquery.form.js"></script>
-<script src="../assets/js/jquery.validate.min.js"></script>
-<script src="../assets/js/mail-script.js"></script>
-<script src="../assets/js/jquery.ajaxchimp.min.js"></script>
-
-<!-- Jquery Plugins, main Jquery -->	
-<script src="../assets/js/plugins.js"></script>
-<script src="../assets/js/main.js"></script>
 
 </body>
 </html>
