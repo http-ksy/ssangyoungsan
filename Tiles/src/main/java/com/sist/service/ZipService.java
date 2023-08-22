@@ -26,5 +26,5 @@ public interface ZipService {
 //		@Select("SELECT NVL(COUNT(*)/16) FROM EstateDetail_estate")
 		public int EstateTotalPage(int etype);
 //		@Select("SELECT COUNT(*) FROM EstateDetail_estate")
-		public int EstateTotalData(int etype);
+		public int EstateTotalData();
 }

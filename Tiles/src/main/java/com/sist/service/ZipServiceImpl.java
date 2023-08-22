@@ -32,9 +32,9 @@ public class ZipServiceImpl implements ZipService{
 	}
 
 	@Override
-	public int EstateTotalData(int etype) {
+	public int EstateTotalData() {
 		// TODO Auto-generated method stub
-		return dao.estateTotalData(etype);
+		return dao.estateTotalData();
 	}
 
 	

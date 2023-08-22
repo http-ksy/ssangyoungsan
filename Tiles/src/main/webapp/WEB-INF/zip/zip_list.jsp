@@ -59,7 +59,7 @@
                 <div class="row">
                     <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-50">
-                            <h2>아파트</h2>
+                            <h2>부동산</h2>
                             <p>${total } 개의 정보</p>
                         </div>
                     </div>

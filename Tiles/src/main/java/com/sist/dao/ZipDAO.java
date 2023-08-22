@@ -42,8 +42,8 @@ public class ZipDAO {
 		return mapper.estateTotalPage(etype);
 	}
 //	@Select("SELECT COUNT(*) FROM estate_detail WHERE etype=#{etype}")
-	public int estateTotalData(int etype)
+	public int estateTotalData()
 	{
-		return mapper.estateTotalData(etype);
+		return mapper.estateTotalData();
 	}
 }

@@ -12,8 +12,10 @@ public class ZipController {
 	@Autowired
 	private ZipService service;
 	@GetMapping("zip/zip_list.do")
-	public String zip_list()
+	public String zip_list(Model model)
 	{
+		int total=service.EstateTotalData();
+		model.addAttribute("total",total);
 		return "zip/zip_list";
 	}
 	@GetMapping("zip/zip_detail.do")
@@ -24,5 +26,11 @@ public class ZipController {
 		model.addAttribute("addr",addr);
 		model.addAttribute("no",no);
 		return "zip/zip_detail";
+	}
+	@GetMapping("zip/zipsago.do")
+	public String zip_sago(int no,Model model)
+	{
+		model.addAttribute("no",no);
+		return "zip/zipsago";
 	}
 }

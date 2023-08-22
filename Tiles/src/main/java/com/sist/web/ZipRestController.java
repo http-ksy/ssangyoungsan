@@ -5,17 +5,21 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.*;
 import com.sist.vo.*;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @RestController
 public class ZipRestController {
 	@Autowired
 	private ZipService service;
-	
+	@Autowired
+	private CompanyReviewService reservice;
 	@GetMapping(value="zip/zip_list_vue.do",produces = "text/plain;charset=UTF-8")
 	public String zip_list(int etype) throws Exception
 	{
@@ -33,7 +37,7 @@ public class ZipRestController {
 			map.put("end", end);
 			map.put("etype", etype);
 			int totalpage=service.EstateTotalPage(etype);
-			int total=service.EstateTotalData(etype);
+			int total=service.EstateTotalData();
 			int BLOCK=5;
 			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -59,7 +63,7 @@ public class ZipRestController {
 		 int start=(rowSize*curpage)-(rowSize-1);
 		 int end=rowSize*curpage;
 		 int totalpage=service.EstateTotalPage(etype);
-		 int total=service.EstateTotalData(etype);
+		 int total=service.EstateTotalData();
 		 int BLOCK=5;
 		 int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		 int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
@@ -69,15 +73,24 @@ public class ZipRestController {
 		 vo.setTotalpage(totalpage);
 		 vo.setStartPage(startPage);
 		 ObjectMapper mapper=new ObjectMapper();
-			String json=mapper.writeValueAsString(vo);
-			return json;
+		String json=mapper.writeValueAsString(vo);
+		return json;
 	}
 	@GetMapping(value="zip/zip_detail_vue.do",produces = "text/plain;charset=UTF-8")
-	public String apt_detail(int no) throws Exception
+	public String estate_detail(int no) throws Exception
 	{
 		EstateDetailVO vo=service.EstateDetailData(no);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(vo);
+		return json;
+	}
+	@GetMapping(value = "zip/review_list_vue.do",produces = "text/plain;charset=UTF-8")
+	public String company_review(int no) throws Exception
+	{
+		List<CompanyReviewVO> list=reservice.companyReviewListData(no);
+		System.out.println("content:"+list.get(0).getContent());
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
 		return json;
 	}
 }

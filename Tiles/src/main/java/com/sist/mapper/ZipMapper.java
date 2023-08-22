@@ -21,6 +21,6 @@ public interface ZipMapper {
 	public EstateDetailVO estateDetailData(int no); 
 	@Select("SELECT CEIL(COUNT(*)/16) FROM estate_detail WHERE etype=#{etype}")
 	public int estateTotalPage(int etype);
-	@Select("SELECT COUNT(*) FROM estate_detail WHERE etype=#{etype}")
-	public int estateTotalData(int etype);
+	@Select("SELECT COUNT(*) FROM estate_detail")
+	public int estateTotalData();
 }
