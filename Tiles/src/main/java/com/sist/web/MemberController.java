@@ -32,4 +32,9 @@ public class MemberController {
  {
 	 return "member/admin";
  }
+ @GetMapping("member/customer.do")
+ public String member_customer()
+ {
+	 return "member/customer";
+ }
 }

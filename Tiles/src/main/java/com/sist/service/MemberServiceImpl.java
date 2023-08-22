@@ -79,5 +79,17 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.memberTotalPage(map);
 	}
+
+	@Override
+	public List<EstateDetailVO> zipTypeData(Map map) {
+		// TODO Auto-generated method stub
+		return dao.zipTypeData(map);
+	}
+
+	@Override
+	public int zipBuyTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.zipBuyTotalPage(map);
+	}
  
 }

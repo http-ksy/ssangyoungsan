@@ -82,4 +82,12 @@ public class MemberDAO {
 	{
 		return mapper.memberTotalPage(map);
 	}
+	public List<EstateDetailVO> zipTypeData(Map map)
+	{
+		return mapper.zipTypeData(map);
+	}
+	public int zipBuyTotalPage(Map map)
+	{
+		return mapper.zipBuyTotalPage(map);
+	}
 }
