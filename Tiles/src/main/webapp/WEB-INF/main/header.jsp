@@ -44,13 +44,12 @@
                                         <li><a href="../main/main.do">home</a></li> 
                                         <li><a href="../zip/zip_list.do">.zip 사러가기</a></li>
                                         <li><a href="../inte/inte_list.do">.zip 인테리어하기 </a></li>
-                                        <li><a href="../product/productList.do">.zip 가구 사기</a>
-<!--                                             <ul class="submenu"> -->
-<!--                                                 <li><a href="../shionhouse-master/blog.html">내용1</a></li> -->
-<!--                                                 <li><a href="../shionhouse-master/blog_details.html">내용2</a></li> -->
-<!--                                                 <li><a href="../shionhouse-master/elements.html">내용3</a></li> -->
-<!--                                                 <li><a href="../shionhouse-master/product_details.html">내용4</a></li> -->
-<!--                                             </ul> -->
+                                        <li><a href="#">.zip 스토어 </a>
+										  <ul class="submenu">
+                                            <li><a href="../product/product_list.do?type=1">.zip 가구</a></li>
+                                            <li><a href="../product/product_list.do?type=2">.zip 패브릭</a></li>
+                                            <li><a href="../product/product_list.do?type=3">.zip 조명</a></li>
+                                          </ul>
                                         </li>
                                         <li><a href="#">.zip 마무리하기</a>
                                          <ul class="submenu">

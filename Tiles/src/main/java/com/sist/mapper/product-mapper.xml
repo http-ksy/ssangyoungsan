@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.ProductMapper">
+  <select id="productListData" resultType="ProductVO" parameterType="hashmap">
+    SELECT no,poster,brand,title,original_pri,sale,priced_sale,num 
+    FROM (SELECT no,poster,brand,title,original_pri,sale,priced_sale,rownum as num
+    FROM (SELECT no,poster,brand,title,original_pri,sale,priced_sale
+    FROM ${table_name} ORDER BY no ASC))
+    WHERE num BETWEEN #{start} AND #{end}
+  </select>
+  
+  <select id="productFindData" resultType="ProductVO" parameterType="hashmap">
+    SELECT no,poster,brand,title,original_pri,sale,priced_sale,num 
+    FROM (SELECT no,poster,brand,title,original_pri,sale,priced_sale,rownum as num
+    FROM (SELECT no,poster,brand,title,original_pri,sale,priced_sale
+    FROM ${table_name} WHERE title LIKE '%'||#{fd}||'%' ORDER BY no ASC))
+    WHERE num BETWEEN #{start} AND #{end} 
+  </select>
+  
+  <select id="productFindCount" resultType="int" parameterType="hashmap">
+    SELECT COUNT(*)
+    FROM ${table_name}
+    WHERE title LIKE '%'||#{fd}||'%'
+  </select>
+  
+  <select id="productDetailData" resultType="ProductVO" parameterType="hashmap">
+    SELECT *
+    FROM ${table_name}
+    WHERE no=#{no}
+  </select>
+</mapper>
