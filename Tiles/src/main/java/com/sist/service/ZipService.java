@@ -3,7 +3,9 @@ package com.sist.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.*;
 
@@ -27,4 +29,10 @@ public interface ZipService {
 		public int EstateTotalPage(int etype);
 //		@Select("SELECT COUNT(*) FROM EstateDetail_estate")
 		public int EstateTotalData();
+//		@Select("SELECT no FROM zipbuy WHERE id=#{id}")
+		public List<EstateDetailVO> zipbuy(String id);
+//		@Insert("INSERT INTO zipbuy VALUES(#{id},#{no})")
+		public void zipbuyInsert(Map map,int no);
+//		@Update("UPDATE estate_detail SET type='매매진행완료' WHERE no=#{no}")
+//		public void zipbuyTypeUpdate(int no);
 }

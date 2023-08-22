@@ -92,7 +92,7 @@
 				<td>{{estate_detail.comaddr}}</td>
 			</tr>
 			<tr>
-				<td>
+				<td v-if="estate_detail.state!='매매진행완료'">
 					<a :href="'../zip/zipsago.do?no='+estate_detail.no" class="btn btn-sm btn-danger" value="구매하기">
 				</td>
 			</tr>

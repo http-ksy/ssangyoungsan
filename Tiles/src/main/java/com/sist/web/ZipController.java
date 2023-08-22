@@ -33,4 +33,10 @@ public class ZipController {
 		model.addAttribute("no",no);
 		return "zip/zipsago";
 	}
+	@GetMapping("member/zipbuy.do")
+	public String zip_buy(Model model)
+	{
+		
+		return "member/zipbuy";
+	}
 }

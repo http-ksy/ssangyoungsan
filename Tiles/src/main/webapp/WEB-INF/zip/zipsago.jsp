@@ -59,7 +59,7 @@
       	  <tr>
       	  <tr>
            <td colspan="2" class="text-center">
-            <input type=button value="회원가입" class="genric-btn info-border circle" @click="#">
+            <a class="genric-btn info-border circle" v-model="no" @click="zipsagomove(no)">계약하기</a>
              <input type=button value="취소" class="genric-btn info-border circle"
               onclick="javascript:history.back()">
            </td>
@@ -73,21 +73,31 @@ new Vue({
 	data:{
 		estate_detail:[],
 		estate_img:[],
-		no:${no}
+		no:${no},
+		id:'${sessionScope.id}'
 	},
 	mounted:function(){
-		 this.estateDetailData(this.no)
+		 console.log(this.id)
 	},
 	methods:{
-		estateDetailData:function(no){
-			axios.get('../zip/zip_detail_vue.do',{
+		zipsagomove:function(no){
+			axios.get('../zip/zipsago_vue.do',{
 				params:{
-					no:no
+					no:no,
+					id:this.id
 				}
 			}).then(response=>{
 				console.log(response.data)
-				this.estate_detail=response.data
-				this.estate_img=this.estate_detail.img.split('^')
+				if(response.data==="OK")
+				{
+					alert("거래완료")
+					location.href='../zip/zip_detail.do?no='+this.no
+				}
+				else
+				{
+					alert("실패")
+				}
+				
 			}).catch(error=>{
 				console.log(error.response)
 			})

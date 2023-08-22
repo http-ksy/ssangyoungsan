@@ -17,26 +17,25 @@
 <body>
 <div class="container">
 	<div class="row">
-		<table class="table">
+		<table class="table" >
 			<tr>
 				<th>이름</th>
 				<th>매물구분</th>
 				<th>소재지</th>
 				<th>중개사</th>
 				<th>가격</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
 				<th>리뷰쓰기</th>
+			</tr>
+			<tr v-for="vo in ziplist">
+				<td>{{vo.name}}</td>
+				<td>{{vo.type}}</td>
+				<td>{{vo.addr}}</td>
+				<td>{{vo.manager}}</td>
+				<td>{{vo.dprice}}</td>
+				<td><textarea ref="content" v-model="content" name="content"></textarea></td>
 				<td>
-					<textarea></textarea>
-				</td>
+					<input type="button" class="genric-btn info-border circle" @click="reviewInsert(vo.no)" value="저장">
+				<td>
 			</tr>
 		</table>
 	</div>
@@ -45,23 +44,47 @@
 new Vue({
 	el:'.container',
 	data:{
-		estate_detail:[],
-		estate_img:[],
-		no:${no}
+		ziplist:[],
+		zipImg:[],
+		id:'${sessionScope.id}',
+		content:''
+		
 	},
 	mounted:function(){
-		 this.estateDetailData(this.no)	
+		 this.zipbuyList()	
 	},
 	methods:{
-		estateDetailData:function(no){
-			axios.get('../zip/zip_detail_vue.do',{
+		zipbuyList:function(){
+			axios.get('../member/zipbuy_vue.do',{
 				params:{
-					no:no
+					id:this.id
 				}
 			}).then(response=>{
 				console.log(response.data)
-				this.estate_detail=response.data
-				this.estate_img=this.estate_detail.img.split('^')
+				this.ziplist=response.data
+				this.zipImg=this.ziplist.img.split('^')
+			}).catch(error=>{
+				console.log(error.response)
+			})
+		},
+		reviewInsert:function(no){
+			axios.get('../zip/review_insert_vue.do',{
+				params:{
+					no:no,
+					id:this.id,
+					content:this.content
+				}
+			}).then(response=>{
+				console.log(response.data)
+				if(response.data==="OK")
+				{
+					alert("저장 완료")
+					location.href='../zip/zip_detail.do?no='+no
+				}
+				else
+				{
+					alert("저장 실패")
+				}
 			}).catch(error=>{
 				console.log(error.response)
 			})

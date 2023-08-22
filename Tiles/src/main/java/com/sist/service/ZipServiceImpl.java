@@ -1,5 +1,6 @@
 package com.sist.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,8 +38,22 @@ public class ZipServiceImpl implements ZipService{
 		return dao.estateTotalData();
 	}
 
-	
-	
-	
+	@Override
+	public List<EstateDetailVO> zipbuy(String id) {
+		// TODO Auto-generated method stub
+		List<EstateDetailVO> list=new ArrayList<EstateDetailVO>();
+		List<Integer> zlist=dao.zipbuy(id);
+		for(Integer zvo:zlist)
+		{
+			list.add(dao.estateDetailData(zvo));
+		}
+		return list;
+	}
 
+	@Override
+	public void zipbuyInsert(Map map,int no) {
+		// TODO Auto-generated method stub
+		dao.zipbuyInsert(map);
+		dao.zipbuyTypeUpdate(no);
+	}
 }

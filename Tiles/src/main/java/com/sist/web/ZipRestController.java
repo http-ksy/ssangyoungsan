@@ -84,6 +84,28 @@ public class ZipRestController {
 		String json=mapper.writeValueAsString(vo);
 		return json;
 	}
+	
+	@GetMapping(value = "zip/zipsago_vue.do",produces = "text/plain;charset=UTF-8")
+	public String zipsago(int no,String id)
+	{
+		String json="";
+		Map map=new HashMap();
+		map.put("no", no);
+		map.put("id", id);
+		try
+		{
+			service.zipbuyInsert(map, no);
+			json="OK";
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			json="NO";
+		}
+		
+		return json;
+	}
+	
 	@GetMapping(value = "zip/review_list_vue.do",produces = "text/plain;charset=UTF-8")
 	public String company_review(int no) throws Exception
 	{
@@ -91,6 +113,36 @@ public class ZipRestController {
 		System.out.println("content:"+list.get(0).getContent());
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
+		return json;
+	}
+	@GetMapping(value = "member/zipbuy_vue.do",produces = "text/plain;charset=UTF-8")
+	public String zipbuy_list(String id) throws Exception
+	{
+		List<EstateDetailVO> list=service.zipbuy(id);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
+	@GetMapping(value = "zip/review_insert_vue.do",produces = "text/plain;charset=UTF-8")
+	public String company_review_insert(int no,String id,String content) throws Exception
+	{
+		String json="";
+		CompanyReviewVO vo=new CompanyReviewVO();
+		vo.setCno(no);
+		vo.setId(id);
+		vo.setContent(content);
+		reservice.companyReviewInsert(vo);
+		try
+		{
+			reservice.companyReviewInsert(vo);
+			json="OK";
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			json="NO";
+		}
+		
 		return json;
 	}
 }

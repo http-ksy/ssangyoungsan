@@ -1,7 +1,9 @@
 package com.sist.mapper;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.*;
 
@@ -23,4 +25,13 @@ public interface ZipMapper {
 	public int estateTotalPage(int etype);
 	@Select("SELECT COUNT(*) FROM estate_detail")
 	public int estateTotalData();
+	// 산집 no목록
+	@Select("SELECT no FROM zipbuy WHERE id=#{id}")
+	public List<Integer> zipbuy(String id);
+	@Insert("INSERT INTO zipbuy VALUES(#{id},#{no})")
+	public void zipbuyInsert(Map map);
+	@Update("UPDATE estate_detail SET state='매매진행완료' WHERE no=#{no}")
+	public void zipbuyTypeUpdate(int no);
+	// 
+	
 }
