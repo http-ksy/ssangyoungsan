@@ -7,19 +7,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   SELECT id,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin,num
   FROM(SELECT id,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin,rownum as num
   FROM (SELECT id,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin 
-  FROM amem
+  FROM amem 
   <if test="col!='all'">
    WHERE ${col} LIKE '%'||#{fd}||'%'
   </if>
   	ORDER BY id ASC
   ))
-  WHERE num BETWEEN #{start} AND #{end}
+  WHERE num BETWEEN #{start} AND #{end} 
   </select>
   <select id="memberTotalPage" resultType="int" parameterType="hashmap">
    SELECT CEIL(COUNT(*)/10.0)
    FROM amem
    <if test="col!='all'">
      WHERE ${col} LIKE '%'||#{fd}||'%'
+   </if>
+  </select>
+  <select id="zipTypeData" resultType="EstateDetailVO" parameterType="hashmap">
+   SELECT no,etype,dprice,name,type,addr,state,num 
+   FROM (SELECT no,etype,dprice,name,type,addr,state,rownum as num
+   FROM (SELECT no,etype,dprice,name,type,addr,state
+   FROM ESTATE_DETAIL WHERE company=#{name}
+   <if test="col!='all'">
+   AND ${col} LIKE '%'||#{fd}||'%' 
+   </if>
+   ORDER BY no ASC
+  ))
+  WHERE  num BETWEEN #{start} AND #{end} 
+  </select>
+  <select id="zipBuyTotalPage" resultType="int" parameterType="hashmap">
+   SELECT CEIL(COUNT(*)/10.0)
+   FROM ESTATE_DETAIL WHERE company=#{name}
+   <if test="col!='all'">
+     AND ${col} LIKE '%'||#{fd}||'%'
    </if>
   </select>
 </mapper>

@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EstateDetailVO {
-	private String dprice,name,img, type,addr,area,traffic,state,manager,company,comaddr,parking,moveday;
+	private String dprice,name,img, type,addr,area,trafic,state,manager,company,comaddr,parking,moveday;
 	private int no,etype;
 }

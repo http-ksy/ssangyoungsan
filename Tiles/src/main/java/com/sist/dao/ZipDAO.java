@@ -2,7 +2,9 @@ package com.sist.dao;
 
 import java.util.*;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -42,8 +44,25 @@ public class ZipDAO {
 		return mapper.estateTotalPage(etype);
 	}
 //	@Select("SELECT COUNT(*) FROM estate_detail WHERE etype=#{etype}")
-	public int estateTotalData(int etype)
+	public int estateTotalData()
 	{
-		return mapper.estateTotalData(etype);
+		return mapper.estateTotalData();
 	}
+//	@Select("SELECT no FROM zipbuy WHERE id=#{id}")
+	public List<Integer> zipbuy(String id)
+	{
+		return mapper.zipbuy(id);
+	}
+//	@Insert("INSERT INTO zipbuy VALUES(#{id},#{no})")
+	public void zipbuyInsert(Map map)
+	{
+		mapper.zipbuyInsert(map);
+	}
+//	@Update("UPDATE estate_detail SET type='매매진행완료' WHERE no=#{no}")
+	public void zipbuyTypeUpdate(int no)
+	{
+		mapper.zipbuyTypeUpdate(no);
+	}
+
+
 }

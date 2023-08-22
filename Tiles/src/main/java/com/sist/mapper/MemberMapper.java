@@ -68,6 +68,10 @@ public interface MemberMapper {
 	public List<MemberVO> memberFindData(Map map);
 	public int memberTotalPage(Map map);
 	
+	// 사장님 부동산 매물 리스트 
+	public List<EstateDetailVO> zipTypeData(Map map);
+	public int zipBuyTotalPage(Map map);
+	
 	
 	
 }

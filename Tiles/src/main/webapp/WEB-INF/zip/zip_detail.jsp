@@ -15,116 +15,127 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-<div>
-	<div class="container">
-		<div class="row">
-			<table class="table">
-				<tr>
-					<td class="text-center" v-for="img in estate_img">
-					<img :src="img" style="width: 100%">
-					</td>
-				</tr>
-			</table>
-			<h1 class="text-center">매물 정보</h1>
-		</div>
-		<div class="row" style="width:440px;float:left">
-			<table class="table">
-				<tr>
-					<th>name</th>
-					<td>{{estate_detail.name}}</td>
-				</tr>
-				<tr>
-					<th>type</th>
-					<td>{{estate_detail.type}}</td>
-				</tr>
-				<tr>
-					<th>addr</th>
-					<td>{{estate_detail.addr}}
-					<input type="hidden" value="'estate_detail.addr'" class="addr">
-					</td>
-					
-				</tr>
-				<tr>
-					<th>area</th>
-					<td>{{estate_detail.area}}</td>
-				</tr>
-				<tr>
-					<th>parking</th>
-					<td>{{estate_detail.parking}}</td>
-				</tr>
-				
-				<tr>
-					<th>state</th>
-					<td>{{estate_detail.state}}</td>
-				</tr>
-				<tr>
-					<th>moveday</th>
-					<td>{{estate_detail.moveday}}</td>
-				</tr>
-				
-					<th>trafic</th>
+<div class="container">
+	<div class="row">
+		<table class="table">
+			<tr>
+				<td class="text-center" v-for="img in estate_img">
+				<img :src="img" style="width: 100%">
+				</td>
+			</tr>
+		</table>
+		<h1 class="text-center">매물 정보</h1>
+	</div>
+	<div class="row" style="width:440px;float:left">
+		<table class="table">
+			<tr>
+				<th>이름</th>
+				<td>{{estate_detail.name}}</td>
+			</tr>
+			<tr>
+				<th>매물구분</th>
+				<td>{{estate_detail.type}}</td>
+			</tr>
+			<tr>
+				<th>소재지</th>
+				<td>{{estate_detail.addr}}
+				<input type="hidden" value="'estate_detail.addr'" class="addr">
+				</td>				
+			</tr>
+			<tr>
+				<th>면적</th>
+				<td>{{estate_detail.area}}</td>
+			</tr>
+			<tr>
+			<th>주차</th>
+				<td>{{estate_detail.parking}}</td>
+			</tr>		
+			<tr>
+				<th>계약상태</th>
+				<td>{{estate_detail.state}}</td>
+			</tr>
+			<tr>
+				<th>입주일</th>
+				<td>{{estate_detail.moveday}}</td>
+			</tr>
+			<tr>
+				<th>교통</th>
 					<td>{{estate_detail.trafic}}</td>
-				</tr>
-				<tr>
-					<th>dprice</th>
-					<td>{{estate_detail.dprice}}</td>
-				</tr>
-			</table>
+			</tr>
+			<tr>
+				<th>가격</th>
+				<td>{{estate_detail.dprice}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="row" style="width:440px;float:left">
+		<div class="page-sidebar">
+			<div id="map" style="width:440px;height:340px;"></div>
 		</div>
-		<div class="row" style="width:440px;float:right">
-			<div class="page-sidebar">
-				<div id="map" style="width:440px;height:340px;"></div>
-			</div>
-		</div>
+	</div>
 <!-- #######################     딜러       ################################# -->
-		<div class="row"style="height:20px;"></div>
-		<div class="row" style="width:440px;margin-top:20px;float:left">
-			<h3 class="text-center">공인중개사 정보</h3>
+	<div class="row"style="height:20px;"></div>
+	<div class="row" style="width:440px;margin-top:20px;float:left">
+		<h3 class="text-center">공인중개사 정보</h3>
+		<table class="table">
+			<tr>
+				<th>중개사</th>
+				<td>{{estate_detail.manager}}</td>
+			</tr>
+		
+			<tr>
+				<th>공인중개사</th>
+				<td>{{estate_detail.company}}</td>
+			</tr>
+			<tr>
+				<th>소재지</th>
+				<td>{{estate_detail.comaddr}}</td>
+			</tr>
+			<tr>
+				<td v-if="estate_detail.state!='매매진행완료'">
+					<a :href="'../zip/zipsago.do?no='+estate_detail.no" class="btn btn-sm btn-danger" value="구매하기">
+				</td>
+			</tr>
+		</table>
+	</div>	
+	<div class="row" style="width:440px;float:left">
+           <div class="form-wrapper">
+                <h3 class="text-center">공인중개사에게 질문하기</h3>
+                <form id="contact-form" action="#" method="POST">
+                    <div class="col-lg-12">
+                          <div class="form-box user-icon mb-15">
+                              <input type="text" name="name" placeholder="Your name">
+                         </div>
+                    </div>
+                    <div class="col-lg-12">
+                         <div class="form-box message-icon mb-15">
+                              <textarea name="message" id="message" placeholder="Comment"></textarea>
+                         </div>
+                         <div class="submit-info">
+                              <button class="submit-btn2" type="submit">Send Message</button>
+                         </div>
+					</div>
+				</form>
+			</div> 
+		</div>
+		<div class="row" style="width:800px;float:left">
+			<div class="form-wrapper">
+			<h3 class="text-center">공인중개사 리뷰</h3>
 			<table class="table">
 				<tr>
-					<th>manager</th>
-					<td>{{estate_detail.manager}}</td>
+					<th width=20%>이름</th>
+					<th width=60%>내용</th>
+					<th width=20%>날짜</th>
 				</tr>
-			
-				<tr>
-					<th>company</th>
-					<td>{{estate_detail.company}}</td>
-				</tr>
-				<tr>
-					<th>comaddr</th>
-					<td>{{estate_detail.comaddr}}</td>
+				<tr v-for="vo in review">
+					<td width=20%>{{vo.id}}</td>
+					<td width=60%>{{vo.content}}</td>
+					<td width=20%>{{vo.dbday}}</td>
 				</tr>
 			</table>
-		</div>
-		
-		<div class="row" style="width:440px;float:left">
-            <div class="form-wrapper">
-                 <h3 class="text-center">공인중개사에게 질문하기</h3>
-                 <form id="contact-form" action="#" method="POST">
-                     <div class="col-lg-12">
-                          <div class="form-box user-icon mb-15">
-                               <input type="text" name="name" placeholder="Your name">
-                          </div>
-                     </div>
-                     <div class="col-lg-12">
-                          <div class="form-box email-icon mb-15">
-                               <input type="text" name="email" placeholder="Email address">
-                          </div>
-                     </div>
-                     <div class="col-lg-12">
-                          <div class="form-box message-icon mb-15">
-                               <textarea name="message" id="message" placeholder="Comment"></textarea>
-                          </div>
-                          <div class="submit-info">
-                               <button class="submit-btn2" type="submit">Send Message</button>
-                          </div>
-                     </div>
-                     </form>
-               </div> 
-          </div>
-     </div>
+		</div> 
+	</div>
 </div>
-<div style="height:100px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2633d4b49e21c9b14bd17316553d25a2&libraries=services"></script>
 <script>
 	new Vue({
@@ -132,10 +143,12 @@
 		data:{
 			estate_detail:[],
 			estate_img:[],
-			no:${no}
+			no:${no},
+			review:[]
 		},
 		mounted:function(){
 			 this.estateDetailData(this.no)
+			 this.reviewData(this.no)
 			 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			 mapOption = {
 			     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -186,8 +199,19 @@
 				}).catch(error=>{
 					console.log(error.response)
 				})
+			},
+			reviewData:function(no){
+				axios.get('../zip/review_list_vue.do',{
+					params:{
+						no:no
+					}
+				}).then(response=>{
+					console.log(response.data)
+					this.review=response.data
+				}).catch(error=>{
+					console.log(error.response)
+				})
 			}
-			
 		}
 	})
 </script>

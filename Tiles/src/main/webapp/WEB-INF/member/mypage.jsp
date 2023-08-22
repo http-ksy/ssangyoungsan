@@ -44,6 +44,11 @@
       </tr>
       <tr style="height:30px;">
       </tr>
+       <tr style="height:30px;">
+        <td>
+        <a href="../member/zipbuy.do" class="genric-btn success circle btn" >부동산구매현황</a>
+        </td>
+      </tr>  
       <tr style="height:30px;">
         <td>
         <input type="button" class="genric-btn success circle btn" value="예약현황">

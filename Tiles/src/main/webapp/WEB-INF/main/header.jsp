@@ -108,7 +108,7 @@
                              <!-- sessionck ='' bool =>false sessionck='hong' => bool true  -->
                              <div v-if="sessionck=='관리자'"><a href="../member/admin.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
                              <div v-if="sessionck=='사용자'"><a href="../member/mypage.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
-                             <div v-if="sessionck=='사장님'"><a href="../member/mypage.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
+                             <div v-if="sessionck=='사장님'"><a href="../member/customer.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
 <!--                              <a href="#" v-if="sessionck=='사용자'">My🏠</a> -->
 <!--                              <a href="#" v-if="sessionck=='사장님'">C🏠</a> -->
                              &nbsp;<a href="../member/logout.do" class="genric-btn info-border circle arrow btn">logout</a>

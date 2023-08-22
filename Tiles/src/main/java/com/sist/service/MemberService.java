@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sist.dao.MemberDAO;
+import com.sist.vo.EstateDetailVO;
 import com.sist.vo.MemberVO;
 
 public interface MemberService {
@@ -41,4 +42,7 @@ public interface MemberService {
 	
 	public List<MemberVO> memberFindData(Map map);
 	public int memberTotalPage(Map map);
+	// 부동산 매물리스트 
+	public List<EstateDetailVO> zipTypeData(Map map);
+	public int zipBuyTotalPage(Map map);
 }
