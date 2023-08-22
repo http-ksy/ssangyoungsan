@@ -1,6 +1,7 @@
 package com.sist.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -15,7 +16,8 @@ public class landboardController {
 		return "landboard/landinsert";
 	}
 	@GetMapping("landboard/detail.do")
-	public String landboard_detail() {
+	public String landboard_detail(int no,Model model) {
+		model.addAttribute("no", no);
 		return "landboard/landdetail";
 	}
 }

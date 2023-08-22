@@ -49,4 +49,13 @@ public class landboardRestController {
 		
 		return json;
 	}
+	@GetMapping(value="landboard/landboard_detail.do", produces = "text/plain;charset=utf-8")
+	public String landboardDetail(int no) throws Exception{
+		String json="";
+		landboardVO vo= service.landboard_detail(no);
+		ObjectMapper mapper=new ObjectMapper();
+		json=mapper.writeValueAsString(vo);
+		return json;
+	}
+
 }

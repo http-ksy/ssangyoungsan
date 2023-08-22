@@ -11,4 +11,7 @@ public interface landboardService {
 	public void landboardInsert(landboardVO vo);
 	
 	public List<landboardVO> landboard_list(Map map);
+	
+	public landboardVO landboard_detail(int no);
+	
 }

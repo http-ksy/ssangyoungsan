@@ -26,4 +26,11 @@ public class landboardServiceImpl implements landboardService{
 		return dao.landboard_list(map);
 	}
 
+	@Override
+	public landboardVO landboard_detail(int no) {
+		// TODO Auto-generated method stub
+		dao.incrementHit(no);
+		return dao.landboard_detail(no);
+	}
+
 }

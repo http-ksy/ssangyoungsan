@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,5 +23,14 @@ public class landboardDAO {
 //	@Select("select no,bno,title,subject,id from landboard")
 	public List<landboardVO> landboard_list(Map map){
 		return mapper.landboard_list(map);
+	}
+	//@Update("UPDATE landboard set hit=hit+1 where no=#{no}")
+	public void incrementHit(int no)
+	{
+		mapper.incrementHit(no);
+	}
+	public landboardVO landboard_detail(int no)
+	{
+		return mapper.landboard_detail(no);
 	}
 }

@@ -33,20 +33,16 @@
 	  </div>
 	</template>
 	<br>
-	<h2 style="color: #2d2d2d;">Second divided from form fish beast made every of seas
-       all gathered us saying he our
+	<h2 style="color: #2d2d2d;"> {{landboard_detail.title}}
      </h2>
      <ul class="blog-info-link mt-3 mb-4">
-       <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+       <li><a href="#"><i class="fa fa-user"></i>{{landboard_detail.id}}</a></li>
        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
      </ul>
      <hr>
      <div class="quote-wrapper">
        <div class="quotes">
-        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-        should have to spend money on boot camp when you can get the MCSE study materials yourself at
-        a fraction of the camp price. However, who has the willpower to actually sit through a
-        self-imposed MCSE training.
+       {{landboard_detail.subject}}
       </div>
     </div>
     <hr>
@@ -55,39 +51,67 @@
  <h4><b-icon icon="chat-left"></b-icon>&nbsp;댓글!!!</h4>
  <hr>
 <div>
-<b-media>
-      <template #aside>
-      </template>
-
-      <h5 class="mt-0">Media Title</h5>
+      <h5 class="mt-0" v-if="id==null ? notice='로그인 후 사용해주세요': notice=id" v-model="notice">{{notice}}</h5>
       <p>
         Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
         Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc
         ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
       </p>
-      <b-media>
-        <template #aside>
-          <b-icon icon="battery"></b-icon>
-        </template>
+      
+		  
+	 
+		 <div>
+		   <span>date</span>
+		
+		  <!-- Using value -->
+		  <b-button v-b-toggle="'collapse-2'" class="m-1 genric-btn info-border small">대 댓글입력</b-button>
+		
+		  <!-- Element to collapse -->
+		  <b-collapse id="collapse-2">
+		    <b-form-textarea
+			    id="textarea-no-resize"
+			    placeholder="댓글 입력하세요"
+			    rows="3"
+			    no-resize
+          ></b-form-textarea>
+		  </b-collapse>
+		</div>
+</div>
+<hr>
+<div>
+ <b-form-textarea
+			    id="textarea-no-resize"
+			    placeholder="댓글 입력하세요"
+			    rows="3"
+			    no-resize
+          ></b-form-textarea>
+</div>
+</div>
+</div>
+</div>
 
-        <h5 class="mt-0">Nested Media</h5>
-        <p class="mb-0">
-          Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
-          faucibus.
-        </p>
-      </b-media>
-    </b-media>
-</div>
-</div>
-</div>
-</div>
 
 <script>
 new Vue({
 	el:'.section-top-border',
 	data:{
 		isHovered: false,
-		
+		landboard_detail:{},
+		no:'${no}',
+		notice:'',
+		id:'${sessionScope.id}'
+	},
+	mounted:function(){
+		axios.get('http://localhost/web/landboard/landboard_detail.do',{
+			params:{
+				no:this.no
+			}
+		}).then(response=>{
+			console.log(response.data)
+			this.landboard_detail=response.data
+		}).catch(error=>{
+			console.log(error.response)
+		})
 	},
 	methods: {
 	      handleHover(hovered) {
