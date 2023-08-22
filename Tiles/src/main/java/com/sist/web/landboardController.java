@@ -14,4 +14,8 @@ public class landboardController {
 	public String landboard_insert() {
 		return "landboard/landinsert";
 	}
+	@GetMapping("landboard/detail.do")
+	public String landboard_detail() {
+		return "landboard/landdetail";
+	}
 }

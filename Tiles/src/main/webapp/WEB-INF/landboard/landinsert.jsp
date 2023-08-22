@@ -79,7 +79,7 @@
 														<div class="section-top-border text-right">
 													<button class="genric-btn primary-border e-large" @click="boardInsert()">upload👍</button>
 													&nbsp;
-													<button class="genric-btn danger-border e-large">cancel👎</button>
+													<button class="genric-btn danger-border e-large" onclick="javascript:history.back()">cancel👎</button>
 												</div>
 												</div>
 												</div>

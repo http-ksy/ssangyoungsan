@@ -48,7 +48,7 @@
 													</div>
 													<div class="table-row" v-for="vo in landboard_list">
 														<div class="serial">{{vo.no}}</div>
-														<div class="percentage">{{vo.title}}</div>
+														<div class="percentage"><a :href="'../landboard/detail.do?no='+vo.no" style="color: black">{{vo.title}}</a></div>
 														<div class="serial">{{vo.id}}</div>
 														<div class="serial">{{vo.dbday}}</div>
 														<div class="serial text-right !important ">{{vo.hit}}</div>
