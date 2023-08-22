@@ -8,6 +8,7 @@
       <typeAlias type="com.sist.vo.CleanVO" alias="CleanVO"/>
  	  <typeAlias type="com.sist.vo.MoveVO" alias="MoveVO"/>
  	  <typeAlias type="com.sist.vo.MemberVO" alias="MemberVO"/>
+ 	  <typeAlias type="com.sist.vo.EstateDetailVO" alias="EstateDetailVO"/>
     </typeAliases>
     
    <mappers>
