@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    SELECT no,etype,dprice,name,type,addr,state,num 
    FROM (SELECT no,etype,dprice,name,type,addr,state,rownum as num
    FROM (SELECT no,etype,dprice,name,type,addr,state
-   FROM estate ESTATE_DETAIL WHERE company=#{name}
-   <if test="col!=all">
+   FROM ESTATE_DETAIL WHERE company=#{name}
+   <if test="col!='all'">
    AND ${col} LIKE '%'||#{fd}||'%' 
    </if>
    ORDER BY no ASC

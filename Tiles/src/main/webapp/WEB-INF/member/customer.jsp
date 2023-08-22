@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
@@ -126,7 +127,7 @@
            <div class="input-group mb-4">
            <select name="select" class="nice-select " ref="col" style="width:200px; ">
             <option value="all">전체</option>
-            <option value="name">건물명</option>
+            <option value="name">건물</option>
            
            
            </select>
@@ -144,17 +145,17 @@
         <th>주소</th>
         <th>가격</th>
         <th>진행현황</th>
-        <th>매물보기</th>
+        <th>매물</th>
        </tr>
-       <tr >
-        <td>이름</td>
-        <td>분류</td>
-        <td>주소</td>
-        <td>가격</td>
-        <td>진행현황</td>
-        <td>매물보기</td>
-        
-<!--     <input type="button" class="genric-btn success circle btn" value="정지" style="background-color:red" @click="memberDelete(vo.id)">  -->
+       <tr v-for="vo in zip_list">
+        <td><a :href="'../zip/zip_detail.do?no='+vo.no" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.name}}</a></td>
+        <td>{{vo.type}}</td>
+        <td>{{vo.addr}}</td>
+        <td>{{vo.dprice}}</td>
+        <td>{{vo.state}}</td>
+        <td>
+     <a :href="'../zip/zip_detail.do?no='+vo.no" type="button" class="genric-btn success circle btn" style="background-color:white" >🤝</a>  
+		</td>
 <!--             <b-button  v-b-modal.modal-lg2 variant="primary" class="genric-btn info-border circle arrow btn" >정지</b-button> -->
 <!-- 			<b-modal  id="modal-lg2" size="lg" title="회원 탈퇴"  hide-footer> -->
 <!-- 			<div> -->
@@ -165,22 +166,96 @@
        
        </tr>
       </table>
-<!--       <div class="justify-content-center"> -->
+      <div class="justify-content-center">
       
-<!--         <ul class="pagination" style="margin-left:400px;"> -->
-<!--          <li v-if="startPage>1"><a href="#" @click="prev()">이전</a></li> -->
-<!--          <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''"> -->
-<!--          <a href="#" @click="pageChange(i)">{{i}}</a></li> -->
-<!--          <li v-if="endPage<totalpage"><a href="#" @click="next()">다음</li> -->
-<!--         </ul> -->
+        <ul class="pagination" style="margin-left:400px;">
+         <li v-if="startPage>1"><a href="#" @click="prev()">이전</a></li>
+         <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''">
+         <a href="#" @click="pageChange(i)">{{i}}</a></li>
+         <li v-if="endPage<totalpage"><a href="#" @click="next()">다음</li>
+        </ul>
      
-<!--       </div> -->
+      </div>
       </div>
   </div>
   </div>
   <script>
   new Vue({
-	  el:'.container'
+	  el:'.container',
+	  data:{
+		  col:'all',
+		  zip_list:[],
+		  page_list:{},
+		  curpage:1,
+		  totalpage:0,
+		  startPage:0,
+		  endpage:0,
+		  name:'${sessionScope.name}',
+		  fd:''
+	  },
+	  mounted:function(){
+		  this.zipData();
+	  },
+	  methods:{
+		  zipData:function(){
+			  axios.get('../member/customer_zip.do',{
+				  params:{
+					  col:this.col,
+					  fd:this.fd,
+					  page:this.curpage,
+					  name:this.name
+				  }
+			  }).then(response=>{
+				  console.log(this.name)
+				  console.log(response.data)
+				  this.zip_list=response.data
+			  })
+			  axios.get('../member/customer_page.do',{
+				  params:{
+					  col:this.col,
+					  fd:this.fd,
+					  page:this.curpage,
+					  name:this.name
+				  }
+			  }).then(response=>{
+				  console.log(response.data);
+				  this.page_list=response.data
+				  this.curpage=this.page_list.curpage
+				  this.totalpage=this.page_list.totalpage
+				  this.startPage=this.page_list.startPage
+				  this.endPage=this.page_list.endPage
+			  })
+		  },search:function(){
+			  console.log(this.fd)
+			  
+			  this.col=this.$refs.col.value
+			  console.log(this.col)
+			  this.curpage=1;
+			  this.zipData();
+		  },
+		  range:function(start,end){
+			  let arr=[];
+			  let length= end-start;
+			  for(let i=0;i<=length;i++)
+			   {
+				arr[i]=start
+				start++;
+			   }
+			  return arr;
+		  },
+		  pageChange:function(page){
+			  this.curpage=page
+			  this.zipData();
+		  },
+		  prev:function(){
+			  this.curpage=this.startPage-1;
+			  this.zipData();
+		  },
+		  next:function(){
+			  this.curpage=this.endPage+1;
+			  this.zipData();
+		  }
+	  }
   })
   </script>
 </body>
