@@ -31,8 +31,8 @@
 																	<option disabled value="">게시판 선택</option>
 																	<option value="1">자유게시판</option>
 																	<option value="2">부동산</option>
-																	<option value="3">가구</option>
-																	<option value="4">청소/이사</option>
+																	<option value="3">이사/청소</option>
+																	<option value="4">가구</option>
 																	<option value="5">인테리어</option>
 																</select>
 															</div>
