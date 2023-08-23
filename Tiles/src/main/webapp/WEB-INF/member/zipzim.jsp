@@ -53,6 +53,16 @@
         </td>
        </tr>
       </table>
+      <div class="justify-content-center">
+      
+        <ul class="pagination" style="margin-left:400px;">
+         <li v-if="startPage>1"><a href="#" @click="prev()">이전</a></li>
+         <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''">
+         <a href="#" @click="pageChange(i)">{{i}}</a></li>
+         <li v-if="endPage<totalpage"><a href="#" @click="next()">다음</li>
+        </ul>
+     
+      </div>
 	</div> 
  </div>
  <script>
@@ -60,9 +70,14 @@
 		el:'.container',
 		data:{
 			zimlist:[],
+			page_list:{},
+			curpage:1,
+			totalpage:0,
+			startPage:0,
+			endpage:0,
 			zimImg:[],
 			id:'${sessionScope.id}',
-			no:'',
+			no:''
 			
 			
 			
@@ -74,7 +89,8 @@
 			zipzimList:function(){
 				axios.get('../member/zipZim_list.do',{
 					params:{
-						id:this.id
+						id:this.id,
+						page:this.curpage
 					}
 				}).then(response=>{
 					console.log(response.data)
@@ -83,7 +99,42 @@
 				}).catch(error=>{
 					console.log(error.response)
 				})
+				axios.get('../member/zim_page.do',{
+					params:{
+						page:this.curpage,
+						id:this.id
+					}
+				}).then(response=>{
+					console.log(response.data);
+					this.page_list=response.data
+					this.curpage=this.page_list.curpage
+					this.totalpage=this.page_list.totalpage
+					this.startPage=this.page_list.startPage
+					this.endPage=this.page_list.endPage
+				})
 			},
+			 range:function(start,end){
+				  let arr=[];
+				  let length= end-start;
+				  for(let i=0;i<=length;i++)
+				   {
+					arr[i]=start
+					start++;
+				   }
+				  return arr;
+			  },
+			  pageChange:function(page){
+				  this.curpage=page
+				  this.zipzimList();
+			  },
+			  prev:function(){
+				  this.curpage=this.startPage-1;
+				  this.zipzimList();
+			  },
+			  next:function(){
+				  this.curpage=this.endPage+1;
+				  this.zipzimList();
+			  },
 			zimDelete:function(no){
 				
 				

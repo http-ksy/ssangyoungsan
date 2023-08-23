@@ -76,15 +76,21 @@ public class ZipServiceImpl implements ZipService{
 	}
 
 	@Override
-	public List<EstateDetailVO> zipZimList(String id) {
+	public List<EstateDetailVO> zipZimList(Map map) {
 		// TODO Auto-generated method stub
 		List<EstateDetailVO> list=new ArrayList<EstateDetailVO>();
-		List<Integer> zlist=dao.zipZimList(id);
+		List<Integer> zlist=dao.zipZimList(map);
 		for(Integer zvo:zlist)
 		{
 			list.add(dao.estateDetailData(zvo));
 		}
 		return list;
+	}
+
+	@Override
+	public int zimTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.zimTotalPage(map);
 	}
 
 	

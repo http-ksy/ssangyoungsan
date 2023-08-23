@@ -80,8 +80,12 @@ public class ZipDAO {
 		mapper.zipZimDelete(vo);
 	}
 	//@Select("SELECT no FROM zipZim WHERE id=#{id}")
-	public List<Integer> zipZimList(String id)
+	public List<Integer> zipZimList(Map map)
 	{
-		return mapper.zipZimList(id);
+		return mapper.zipZimList(map);
+	}
+	public int zimTotalPage(Map map)
+	{
+		return mapper.zimTotalPage(map);
 	}
 }

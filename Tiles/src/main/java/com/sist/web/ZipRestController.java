@@ -174,12 +174,44 @@ public class ZipRestController {
 		return json;
 	}
 	@GetMapping(value = "member/zipZim_list.do",produces = "text/plain;charset=UTF-8")
-	public String zipZim_list(String id) throws Exception
+	public String zipZim_list(int page,String id) throws Exception
 	{
-		List<EstateDetailVO> list=service.zipZimList(id);
+		Map map=new HashMap();
+		map.put("id", id);
+		int rowSize=8;
+		int start=(rowSize*page)-(rowSize-1);
+		int end=(rowSize*page);
+		map.put("start", start);
+		map.put("end", end);
+		List<EstateDetailVO> list=service.zipZimList(map);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
 		return json;
+	}
+	@GetMapping(value="member/zim_page.do",produces="text/plain;charset=UTF-8")
+	public String zim_page(int page, String id) throws Exception
+	{
+		 Map map=new HashMap();
+		 map.put("id", id)
+;		 int totalpage=service.zimTotalPage(map);
+		 
+		
+		 
+		 final int BLOCK=5;
+		 int startPage=((page-1)/BLOCK*BLOCK)+1;
+		 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+		 if(endPage>totalpage)
+			 endPage=totalpage;
+		 
+		 PageVO vo=new PageVO();
+		 vo.setCurpage(page);
+		 vo.setTotalpage(totalpage);
+		 vo.setStartPage(startPage);
+		 vo.setEndPage(endPage);
+		 
+		 ObjectMapper mapper=new ObjectMapper();
+		 String json=mapper.writeValueAsString(vo);
+		 return json;
 	}
 	@GetMapping(value="member/zimZim_delete.do",produces = "text/plain;charset=UTF-8")
 	public String zipZim_list_delete(String id,int no)

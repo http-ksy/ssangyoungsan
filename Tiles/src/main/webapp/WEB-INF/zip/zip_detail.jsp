@@ -86,7 +86,7 @@
 		
 			<tr>
 				<th>공인중개사</th>
-				<td>{{estate_detail.company}}</td>
+				<td >{{estate_detail.company}}</td>
 			</tr>
 			<tr>
 				<th>소재지</th>
@@ -114,7 +114,7 @@
                               <textarea name="message" id="message" placeholder="Comment" style="height:113px;"></textarea>
                          </div>
                          <div class="submit-info text-right">
-                              <button class="genric-btn info-border" type="submit">Send Message</button>
+                              <button class="genric-btn info-border" type="submit" @click="question()">Send Message</button>
                          </div>
 					</div>
 				</form>
@@ -148,9 +148,13 @@
 			no:${no},
 			review:[],
 			id:'${sessionScope.id}',
-			state:''
+			state:'',
+			company:'',
+			
 		},
 		mounted:function(){
+			
+			
 			 this.estateDetailData(this.no)
 			 this.reviewData(this.no)
 			 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -198,6 +202,7 @@
 					}
 				}).then(response=>{
 					console.log(response.data)
+					
 					this.estate_detail=response.data
 					this.estate_img=this.estate_detail.img.split('^')
 				}).catch(error=>{

@@ -40,6 +40,15 @@ public interface ZipMapper {
 	public int zipZimCheck(zipZimVO vo);	
 	@Delete("DELETE FROM zipZim WHERE id=#{id} AND no=#{no}")
 	public void zipZimDelete(zipZimVO vo);
-	@Select("SELECT no FROM zipZim WHERE id=#{id}")
-	public List<Integer> zipZimList(String id);
+//	@Select("SELECT no FROM zipZim WHERE id=#{id}")
+//	public List<Integer> zipZimList(String id);
+	
+	@Select("SELECT no,num "
+			+ "FROM (SELECT no,id,rownum as num "
+			+ "FROM (SELECT no,id "
+			+ "FROM zipZim WHERE id=#{id} ORDER BY no ASC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<Integer> zipZimList(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM zipZim WHERE id=#{id}")
+	public int zimTotalPage(Map map);
 }

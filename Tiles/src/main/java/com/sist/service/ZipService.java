@@ -43,6 +43,7 @@ public interface ZipService {
 //		@Delete("DELETE FROM zipZim WHERE id=#{id} AND no=#{no}")
 		public void zipZimDelete(zipZimVO vo);
 		// 찜 리스트 마이페이지에 출력
-		public List<EstateDetailVO> zipZimList(String id);
+		public List<EstateDetailVO> zipZimList(Map map);
+		public int zimTotalPage(Map map);
 		
 }
