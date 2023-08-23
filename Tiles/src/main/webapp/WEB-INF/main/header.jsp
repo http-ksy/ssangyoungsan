@@ -60,7 +60,7 @@
                                         <li><a href="#">.zip 커뮤니티</a>
                                         	<ul class="submenu">
                                             <li><a href="../sotong/haeyo.do">소통게시판</a></li>
-                                            <li><a href="../landboard/notificationboard.co">공지게시판</a></li>
+                                            <li><a href="../landboard/notificationboard.do">공지게시판</a></li>
                                             <li><a href="../landboard/qna.do">묻고답하기</a></li>
                                           </ul>
                                         </li>
