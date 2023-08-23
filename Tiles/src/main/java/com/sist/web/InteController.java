@@ -15,8 +15,8 @@ public class InteController {
 	}
 	
 	@GetMapping("inte/inte_detail.do")
-	public String inte_detail(int no,Model model) {
-		model.addAttribute("no", no);
+	public String inte_detail(int ino,Model model) {
+		model.addAttribute("ino", ino);
 		return "inte/inte_detail";
 	}
 }
