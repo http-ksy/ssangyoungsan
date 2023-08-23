@@ -100,7 +100,7 @@
 					<button class="genric-btn info-border circle" @click="zipZim()">찜</button>
 				</td>
 				<td v-if="state=='OK'">
-					<button class="genric-btn info-border circle" @click="zipZim()">찜 취소</button>
+					<button class="genric-btn info-border circle" @click="zipZim()">찜취소</button>
 				</td>
 			</tr>
 		</table>
