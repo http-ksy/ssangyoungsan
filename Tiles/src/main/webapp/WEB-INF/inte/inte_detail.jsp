@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -13,6 +14,8 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">   <!--  -->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     
 </head>
 <style>
@@ -80,10 +83,26 @@
                                         <!-- <div class="form-box message-icon mb-15">
                                             <textarea name="message" id="message" placeholder="Comment"></textarea> 
                                         </div> -->
-                                        <div class="submit-info">
-                                            <button class="submit-btn2" type="submit" style="border-radius: 10px;">이 컨셉으로 신청</button>
+                                        
+                                        <div class="submit-info" style="display: inline-block" > 
+                                            <button type="button"  class="submit-btn2" style="border-radius: 10px;" @click="foodDetail(true)">이 컨셉으로 신청</button>
+                                        </div>
+                                        <div class="" style="display: inline-block" v-if="sessionId!=''">
+                                          <c:if test="${like_count == 0 }">
+                                            <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
+                                           <a href="../inte/like_insert.do?ino=${ ino}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:45px; height:45px;" alt=""></a>
+                                           <!-- <a :href="'../inte/like_insert.do?ino='+ino" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></a> -->
+						                  </c:if> 
+						                   <c:if test="${like_count != 0 }">
+                                            <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
+                                           <a href="../inte/like_delete.do?ino=${ ino}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt=""></a>
+						                  </c:if>                  
                                         </div>
                                     </div>
+                                     <div id="dialog" v-if="isShow">
+                                     ddddd
+                                     </div>
+                                    
                                 </div>
                             </form> 
                         </div>
@@ -130,33 +149,30 @@
                          <tbody>                     
                            <tr>
                             <td>                     
-                                <table class="table" >
+                                <table class="table" v-for="ivo in inteReply_list">
                                  <tr>
                                   <td class="text-left" style="border-top:none;">
-                                   ●
+                                   ★{{ivo.name}}&nbsp;({{ivo.dbday}})
                                    </td>
                                    <td class="text-right" style="border-top:none;">
-               				        <%-- <c:if test="${sessionScope.id==rpvo.id }"> --%>
-               				         <span class="btn btn-sm btn-default">수정</span>
-			                         <a href="#" class="btn btn-sm btn-danger">삭제</a>             				        
+               				        <span v-if="sessionId==ivo.id">
+               				         <button class="btn btn-sm btn-default ups" :id="'up'+ivo.no" @click="replyUpdateForm(ivo.no)" >수정</button>
+			                         <button class="btn btn-sm btn-danger" @click="replyDelete(ivo.no)">삭제</button>
+			                        </span>             				        
                                    </td>
                                  </tr>
                                  <tr>
                                   <td style="border-top:none;">
-                                   <pre></pre>                           
+                                   <pre style="white-space:pre-wrap; background-color:white; width:480px;">{{ivo.msg}}</pre>                           
                                   </td>
-                                 </tr>                                                             
-                                 <!-- <tr style="display:none" class="updates" id="u"> 
-				 			          <td colspan="2">
-								  	   <form method="post" action="#" class="inline">
-								  	     <input type=hidden name=rdno value=""> 		  	
-								  	     <input type=hidden name=no value=""> 
-								  	     <input type="hidden" name="type" value="4">
-								  	     <textarea rows="5" cols="60" name="msg" class="form-control">ㄹㄹ</textarea>
-										 <input type=submit value="댓글수정" class="btn btn-primary btn-block">
-								  	   </form>
-								  	  </td>
-								  </tr>   -->                                        
+                                 </tr> 
+                                 
+                                 <tr :id="'u'+ivo.no" class="updates" style="display:none;">
+                                  <td>
+                                   <textarea rows="5" cols="60" :id="'msg'+ivo.no" class="form-control">{{ivo.msg}}</textarea>                                             
+                                   <button class="submit-btn2" style="border-radius: 10px;" @click="inteReplyUpdate(ivo.no)">수정하기</button>  
+                                  </td>
+                                 </tr>                                   
                             </table>                                                                                                                                                                                                                                                                                      
                           </tr>
                           </tbody>
@@ -231,7 +247,10 @@
 		  posters:[],
 		  inteReply_list:[],
 		  msg:'',
-		  sessionId:'${id}'
+		  sessionId:'${id}',
+		  no:0,
+		  isShow:false,
+		  like_count:0
 		  
 	  },
 	  mounted:function() {
@@ -239,6 +258,7 @@
 			  axios.get('../inte/inte_detail_vue.do', {
 				  params: {
 					  ino:this.ino
+					  
 				  }
 			  }).then(response=>{
 				  console.log(response.data)
@@ -252,10 +272,10 @@
 			  }).catch(error=>{
 				console.log(error.response)  
 			  })
-		  /* this.replyRead() */
+		  /this.replyRead()
 	  },
 	  methods:{
-		  /* replyRead:function(){
+		   replyRead:function(){
 			   axios.get('../inte/reply_read_vue.do',{
 				   params:{
 					   ino:this.ino
@@ -266,7 +286,7 @@
 			   }).catch(error=>{
 				   console.log(error.response)
 			   })
-			}, */
+			}, 
 			inteReplyWrite:function(){
                 if(this.msg===""){
                     this.$refs.msg.focus()
@@ -284,6 +304,59 @@
     			}).catch(error=>{
     				console.log(error.response)
     			})
+            },
+            replyDelete:function(no){
+            	axios.get('../inte/reply_delete_vue.do',{
+            		params:{
+            			no:no,
+            			ino:this.ino
+            		}
+            	}).then(response=>{
+            		console.log(response.data)
+            		this.inteReply_list=response.data
+            	}).catch(error=>{
+            		console.log(error.response)
+            	})
+            },
+            replyUpdateForm:function(no){
+            	$('.updates').hide()
+            	$('.ups').text('수정')
+            	if(this.no==0) {
+            		$('#u'+no).show();
+            		$('#up'+no).text('취소')
+            		this.no=1
+            	} else {
+            		$('#u'+no).hide();
+            		$('#up'+no).text('수정')
+            		this.no=0
+            	}
+            },
+            inteReplyUpdate:function(no){
+            	let msg = $('#msg'+no).val()
+            	axios.post('../inte/reply_update_vue.do',null,{
+            		params:{
+            			no:no,
+            			ino:this.ino,
+            			msg:msg
+            		}
+            	}).then(response=>{
+            		console.log(response.data)
+            		this.inteReply_list=response.data
+            		$('#u'+no).hide()
+            		$('#up'+no).text('수정')
+            	}).catch(error=>{
+            		console.log(error.response)
+            	})
+            },
+            foodDetail:function(bool) {
+            	 this.isShow=bool;
+            	 $('#dialog').dialog({
+ 					autoOpen:false,
+ 					modal:true,
+ 					width:700,
+ 					height:600
+ 				}).dialog("open");
+            	 
             }
 	  }
   })

@@ -29,6 +29,34 @@ public class InteServiceImpl implements InteService {
 	public void InteReplyInsert(InteReplyVO vo) {
 		dao.InteReplyInsert(vo);
 	}
+
+	@Override
+	public void inteReplyDelete(int no) {
+		dao.inteReplyDelete(no);
+		
+	}
+
+	@Override
+	public void inteReplyUpdate(InteReplyVO vo) {
+		dao.inteReplyUpdate(vo);
+	}
+
+	@Override
+	public void inteLikeInsert(InteLikeVO vo) {
+		dao.inteLikeInsert(vo);
+		
+	}
+
+	@Override
+	public void inteLikeDelete(InteLikeVO vo) {
+		dao.inteLikeDelete(vo);
+		
+	}
+
+	@Override
+	public int inteLikeOk(InteLikeVO vo) {
+		return dao.inteLikeOk(vo);
+	}
 	
 
 /*	@Override

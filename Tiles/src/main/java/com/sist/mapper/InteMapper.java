@@ -3,8 +3,10 @@ package com.sist.mapper;
 import com.sist.vo.*;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface InteMapper {
 	
@@ -29,4 +31,19 @@ public interface InteMapper {
 	@Insert("INSERT INTO inte_reply VALUES(ir_no_seq.nextval,#{ino},#{id},#{name},#{msg},SYSDATE)")
 	public void InteReplyInsert(InteReplyVO vo);
 	
+	@Delete("DELETE FROM inte_reply WHERE no=#{no}")
+	public void inteReplyDelete(int no);
+	
+	@Update("UPDATE inte_reply SET msg=#{msg} WHERE no=#{no}")
+	public void inteReplyUpdate(InteReplyVO vo);
+
+//좋아요
+	@Insert("INSERT INTO interior_like VALUES(il_no_seq.nextval,#{id},#{ino})")
+	public void inteLikeInsert(InteLikeVO vo);
+	
+	@Delete("DELETE FROM interior_like WHERE id=#{id} AND ino=#{ino} ")
+	public void inteLikeDelete(InteLikeVO vo);
+	
+	@Select("SELECT COUNT(*) FROM interior_like WHERE ino=#{ino} AND id=#{id}")
+	public int inteLikeOk(InteLikeVO vo);
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.CleanReplyVO;
+import com.sist.vo.InteLikeVO;
 import com.sist.vo.InteReplyVO;
 import com.sist.vo.InteVO;
 
@@ -28,5 +29,13 @@ public interface InteService {
 	public List<InteReplyVO> InteReplyListData(int ino);
 	
 	public void InteReplyInsert(InteReplyVO vo);
+	
+	public void inteReplyDelete(int no);
+	
+	public void inteReplyUpdate(InteReplyVO vo);
+	
+	public void inteLikeInsert(InteLikeVO vo);
+	public void inteLikeDelete(InteLikeVO vo);
+	public int inteLikeOk(InteLikeVO vo);
 
 }

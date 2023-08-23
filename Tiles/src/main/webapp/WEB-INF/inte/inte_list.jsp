@@ -12,13 +12,19 @@
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+.container {
+    width: 1200px;
+}
+
+</style>
 </head>
 <body class="full-wrapper">
     <main>
         <!-- breadcrumb Start-->
         <div class="page-notification">
             <div class="container">
-                <div class="row">
+                <!-- div class="row">
                     <div class="col-lg-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
@@ -27,7 +33,8 @@
                             </ol>
                         </nav>
                     </div>
-                </div>
+                </div> -->
+<div id="ww_5665330bee620" v='1.3' loc='id' a='{"t":"responsive","lang":"en","sl_lpl":1,"ids":["wl4479"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>Weather Data Source: <a href="https://wetterlang.de/seoul_wetter_30_tage/" id="ww_5665330bee620_u" target="_blank">Seoul 30 tage wetter</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_5665330bee620"></script>
             </div>
         </div>
         <!-- listing Area Start -->

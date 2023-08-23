@@ -83,7 +83,6 @@ public class InteRestController {
 		}*/
 		
 		//System.out.println(vo.getHashtag());
-	
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(vo);
 		return json;
@@ -111,11 +110,21 @@ public class InteRestController {
 		String name=(String)session.getAttribute("name");
 		vo.setId(id);
 		vo.setName(name);
-		System.out.println("no"+vo.getNo());
-		System.out.println("ino"+vo.getIno());
-
+		//System.out.println("no"+vo.getNo());
+		//System.out.println("ino"+vo.getIno());
 		service.InteReplyInsert(vo);
-		
+		return inteReply_list_data(vo.getIno());
+	}
+	
+	@GetMapping(value = "inte/reply_delete_vue.do", produces = "text/plain;charset=UTF-8")
+	public String inteReply_delete(int no,int ino) {
+		dao.inteReplyDelete(no);
+		return inteReply_list_data(ino);
+	}
+	
+	@PostMapping(value = "inte/reply_update_vue.do", produces = "text/plain;charset=UTF-8")
+	public String inteReply_update(InteReplyVO vo) {
+		dao.inteReplyUpdate(vo);
 		return inteReply_list_data(vo.getIno());
 	}
 	

@@ -3394,9 +3394,9 @@ hr{
     border:1px solid transparent
 }
 .page-notification{
-    background:#EFF5F8;
+   /*  background:#EFF5F8; */
     padding:13px 0;
-    margin-bottom:95px
+    /* margin-bottom:95px */
 }
 @media only screen and (min-width: 576px) and (max-width: 767px){
     .page-notification{
