@@ -21,15 +21,11 @@ public class ZipRestController {
 	@Autowired
 	private CompanyReviewService reservice;
 	@GetMapping(value="zip/zip_list_vue.do",produces = "text/plain;charset=UTF-8")
-	public String zip_list(int etype) throws Exception
+	public String zip_list(int etype,int page) throws Exception
 	{
-		String page=null;
-
 		System.out.println(etype);
 		Map map=new HashMap();
-			if(page==null)
-				page="1";
-			int curpage=Integer.parseInt(page);
+			int curpage=page;
 			int rowSize=16;
 			int start=(rowSize*curpage)-(rowSize-1);
 			int end=rowSize*curpage;
@@ -41,6 +37,8 @@ public class ZipRestController {
 			int BLOCK=5;
 			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+			if(endPage>totalpage)
+				endPage=totalpage;
 			List<EstateDetailVO> list=service.EstateListData(map);
 			for(EstateDetailVO vo:list)
 			{
@@ -54,11 +52,9 @@ public class ZipRestController {
 		return json;
 	}
 	@GetMapping(value="zip/zip_page_vue.do",produces = "text/plain;charset=UTF-8")
-	public String page_data(String page, int etype) throws Exception
+	public String page_data(int page, int etype) throws Exception
 	{
-		if(page==null)
-			 page="1";
-		 int curpage=Integer.parseInt(page);
+		 int curpage=page;
 		 int rowSize=16;
 		 int start=(rowSize*curpage)-(rowSize-1);
 		 int end=rowSize*curpage;
@@ -68,6 +64,8 @@ public class ZipRestController {
 		 int startPage=((curpage-1)/BLOCK*BLOCK)+1;
 		 int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		 PageVO vo=new PageVO();
+		 if(endPage>totalpage)
+				endPage=totalpage;
 		 vo.setCurpage(curpage);
 		 vo.setEndPage(endPage);
 		 vo.setTotalpage(totalpage);
@@ -141,6 +139,36 @@ public class ZipRestController {
 		{
 			ex.printStackTrace();
 			json="NO";
+		}
+		
+		return json;
+	}
+	@GetMapping(value="zip/zipZim_vue.do",produces = "text/plain;charset=UTF-8")
+	public String zipZim(int no,String id)
+	{
+		String json="";
+		zipZimVO vo=new zipZimVO();
+		vo.setNo(no);
+		vo.setId(id);
+		int check=service.zipZimCheck(vo);
+		System.out.println(check);
+		try
+		{
+			if(check==0)
+			{
+				json="OK";
+				service.zipZim(vo);
+			}
+			else
+			{
+				json="NO";
+				service.zipZimDelete(vo);
+			}
+			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
 		}
 		
 		return json;

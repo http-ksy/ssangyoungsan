@@ -56,4 +56,25 @@ public class ZipServiceImpl implements ZipService{
 		dao.zipbuyInsert(map);
 		dao.zipbuyTypeUpdate(no);
 	}
+
+	@Override
+	public void zipZim(zipZimVO vo) {
+		// TODO Auto-generated method stub
+		dao.zipZim(vo);
+	}
+
+	@Override
+	public int zipZimCheck(zipZimVO vo) {
+		// TODO Auto-generated method stub
+		return dao.zipZimCheck(vo);
+	}
+
+	@Override
+	public void zipZimDelete(zipZimVO vo) {
+		// TODO Auto-generated method stub
+		dao.zipZimDelete(vo);
+	}
+	
+	
+	
 }

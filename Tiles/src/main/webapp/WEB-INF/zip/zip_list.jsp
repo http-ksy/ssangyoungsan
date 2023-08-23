@@ -61,6 +61,16 @@
                         <div class="section-tittle mb-50">
                             <h2>부동산</h2>
                             <p>${total } 개의 정보</p>
+<!--                             <div class="select-job-items2"> -->
+<!--   	                            <select name="select2" ref="column"> -->
+<!-- 	                            	<option value="all">전체</option> -->
+<!-- 	                            	<option value="title">업체명</option> -->
+<!-- 	                            	<option value="address">지역</option> -->
+<!-- 	                            	<option value="category">분류(에어컨,하수구 등)</option> -->
+<!-- 	                            </select> -->
+<!-- 	                        <input type="text" ref="fd" class="input-sm" size="25" style="height: 41px;" v-model="fd"> -->
+<!--           					<input type="button" class="btn btn-sm btn-default" style="height: 43px;" value="검색" @click="find()"> -->
+<!-- 	                        </div> -->
                         </div>
                     </div>
                 </div>
@@ -76,43 +86,43 @@
                                 	<table>
                                 	<tr>
                                 		<td>
-                                    		<input type=button class="btn btn-sm btn-danger" style="width:150px" value="아파트" @click="ListData(1)">
+                                    		<input type=button class="genric-btn info-border circle" style="width:150px" value="아파트" @click="ListData(1)">
                                     	</td>
                                     </tr>
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="오피스텔" @click="ListData(2)">
+		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="오피스텔" @click="ListData(2)">
 		                            	</td>
                                     </tr>
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="분양권" @click="ListData(3)">
+		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="분양권" @click="ListData(3)">
 		                            	</td>
                                     </tr>
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="주택" @click="ListData(4)">
+		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="주택" @click="ListData(4)">
 		                            	</td>
                                     </tr>
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="원룸" @click="ListData(5)">   
+		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="원룸" @click="ListData(5)">   
 		                            	</td>
                                     </tr>   
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="상가" @click="ListData(6)">   
+		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="상가" @click="ListData(6)">   
 		                            	</td>
                                     </tr>   
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="btn btn-sm btn-danger" style="width:150px" value="사무실" @click="ListData(7)">   
+		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="사무실" @click="ListData(7)">   
 		                            	</td>
                                     </tr>   
 <!--                                     <option value="2">오피스텔</option>                                 -->
@@ -144,8 +154,7 @@
                                         </div>
                                         <div class="popular-caption" >
                                         <a :href="'../zip/zip_detail.do?no='+vo.no"><img :src="vo.img" style="width:225px;height:200px;"></a>
-                                         <h3><a :href="'../zip/zip_detail.do?no='+vo.no">{{vo.name}}</a></h3>
-                                         <input type="hidden" ref="no" v-model="no" name="no" value="vo.no">
+                                         <h3><a :href="'../zip/zip_detail.do?no='+vo.no" style="color:black;">{{vo.name}}</a></h3>
                                         <span>{{vo.addr}}</span>
                                         
                                         <span>{{vo.dprice}}/{{vo.type}}</span>
@@ -156,83 +165,22 @@
        					</div>
 					</div>
 <!--? New Arrival End -->
-<!-- 					 <nav class="pagination"> -->
-<!-- 				        <ul> -->
-<%-- 				          <c:if test="${startPage>1 }"> --%>
-<%-- 				          	<li><a href="../seoul/list.do?page=${startPage-1 }&no=${no}">&laquo; Previous</a></li> --%>
-<%-- 				          </c:if> --%>
-<%-- 				          <c:forEach var="i" begin="${startPage }" end="${endPage }"> --%>
-<%-- 				          <li ${i==curpage?"class=current":"" }><a href="../seoul/list.do?page=${i }&no=${no}">${i }</a></li> --%>
-<%-- 				          </c:forEach> --%>
-<%-- 				          <c:if test="${endPage<totalpage }"> --%>
-<%-- 				          	<li><a href="../seoul/list.do?page=${endPage+1 }&no=${no}">Next &raquo;</a></li> --%>
-<%-- 				          </c:if> --%>
-<!-- 				        </ul> -->
-<!-- 			         </nav> -->
+ 				<div>
+					<div class="text-center">
+					<ul class="pagination">
+					  <li v-if="startPage>1"><a href="#" @click="prev()">&lt;</a></li>
+					  <li v-for="i in range(startPage,endPage)"	:class="i==curpage?'active':''"><a href="#" @click="selectPage(i)">{{i}}</a></li>
+					  <li v-if="endPage<totalpage"><a href="#" @click="next()">&gt;</a></li>
+					</ul>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
 </div>
 <!-- listing-area Area End -->
 <!--? Popular Items Start -->
-<div class="popular-items">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular1.png" alt="">
-                        <div class="img-cap">
-                            <span>Glasses</span>
-                        </div>
-                        <div class="favorit-items">
-                            <a href="shop.html" class="btn">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular2.png" alt="">
-                        <div class="img-cap">
-                            <span>Watches</span>
-                        </div>
-                        <div class="favorit-items">
-                         <a href="shop.html" class="btn">Shop Now</a>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="single-popular-items mb-50 text-center">
-                <div class="popular-img">
-                    <img src="../assets/img/gallery/popular3.png" alt="">
-                    <div class="img-cap">
-                        <span>Jackets</span>
-                    </div>
-                    <div class="favorit-items">
-                     <a href="shop.html" class="btn">Shop Now</a>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="single-popular-items mb-50 text-center">
-            <div class="popular-img">
-                <img src="../assets/img/gallery/popular4.png" alt="">
-                <div class="img-cap">
-                    <span>Clothes</span>
-                </div>
-                <div class="favorit-items">
-                 <a href="shop.html" class="btn">Shop Now</a>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
-</div>
-</div>
+
 <!-- Popular Items End -->
 
 <!-- Scroll Up -->
@@ -245,17 +193,23 @@
 		el:'.category-area',
 		data:{
 			list_data:[],
-			page_data:{},
-			etype:1
+			page_list:{},
+			etype:1,
+			curpage:1,
+			totalpage:0,
+			startPage:0,
+			endPage:0
 		}, 	
 		mounted:function(){
-			 this.ListData(1)
+			this.ListData(1)
 		 },
 		 methods:{
 			 ListData:function(etype){
+				 this.etype=etype
 				 axios.get('http://localhost/web/zip/zip_list_vue.do',{
 					 params:{
-						 etype:etype
+						 etype:etype,
+						 page:1
 					 }
 				 })
 				 .then(response=>{
@@ -264,21 +218,97 @@
 				 }).catch(error=>{
 					 console.log(error.response)
 				 })
-			 }
-// 			 pageData:function(page){
-// 				 axios.get('http://localhost/web/zip/zip_page_vue.do',{
-// 					 paprams::{
-// 						 page:page
-// 					 }
-// 				 })
-// 				 .then(response=>{
-// 					 console.log(response.data)
-// 					 this.page_data=response.data
-// 				 }).catch(error=>{
-// 					 console.log(error.response)
-// 				 })
-// 			 }
-		 }
+				 axios.get('http://localhost/web/zip/zip_page_vue.do',{
+						params:{
+							page:1,
+							etype:this.etype
+//	 						fd:this.fd,
+							
+						}
+					}).then(response=>{
+//	 					console.log('검색결과2:'+this.fd)
+						console.log(response.data)
+						this.page_list=response.data;
+						this.curpage=this.page_list.curpage;
+						this.totalpage=this.page_list.totalpage;
+						this.startPage=this.page_list.startPage;
+						this.endPage=this.page_list.endPage;
+					})
+			 },
+			 pageData:function(etype){
+				 this.etype=etype
+				 axios.get('http://localhost/web/zip/zip_list_vue.do',{
+					 params:{
+						 etype:etype,
+						 page:this.curpage
+					 }
+				 })
+				 .then(response=>{
+					 console.log(response.data)
+					 this.list_data=response.data
+				 }).catch(error=>{
+					 console.log(error.response)
+				 })
+				axios.get('http://localhost/web/zip/zip_page_vue.do',{
+					params:{
+						page:this.curpage,
+						etype:this.etype
+// 						fd:this.fd,
+						
+					}
+				}).then(response=>{
+// 					console.log('검색결과2:'+this.fd)
+					console.log(response.data)
+					this.page_list=response.data;
+					this.curpage=this.page_list.curpage;
+					this.totalpage=this.page_list.totalpage;
+					this.startPage=this.page_list.startPage;
+					this.endPage=this.page_list.endPage;
+				})
+/* 				axios.get('http://localhost/web/clean/list_find_vue.do',{
+					params:{
+						column:this.column,
+						fd:this.fd,
+						page:this.curpage
+					}
+				}).then(response=>{
+					console.log(response.data)
+					this.clean_list_find=response.data;
+				}) */
+				this.curpage=1
+			},
+			range:function(start,end){
+				let arr=[];
+				let length=end-start;
+				for(let i=0;i<=length;i++){
+					arr[i]=start;
+					start++;
+				}
+				return arr;
+			},
+			selectPage:function(page){
+				etype=this.etype
+				this.curpage=page;
+				this.pageData(etype);
+			},
+			prev:function(){
+				etype=this.etype
+				this.curpage=this.startPage-1;
+				this.pageData(etype)
+				
+			},
+			next:function(){
+				etype=this.etype
+				this.curpage=this.endPage+1;
+				this.pageData(etype)
+			},
+// 			find:function(){
+// 				this.etype=this.$refs.column.value
+// 				console.log('fd : '+this.fd)
+// 				this.curpage=1;
+// 				this.send();
+// 			}
+		}
 	})
 </script>
 <!-- JS here -->

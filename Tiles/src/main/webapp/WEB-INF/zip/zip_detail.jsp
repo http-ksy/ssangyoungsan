@@ -13,6 +13,7 @@
 	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 <div class="container">
@@ -92,8 +93,14 @@
 				<td>{{estate_detail.comaddr}}</td>
 			</tr>
 			<tr>
-				<td v-if="estate_detail.state!='매매진행완료'">
-					<a :href="'../zip/zipsago.do?no='+estate_detail.no" class="btn btn-sm btn-danger" value="구매하기">
+				<td v-if="estate_detail.state!='매매진행완료'" class="text-center">
+					<a :href="'../zip/zipsago.do?no='+estate_detail.no" class="genric-btn info-border circle">구매하기</a>
+				</td>
+				<td v-if="state!='OK'">
+					<button class="genric-btn info-border circle" @click="zipZim()">찜</button>
+				</td>
+				<td v-if="state=='OK'">
+					<button class="genric-btn info-border circle" @click="zipZim()">찜 취소</button>
 				</td>
 			</tr>
 		</table>
@@ -103,16 +110,11 @@
                 <h3 class="text-center">공인중개사에게 질문하기</h3>
                 <form id="contact-form" action="#" method="POST">
                     <div class="col-lg-12">
-                          <div class="form-box user-icon mb-15">
-                              <input type="text" name="name" placeholder="Your name">
-                         </div>
-                    </div>
-                    <div class="col-lg-12">
                          <div class="form-box message-icon mb-15">
-                              <textarea name="message" id="message" placeholder="Comment"></textarea>
+                              <textarea name="message" id="message" placeholder="Comment" style="height:113px;"></textarea>
                          </div>
-                         <div class="submit-info">
-                              <button class="submit-btn2" type="submit">Send Message</button>
+                         <div class="submit-info text-right">
+                              <button class="genric-btn info-border" type="submit">Send Message</button>
                          </div>
 					</div>
 				</form>
@@ -144,7 +146,9 @@
 			estate_detail:[],
 			estate_img:[],
 			no:${no},
-			review:[]
+			review:[],
+			id:'${sessionScope.id}',
+			state:''
 		},
 		mounted:function(){
 			 this.estateDetailData(this.no)
@@ -208,6 +212,27 @@
 				}).then(response=>{
 					console.log(response.data)
 					this.review=response.data
+				}).catch(error=>{
+					console.log(error.response)
+				})
+			},
+			zipZim:function(){
+				axios.get('../zip/zipZim_vue.do',{
+					params:{
+						no:this.no,
+						id:this.id
+					}
+				}).then(response=>{
+					console.log(response.data)
+					this.state=response.data
+					if(response.data==='OK')
+					{
+						alert("찜 완료")
+					}
+					else
+					{
+						alert("찜 취소")
+					}
 				}).catch(error=>{
 					console.log(error.response)
 				})

@@ -3,6 +3,7 @@ package com.sist.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -35,4 +36,10 @@ public interface ZipService {
 		public void zipbuyInsert(Map map,int no);
 //		@Update("UPDATE estate_detail SET type='매매진행완료' WHERE no=#{no}")
 //		public void zipbuyTypeUpdate(int no);
+//		@Insert("INSERT INTO zipZim VALUES(#{no},#{id}")
+		public void zipZim(zipZimVO vo);
+//		@Select("SELECT COUNT(*) FROM zipZim WHERE id=#{id} AND no=#{no}")
+		public int zipZimCheck(zipZimVO vo);
+//		@Delete("DELETE FROM zipZim WHERE id=#{id} AND no=#{no}")
+		public void zipZimDelete(zipZimVO vo);
 }

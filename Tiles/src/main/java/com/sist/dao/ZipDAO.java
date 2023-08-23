@@ -2,6 +2,7 @@ package com.sist.dao;
 
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -63,6 +64,20 @@ public class ZipDAO {
 	{
 		mapper.zipbuyTypeUpdate(no);
 	}
-
+//	@Insert("INSERT INTO zipZim VALUES(#{no},#{id}")
+	public void zipZim(zipZimVO vo)
+	{
+		mapper.zipZim(vo);
+	}
+//	@Select("SELECT COUNT(*) FROM zipZim WHERE id=#{id} AND no=#{no}")
+	public int zipZimCheck(zipZimVO vo)
+	{
+		return mapper.zipZimCheck(vo);
+	}
+//	@Delete("DELETE FROM zipZim WHERE id=#{id} AND no=#{no}")
+	public void zipZimDelete(zipZimVO vo)
+	{
+		mapper.zipZimDelete(vo);
+	}
 
 }

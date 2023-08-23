@@ -1,6 +1,7 @@
 package com.sist.mapper;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -32,6 +33,11 @@ public interface ZipMapper {
 	public void zipbuyInsert(Map map);
 	@Update("UPDATE estate_detail SET state='매매진행완료' WHERE no=#{no}")
 	public void zipbuyTypeUpdate(int no);
-	// 
-	
+	// 찜
+	@Insert("INSERT INTO zipZim VALUES(#{no},#{id})")
+	public void zipZim(zipZimVO vo);
+	@Select("SELECT COUNT(*) FROM zipZim WHERE id=#{id} AND no=#{no}")
+	public int zipZimCheck(zipZimVO vo);	
+	@Delete("DELETE FROM zipZim WHERE id=#{id} AND no=#{no}")
+	public void zipZimDelete(zipZimVO vo);
 }
