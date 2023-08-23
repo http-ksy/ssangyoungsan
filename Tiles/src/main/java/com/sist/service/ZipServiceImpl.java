@@ -74,6 +74,20 @@ public class ZipServiceImpl implements ZipService{
 		// TODO Auto-generated method stub
 		dao.zipZimDelete(vo);
 	}
+
+	@Override
+	public List<EstateDetailVO> zipZimList(String id) {
+		// TODO Auto-generated method stub
+		List<EstateDetailVO> list=new ArrayList<EstateDetailVO>();
+		List<Integer> zlist=dao.zipZimList(id);
+		for(Integer zvo:zlist)
+		{
+			list.add(dao.estateDetailData(zvo));
+		}
+		return list;
+	}
+
+	
 	
 	
 	

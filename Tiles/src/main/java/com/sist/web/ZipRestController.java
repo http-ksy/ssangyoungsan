@@ -173,4 +173,30 @@ public class ZipRestController {
 		
 		return json;
 	}
+	@GetMapping(value = "member/zipZim_list.do",produces = "text/plain;charset=UTF-8")
+	public String zipZim_list(String id) throws Exception
+	{
+		List<EstateDetailVO> list=service.zipZimList(id);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
+	@GetMapping(value="member/zimZim_delete.do",produces = "text/plain;charset=UTF-8")
+	public String zipZim_list_delete(String id,int no)
+	{
+		zipZimVO vo=new zipZimVO();
+		vo.setId(id);
+		vo.setNo(no);
+		String result="";
+		try
+		{
+			service.zipZimDelete(vo);
+			result="yes";
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		return result;
+	}
 }

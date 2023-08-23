@@ -79,5 +79,9 @@ public class ZipDAO {
 	{
 		mapper.zipZimDelete(vo);
 	}
-
+	//@Select("SELECT no FROM zipZim WHERE id=#{id}")
+	public List<Integer> zipZimList(String id)
+	{
+		return mapper.zipZimList(id);
+	}
 }

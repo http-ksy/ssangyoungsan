@@ -61,7 +61,7 @@
       </tr>  
        <tr style="height:30px;">
         <td>
-           <input type="button" class="genric-btn success circle btn" value="찜 목록">
+           <a href="../member/zipzim.do" class="genric-btn success circle btn" >부동산 찜목록</a>
         </td>
       </tr> 
       <tr style="height:30px;">
@@ -71,7 +71,7 @@
       </tr> 
        <tr style="height:30px;">
         <td>
-           <input type="button" class="genric-btn success circle btn" value="문의하기">
+           <a href="../member/zipbuy.do" class="genric-btn success circle btn" >문의하기</a>
         </td>
       </tr> 
         </table>

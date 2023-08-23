@@ -40,4 +40,6 @@ public interface ZipMapper {
 	public int zipZimCheck(zipZimVO vo);	
 	@Delete("DELETE FROM zipZim WHERE id=#{id} AND no=#{no}")
 	public void zipZimDelete(zipZimVO vo);
+	@Select("SELECT no FROM zipZim WHERE id=#{id}")
+	public List<Integer> zipZimList(String id);
 }

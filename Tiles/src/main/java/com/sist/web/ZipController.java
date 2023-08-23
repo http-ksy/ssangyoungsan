@@ -39,4 +39,9 @@ public class ZipController {
 		
 		return "member/zipbuy";
 	}
+	@GetMapping("member/zipzim.do")
+	public String zip_zim(Model model)
+	{
+		return "member/zipzim";
+	}
 }

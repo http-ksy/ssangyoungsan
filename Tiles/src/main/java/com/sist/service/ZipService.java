@@ -42,4 +42,7 @@ public interface ZipService {
 		public int zipZimCheck(zipZimVO vo);
 //		@Delete("DELETE FROM zipZim WHERE id=#{id} AND no=#{no}")
 		public void zipZimDelete(zipZimVO vo);
+		// 찜 리스트 마이페이지에 출력
+		public List<EstateDetailVO> zipZimList(String id);
+		
 }

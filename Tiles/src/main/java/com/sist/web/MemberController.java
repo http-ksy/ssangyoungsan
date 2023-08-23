@@ -37,4 +37,9 @@ public class MemberController {
  {
 	 return "member/customer";
  }
+ @GetMapping("member/intecustomer.do")
+ public String member_inte()
+ {
+	 return "member/intecustomer";
+ }
 }
