@@ -73,7 +73,7 @@
 															onblur="this.placeholder = 'Message'" required style="height: 300px" v-model="subject"></textarea>
 														</div>
 														 <b-form-group label="첨부파일" label-cols-sm="2" label-size="lg">
-														  <b-form-file multiple id="file-large" size="lg" :file-name-formatter="formatNames">
+														  <b-form-file v-model="files" multiple id="file-large" size="lg" :file-name-formatter="formatNames" accept=".jpg, .png, .gif">
 														  </b-form-file>
 														</b-form-group>
 														<div class="section-top-border text-right">
@@ -107,6 +107,9 @@ new Vue({
 		/* console.log('current : '+this.current)
 		console.log('selected : '+selected) */
 		console.log('bno : '+ this.bno)
+		console.log('length : '+ this.files.length)
+		
+		
 	},methods:{
 		formatNames(files) {
 			let fileNames=[];
@@ -117,21 +120,27 @@ new Vue({
 			} else{
 				fileNames[0]=files[0].name
 			}
-			this.files = fileNames
 	        return fileNames.toString()+' selected'
 	      }
 		,
 		boardInsert:function(){
 			if(this.title=='' || this.subject==''){
-				alert('제목 or 제목을 입력하세요!');
+				alert('내용 or 제목을 입력하세요!');
 				return
 			}
-			
-			axios.post('http://localhost/web/landboard/landboard_insert.do',null,{
-				params:{
-					title:this.title,
-					subject:this.subject,
-					bno:this.bno
+			let boardData = new FormData()
+			boardData.append("title",this.title)
+			boardData.append("subject",this.subject)
+			boardData.append("bno",this.bno)
+			let leng = this.files.length
+			if(leng >0){
+				for(let i=0;i<leng;i++){
+					boardData.append('files['+i+']',this.files[i])
+				}
+			}
+			axios.post('http://localhost/web/landboard/landboard_insert.do',boardData,{
+				headers:{
+					'Content-Type':'multipart/form-data'
 				}
 			}).then(res=>{
 				console.log(res.data)

@@ -1,12 +1,15 @@
 package com.sist.web;
 
+import java.io.File;
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,9 +24,43 @@ public class landboardRestController {
 	@Autowired
 	private landboardService service;
 	
-	@PostMapping(value = "landboard/landboard_insert.do",produces = "text/plain;charset=utf-8")
-	public String landboardInsert(landboardVO vo,HttpSession session) {
+	@PostMapping(value = "landboard/landboard_insert.do",produces = "text/plain;charset=utf-8", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+	public String landboardInsert(landboardVO vo,HttpSession session,HttpServletRequest request) {
 		String result = "";
+		String path = request.getSession().getServletContext().getRealPath("/")+"upload/";
+		System.out.println("path :" + path);
+		path=path.replace("\\", File.separator);
+		List<MultipartFile> mlist = vo.getFiles();
+		System.out.println("path :" + path);
+		String filesize="";
+		String filename="";
+		int filecount=0;
+		if(mlist!=null) {
+			System.out.println("file이 "+mlist.size()+"업로드 됨 ");
+			for(MultipartFile mf : mlist) {
+				String name = mf.getOriginalFilename();
+				System.out.print(name+",");
+				File file = new File(path+name);
+				try {
+					mf.transferTo(file); // 업로드 변환??
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+				filename +=name+",";
+				filesize+=file.length()+",";
+			}
+			filecount = mlist.size();
+			filename=filename.substring(0,filename.lastIndexOf(","));
+			filesize=filesize.substring(0,filesize.lastIndexOf(","));
+		}
+		else {
+			System.out.println("file 이 비었습니다.");
+		}
+		vo.setFilename(filename);
+		vo.setFilesize(filesize);
+		vo.setFilecount(filecount);
+		
 		try {
 			String id = (String)session.getAttribute("id");	
 			System.out.println("id" + id);

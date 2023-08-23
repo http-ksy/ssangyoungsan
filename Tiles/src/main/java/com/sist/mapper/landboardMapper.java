@@ -9,8 +9,8 @@ import com.sist.vo.landboardVO;
 import java.util.*;
 
 public interface landboardMapper {
-	@Insert("insert into landboard(no,bno,title,subject,id) "
-			+ "values(lb_no_seq.nextVal, #{bno}, #{title}, #{subject}, #{id})")
+	@Insert("insert into landboard(no,bno,title,subject,id,filesize,filename,filecount) "
+			+ "values(lb_no_seq.nextVal, #{bno}, #{title}, #{subject}, #{id},#{filesize},#{filename},#{filecount})")
 	public void landboardInsert(landboardVO vo);
 	
 	@Select("select no,title,subject,id,to_char(regdate,'yy-mm-dd')as dbday,hit "
