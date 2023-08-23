@@ -10,7 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
 </head>
 <style>
@@ -79,7 +81,7 @@
                                             <textarea name="message" id="message" placeholder="Comment"></textarea> 
                                         </div> -->
                                         <div class="submit-info">
-                                            <button class="submit-btn2" type="submit">이 컨셉으로 신청</button>
+                                            <button class="submit-btn2" type="submit" style="border-radius: 10px;">이 컨셉으로 신청</button>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +90,14 @@
                     </div>
                     
                     
-                    <div class="col-lg-8">
+                 <div class="col-lg-8">
+                      <ul class="nav nav-tabs">
+					    <li class="active"><a data-toggle="tab" href="#home">상세보기</a></li>
+					    <li><a data-toggle="tab" href="#review">시공리뷰</a></li>
+					    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+					  </ul>
+				   <div class="tab-content">
+				    <div id="home" class="tab-pane fade in active">
                        <div>
                         <img :src="inte_detail.poster" alt="" style="width: 770px; height: 430px;">
                        </div>
@@ -107,9 +116,57 @@
                           <img :src="poster2" alt="" style="width: 100%"><br>
                           <div style="text-align:center;margin:0 auto;padding:10px 0 20px 0;"></div>
                         </div> 
-                    
+                    </div>
+                    <div id="review" class="tab-pane fade">
+                      <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Write Your Comment</a></h6>
+                        <hr>  
+                        <div v-if="sessionId!=''">             
+                         <textarea rows="5" cols="60" ref="msg" v-model="msg" class="form-control" placeholder="댓글을 작성해주세요."></textarea>                                             
+                         <button class="submit-btn2" style="border-radius: 10px;" @click="inteReplyWrite()">댓글쓰기</button> 
+                        </div> 
+                      <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">댓글</a></h6>
+                       <div class="media">
+                         <table class="table">
+                         <tbody>                     
+                           <tr>
+                            <td>                     
+                                <table class="table" >
+                                 <tr>
+                                  <td class="text-left" style="border-top:none;">
+                                   ●
+                                   </td>
+                                   <td class="text-right" style="border-top:none;">
+               				        <%-- <c:if test="${sessionScope.id==rpvo.id }"> --%>
+               				         <span class="btn btn-sm btn-default">수정</span>
+			                         <a href="#" class="btn btn-sm btn-danger">삭제</a>             				        
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                  <td style="border-top:none;">
+                                   <pre></pre>                           
+                                  </td>
+                                 </tr>                                                             
+                                 <!-- <tr style="display:none" class="updates" id="u"> 
+				 			          <td colspan="2">
+								  	   <form method="post" action="#" class="inline">
+								  	     <input type=hidden name=rdno value=""> 		  	
+								  	     <input type=hidden name=no value=""> 
+								  	     <input type="hidden" name="type" value="4">
+								  	     <textarea rows="5" cols="60" name="msg" class="form-control">ㄹㄹ</textarea>
+										 <input type=submit value="댓글수정" class="btn btn-primary btn-block">
+								  	   </form>
+								  	  </td>
+								  </tr>   -->                                        
+                            </table>                                                                                                                                                                                                                                                                                      
+                          </tr>
+                          </tbody>
+                         </table>
+                    </div>
+                  </div> <!-- tab-content -->
                 </div>
             </div>
+        </div>
+        </div>
         </div>
         <!--  Details End -->
         <!-- listing-area Area End -->
@@ -168,19 +225,20 @@
   new Vue({
 	  el:'.directory-details',
 	  data: {
-		  no: ${no},
+		  ino:${ino},
 		  inte_detail:{},
 		  hashtags:[],
-		  posters:[]
+		  posters:[],
+		  inteReply_list:[],
+		  msg:'',
+		  sessionId:'${id}'
+		  
 	  },
 	  mounted:function() {
-		  this.send()
-	  },
-	  methods: {
-		  send:function() {
+		 
 			  axios.get('../inte/inte_detail_vue.do', {
 				  params: {
-					  no:this.no
+					  ino:this.ino
 				  }
 			  }).then(response=>{
 				  console.log(response.data)
@@ -194,9 +252,39 @@
 			  }).catch(error=>{
 				console.log(error.response)  
 			  })
-
-			  
-		  }
+		  /* this.replyRead() */
+	  },
+	  methods:{
+		  /* replyRead:function(){
+			   axios.get('../inte/reply_read_vue.do',{
+				   params:{
+					   ino:this.ino
+				   }
+			   }).then(response=>{
+				   console.log(response.data)
+				   this.inteReply_list=response.data
+			   }).catch(error=>{
+				   console.log(error.response)
+			   })
+			}, */
+			inteReplyWrite:function(){
+                if(this.msg===""){
+                    this.$refs.msg.focus()
+                    return
+                }
+                axios.post('../inte/reply_insert_vue.do',null,{
+    				params:{
+    					ino:this.ino,
+    					msg:this.msg
+    				}
+    			}).then(response=>{
+    				console.log(response.data)
+    				this.inteReply_list=response.data
+    				this.msg=''; //댓글 insert가 되면 공백으로 처리
+    			}).catch(error=>{
+    				console.log(error.response)
+    			})
+            }
 	  }
   })
 </script>

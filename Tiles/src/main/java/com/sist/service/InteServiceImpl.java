@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sist.dao.*;
-import com.sist.vo.InteVO;
+import com.sist.mapper.*;
+import com.sist.vo.*;
 
 @Service
 public class InteServiceImpl implements InteService {
@@ -15,8 +16,18 @@ public class InteServiceImpl implements InteService {
 	private InteDAO dao;
 	
 	@Override
-	public InteVO inteDetailData(int no) {
-		return dao.inteDetailData(no);
+	public InteVO inteDetailData(int ino) {
+		return dao.inteDetailData(ino);
+	}
+
+	@Override
+	public List<InteReplyVO> InteReplyListData(int ino) {
+		return dao.InteReplyListData(ino);
+	}
+
+	@Override
+	public void InteReplyInsert(InteReplyVO vo) {
+		dao.InteReplyInsert(vo);
 	}
 	
 

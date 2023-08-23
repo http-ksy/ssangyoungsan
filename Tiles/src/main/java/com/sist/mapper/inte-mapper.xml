@@ -6,14 +6,14 @@
 <mapper namespace="com.sist.mapper.InteMapper">
 	
 	<select id="inteListData" resultType="InteVO" parameterType="hashmap">
-	  SELECT no,title,poster,subject,jiyoek,price,gubun,num 
-	  FROM (SELECT no,title,poster,subject,jiyoek,price,gubun,rownum as num 
-	  FROM (SELECT no,title,poster,subject,jiyoek,price,gubun 
+	  SELECT ino,title,poster,subject,jiyoek,price,gubun,num 
+	  FROM (SELECT ino,title,poster,subject,jiyoek,price,gubun,rownum as num 
+	  FROM (SELECT ino,title,poster,subject,jiyoek,price,gubun 
 	  FROM inte_detail 
 	   <if test="column!='all'">
 	    WHERE ${column} LIKE '%'||#{fd}||'%' 
 	   </if>
-	  ORDER BY no ASC)) 
+	  ORDER BY ino ASC)) 
 	  WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
