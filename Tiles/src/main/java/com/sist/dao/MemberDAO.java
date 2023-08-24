@@ -105,4 +105,18 @@ public class MemberDAO {
 	{
 		return mapper.inteLikeTotalPage(map);
 	}
+	public void inteZimDelete(InteLikeVO vo)
+	{
+		mapper.inteZimDelete(vo);
+	}
+	
+	public List<Integer> moveZzim(Map map)
+	{
+		return mapper.moveZzim(map);
+	}
+	@Select("SELECT CEIL(COUNT(*)/8) FROM interior_like WHERE id=#{id}")
+	public int moveZzimTotalPage(Map map)
+	{
+		return mapper.moveZzimTotalPage(map);
+	}
 }

@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sist.dao.MemberDAO;
 import com.sist.vo.EstateDetailVO;
+import com.sist.vo.InteLikeVO;
 import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.MoveVO;
 
 public interface MemberService {
 	public void MemberInsert(MemberVO vo);
@@ -49,4 +51,9 @@ public interface MemberService {
 	// 인테리어 찜 리스트
 	public List<InteVO> inteLike(Map map);
 	public int inteLikeTotalPage(Map map); 
+	
+	public void inteZimDelete(InteLikeVO vo);
+	// 이사 찜
+	public List<MoveVO> moveZzim(Map map);
+	public int moveZzimTotalPage(Map map);
 }

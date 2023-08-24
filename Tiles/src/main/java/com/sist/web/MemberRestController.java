@@ -19,9 +19,12 @@ import com.sist.service.EstateQnaService;
 import com.sist.service.MemberService;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.EstateQnaVO;
+import com.sist.vo.InteLikeVO;
 import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.MoveVO;
 import com.sist.vo.PageVO;
+import com.sist.vo.zipZimVO;
 
 @RestController
 public class MemberRestController {
@@ -466,6 +469,64 @@ public String memberDelete(String id,String pwd,HttpSession session)
 		 Map map=new HashMap();
 		 map.put("id", id);		 
 		 int totalpage=service.inteLikeTotalPage(map);
+		 
+		
+		 
+		 final int BLOCK=5;
+		 int startPage=((page-1)/BLOCK*BLOCK)+1;
+		 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+		 if(endPage>totalpage)
+			 endPage=totalpage;
+		 
+		 PageVO vo=new PageVO();
+		 vo.setCurpage(page);
+		 vo.setTotalpage(totalpage);
+		 vo.setStartPage(startPage);
+		 vo.setEndPage(endPage);
+		 
+		 ObjectMapper mapper=new ObjectMapper();
+		 String json=mapper.writeValueAsString(vo);
+		 return json;
+	}
+	@GetMapping(value="member/inteZim_delete.do",produces = "text/plain;charset=UTF-8")
+	public String zipZim_list_delete(String id,int ino)
+	{
+		InteLikeVO vo=new InteLikeVO();
+		vo.setId(id);
+		vo.setIno(ino);
+		String result="";
+		try
+		{
+			service.inteZimDelete(vo);
+			result="yes";
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		return result;
+	}
+	@GetMapping(value = "member/moveZim_list.do",produces = "text/plain;charset=UTF-8")
+	public String moveZim_list(int page,String id) throws Exception
+	{
+		Map map=new HashMap();
+		map.put("id", id);
+		int rowSize=8;
+		int start=(rowSize*page)-(rowSize-1);
+		int end=(rowSize*page);
+		map.put("start", start);
+		map.put("end", end);
+		List<MoveVO> list=service.moveZzim(map);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
+	@GetMapping(value="member/movezim_page.do",produces="text/plain;charset=UTF-8")
+	public String movezim_page(int page, String id) throws Exception
+	{
+		 Map map=new HashMap();
+		 map.put("id", id);		 
+		 int totalpage=service.moveZzimTotalPage(map);
 		 
 		
 		 

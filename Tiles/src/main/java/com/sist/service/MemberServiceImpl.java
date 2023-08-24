@@ -11,6 +11,8 @@ public class MemberServiceImpl implements MemberService{
   private MemberDAO dao;
   @Autowired
   private InteDAO idao;
+  @Autowired
+  private MoveDAO mdao;
 	@Override
 	public void MemberInsert(MemberVO vo) {
 		// TODO Auto-generated method stub
@@ -110,6 +112,30 @@ public class MemberServiceImpl implements MemberService{
 	public int inteLikeTotalPage(Map map) {
 		// TODO Auto-generated method stub
 		return dao.inteLikeTotalPage(map);
+	}
+
+	@Override
+	public void inteZimDelete(InteLikeVO vo) {
+		// TODO Auto-generated method stub
+		dao.inteZimDelete(vo);
+	}
+
+	@Override
+	public List<MoveVO> moveZzim(Map map) {
+		// TODO Auto-generated method stub
+		List<MoveVO> list=new ArrayList<MoveVO>();
+		List<Integer> mlist=dao.moveZzim(map);
+		for(Integer mvo:mlist)
+		{
+			list.add(mdao.MoveDetailData(mvo));
+		}
+		return list;
+	}
+
+	@Override
+	public int moveZzimTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.moveZzimTotalPage(map);
 	}
  
 }

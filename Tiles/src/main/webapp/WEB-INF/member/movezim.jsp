@@ -29,21 +29,21 @@
        
         <th>사진</th>
        
-        <th>인테리어</th>
+        <th>업체명</th>
         
-        <th>소재지</th>
-       
         <th>구분</th>
+       
+        <th>지역</th>
         
         <th>찜 취소</th>
        </tr>
        <tr v-for="vo in zimlist">
         <td><img :src="vo.poster" style="width:40px;height:40px;"></td>
-        <td><a :href="'../inte/inte_detail.do?ino='+vo.ino" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
-        <td>{{vo.jiyoek}}</td>
-        <td>{{vo.gubun}}</td>
+        <td><a :href="'../move/detail.do?mno='+vo.mno" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
+        <td>{{vo.category}}</td>
+        <td>{{vo.address}}</td>
         <td>
-    <input type="button" class="genric-btn success circle btn" value="취소" style="background-color:red" @click="zimDelete(vo.ino)"> 
+    <input type="button" class="genric-btn success circle btn" value="취소" style="background-color:red" @click="zimDelete(vo.mno)"> 
 <!--             <b-button  v-b-modal.modal-lg2 variant="primary" class="genric-btn info-border circle arrow btn" >정지</b-button> -->
 <!-- 			<b-modal  id="modal-lg2" size="lg" title="회원 탈퇴"  hide-footer> -->
 <!-- 			<div> -->
@@ -137,12 +137,12 @@
 				  this.curpage=this.endPage+1;
 				  this.zipzimList();
 			  },
-			  zimDelete:function(ino){
+			  zimDelete:function(mno){
 		
 					axios.get('../member/inteZim_delete.do',{
 						params:{
 							id:this.id,
-							ino:ino
+							mno:mno
 						}
 					}).then(response=>{
 						console.log(response.data)

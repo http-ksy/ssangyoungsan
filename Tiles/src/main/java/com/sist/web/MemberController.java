@@ -47,4 +47,14 @@ public class MemberController {
  {
 	 return "member/intezim";
  }
+ @GetMapping("member/movezim.do")
+ public String member_movezime()
+ {
+	 return "member/movezim";
+ }
+ @GetMapping("member/cleanzim.do")
+ public String member_cleanzime()
+ {
+	 return "member/movezim";
+ }
 }
