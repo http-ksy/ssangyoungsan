@@ -31,6 +31,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500&family=Jua&display=swap" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style type="text/css">
     * {
         font-family: 'IBM Plex Sans KR', sans-serif;

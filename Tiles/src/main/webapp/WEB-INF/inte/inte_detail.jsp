@@ -15,7 +15,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">   <!--  -->
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     
 </head>
 <style>
@@ -23,6 +22,7 @@
  width:1200px;
 }
 </style>
+
 <body class="full-wrapper">
 
     
@@ -113,7 +113,7 @@
                       <ul class="nav nav-tabs">
 					    <li class="active"><a data-toggle="tab" href="#home">상세보기</a></li>
 					    <li><a data-toggle="tab" href="#review">시공리뷰</a></li>
-					    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+					    <li><a data-toggle="tab" href="#reserve">예약</a></li>
 					  </ul>
 				   <div class="tab-content">
 				    <div id="home" class="tab-pane fade in active">
@@ -178,8 +178,72 @@
                           </tbody>
                          </table>
                     </div>
-                  </div> <!-- tab-content -->
-                </div>
+                  </div> <!-- 리뷰 -->
+                  
+                  <!-- 예약 -->
+                  <div id="reserve" class="tab-pane fade">
+    			    <table class="table" height=700>
+      				  <tr>
+					    <td width="65%" height="600"  style="color:gray;">
+						<table class="table">
+						 <thead><h3>예약일 정보</h3></thead>
+ <template>
+  <div>
+    <label for="datepicker-full-width">Choose a date</label>
+    <b-form-datepicker
+      id="datepicker-full-width"
+      v-model="reserve_date"
+      menu-class="w-105"
+      calendar-width="100%"
+      class="mb-10"
+      :date-disabled-fn="dateDisabled" 
+    ></b-form-datepicker>
+   
+    <div v-if="reserve_date!=''">
+    <hr>
+    	<!-- <button v-for="">10</button>  	 -->
+    	 <!-- 시간 -->
+       <thead><h3>예약 시간</h3></thead>
+	   <b-time  v-model="reserve_time" show-seconds locale="en">
+	    <div class="d-flex" dir="ltr">
+	      <b-button
+	        size="sm"
+	        variant="outline-danger"
+	        v-if="reserve_time"
+	        @click="clearTime"
+	      >
+	        새로고침
+	      </b-button>
+	      <b-button
+	        size="sm"
+	        variant="outline-primary"
+	        class="ml-auto"
+	        @click="setNow"
+	      >
+	        현재 시간
+	      </b-button>
+	    </div>
+	  </b-time>
+	  	
+	  <div v-if="reserve_time!=''">
+	  <hr>
+	  <thead><h3>예약 정보</h3></thead>
+	   <h3>DATE: {{ reserve_date }}</h3>
+	   <h3>Time: {{ reserve_time }}</h3>
+	   <b-button @click="reserveOk">예약하기</b-button>
+	  </div>
+    </div>
+  </div>
+</template>
+
+					    </table>
+                        </td>
+						
+					</tr>
+						 
+    			    </table> 			 
+    			 </div> <!-- 예약 -->
+                </div> <!-- tab-content --> 
             </div>
         </div>
         </div>
@@ -250,11 +314,16 @@
 		  sessionId:'${id}',
 		  no:0,
 		  isShow:false,
-		  like_count:0
-		  
+		  today:'',
+		  reserve_date:'',
+		  reserve_time:'',
+		  reserve_list:[]
 	  },
 	  mounted:function() {
-		 
+		    this.today = this.getToday();
+			console.log("today :"+this.today)
+
+			
 			  axios.get('../inte/inte_detail_vue.do', {
 				  params: {
 					  ino:this.ino
@@ -272,7 +341,7 @@
 			  }).catch(error=>{
 				console.log(error.response)  
 			  })
-		  /this.replyRead()
+		  this.replyRead()
 	  },
 	  methods:{
 		   replyRead:function(){
@@ -357,7 +426,47 @@
  					height:600
  				}).dialog("open");
             	 
-            }
+            },
+  	        dateDisabled(ymd, date) {
+  	          // Disable weekends (Sunday = `0`, Saturday = `6`) and
+  	          // disable days that fall on the 13th of the month
+  	          // Return `true` if the date should be disabled
+  	          // yyyy-mm-dd
+  	          return ymd<= this.today
+  	        },
+	        getToday:function(){
+	            var date = new Date();
+	            var year = date.getFullYear();
+	            var month = ("0" + (1 + date.getMonth())).slice(-2);
+	            var day = ("0" + date.getDate()).slice(-2);
+
+	            return year + "-" + month + "-" + day;
+	        },
+			setNow() {
+		        const now = new Date()
+		        // Grab the HH:mm:ss part of the time string
+		        this.reserve_time = now.toTimeString().slice(0, 8)
+		    },
+		    clearTime() {
+		        this.reserve_time = ''
+		    }, 
+		    reserveOk() {
+		    	axios.post('../inte/reserve_vue.do',null,{
+		    		params:{
+		    			ino:this.ino,
+		    			reserve_date:this.reserve_date,
+		    			reserve_time:this.reserve_time
+		    		}
+		    	}).then(response=>{
+		    		 console.log(response.data)
+		    		 this.reserve_list = response.data
+		    	}).catch(error=>{
+		    		console.log(error.response)
+		    	})
+		    } 
+		      
+		      
+
 	  }
   })
 </script>

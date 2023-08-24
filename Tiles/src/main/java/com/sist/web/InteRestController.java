@@ -3,6 +3,7 @@ package com.sist.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
@@ -126,6 +127,20 @@ public class InteRestController {
 	public String inteReply_update(InteReplyVO vo) {
 		dao.inteReplyUpdate(vo);
 		return inteReply_list_data(vo.getIno());
+	}
+	
+	
+// 예약
+	@PostMapping(value = "inte/reserve_vue.do", produces = "text/plain;charset=UTF-8")
+	public String inte_reserve(int ino, InteReserveVO vo, HttpSession session) throws Exception {
+		String id = (String)session.getAttribute("id");
+		vo.setId(id);
+		service.reserveOk(vo);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(vo);
+		return json;
+		
 	}
 	
 }
