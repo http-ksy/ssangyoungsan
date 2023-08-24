@@ -72,6 +72,19 @@ public interface MemberMapper {
 	public List<EstateDetailVO> zipTypeData(Map map);
 	public int zipBuyTotalPage(Map map);
 	
+	// 인테리어 찜 목록 출력 
+	/*
+	 * private int no,ino;
+		private String id;
+	 */
+	@Select("SELECT ino,num "
+			+ "FROM (SELECT ino,rownum as num "
+			+ "FROM (SELECT ino "
+			+ "FROM interior_like WHERE id=#{id} ORDER BY no ASC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<Integer> inteLike(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM interior_like WHERE id=#{id}")
+	public int inteLikeTotalPage(Map map);
 	
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sist.dao.MemberDAO;
 import com.sist.vo.EstateDetailVO;
+import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
 
 public interface MemberService {
@@ -45,4 +46,7 @@ public interface MemberService {
 	// 부동산 매물리스트 
 	public List<EstateDetailVO> zipTypeData(Map map);
 	public int zipBuyTotalPage(Map map);
+	// 인테리어 찜 리스트
+	public List<InteVO> inteLike(Map map);
+	public int inteLikeTotalPage(Map map); 
 }

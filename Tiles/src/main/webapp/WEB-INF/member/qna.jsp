@@ -92,7 +92,7 @@
         <td>{{vo.question}}</td>
         <td>{{vo.answer}}</td>
         <td>
-         <input type="text" ref="content" v-model="content"  style="width:260px; height:100px;">
+         <input type="text" id="content" style="width:260px; height:100px;">
 		</td>
         <td>
 	    <input type="button" class="genric-btn info-border circle"  value="답변하기" @click="send(vo.no)">
@@ -181,11 +181,11 @@
 			  this.answersend();
 		  },
 		  send:function(no){
-			 
+			 let _content=$('#content').val()
 			  axios.post('../member/answer_insert.do',null,{
 				  params:{
 					  no:no,
-					  content:this.content+'no'.value
+					  content:_content
 				  }
 			  }).then(response=>{
 				  console.log(response.data)

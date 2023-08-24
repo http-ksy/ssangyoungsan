@@ -87,32 +87,96 @@
        <tr>
        
         <th>번호</th>
-        <th>질문자</th>
+        <th>부동산</th>
         <th>답변</th> <!-- answer를 출력하는 줄 -->
+        <th>상태</th>
        </tr>
-       <tr >
+       <tr v-for="vo in question_list">
 <!--         <td><a :href="'../zip/zip_detail.do?no='+vo.no" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.name}}</a></td> -->
-        <td>번호</td>
-        <td>질문자</td>
-        <td>답변</td>
+        <td>{{vo.no}}</td>
+        <td>{{vo.company}}</td>
+        <td>{{vo.answer}}</td>
+        <td>답변완료</td>
        </tr>
       </table>
-<!--       <div class="justify-content-center"> -->
+      <div class="justify-content-center">
       
-<!--         <ul class="pagination" style="margin-left:400px;"> -->
-<!--          <li v-if="startPage>1"><a href="#" @click="prev()">이전</a></li> -->
-<!--          <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''"> -->
-<!--          <a href="#" @click="pageChange(i)">{{i}}</a></li> -->
-<!--          <li v-if="endPage<totalpage"><a href="#" @click="next()">다음</li> -->
-<!--         </ul> -->
+        <ul class="pagination" style="margin-left:400px;">
+         <li v-if="startPage>1"><a href="#" @click="prev()">이전</a></li>
+         <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''">
+         <a href="#" @click="pageChange(i)">{{i}}</a></li>
+         <li v-if="endPage<totalpage"><a href="#" @click="next()">다음</li>
+        </ul>
      
-<!--       </div> -->
+      </div>
       </div>
   </div>
   </div>
   <script>
   new Vue({
-	  el:'.container'
+	  el:'.container',
+	  data:{
+		  question_list:[],
+		  page_list:{},
+		  curpage:1,
+		  totalpage:0,
+		  startPage:0,
+		  endPage:0,
+		  id:'${sessionScope.id}',
+		  answer:''
+	  },mounted:function(){
+		  this.question()
+	  },
+	  methods:{
+		  question:function(){
+			  axios.get('../member/question.do',{
+				  params:{
+					  id:this.id,
+					  page:this.curpage
+				  }
+			  }).then(response=>{
+				  console.log(response.data)
+				  this.answer=response.answer
+				  this.question_list=response.data
+			  }).catch(error=>{
+				  console.log(error.response)
+			  })
+			  axios.get('../member/question_page.do',{
+				  params:{
+					  page:this.curpage,
+					  id:this.id
+				  }
+			  }).then(response=>{
+				  this.page_list=response.data
+				  this.curpage=this.page_list.curpage
+				  this.totalpage=this.page_list.totalpage
+				  this.startPage=this.page_list.startPage
+				  this.endPage=this.page_list.endPage
+			  })
+		  },
+		  range:function(start,end){
+			  let arr=[];
+			  let length=end-start;
+			  for(let i=0;i<=length;i++)
+			   {
+				  arr[i]=start
+				  start++;
+			   }
+			  return arr;
+		  },
+		   pageChange:function(page){
+			   this.curpage=page
+			   this.question();
+		   },
+		   prev:function(){
+			   this.curpage=this.startPage-1;
+			   this.question();
+		   },
+		   next:function(){
+			   this.curpage=this.endPage+1;
+			   this.question();
+		   }
+	  }
   })
   </script>
 </body>

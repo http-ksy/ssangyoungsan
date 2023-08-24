@@ -42,4 +42,9 @@ public class MemberController {
  {
 	 return "member/intecustomer";
  }
+ @GetMapping("member/intezim.do")
+ public String member_intelike()
+ {
+	 return "member/intezim";
+ }
 }

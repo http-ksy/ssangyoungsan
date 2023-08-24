@@ -9,6 +9,8 @@ import java.util.*;
 public class MemberServiceImpl implements MemberService{
   @Autowired
   private MemberDAO dao;
+  @Autowired
+  private InteDAO idao;
 	@Override
 	public void MemberInsert(MemberVO vo) {
 		// TODO Auto-generated method stub
@@ -90,6 +92,24 @@ public class MemberServiceImpl implements MemberService{
 	public int zipBuyTotalPage(Map map) {
 		// TODO Auto-generated method stub
 		return dao.zipBuyTotalPage(map);
+	}
+
+	@Override
+	public List<InteVO> inteLike(Map map) {
+		// TODO Auto-generated method stub
+		List<InteVO> list=new ArrayList<InteVO>();
+		List<Integer> ilist=dao.inteLike(map);
+		for(Integer ivo:ilist)
+		{
+			list.add(idao.inteDetailData(ivo));
+		}
+		return list;
+	}
+
+	@Override
+	public int inteLikeTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.inteLikeTotalPage(map);
 	}
  
 }

@@ -19,6 +19,7 @@ import com.sist.service.EstateQnaService;
 import com.sist.service.MemberService;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.EstateQnaVO;
+import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.PageVO;
 
@@ -404,4 +405,84 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	 return result;
 	 
  }
+ @GetMapping(value="member/question.do",produces="text/plain;charset=UTF-8")
+ public String question_list(int page, String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);
+	 int rowSize=5;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=rowSize*page;
+	 map.put("start", start);
+	 map.put("end", end);
+	 List<EstateQnaVO> list=qservice.estateQnaUserListData(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+ }
+ @GetMapping(value="member/question_page.do",produces="text/plain;charset=UTF-8")
+ public String question_page(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 
+	 map.put("id", id);
+	 int totalpage=qservice.userTotalPage(map);
+	 
+	 final int BLOCK=5;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ //////////////////////// 인테리어 찜
+ @GetMapping(value = "member/inteZim_list.do",produces = "text/plain;charset=UTF-8")
+	public String inteZim_list(int page,String id) throws Exception
+	{
+		Map map=new HashMap();
+		map.put("id", id);
+		int rowSize=8;
+		int start=(rowSize*page)-(rowSize-1);
+		int end=(rowSize*page);
+		map.put("start", start);
+		map.put("end", end);
+		List<InteVO> list=service.inteLike(map);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
+	@GetMapping(value="member/inte_zim_page.do",produces="text/plain;charset=UTF-8")
+	public String zim_page(int page, String id) throws Exception
+	{
+		 Map map=new HashMap();
+		 map.put("id", id);		 
+		 int totalpage=service.inteLikeTotalPage(map);
+		 
+		
+		 
+		 final int BLOCK=5;
+		 int startPage=((page-1)/BLOCK*BLOCK)+1;
+		 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+		 if(endPage>totalpage)
+			 endPage=totalpage;
+		 
+		 PageVO vo=new PageVO();
+		 vo.setCurpage(page);
+		 vo.setTotalpage(totalpage);
+		 vo.setStartPage(startPage);
+		 vo.setEndPage(endPage);
+		 
+		 ObjectMapper mapper=new ObjectMapper();
+		 String json=mapper.writeValueAsString(vo);
+		 return json;
+	}
 }

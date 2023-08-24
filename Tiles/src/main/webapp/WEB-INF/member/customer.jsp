@@ -189,7 +189,7 @@
 		  curpage:1,
 		  totalpage:0,
 		  startPage:0,
-		  endpage:0,
+		  endPage:0,
 		  name:'${sessionScope.name}',
 		  fd:''
 	  },

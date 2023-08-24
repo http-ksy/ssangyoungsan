@@ -66,6 +66,11 @@
       </tr> 
       <tr style="height:30px;">
         <td>
+           <a href="../member/intezim.do" class="genric-btn success circle btn" >인테리어 찜목록</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
            <input type="button" class="genric-btn success circle btn" value="장바구니">
         </td>
       </tr> 
