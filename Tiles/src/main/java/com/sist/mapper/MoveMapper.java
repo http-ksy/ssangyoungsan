@@ -3,9 +3,13 @@ package com.sist.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import com.sist.vo.CleanJjimVO;
 import com.sist.vo.CleanVO;
+import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
 
 public interface MoveMapper {
@@ -26,4 +30,14 @@ public interface MoveMapper {
 	
 	public List<MoveVO> moveFindData(Map map);
 	public int moveFindTotalPage(Map map);
+	
+	//찜
+	@Insert("INSERT INTO move_jjim VALUES(j_no_seq.nextval,#{id},#{mno})")
+	public void moveJjimInsert(MoveJjimVO vo);
+	
+	@Delete("DELETE FROM move_jjim WHERE id=#{id} AND mno=#{mno} ")
+	public void moveJjimDelete(MoveJjimVO vo);
+	
+	@Select("SELECT COUNT(*) FROM move_jjim WHERE mno=#{mno} AND id=#{id}")
+	public int moveJjimOk(MoveJjimVO vo);
 }

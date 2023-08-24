@@ -3,12 +3,15 @@ package com.sist.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.MoveMapper;
 import com.sist.vo.CleanVO;
+import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
 
 @Repository
@@ -34,5 +37,17 @@ public class MoveDAO {
 	
 	public int moveFindTotalPage(Map map) {
 		return mapper.moveFindTotalPage(map);
+	}
+	
+	public void moveJjimInsert(MoveJjimVO vo) {
+		mapper.moveJjimInsert(vo);
+	}
+	
+	public void moveJjimDelete(MoveJjimVO vo) {
+		mapper.moveJjimDelete(vo);
+	}
+	
+	public int moveJjimOk(MoveJjimVO vo) {
+		return mapper.moveJjimOk(vo);
 	}
 }

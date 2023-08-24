@@ -1,6 +1,7 @@
 package com.sist.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.dao.CleanReplyDAO;
 import com.sist.service.CleanReplyService;
 import com.sist.vo.CleanReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class CleanReplyRestController {
         String name=(String)session.getAttribute("name");
         vo.setId(id);
         vo.setName(name);
+        System.out.println(id);
+        System.out.println(name);
         service.cleanReplyInsert(vo);
         return clean_reply_list_data(vo.getCno());
     }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sist.dao.CleanDAO;
+import com.sist.vo.CleanJjimVO;
 import com.sist.vo.CleanVO;
 @Service
 public class CleanServiceImpl implements CleanService {
@@ -37,6 +38,24 @@ public class CleanServiceImpl implements CleanService {
 	public int cleanFindTotalPage(Map map) {
 		// TODO Auto-generated method stub
 		return dao.cleanFindTotalPage(map);
+	}
+
+	@Override
+	public void cleanJjimInsert(CleanJjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.cleanJjimInsert(vo);
+	}
+
+	@Override
+	public void cleanJjimDelete(CleanJjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.cleanJjimDelete(vo);
+	}
+
+	@Override
+	public int cleanJjimOk(CleanJjimVO jvo) {
+		System.out.println(jvo.getNo());
+		return dao.cleanJjimOk(jvo);
 	}
 
 }

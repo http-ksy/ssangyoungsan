@@ -28,7 +28,6 @@ public class CleanReplyDAO {
         mapper.cleanReplyInsert(vo);
     }
 
-
     public CleanReplyVO cleanReplyData(int cno){
         return mapper.cleanReplyData(cno);
     }

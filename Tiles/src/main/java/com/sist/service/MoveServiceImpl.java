@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.sist.dao.CleanDAO;
 import com.sist.dao.MoveDAO;
 import com.sist.vo.CleanVO;
+import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
 @Service
 public class MoveServiceImpl implements MoveService {
@@ -39,5 +40,23 @@ public class MoveServiceImpl implements MoveService {
 	public int moveFindTotalPage(Map map) {
 		// TODO Auto-generated method stub
 		return dao.moveFindTotalPage(map);
+	}
+
+	@Override
+	public void moveJjimInsert(MoveJjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.moveJjimInsert(vo);
+	}
+
+	@Override
+	public void moveJjimDelete(MoveJjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.moveJjimDelete(vo);
+	}
+
+	@Override
+	public int moveJjimOk(MoveJjimVO vo) {
+		// TODO Auto-generated method stub
+		return dao.moveJjimOk(vo);
 	}
 }

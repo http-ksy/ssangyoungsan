@@ -17,8 +17,8 @@ public interface MoveReplyMapper {
     public List<MoveReplyVO> moveReplyListData(int mno);
 
     @Insert("INSERT INTO moveSpringRelpy VALUES("
-            + "csr_no_seq.nextval,#{fno},#{id},#{name},"
-            + "#{msg},SYSDATE)")
+            + "csr_no_seq.nextval,#{mno},#{id},#{name},"
+            + "#{msg},null,SYSDATE)")
     public void moveReplyInsert(MoveReplyVO vo);
 
     @Select("SELECT name,msg,user,rownum "

@@ -16,8 +16,8 @@ public interface CleanReplyMapper {
     public List<CleanReplyVO> cleanReplyListData(int cno);
 
     @Insert("INSERT INTO cleanSpringRelpy VALUES("
-            + "csr_no_seq.nextval,#{fno},#{id},#{name},"
-            + "#{msg},SYSDATE)")
+            + "csr_no_seq.nextval,#{cno},#{id},#{name},"
+            + "#{msg},null,SYSDATE)")
     public void cleanReplyInsert(CleanReplyVO vo);
 
     @Select("SELECT name,msg,user,rownum "

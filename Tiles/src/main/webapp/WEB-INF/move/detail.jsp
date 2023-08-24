@@ -59,7 +59,7 @@
                             <h2>{{move_detail.introduce}}</h2>
                         </div>
                         <div class="gallery-img">
-                            <div class="row1">
+                            <div class="row1" style="white-space: pre-wrap;">
                                 {{move_detail.service}}
                             </div>
                         </div>
@@ -70,13 +70,13 @@
                         </div>
                         <div class="form-wrapper pt-80">
                             <div class="row1">
-                                <div class="col-xl-12">
+                                <!-- <div class="col-xl-12">
                                     <div class="small-tittle mb-30">
                                         <h2>댓글</h2>
                                     </div>
-                                </div>
+                                </div> -->
                             
-                            <form id="contact-form" action="#" method="POST">
+                            <!-- <form id="contact-form" action="#" method="POST">
                                 <div class="row1">
                                     <div class="col-lg-12">
                                         <div class="form-box user-icon mb-15">
@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
                         </div>
                         </div>
                     </div>
@@ -134,6 +134,59 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xl-12">
+               <div class="small-tittle mb-30">
+                   <h2>후기</h2>
+               </div>
+            </div>
+             <div style="height: 20px"></div>
+							     <table class="table">
+							      <tr>
+							       <td>
+							        <table class="table" v-for="rvo in reply_list">
+							          <tr>
+							           <td class="text-left">
+							            ★{{rvo.name}}&nbsp;({{rvo.dbday}})
+							           </td>
+							           <td class="text-right">
+							             <span v-if="sessionId==rvo.id">
+							             <button class="btn btn-xs btn-primary ups" :id="'up'+rvo.no" @click="replyUpdateForm(rvo.no)">수정</button>
+							             <button class="btn btn-xs btn-danger"@click="replyDelete(rvo.no)">삭제</button>
+							             </span>
+							           </td>
+							          </tr>
+							          <tr>
+							            <td colspan="2"><pre style="white-space: pre-wrap; background-color: white; border: none;">{{rvo.msg}}</pre></td>
+							          </tr>
+							          <tr :id="'u'+rvo.no" class="updates" style="display: none;">
+							          <td colspan="2">
+							          	<div class="form-box message-icon">
+                                            <textarea rows="5" cols="200" :id="'msg'+rvo.no" placeholder="Comment">{{rvo.msg}}</textarea>
+                                        </div>
+                                        <div class="submit-info" style="width: 1720px;">
+                                            <button class="submit-btn2" type="submit" @click="replyUpdate(rvo.no)">후기 수정</button>
+                                        </div>
+							            <!-- <textarea rows="4" cols="60" id="msg" style="float: left;">{{rvo.msg}}</textarea> -->
+							            <!-- <button style="float: left; background-color: blue; color: white; width: 100px; height: 87px;" @click="replyUpdate(rvo.no)">수정하기</button> -->
+							          </td>
+							         </tr>
+							        </table>
+							       </td>
+							      </tr>
+							     </table>
+							     <div class="col-lg-12" v-if="sessionId!=''">
+							     <div class="col-lg-12">
+                                        <div class="form-box user-icon  mb-15">
+                                            작성자 : <input type="text" :placeholder="name" readonly>
+                                        </div>
+                                    </div>
+                                        <div class="form-box message-icon">
+                                            <textarea rows="5" cols="200" ref="msg" v-model="msg" placeholder="작성할 후기를 적어주세요!"></textarea>
+                                        </div>
+                                        <div class="submit-info" style="width: 1720px;">
+                                            <button class="submit-btn2" type="submit" @click="replyWrite()">후기 작성</button>
+                                        </div>
+                                    </div>
         </div>
 
         <!-- Popular Locations End -->
@@ -160,7 +213,13 @@
 		data:{
 			mno:${mno}, // el 표현식
 			move_detail:{}, // VO
-			poster:[]
+			poster:[],
+			reply_list:[],
+            sessionId:'${id}',
+            msg:'',
+            isShow:false,
+            no:0,
+            name:'${name}'
 		},
 		mounted:function(){
 			axios.get('http://localhost/web/move/detail_vue.do',{
@@ -171,47 +230,87 @@
 				console.log(response.data)
 				this.move_detail=response.data
 			})
-		}
+			this.replyRead();
+		},
+		methods:{
+            replyRead:function (){
+                axios.get('../reply/move_reply_read_vue.do',{
+                    params: {
+                        mno:this.mno
+                    }
+                }).then(response=>{
+                    console.log(response.data)
+                    this.reply_list=response.data
+                }).catch(error=>{
+                    console.log(error.response)
+                })
+            },
+            replyWrite:function (){
+                if(this.msg===""){
+                    this.$refs.msg.focus()
+                    return
+                }
+                axios.post('../reply/move_reply_insert_vue.do',null,{
+                    params:{
+                        mno:this.mno,
+                        msg:this.msg
+                    }
+                }).then(response=>{
+                    console.log(response.data)
+                    this.reply_list=response.data
+                    this.msg='';
+                }).catch(error=>{
+                    console.log(error.response)
+                })
+            },
+            replyDelete:function (no){
+                axios.get('../reply/move_reply_delete_vue.do',{
+                    params:{
+                        no:no,
+                        mno:this.mno
+                    }
+                }).then(response=>{
+                    console.log(response.data)
+                    this.reply_list=response.data
+                }).catch(error=>{
+                    console.log(error.response)
+                })
+            },
+            replyUpdateForm:function(no){
+    			// Jquery => Vue,React
+    			$('.updates').hide()
+    			$('.ups').text('수정');
+    			if(this.no==0){
+    				$('#u'+no).show();
+    				$('#up'+no).text('취소')
+    				this.no=1;
+    			}else{
+    				$('#u'+no).hide();
+    				$('#up'+no).text('수정')
+    				this.no=0;
+    			}
+    		},
+            replyUpdate:function(no){
+            	let msg=$('#msg'+no).val();
+                axios.post('../reply/move_reply_update_vue.do',null,{
+                    params:{
+                        no:no,
+                        mno:this.mno,
+                        msg:msg
+                    }
+                }).then(response=>{
+                    console.log(response.data)
+                    this.reply_list=response.data
+                    $('#u'+no).hide();
+                    $('#up'+no).text('수정')
+                }).catch(error=>{
+                    console.log(error.response)
+                })
+            }
+        }
 	})
 </script>
 <!-- Jquery, Popper, Bootstrap -->
-<script src="../assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="../assets/js/popper.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
-
-<!-- Slick-slider , Owl-Carousel ,slick-nav -->
-<script src="../assets/js/owl.carousel.min.js"></script>
-<script src="../assets/js/slick.min.js"></script>
-<script src="../assets/js/jquery.slicknav.min.js"></script>
-
-<!-- One Page, Animated-HeadLin, Date Picker -->
-<script src="../assets/js/wow.min.js"></script>
-<script src="../assets/js/animated.headline.js"></script>
-<script src="../assets/js/jquery.magnific-popup.js"></script>
-<script src="../assets/js/gijgo.min.js"></script>
-
-<!-- Nice-select, sticky,Progress -->
-<script src="../assets/js/jquery.nice-select.min.js"></script>
-<script src="../assets/js/jquery.sticky.js"></script>
-<script src="../assets/js/jquery.barfiller.js"></script>
-
-<!-- counter , waypoint,Hover Direction -->
-<script src="../assets/js/jquery.counterup.min.js"></script>
-<script src="../assets/js/waypoints.min.js"></script>
-<script src="../assets/js/jquery.countdown.min.js"></script>
-<script src="../assets/js/hover-direction-snake.min.js"></script>
-
-<!-- contact js -->
-<script src="../assets/js/contact.js"></script>
-<script src="../assets/js/jquery.form.js"></script>
-<script src="../assets/js/jquery.validate.min.js"></script>
-<script src="../assets/js/mail-script.js"></script>
-<script src="../assets/js/jquery.ajaxchimp.min.js"></script>
-
-<!-- Jquery Plugins, main Jquery -->	
-<script src="../assets/js/plugins.js"></script>
-<script src="../assets/js/main.js"></script>
 
 </body>
 </html>

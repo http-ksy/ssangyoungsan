@@ -1,5 +1,7 @@
 package com.sist.mapper;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import java.util.*;
 import com.sist.vo.*;
@@ -24,4 +26,14 @@ public interface CleanMapper {
 	public List<CleanVO> cleanFindData(Map map);
 // 	<select id="cleanFindTotalPage" resultType="int" parameterType="hashmap">
 	public int cleanFindTotalPage(Map map);
+	
+//	좋아요
+	@Insert("INSERT INTO clean_jjim VALUES(cj_no_seq.nextval,#{id},#{cno})")
+	public void cleanJjimInsert(CleanJjimVO vo);
+	
+	@Delete("DELETE FROM clean_jjim WHERE id=#{id} AND cno=#{cno}")
+	public void cleanJjimDelete(CleanJjimVO vo);
+	
+	@Select("SELECT COUNT(*) FROM clean_jjim WHERE cno=#{cno} AND id=#{id}")
+	public int cleanJjimOk(CleanJjimVO jvo);
 }
