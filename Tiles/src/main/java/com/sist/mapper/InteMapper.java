@@ -17,7 +17,7 @@ public interface InteMapper {
 	public int inteTotalPage(Map map);
 	
 //디테일
-	@Select("SELECT ino,title,subject,poster,poster2,hashtag,gubun,price,jiyoek "
+	@Select("SELECT ino,title,subject,poster,poster2,hashtag,gubun,price,jiyoek,suggest "
 			+ "FROM inte_detail "
 			+ "WHERE ino=#{ino}")
 	public InteVO inteDetailData(int ino);

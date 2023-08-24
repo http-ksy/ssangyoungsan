@@ -95,8 +95,8 @@
 						                  </c:if> 
 						                   <c:if test="${like_count != 0 }">
                                             <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
-                                           <a href="../inte/like_delete.do?ino=${ ino}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt=""></a>
-						                  </c:if>                  
+                                           <a href="../inte/like_delete.do?ino=${ ino}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt="">{{inte_detail.suggest}}</a>
+						                  </c:if> 
                                         </div>
                                     </div>
                                      <div id="dialog" v-if="isShow">
@@ -182,6 +182,7 @@
                   
                   <!-- 예약 -->
                   <div id="reserve" class="tab-pane fade">
+                  <div v-if="sessionId!=''">
     			    <table class="table" height=700>
       				  <tr>
 					    <td width="65%" height="600"  style="color:gray;">
@@ -243,6 +244,7 @@
 						 
     			    </table> 			 
     			 </div> <!-- 예약 -->
+    			 </div>
                 </div> <!-- tab-content --> 
             </div>
         </div>

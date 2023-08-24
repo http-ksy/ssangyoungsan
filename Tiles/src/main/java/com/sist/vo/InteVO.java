@@ -17,5 +17,5 @@ import lombok.Setter;
 @Setter
 public class InteVO {
 	private int ino;
-	private String title,subject,poster,poster2,hashtag,gubun,price,jiyoek;
+	private String title,subject,poster,poster2,hashtag,gubun,price,jiyoek,suggest;
 }
