@@ -70,6 +70,17 @@
                         </div>
                         <div class="form-wrapper pt-80">
                             <div class="row1">
+                            <div class="" v-if="sessionId!=''">
+                                        <c:if test="${jjim_count == 0 }">
+                                           <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
+                                         <a href="../move/jjim_insert.do?mno=${ mno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:45px; height:45px;" alt=""></a>
+                                         <!-- <a :href="'../inte/like_insert.do?ino='+ino" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></a> -->
+						                </c:if> 
+						                 <c:if test="${jjim_count != 0 }">
+                                          <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
+                                         <a href="../move/jjim_delete.do?mno=${ mno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt=""></a>
+						                </c:if>                  
+                                      </div>
                                 <!-- <div class="col-xl-12">
                                     <div class="small-tittle mb-30">
                                         <h2>댓글</h2>
@@ -104,6 +115,56 @@
                 </div>
             </div>
         </div>
+        <template>
+										  <div class="row">
+										    <label for="datepicker-full-width"><h1>예약날짜 선택</h1></label>
+										    <b-form-datepicker
+										      id="datepicker-full-width"
+										      v-model="rday"
+										      menu-class="w-110"
+										      calendar-width="100%"
+										      class="mb-2"
+										      :date-disabled-fn="dateDisabled" 
+										    ></b-form-datepicker>
+										  </div>
+										    
+										  </div>
+										</template>
+										<div class="row" style="margin: 15px;"></div>
+										<div class="row" v-if="rday!=''">
+										    <template><h1>예약시간 선택</h1>
+											  <b-row>
+											    <b-col md="sm">
+											      <b-time v-model="rtime"></b-time>
+											    </b-col>
+											   
+											  </b-row>
+											</div>
+											</template>
+											<div class="row" style="margin: 15px;"></div>
+										<div class="select-job-items2"><h1>방갯수</h1>
+		                                    <select name="select2" v-model="room">
+		                                        <option value="">방갯수</option>
+		                                        <option v-for="i in roomcount">{{i}}</option>
+		                                    </select>
+		                                </div>
+		                                <div class="row" style="margin: 15px;"></div>
+						<div class="row">
+							<h1>예약정보</h1>
+						</div>
+						<div class="row">
+						 <b-col>
+							<b style="display: block;">날짜 : '{{ rday }}'</b>
+							<b>시간 : '{{ rtime }}'</b>
+							<b >방 갯수 : {{room}}</b>		     
+						</b-col>
+						</div>
+						<div style="margin: 15px;"></div>
+						<div v-if="rday && rtime && room!=''">
+							<button class="btn" @click="reserveOk">예약하기</button>
+						</div>
+						
+        </div>
         <!--  Details End -->
         <!-- listing-area Area End -->
         <!--? Popular Locations Start 01-->
@@ -134,7 +195,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-12">
+            <div class="row">
+            <div class="row">
                <div class="small-tittle mb-30">
                    <h2>후기</h2>
                </div>
@@ -161,7 +223,7 @@
 							          <tr :id="'u'+rvo.no" class="updates" style="display: none;">
 							          <td colspan="2">
 							          	<div class="form-box message-icon">
-                                            <textarea rows="5" cols="200" :id="'msg'+rvo.no" placeholder="Comment">{{rvo.msg}}</textarea>
+                                            <textarea rows="5" cols="103" :id="'msg'+rvo.no" placeholder="Comment">{{rvo.msg}}</textarea>
                                         </div>
                                         <div class="submit-info" style="width: 1720px;">
                                             <button class="submit-btn2" type="submit" @click="replyUpdate(rvo.no)">후기 수정</button>
@@ -174,19 +236,20 @@
 							       </td>
 							      </tr>
 							     </table>
-							     <div class="col-lg-12" v-if="sessionId!=''">
+							     <div class="row" v-if="sessionId!=''">
 							     <div class="col-lg-12">
                                         <div class="form-box user-icon  mb-15">
                                             작성자 : <input type="text" :placeholder="name" readonly>
                                         </div>
                                     </div>
                                         <div class="form-box message-icon">
-                                            <textarea rows="5" cols="200" ref="msg" v-model="msg" placeholder="작성할 후기를 적어주세요!"></textarea>
+                                            <textarea rows="5" cols="103" ref="msg" v-model="msg" placeholder="작성할 후기를 적어주세요!"></textarea>
                                         </div>
                                         <div class="submit-info" style="width: 1720px;">
                                             <button class="submit-btn2" type="submit" @click="replyWrite()">후기 작성</button>
                                         </div>
                                     </div>
+                                </div>
         </div>
 
         <!-- Popular Locations End -->
@@ -219,9 +282,16 @@
             msg:'',
             isShow:false,
             no:0,
-            name:'${name}'
+            name:'${name}',
+            today:'',
+    		rday:'',
+    		rtime:'',
+    		roomcount:10,
+    		room:0,
+    		reserve_list:[]
 		},
 		mounted:function(){
+			this.today = this.getToday();
 			axios.get('http://localhost/web/move/detail_vue.do',{
 				params:{
 					mno:this.mno
@@ -306,7 +376,32 @@
                 }).catch(error=>{
                     console.log(error.response)
                 })
-            }
+            },
+            dateDisabled(ymd, date) {
+    	          // Disable weekends (Sunday = `0`, Saturday = `6`) and
+    	          // disable days that fall on the 13th of the month
+    	          // Return `true` if the date should be disabled
+    	          // yyyy-mm-dd
+    	          return ymd<= this.today
+    	        },
+    	        getToday:function(){
+    	            var date = new Date();
+    	            var year = date.getFullYear();
+    	            var month = ("0" + (1 + date.getMonth())).slice(-2);
+    	            var day = ("0" + date.getDate()).slice(-2);
+
+    	            return year + "-" + month + "-" + day;
+    	        },
+    	        reserveOk(){
+    	        	axios.post('../move/reserve_vue.do',null,{
+    	        		params:{
+    	        			mno:this.mno,
+    	        			rday:this.rday,
+    	        			rtime:this.rtime,
+    	        			room:this.room
+    	        		}
+    	        	})
+    	        }
         }
 	})
 </script>

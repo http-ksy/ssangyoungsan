@@ -33,7 +33,7 @@ public class MoveController {
 		model.addAttribute("vo",vo);
 		model.addAttribute("id", id);
 		model.addAttribute("mno", mno);
-		
+		mvo.setMno(mno);
 		mvo.setId(id);
 		if(id!=null) {
 			int jjim_count=service.moveJjimOk(mvo);

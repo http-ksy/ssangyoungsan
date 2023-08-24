@@ -46,7 +46,6 @@ public class CleanDAO {
 	}
 	
 	public int cleanJjimOk(CleanJjimVO jvo) {
-		System.out.println(jvo.getNo());
 		return mapper.cleanJjimOk(jvo);
 	}
 }

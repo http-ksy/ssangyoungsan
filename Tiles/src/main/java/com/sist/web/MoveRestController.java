@@ -10,18 +10,25 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.MoveService;
+import com.sist.service.ReserveMoveService;
 import com.sist.vo.CleanVO;
 import com.sist.vo.MoveVO;
 import com.sist.vo.PageVO;
+import com.sist.vo.ReserveCleanVO;
+import com.sist.vo.ReserveMoveVO;
 
 @RestController
 public class MoveRestController {
 	@Autowired
 	private MoveService service;
+	
+	@Autowired
+	private ReserveMoveService rservice;
 	
 	@GetMapping(value = "move/list_vue.do",produces = "text/plain;charset=UTF-8")
 	public String move_list(Integer mno,String page,String column,String fd) throws Exception {
@@ -81,5 +88,15 @@ public class MoveRestController {
 		ObjectMapper mapper=new ObjectMapper();
 		result=mapper.writeValueAsString(vo);
 		return result;
+	}
+	@PostMapping(value = "move/reserve_vue.do",produces = "text/plain;charset=UTF-8")
+	public String move_reserve(int mno,ReserveMoveVO vo,HttpSession session) throws Exception{
+		String id=(String)session.getAttribute("id");
+		vo.setId(id);
+		rservice.reserve_ok(vo);
+		
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(vo);
+		return json;
 	}
 }
