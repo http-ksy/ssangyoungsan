@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.sist.mapper.InteMapper;
 import com.sist.vo.InteLikeVO;
 import com.sist.vo.InteReplyVO;
+import com.sist.vo.InteReserveVO;
 import com.sist.vo.InteVO;
 
 @Repository
@@ -69,5 +70,28 @@ public class InteDAO {
 	
 	public int inteLikeOk(InteLikeVO vo) {
 		return mapper.inteLikeOk(vo);
+	}
+	
+//예약 >> 안씀
+	//@Select("SELECT reserve_day FROM inte_detail WHERE ino={ino}")
+	public String InteReserveDay(int ino) {
+		return mapper.InteReserveDay(ino);
+	}
+	
+	//@Select("SELECT time FROM reserve_day WHERE rno=#{rno}")
+	public String reserve_day_time(int rno) {
+		return mapper.reserve_day_time(rno);
+	}
+	
+	//@Select("SELECT time FROM reserve_day WHERE tno=#{tno}")
+	public String  reserve_get_time(int tno) {
+		return mapper.reserve_get_time(tno);
+	}
+
+//예약
+	//@Insert("INSERT INTO reserve_info_inte VALUES(rii_no_seq.nextval,"
+	//		+ "#{id},#{ino},#{rday},#{rtime},'y',SYSDATE)")
+	public void reserveOk(InteReserveVO vo) {
+		mapper.reserveOk(vo);
 	}
 }
