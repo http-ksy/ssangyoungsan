@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import com.sist.vo.CleanReplyVO;
 import com.sist.vo.InteLikeVO;
 import com.sist.vo.InteReplyVO;
+import com.sist.vo.InteReserveVO;
 import com.sist.vo.InteVO;
 
 public interface InteService {
@@ -37,5 +38,13 @@ public interface InteService {
 	public void inteLikeInsert(InteLikeVO vo);
 	public void inteLikeDelete(InteLikeVO vo);
 	public int inteLikeOk(InteLikeVO vo);
+	
+	//예약
+	public String InteReserveDay(int ino);	
+	public String reserve_day_time(int rno);	
+	public String  reserve_get_time(int tno);
+	
+	//이거 예약
+	public void reserveOk(InteReserveVO vo);
 
 }

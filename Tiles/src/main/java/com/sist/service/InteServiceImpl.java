@@ -57,6 +57,26 @@ public class InteServiceImpl implements InteService {
 	public int inteLikeOk(InteLikeVO vo) {
 		return dao.inteLikeOk(vo);
 	}
+
+	@Override
+	public String InteReserveDay(int ino) {
+		return dao.InteReserveDay(ino);
+	}
+
+	@Override
+	public String reserve_day_time(int rno) {
+		return dao.reserve_day_time(rno);
+	}
+
+	@Override
+	public String reserve_get_time(int tno) {
+		return dao.reserve_get_time(tno);
+	}
+
+	@Override
+	public void reserveOk(InteReserveVO vo) {
+		dao.reserveOk(vo);
+	}
 	
 
 /*	@Override
