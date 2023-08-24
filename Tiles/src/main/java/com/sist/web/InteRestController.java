@@ -125,7 +125,7 @@ public class InteRestController {
 	
 	@PostMapping(value = "inte/reply_update_vue.do", produces = "text/plain;charset=UTF-8")
 	public String inteReply_update(InteReplyVO vo) {
-		dao.inteReplyUpdate(vo);
+		dao.inteReplyUpdate(vo); 
 		return inteReply_list_data(vo.getIno());
 	}
 	
