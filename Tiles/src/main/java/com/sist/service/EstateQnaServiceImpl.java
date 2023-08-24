@@ -6,7 +6,7 @@ import com.sist.dao.*;
 import com.sist.vo.*;
 import java.util.*;
 @Service
-public class EstateServiceImpl implements EstateQnaService{
+public class EstateQnaServiceImpl implements EstateQnaService{
 	@Autowired
 	private EstateQnaDAO dao;
 

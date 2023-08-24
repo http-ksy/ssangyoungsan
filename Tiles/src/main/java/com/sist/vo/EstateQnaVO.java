@@ -16,6 +16,6 @@ import lombok.Setter;
 @Setter
 // answer 디폴트: 답변대기 관리자에서 => 글로 변경
 public class EstateQnaVO {
- private int no;
+ private int no,cno;
  private String id,question,company,answer;
 }

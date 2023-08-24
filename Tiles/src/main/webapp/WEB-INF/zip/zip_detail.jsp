@@ -111,10 +111,10 @@
                 <form id="contact-form" action="#" method="POST">
                     <div class="col-lg-12">
                          <div class="form-box message-icon mb-15">
-                              <textarea name="message" id="message" placeholder="Comment" style="height:113px;"></textarea>
+                              <textarea ref="question" v-model="question"style="height:113px;"></textarea>
                          </div>
                          <div class="submit-info text-right">
-                              <button class="genric-btn info-border" type="submit" @click="question()">Send Message</button>
+                              <button class="genric-btn info-border" type="button" @click="zipQna()">Send Message</button>
                          </div>
 					</div>
 				</form>
@@ -150,7 +150,7 @@
 			id:'${sessionScope.id}',
 			state:'',
 			company:'',
-			
+			question:''
 		},
 		mounted:function(){
 			
@@ -205,6 +205,7 @@
 					
 					this.estate_detail=response.data
 					this.estate_img=this.estate_detail.img.split('^')
+					this.company=this.estate_detail.company
 				}).catch(error=>{
 					console.log(error.response)
 				})
@@ -240,6 +241,23 @@
 					}
 				}).catch(error=>{
 					console.log(error.response)
+				})
+			},
+			zipQna:function(){
+				axios.get('../zip/zipQna_vue.do',{
+					params:{
+						cno:this.no,
+						id:this.id,
+						company:this.company,
+						question:this.question
+					}
+				}).then(response=>{
+					console.log(response.data)
+					if(response.data==='ok')
+					{
+						alert("질문 완료")
+						this.$refs.question.value='';
+					}
 				})
 			}
 		}

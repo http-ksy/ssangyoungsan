@@ -20,6 +20,8 @@ public class ZipRestController {
 	private ZipService service;
 	@Autowired
 	private CompanyReviewService reservice;
+	@Autowired
+	private EstateQnaService qservice;
 	@GetMapping(value="zip/zip_list_vue.do",produces = "text/plain;charset=UTF-8")
 	public String zip_list(int etype,int page) throws Exception
 	{
@@ -229,6 +231,17 @@ public class ZipRestController {
 			ex.printStackTrace();
 			result="no";
 		}
+		return result;
+	}
+	@GetMapping(value = "zip/zipQna_vue.do",produces = "text/plain;charset=UTF-8")
+	public String zipQna(String id,int cno, String company,String question) throws Exception
+	{
+		Map map=new HashMap();
+		map.put("id", id);
+		map.put("cno", cno);
+		map.put("question", question);
+		map.put("company", company);
+		String result=qservice.estateQnaInsert(map);
 		return result;
 	}
 }
