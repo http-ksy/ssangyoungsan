@@ -85,36 +85,124 @@
         <th>답변</th>
         <th>답변</th>
        </tr>
-       <tr >
+       <tr  v-for="vo in answer_list" >
 <!--         <td><a :href="'../zip/zip_detail.do?no='+vo.no" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.name}}</a></td> -->
-        <td>번호</td>
-        <td>질문자</td>
-        <td>질문내용</td>
-        <td>상태</td>
+        <td>{{vo.no}}</td>
+        <td>{{vo.id}}</td>
+        <td>{{vo.question}}</td>
+        <td>{{vo.answer}}</td>
         <td>
-         <input type="textarea" ref="content" v-model="content" name="content" style="width:260px; height:100px;">
+         <input type="text" ref="content" v-model="content"  style="width:260px; height:100px;">
 		</td>
         <td>
-	    <input type="button" class="genric-btn info-border circle"  value="답변하기" @click="answer()">
+	    <input type="button" class="genric-btn info-border circle"  value="답변하기" @click="send(vo.no)">
 		<td>
        </tr>
       </table>
-<!--       <div class="justify-content-center"> -->
+      <div class="justify-content-center">
       
-<!--         <ul class="pagination" style="margin-left:400px;"> -->
-<!--          <li v-if="startPage>1"><a href="#" @click="prev()">이전</a></li> -->
-<!--          <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''"> -->
-<!--          <a href="#" @click="pageChange(i)">{{i}}</a></li> -->
-<!--          <li v-if="endPage<totalpage"><a href="#" @click="next()">다음</li> -->
-<!--         </ul> -->
+        <ul class="pagination" style="margin-left:400px;">
+         <li v-if="startPage>1"><a href="#" @click="prev()">이전</a></li>
+         <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''">
+         <a href="#" @click="pageChange(i)">{{i}}</a></li>
+         <li v-if="endPage<totalpage"><a href="#" @click="next()">다음</li>
+        </ul>
      
-<!--       </div> -->
+      </div>
       </div>
   </div>
   </div>
   <script>
   new Vue({
-	  el:'.container'
+	  el:'.container',
+	  data:{
+		  answer_list:[],
+		  page_list:{},
+		  curpage:1,
+		  totalpage:0,
+		  startPage:0,
+		  endPage:0,
+		  company:'${sessionScope.name}',
+		  answer:'',
+		  content:''
+		  
+	  },mounted:function(){
+		this.answersend()  
+	  },
+	  methods:{
+		  answersend:function(){
+			  axios.get('../member/answer.do',{
+				  params:{
+					  company:this.company,
+					  page:this.curpage
+				  }
+			  }).then(response=>{
+				  console.log(response.data)
+				  this.answer=response.data.answer
+				  this.answer_list=response.data
+				  
+			  }).catch(error=>{
+				  console.log(error.response)
+			  })
+			  axios.get('../member/answer_page.do',{
+				  params:{
+					  page:this.curpage,
+					  company:this.company
+				  }
+			  }).then(response=>{
+				  console.log(response.data);
+				  this.page_list=response.data
+				  this.curpage=this.page_list.curpage
+				  this.totalpage=this.page_list.totalpage
+				  this.startPage=this.page_list.startPage
+				  this.endPage=this.page_list.endPage
+			  })
+		  },
+		  range:function(start,end){
+			  let arr=[];
+			  let length= end-start;
+			  for(let i=0;i<=length;i++)
+			  {
+				arr[i]=start
+				start++;
+			  }
+			  return arr;
+		  },
+		  pageChange:function(page){
+			  this.curpage=page
+			  this.answersend();
+		  },
+		  prev:function(){
+			  this.curpage=this.startPage-1;
+			  this.answersend();
+		  },
+		  next:function(){
+			  this.curpage=this.endPage+1;
+			  this.answersend();
+		  },
+		  send:function(no){
+			 
+			  axios.post('../member/answer_insert.do',null,{
+				  params:{
+					  no:no,
+					  content:this.content+'no'.value
+				  }
+			  }).then(response=>{
+				  console.log(response.data)
+				  if(response.data==="ok")
+				  {
+					alert('답변 완료')
+					location.href='../member/qna.do'
+				  }
+				  else
+				  {
+					alert('답변 실패') 
+				  }
+			  }).catch(error=>{
+				  console.log(error.response)
+			  })
+		  }
+	  }
   })
   </script>
 </body>

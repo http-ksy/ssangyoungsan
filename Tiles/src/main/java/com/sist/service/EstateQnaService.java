@@ -23,4 +23,6 @@ public interface EstateQnaService {
 //			+ "(SELECT no,id,question,company,answer FROM estateQna WHERE id=#{id})) "
 //			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<EstateQnaVO> estateQnaUserListData(Map map);
+	//@Select("SELECT CEIL(COUNT(*)/5) FROM estateqna WHERE answer='답변대기' and company=#{company}")
+	public int customerTotalPage(Map map);
 }

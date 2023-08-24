@@ -9,13 +9,15 @@ import com.sist.vo.*;
 public interface EstateQnaMapper {
 	@Insert("INSERT INTO EstateQna VALUES(eq_no_seq.nextval,#{cno},#{id},#{question},#{company},'답변대기')")
 	public void estateQnaInsert(Map map);
-	@Update("UPDATE EstateQna SET answer=#{answer} WHERE no=#{no}")
+	@Update("UPDATE EstateQna SET answer=#{content} WHERE no=#{no}")
 	public void estateQnaUpdate(Map map);
 	@Select("SELECT no,cno,id,question,company,answer,num FROM "
 			+ "(SELECT no,cno,id,question,company,answer,rownum as num FROM"
-			+ "(SELECT no,cno,id,question,company,answer FROM estateQna WHERE company=#{company})) "
+			+ "(SELECT no,cno,id,question,company,answer FROM estateQna WHERE answer LIKE '%'||'답변대기'||'%' AND company=#{company})) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<EstateQnaVO> estateQnaCompanyListData(Map map);
+	@Select("SELECT CEIL(COUNT(*)/5) FROM estateqna WHERE answer LIKE '%'||'답변대기'||'%' AND company=#{company}")
+	public int customerTotalPage(Map map);
 	@Select("SELECT no,cno,id,question,company,answer,num FROM "
 			+ "(SELECT no,cno,id,question,company,answer,rownum as num FROM"
 			+ "(SELECT no,cno,id,question,company,answer FROM estateQna WHERE id=#{id})) "

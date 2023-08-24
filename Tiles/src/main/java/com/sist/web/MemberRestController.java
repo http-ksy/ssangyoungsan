@@ -351,10 +351,10 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	 return json;
  }
  @GetMapping(value="member/answer.do",produces="text/plain;charset=UTF-8")
- public String member_answer(int page, String id) throws Exception
+ public String member_answer(int page, String company) throws Exception
  {
 	 Map map=new HashMap();
-	 map.put("company", id);
+	 map.put("company", company);
 	 
 	 int rowSize=5;
 	 int start=(rowSize*page)-(rowSize-1);
@@ -367,5 +367,41 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	 
 	 String json=mapper.writeValueAsString(list);
 	 return json;
+ }
+ @GetMapping(value="member/answer_page.do",produces="text/plain;charset=UTF-8")
+ public String answer_page(int page,String company) throws Exception
+ {
+	 Map map=new HashMap();
+	 
+	 map.put("company", company);
+	 int totalpage=qservice.customerTotalPage(map);
+	 
+	 final int BLOCK=5;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ @PostMapping(value="member/answer_insert.do",produces="text/plain;charset=UTF-8")
+ public String answer_insert(int no, String content) throws Exception
+ {
+	 Map map=new HashMap();
+	 System.out.println("no:"+no);
+	 System.out.println("content: "+content);
+	 map.put("no", no);
+	 map.put("content", content);
+	 
+	 String result=qservice.estateQnaUpdate(map); // 답변
+	 return result;
+	 
  }
 }
