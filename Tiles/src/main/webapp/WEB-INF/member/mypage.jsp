@@ -71,7 +71,12 @@
       </tr> 
        <tr style="height:30px;">
         <td>
-           <a href="../member/zipbuy.do" class="genric-btn success circle btn" >문의하기</a>
+           <a href="../member/zipbuy.do" class="genric-btn success circle btn" >리뷰쓰기</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/zipqna.do" class="genric-btn success circle btn" >문의하기</a>
         </td>
       </tr> 
         </table>

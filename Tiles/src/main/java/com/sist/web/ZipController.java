@@ -49,4 +49,9 @@ public class ZipController {
 	{
 		return "member/qna";
 	}
+	@GetMapping("member/zipqna.do")
+	public String zip_question(Model model)
+	{
+		return "member/zipqna";
+	}
 }

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sist.service.EstateQnaService;
 import com.sist.service.MemberService;
 import com.sist.vo.EstateDetailVO;
+import com.sist.vo.EstateQnaVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.PageVO;
 
@@ -28,6 +30,8 @@ private BCryptPasswordEncoder encoder;
 @Autowired
 private MemberService service;
 
+@Autowired 
+private EstateQnaService qservice;
 @PostMapping(value="member/join_ok.do",produces="text/plain;charset=UTF-8")
 public String member_join(MemberVO vo)
 {
@@ -344,6 +348,24 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	 
 	 ObjectMapper mapper=new ObjectMapper();
 	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ @GetMapping(value="member/answer.do",produces="text/plain;charset=UTF-8")
+ public String member_answer(int page, String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("company", id);
+	 
+	 int rowSize=5;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=rowSize*page;
+	 map.put("start", start);
+	 map.put("end", end);
+	 
+	 List<EstateQnaVO> list=qservice.estateQnaCompanyListData(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 
+	 String json=mapper.writeValueAsString(list);
 	 return json;
  }
 }
