@@ -45,8 +45,8 @@
                     <div class="col-lg-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Shop</a></li> 
+                                <li class="breadcrumb-item"><a href="../main/main.do">Home</a></li>
+                                <li class="breadcrumb-item"><a href="../zip/zip_list.do">부동산 목록</a></li> 
                             </ol>
                         </nav>
                     </div>
@@ -133,8 +133,31 @@
                                 </div>
                                 <!--  Select km items End-->
                             </div>
+                            <div class="ad-card" style="height: 300px">
+				               <br><h3 class=" ">최근 본 부동산</h3>
+				                   <div>
+					                 <c:forEach var="cvo" items="${clist }" varStatus="s">
+						                 <c:if test="${s.index>=0 && s.index<3 }">
+						                 <table class="table">
+							                 <tr>
+								                 <td><a href="../zip/zip_detail.do?no=${cvo.no }"> <img src="${cvo.img }" style="width: 200px; height:150px; border-radius:30px !important;">
+												 </a> 
+								                 </td>
+								             </tr>
+								             <tr>
+								                 <td>${cvo.name }</td>
+							                 </tr>
+						                 </table>
+						                 </c:if>
+					                 </c:forEach>
+				                   <!-- forEach -->
+				                  
+				                   </div>
+			                   
+			                </div>
                         </div>
                         <!-- Job Category Listing End -->
+                        
                     </div>
                     <!--?  Right content -->
                     <div class="col-xl-9 col-lg-9 col-md-8 ">
@@ -153,8 +176,8 @@
                                             </div>
                                         </div>
                                         <div class="popular-caption" >
-                                        <a :href="'../zip/zip_detail.do?no='+vo.no"><img :src="vo.img" style="width:225px;height:200px;"></a>
-                                         <h3><a :href="'../zip/zip_detail.do?no='+vo.no" style="color:black;">{{vo.name}}</a></h3>
+                                        <a :href="'../zip/zip_detail_before.do?no='+vo.no"><img :src="vo.img" style="width:225px;height:200px;"></a>
+                                         <h3><a :href="'../zip/zip_detail_before.do?no='+vo.no" style="color:black;">{{vo.name}}</a></h3>
                                         <span>{{vo.addr}}</span>
                                         
                                         <span>{{vo.dprice}}/{{vo.type}}</span>
@@ -198,7 +221,8 @@
 			curpage:1,
 			totalpage:0,
 			startPage:0,
-			endPage:0
+			endPage:0,
+			cookie:[]
 		}, 	
 		mounted:function(){
 			this.ListData(1)
@@ -307,7 +331,7 @@
 // 				console.log('fd : '+this.fd)
 // 				this.curpage=1;
 // 				this.send();
-// 			}
+// 			},
 		}
 	})
 </script>

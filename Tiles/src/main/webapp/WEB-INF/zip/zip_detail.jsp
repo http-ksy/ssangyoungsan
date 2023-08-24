@@ -16,7 +16,19 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="page-notification">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="../main/main.do">Home</a></li>
+                                <li class="breadcrumb-item"><a href="../zip/zip_list.do">부동산 목록</a></li> 
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
 	<div class="row">
 		<table class="table">
 			<tr>
@@ -93,14 +105,19 @@
 				<td>{{estate_detail.comaddr}}</td>
 			</tr>
 			<tr>
+			</tr>
+			<tr>
 				<td v-if="estate_detail.state!='매매진행완료'" class="text-center">
-					<a :href="'../zip/zipsago.do?no='+estate_detail.no" class="genric-btn info-border circle">구매하기</a>
+					<a :href="'../zip/zipsago.do?no='+estate_detail.no" class="genric-btn info-border">구매하기</a>
 				</td>
 				<td v-if="state!='OK'">
-					<button class="genric-btn info-border circle" @click="zipZim()">찜</button>
+					<button class="genric-btn info-border" @click="zipZim()">찜</button>
 				</td>
 				<td v-if="state=='OK'">
-					<button class="genric-btn info-border circle" @click="zipZim()">찜 취소</button>
+					<button class="genric-btn info-border" @click="zipZim()">찜 취소</button>
+				</td>
+				<td>
+					<button class="genric-btn info-border" type="button" onclick="javascript:history.back()">목록</button>
 				</td>
 			</tr>
 		</table>
@@ -116,6 +133,7 @@
                          <div class="submit-info text-right">
                               <button class="genric-btn info-border" type="button" @click="zipQna()">Send Message</button>
                          </div>
+                         
 					</div>
 				</form>
 			</div> 
@@ -123,7 +141,7 @@
 		<div class="row" style="width:800px;float:left">
 			<div class="form-wrapper">
 			<h3 class="text-center">공인중개사 리뷰</h3>
-			<table class="table">
+			<table class="table" >
 				<tr>
 					<th width=20%>이름</th>
 					<th width=60%>내용</th>
@@ -137,6 +155,7 @@
 			</table>
 		</div> 
 	</div>
+</div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2633d4b49e21c9b14bd17316553d25a2&libraries=services"></script>
 <script>
@@ -217,7 +236,14 @@
 					}
 				}).then(response=>{
 					console.log(response.data)
-					this.review=response.data
+					if(response.data!=null)
+					{
+						this.review=response.data
+					}
+					else
+					{
+						this.review=[]
+					}
 				}).catch(error=>{
 					console.log(error.response)
 				})

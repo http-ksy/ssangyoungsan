@@ -2,6 +2,8 @@ package com.sist.web;
 
 import java.util.*;
 
+import javax.servlet.http.Cookie;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -110,7 +112,6 @@ public class ZipRestController {
 	public String company_review(int no) throws Exception
 	{
 		List<CompanyReviewVO> list=reservice.companyReviewListData(no);
-		System.out.println("content:"+list.get(0).getContent());
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
 		return json;

@@ -34,7 +34,7 @@ public interface ZipMapper {
 	@Update("UPDATE estate_detail SET state='매매진행완료' WHERE no=#{no}")
 	public void zipbuyTypeUpdate(int no);
 	// 찜
-	@Insert("INSERT INTO zipZim VALUES(#{no},#{id})")
+	@Insert("INSERT INTO zipZim VALUES(zz_zno_seq.nextval,#{no},#{id})")
 	public void zipZim(zipZimVO vo);
 	@Select("SELECT COUNT(*) FROM zipZim WHERE id=#{id} AND no=#{no}")
 	public int zipZimCheck(zipZimVO vo);	
