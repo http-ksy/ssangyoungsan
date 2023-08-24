@@ -40,6 +40,11 @@ public class EstateQnaDAO {
 	{
 		return mapper.estateQnaUserListData(map);
 	}
+	//@Select("SELECT CEIL(COUNT(*)/5) FROM estateqna WHERE answer LIKE '%'||'답변대기'||'%' AND id=#{id}")
+	public int userTotalPage(Map map)
+	{
+		return mapper.userTotalPage(map);
+	}
 	//@Select("SELECT CEIL(COUNT(*)/5) FROM estateqna WHERE answer='답변대기' and company=#{company}")
 	public int customerTotalPage(Map map)
 	{

@@ -90,4 +90,33 @@ public class MemberDAO {
 	{
 		return mapper.zipBuyTotalPage(map);
 	}
+	
+	/*@Select("SELECT no,ino,id,num "
+			+ "FROM (SELECT no,ino,id,rownum as num "
+			+ "FROM (SELECT no,ino,id "
+			+ "FROM interior_like WHERE id=#{id} ORDER BY no ASC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")*/
+	public List<Integer> inteLike(Map map)
+	{
+		return mapper.inteLike(map);
+	}
+	//@Select("SELECT CEIL(COUNT(*)/8) FROM interior_like WHERE id=#{id}")
+	public int inteLikeTotalPage(Map map)
+	{
+		return mapper.inteLikeTotalPage(map);
+	}
+	public void inteZimDelete(InteLikeVO vo)
+	{
+		mapper.inteZimDelete(vo);
+	}
+	
+	public List<Integer> moveZzim(Map map)
+	{
+		return mapper.moveZzim(map);
+	}
+	@Select("SELECT CEIL(COUNT(*)/8) FROM interior_like WHERE id=#{id}")
+	public int moveZzimTotalPage(Map map)
+	{
+		return mapper.moveZzimTotalPage(map);
+	}
 }

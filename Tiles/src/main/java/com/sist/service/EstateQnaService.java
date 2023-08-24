@@ -25,4 +25,6 @@ public interface EstateQnaService {
 	public List<EstateQnaVO> estateQnaUserListData(Map map);
 	//@Select("SELECT CEIL(COUNT(*)/5) FROM estateqna WHERE answer='답변대기' and company=#{company}")
 	public int customerTotalPage(Map map);
+	//@Select("SELECT CEIL(COUNT(*)/5) FROM estateqna WHERE answer LIKE '%'||'답변대기'||'%' AND id=#{id}")
+	public int userTotalPage(Map map);
 }

@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReserveMoveVO {
-	private int mrno,mno;
-	private String rcid,rday,rtime,rinwon,rok;
+	private int no,mno,price;
+	private String id,rday,rtime,room,rok;
 	private Date regdate;
-	private String poster,title,address,mdbday;
+	private String poster,title,address,dbday;
 }

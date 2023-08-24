@@ -43,5 +43,11 @@ public class EstateQnaServiceImpl implements EstateQnaService{
 		// TODO Auto-generated method stub
 		return dao.customerTotalPage(map);
 	}
+
+	@Override
+	public int userTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.userTotalPage(map);
+	}
 	
 }

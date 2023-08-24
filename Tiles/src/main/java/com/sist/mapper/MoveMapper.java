@@ -32,7 +32,7 @@ public interface MoveMapper {
 	public int moveFindTotalPage(Map map);
 	
 	//찜
-	@Insert("INSERT INTO move_jjim VALUES(j_no_seq.nextval,#{id},#{mno})")
+	@Insert("INSERT INTO move_jjim VALUES(mj_no_seq.nextval,#{id},#{mno})")
 	public void moveJjimInsert(MoveJjimVO vo);
 	
 	@Delete("DELETE FROM move_jjim WHERE id=#{id} AND mno=#{mno} ")

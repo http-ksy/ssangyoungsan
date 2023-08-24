@@ -8,17 +8,23 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.CleanService;
+import com.sist.service.ReserveCleanService;
 import com.sist.vo.CleanVO;
 import com.sist.vo.PageVO;
+import com.sist.vo.ReserveCleanVO;
 
 @RestController
 public class CleanRestController {
 	@Autowired
 	private CleanService service;
+	
+	@Autowired
+	private ReserveCleanService rservice;
 	
 	@GetMapping(value = "clean/list_vue.do",produces = "text/plain;charset=UTF-8")
 	public String clean_list(Integer cno, String page,String column,String fd) throws Exception {
@@ -107,5 +113,15 @@ public class CleanRestController {
 		ObjectMapper mapper=new ObjectMapper();
 		result=mapper.writeValueAsString(vo);
 		return result;
+	}
+	@PostMapping(value = "clean/reserve_vue.do",produces = "text/plain;charset=UTF-8")
+	public String clean_reserve(int cno,ReserveCleanVO vo,HttpSession session) throws Exception{
+		String id=(String)session.getAttribute("id");
+		vo.setId(id);
+		rservice.reserve_ok(vo);
+		
+		ObjectMapper mapper=new ObjectMapper();	
+		String json=mapper.writeValueAsString(vo);
+		return json;
 	}
 }

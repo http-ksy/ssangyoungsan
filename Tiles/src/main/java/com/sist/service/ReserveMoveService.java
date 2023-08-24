@@ -1,5 +1,7 @@
 package com.sist.service;
 
-public interface ReserveMoveService {
+import com.sist.vo.ReserveMoveVO;
 
+public interface ReserveMoveService {
+	public void reserve_ok(ReserveMoveVO vo);
 }

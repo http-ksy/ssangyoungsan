@@ -6,9 +6,9 @@
 <mapper namespace="com.sist.mapper.InteMapper">
 	
 	<select id="inteListData" resultType="InteVO" parameterType="hashmap">
-	  SELECT ino,title,poster,subject,jiyoek,price,gubun,num 
-	  FROM (SELECT ino,title,poster,subject,jiyoek,price,gubun,rownum as num 
-	  FROM (SELECT ino,title,poster,subject,jiyoek,price,gubun 
+	  SELECT ino,title,poster,subject,jiyoek,price,gubun,suggest,num 
+	  FROM (SELECT ino,title,poster,subject,jiyoek,price,gubun,suggest,rownum as num 
+	  FROM (SELECT ino,title,poster,subject,jiyoek,price,gubun,suggest 
 	  FROM inte_detail 
 	   <if test="column!='all'">
 	    WHERE ${column} LIKE '%'||#{fd}||'%' 
