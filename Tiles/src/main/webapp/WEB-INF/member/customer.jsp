@@ -105,7 +105,7 @@
       </tr> 
        <tr style="height:30px;">
         <td>
-           <input type="button" class="genric-btn success circle btn" value="문의하기">
+          <a href="../member/qna.do" class="genric-btn success circle btn" >문의하기</a>
         </td>
       </tr> 
         </table>
