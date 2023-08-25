@@ -33,4 +33,9 @@ public class ProductDAO {
 	{
 		return mapper.productDetailData(map);
 	}
+	
+	public ProductVO productCartData(Map map)
+	{
+		return mapper.productCartData(map);
+	}
 }

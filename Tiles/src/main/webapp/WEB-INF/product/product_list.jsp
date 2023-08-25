@@ -178,9 +178,9 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                 	
                                	  </div>  
                                 		<div class="frame">
-                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=1">가구</a></button>
-                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=2">패브릭</a></button>
-                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=3">조명</a></button>
+                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=1" style="color: black">가구</a></button>
+                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=2" style="color: black">패브릭</a></button>
+                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=3" style="color: black">조명</a></button>
 		                                </div>
                                 <!--  Select km items End-->
                             </div>
@@ -200,14 +200,15 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" v-for="vo in product_list">
                                     <div class="single-new-arrival mb-50 text-center">
                                         <div class="popular-img">
-                                            <a :href="'../product/product_detail.do?no='+vo.no+'&type='+type"><img :src="vo.poster"></a>                                            <div class="favorit-items">
+                                            <a :href="'../product/product_detail.do?no='+vo.no+'&type='+type"><img :src="vo.poster"></a>                                            
+                                            <div class="favorit-items">
                                                 <!-- <span class="flaticon-heart"></span> -->
                                                 <img src="../assets/img/gallery/favorit-card.png" alt="">
                                             </div>
                                         </div>
                                         <div class="popular-caption text-left">
-                                           <h4>[ <a href="#">{{vo.brand}}</a> ]</h4>
-                                           <h3><a href="#">{{vo.title}}</a></h3>
+                                           <h4>[ {{vo.brand}} ]</h4>
+                                           <h3><a :href="'../product/product_detail.do?no='+vo.no+'&type='+type" style="color: black">{{vo.title}}</a></h3>
                                            <div class="rating mb-10">
                                               <i class="fas fa-star"></i>
                                               <i class="fas fa-star"></i>

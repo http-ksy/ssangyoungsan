@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductReplyVO {
-	private int prno,no;
+	private int pno,no,type;
 	private String id,name,msg,dbday;
 	private Date regdate;
 }

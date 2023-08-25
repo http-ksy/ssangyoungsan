@@ -1,5 +1,6 @@
 package com.sist.web;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -122,6 +123,21 @@ public class ProductRestController {
 		map.put("table_name", tables[type]);
 		map.put("no", no);
 		ProductVO vo=dao.productDetailData(map);
+		String original_pri=vo.getOriginal_pri().replaceAll("[^0-9]", "");
+		vo.setOriginal_pri(original_pri);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(vo);
+		return json;
+	}
+
+	
+	@GetMapping(value = "product/product_cart_vue.do",produces = "text/plain;charset=UTF-8")
+	public String product_cart(int no,int type) throws Exception
+	{
+		Map map=new HashMap();
+		map.put("table_name", tables[type]);
+		map.put("no", no);
+		ProductVO vo=dao.productCartData(map);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(vo);
 		return json;

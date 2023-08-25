@@ -37,7 +37,7 @@
      </h1>
      <ul class="blog-info-link mt-3 mb-4">
        <li><b-icon icon="person-fill"></b-icon>&nbsp;{{landboard_detail.id}}</li>
-       <li><b-icon icon="chat-square-dots-fill" ></b-icon>&nbsp;03 Comments</li>
+       <li><b-icon icon="chat-square-dots-fill" ></b-icon>&nbsp;{{landboard_reply.length}} Comments</li>
        
        <li><b-icon icon="eye-fill" ></b-icon>&nbsp;{{landboard_detail.hit}}</li>
        <li><b-icon icon="hand-thumbs-up"></b-icon>좋아요</li>
@@ -54,26 +54,60 @@
  <h4><b-icon icon="chat-square-dots-fill"></b-icon>&nbsp;댓글!!!</h4>
  <hr>
 <div>
-	<div class="row" style="width: 100%">
-		<div class="col-md-10">
-      <p class="text-left">
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-        Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc
-        ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-      </p>
+	<div class="row" style="width: 100%" v-for="rvo in landboard_reply">
+		
+		<div class="col-md-10" >
+      	<span>{{rvo.nickname}}</span>
+      	<span>{{rvo.dbday}}</span>
+      	<div style="border: 1px solid black;margin: 5px;">
+      <b-form-textarea
+	    id="textarea-no-resize"
+	    placeholder="Fixed height textarea"
+	    rows="3"
+	    no-resize
+	    v-model="rvo.content"
+	    readonly
+	  ></b-form-textarea>
       </div>
-      <div class="col-md-2">
-      <b-button class="genric-btn danger small circle arrow">수정<b-icon icon="hammer"></b-icon></b-button>
-      <b-button class="genric-btn info small circle arrow">삭제<b-icon icon="backspace-fill"></b-icon></b-button>
+      </div>
+      <div class="col-md-2" v-if="id==rvo.id">
+      <br>
+	      <b-button v-b-toggle:my-collapse class="genric-btn danger small circle arrow" >수정<b-icon icon="hammer"></b-icon></b-button>
+	      <b-button class="genric-btn info small circle arrow">삭제<b-icon icon="backspace-fill"></b-icon></b-button>
+      </div>
+      <br>
+      <div>
+      	 <b-collapse id="my-collapse">
+	      	
+    	</b-collapse>
+      </div>
+      <div v-if="id==rvo.id">
+      	<b-button v-b-toggle="'collapse-'+rvo.no" class="m-1 genric-btn info-border small"><b-icon icon="arrow-return-right"></b-icon></b-button>
+      		
+      		<b-collapse :id="'collapse-'+rvo.no">
+      		<div class="row">
+			  <div class="col-md-8">
+		      		<b-form-textarea
+					    id="textarea-no-resize"
+					    placeholder="댓글 입력하세요"
+					    rows="3"
+					    no-resize
+		         	 ></b-form-textarea>
+		      </div>
+		      <div class="col-md-2">
+		      	<b-button class="genric-btn warning small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
+		      </div>
+		    </div>
+		  </b-collapse>
       </div>
       </div>
 		  
 	 
 		 <div>
-		   <span></span>
+		   
 		
 		  <!-- Using value -->
-		  <b-button v-b-toggle="'collapse-2'" class="m-1 genric-btn info-border small">대 댓글입력</b-button>
+		  
 		
 		  <!-- Element to collapse -->
 		  
@@ -108,10 +142,11 @@
 			    placeholder="댓글 입력하세요"
 			    rows="3"
 			    no-resize
+			    v-model="content"
           ></b-form-textarea>
       </div>
       <div class="col-md-2">
-      	<b-button class="genric-btn warning small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
+      	<b-button class="genric-btn warning small" style="width:100%; height:100%;" @click="boardreplyInsert()"><b-icon icon="vector-pen"></b-icon></b-button>
       </div>
       </div>
 </div>
@@ -127,10 +162,14 @@ new Vue({
 		landboard_detail:{},
 		no:'${no}',
 		notice:'',
-		id:'${sessionScope.id}'
+		id:'${sessionScope.id}',
+		landboard_reply:[],
+		content:'',
+		size:''
 	},
 	mounted:function(){
 		console.log('id: '+this.id)
+		
 		axios.get('http://localhost/web/landboard/landboard_detail.do',{
 			params:{
 				no:this.no
@@ -141,12 +180,41 @@ new Vue({
 		}).catch(error=>{
 			console.log(error.response)
 		})
+		this.reply_list();
+		this.size=landboard_reply.length
 	},
 	methods: {
 	      handleHover(hovered) {
 	        this.isHovered = hovered
+	      },
+	      reply_list(){
+	          axios.get('http://localhost/web/landboard/landboardreply_list.do',{
+	  	          params:{
+	  				  bno:this.no
+	  			  }
+	  		  }).then(response=>{
+	  		      console.log(response.data)
+	  			  this.landboard_reply=response.data
+	  		  }).catch(error=>{
+	  			  console.log(error.response)
+	  		  })
+	      },
+	      boardreplyInsert:function(){
+	    	  axios.post("http://localhost/web/landboard/landboardreply_insert.do",null,{
+	    		  params:{
+	    			  bno:this.no,
+	    			  content:this.content,
+	    			  id:this.id
+	    		  }
+	    	  }).then(response=>{
+	    		  console.log(response.data)
+	    		  this.landboard_reply=response.data
+	    		  this.content=''
+	    	  }).catch(error=>{
+	    		  console.log(error.response)
+	    	  })
 	      }
-	    }
+	}
 })
 </script>
 </body>
