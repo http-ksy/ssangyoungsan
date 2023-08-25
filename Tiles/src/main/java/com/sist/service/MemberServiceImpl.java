@@ -169,5 +169,17 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		dao.cleanZimDelete(vo);
 	}
+
+	@Override
+	public List<InteReserveVO> inte_reserve(Map map) {
+		// TODO Auto-generated method stub
+		return dao.inte_reserve(map);
+	}
+
+	@Override
+	public int inte_reserve_totalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.inte_reserve_totalPage(map);
+	}
  
 }

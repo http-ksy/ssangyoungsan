@@ -13,6 +13,7 @@ import com.sist.vo.CleanJjimVO;
 import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.InteLikeVO;
+import com.sist.vo.InteReserveVO;
 import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.MoveJjimVO;
@@ -67,4 +68,15 @@ public interface MemberService {
 	//@Select("SELECT CEIL(COUNT(*)/8) FROM clean_jjim WHERE id=#{id}")
 	public int cleanZzimTotalPage(Map map);
 	public void cleanZimDelete(CleanJjimVO vo);
+	
+	////////// 인테리어 사장님 페이지에 출력
+	// 인테리어 사장님 예약 목록 // 사용자 인테리어 예약 목록
+//		@Select("SELECT no,id,ino,reserve_date,reserve_time,num "
+//				+ "FROM (SELECT no,id,ino,reserve_date,reserve_time,rownum as num "
+//				+ "FROM (SELECT no,id,ino,reserve_date,reserve_time "
+//				+ "FROM reserve_info_inte ORDER BY no ASC)) "
+//				+ "WHERE num BETWEEN #{start} AND #{end} ")
+		public List<InteReserveVO> inte_reserve(Map map);
+//		@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_inte ")
+		public int inte_reserve_totalPage(Map map);
 }

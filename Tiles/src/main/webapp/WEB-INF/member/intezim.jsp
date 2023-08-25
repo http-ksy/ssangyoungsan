@@ -149,11 +149,7 @@
 			startPage:0,
 			endPage:0,
 			id:'${sessionScope.id}'
-			
-			
-			
-			
-			
+
 		},
 		mounted:function(){
 			 this.intezimList()	

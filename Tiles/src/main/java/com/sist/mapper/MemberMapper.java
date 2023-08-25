@@ -109,4 +109,15 @@ public interface MemberMapper {
 	public int cleanZzimTotalPage(Map map);
 	@Delete("DELETE FROM clean_jjim WHERE id=#{id} AND cno=#{cno}")
 	public void cleanZimDelete(CleanJjimVO vo);
+	
+	////////////////////////////////////////////////////////////
+	// 인테리어 사장님 예약 목록 // 사용자 인테리어 예약 목록
+	@Select("SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time,num "
+			+ "FROM (SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time,rownum as num "
+			+ "FROM (SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time "
+			+ "FROM reserve_info_inte ORDER BY no ASC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<InteReserveVO> inte_reserve(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_inte ")
+	public int inte_reserve_totalPage(Map map);
 }

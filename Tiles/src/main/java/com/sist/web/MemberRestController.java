@@ -22,6 +22,7 @@ import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.EstateQnaVO;
 import com.sist.vo.InteLikeVO;
+import com.sist.vo.InteReserveVO;
 import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.MoveJjimVO;
@@ -625,4 +626,42 @@ public String memberDelete(String id,String pwd,HttpSession session)
 		}
 		return result;
 	}
+ @GetMapping(value="member/inte_custom_reserve.do", produces="text/plain;charset=UTF-8")
+ public String inte_custom_reserve(int page) throws Exception
+ {
+	 Map map=new HashMap();
+	 int rowSize=8;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=(rowSize*page);
+	 map.put("start", start);
+	 map.put("end", end);
+	 List<InteReserveVO> list=service.inte_reserve(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+
+ }
+ @GetMapping(value="member/intereserve_page.do",produces="text/plain;charset=UTF-8")
+ public String inte_custom_reserve_page(int page) throws Exception
+ {
+	 Map map=new HashMap();
+	 	 
+	 int totalpage=service.inte_reserve_totalPage(map);
+	 
+	 final int BLOCK=3;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
 }

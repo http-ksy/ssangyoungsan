@@ -59,4 +59,9 @@ public class MemberController {
  {
 	 return "member/cleanzim";
  }
+ @GetMapping("member/customer_reserve.do")
+ public String member_customer_reserve()
+ {
+	 return "member/customer_reserve";
+ }
 }

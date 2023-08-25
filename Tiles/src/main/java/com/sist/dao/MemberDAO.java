@@ -137,5 +137,20 @@ public class MemberDAO {
 	{
 		mapper.cleanZimDelete(vo);
 	}
+	// 인테리어 사장님 예약 목록 // 사용자 인테리어 예약 목록
+		/*@Select("SELECT no,id,ino,reserve_date,reserve_time,num "
+				+ "FROM (SELECT no,id,ino,reserve_date,reserve_time,rownum as num "
+				+ "FROM (SELECT no,id,ino,reserve_date,reserve_time "
+				+ "FROM reserve_info_inte ORDER BY no ASC)) "
+				+ "WHERE num BETWEEN #{start} AND #{end} ")*/
+		public List<InteReserveVO> inte_reserve(Map map)
+		{
+			return mapper.inte_reserve(map);
+		}
+		//@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_inte ")
+		public int inte_reserve_totalPage(Map map)
+		{
+			return mapper.inte_reserve_totalPage(map);
+		}
 	
 }
