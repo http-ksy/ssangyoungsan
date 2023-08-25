@@ -1,7 +1,10 @@
 package com.sist.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
 import java.util.*;
 import com.sist.vo.landboardReplyVO;
 
@@ -24,6 +27,30 @@ public interface boardReplyMapper {
 	
 //	@Delete("delete from landboard where  ")
 	
-	@Select("select dept,root from landboardreply where no=#{no}")
-	public List<landboardReplyVO> checkDeptRoot(int no);
+	//////////////////////// 삭제 ///////////////////////////
+	@Select("select depth,root from landboardreply where no=#{no}")
+	public landboardReplyVO checkDepthRoot(int no);
+	
+	@Update("update landboardreply set content='관리자가 삭제한 댓글입니다.' where no=#{no}")
+	public void replyDeleteYesDepth(int no);
+	
+	
+	@Delete("delete from landboardreply where no=#{no}") 
+	public void replyDeleteNoDepth(int no);
+	
+	@Update("update landboardreply set depth=depth-1 where no=#{no}")
+	public void replyDecrementDepth(int no);
+	//////////////////////// 삭제 ///////////////////////////
+	
+	//////////////////////// 수정 ///////////////////////////
+	@Update("update landboardreply set content=${content} where no=#{no}")
+	public void replyUpdate(Map map);
+	
+	/////////////////////////////////////////////////////////
+	// 대댓글 추가 
+	@Select("select * from landboardreply where no=#{no}")
+	public landboardReplyVO reply_info(Map map);
+	
+	@Update("update landboardreply set group_step=group_step where group_id=#{group_id} and group_step>#{group_step}")
+	public void landboardReplyAdd(Map map);
 }

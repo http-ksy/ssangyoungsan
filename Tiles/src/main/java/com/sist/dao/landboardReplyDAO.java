@@ -1,7 +1,9 @@
 package com.sist.dao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.*;
@@ -26,7 +28,32 @@ public class landboardReplyDAO {
 	public void boardReply_insert(landboardReplyVO vo) {
 		mapper.boardReply_insert(vo);
 	}
-	public List<landboardReplyVO> checkDeptRoot(int no){
-		return mapper.checkDeptRoot(no);
+	public landboardReplyVO checkDepthRoot(int no){
+		return mapper.checkDepthRoot(no);
+	}
+//	@Update("update landboardreply set content='관리자가 삭제한 댓글입니다.' where no=#{no}")
+	public void replyDeleteYesDepth(int no) {
+		mapper.replyDeleteYesDepth(no);
+	}
+	
+	
+//	@Delete("delete from landboardreply where no=#{no}") 
+	public void replyDeleteNoDepth(int no) {
+		mapper.replyDeleteNoDepth(no);
+	}
+	
+//	@Update("update landboardreply set depth=depth-1 where no=#{no}")
+	public void replyDecrementDepth(int no) {
+		mapper.replyDecrementDepth(no);
+	}
+	
+//	@Update("update landboardreply set content=${content} where no=#{no}")
+	public void replyUpdate(Map map) {
+		mapper.replyUpdate(map);
+	}
+	
+//	@Select("select group_id,group_step,group_tab from landboardreply where no=#{no}")
+	public landboardReplyVO reply_info(Map map) {
+		return mapper.reply_info(map);
 	}
 }

@@ -17,6 +17,9 @@
 .single-input{
 	display: inline;
 }
+.btn::before{
+	background: none;
+}
 </style>
 </head>
 <body>
@@ -72,8 +75,13 @@
       </div>
       <div class="col-md-2" v-if="id==rvo.id">
       <br>
-	      <b-button v-b-toggle:my-collapse class="genric-btn danger small circle arrow" >수정<b-icon icon="hammer"></b-icon></b-button>
-	      <b-button class="genric-btn info small circle arrow">삭제<b-icon icon="backspace-fill"></b-icon></b-button>
+	      <b-button v-b-toggle:my-collapse class="genric-btn info small circle arrow" >수정<b-icon icon="hammer"></b-icon></b-button>
+	      <b-button class="genric-btn danger small circle arrow">삭제<b-icon icon="backspace-fill"></b-icon></b-button>
+      </div>
+       <div class="col-md-2" v-else>
+      <br>
+	      <!-- <b-button v-b-toggle:my-collapse class="genric-btn info small circle arrow" >수정<b-icon icon="hammer"></b-icon></b-button>
+	      <b-button class="genric-btn danger small circle arrow">삭제<b-icon icon="backspace-fill"></b-icon></b-button> -->
       </div>
       <br>
       <div>
@@ -81,8 +89,8 @@
 	      	
     	</b-collapse>
       </div>
-      <div v-if="id==rvo.id">
-      	<b-button v-b-toggle="'collapse-'+rvo.no" class="m-1 genric-btn info-border small"><b-icon icon="arrow-return-right"></b-icon></b-button>
+      <div v-if="id!=null">
+      	<b-button v-b-toggle="'collapse-'+rvo.no" class="m-1 genric-btn info-border btn small"><b-icon icon="arrow-return-right"></b-icon></b-button>
       		
       		<b-collapse :id="'collapse-'+rvo.no">
       		<div class="row">
@@ -95,7 +103,7 @@
 		         	 ></b-form-textarea>
 		      </div>
 		      <div class="col-md-2">
-		      	<b-button class="genric-btn warning small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
+		      	<b-button class="genric-btn info small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
 		      </div>
 		    </div>
 		  </b-collapse>
@@ -124,7 +132,7 @@
 		          ></b-form-textarea>
 		      </div>
 		      <div class="col-md-2">
-		      	<b-button class="genric-btn warning small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
+		      	<b-button class="genric-btn info small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
 		      </div>
 		      </div>
 		  </b-collapse>
@@ -137,16 +145,17 @@
 <div class="row" style="width: 100%">
 
 		<div class="col-md-10">
-      <b-form-textarea
+      <b-form-textarea 
 			    id="textarea-no-resize"
-			    placeholder="댓글 입력하세요"
+			    :placeholder="id=='' ? notice='로그인 후 사용해주세요': '댓글!!'"
 			    rows="3"
 			    no-resize
 			    v-model="content"
+			    :readonly="id=='' ? '': false"
           ></b-form-textarea>
       </div>
       <div class="col-md-2">
-      	<b-button class="genric-btn warning small" style="width:100%; height:100%;" @click="boardreplyInsert()"><b-icon icon="vector-pen"></b-icon></b-button>
+      	<b-button class="genric-btn info small" style="width:100%; height:100%;" @click="boardreplyInsert()"><b-icon icon="vector-pen"></b-icon></b-button>
       </div>
       </div>
 </div>

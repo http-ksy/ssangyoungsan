@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class landboardReplyVO {
-	private int no,bno,group_id,group_step,group_tab,root,dept;
+	private int no,bno,group_id,group_step,group_tab,root,depth;
 	private String content,dbday,nickname,id;
 	private Date regdate;
 }
