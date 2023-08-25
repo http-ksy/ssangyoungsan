@@ -302,7 +302,7 @@
                     <div class="popular-caption">
                         <h3><a :href="'../move/detail.do?mno='+vo.mno" style="color:black;">{{vo.title}}</a></h3>
                         <div class="rating mb-10">{{vo.address}}</div>
-                        <span>경력 : {{vo.carrer}}</span>
+                        <span>경력 : {{vo.carrer}}</span> 
                     </div>
                 </div>
             </div>
