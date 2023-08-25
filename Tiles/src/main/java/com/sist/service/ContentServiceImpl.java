@@ -15,5 +15,17 @@ public class ContentServiceImpl implements ContentService{
 		// TODO Auto-generated method stub
 		return dao.estateRandomList();
 	}
+
+	@Override
+	public List<CleanVO> cleanRandomList() {
+		// TODO Auto-generated method stub
+		return dao.cleanRandomList();
+	}
+
+	@Override
+	public List<MoveVO> moveRandomList() {
+		// TODO Auto-generated method stub
+		return dao.moveRandomList();
+	}
 	
 }

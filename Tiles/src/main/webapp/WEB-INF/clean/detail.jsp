@@ -79,11 +79,11 @@
 						                </c:if> 
 						                 <c:if test="${jjim_count != 0 }">
                                           <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
-                                         <a href="../clean/jjim_delete.do?cno=${ cno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt="">{{jjim_count}}</a>
+                                         <a href="../clean/jjim_delete.do?cno=${ cno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt=""></a>
 						                </c:if>                  
                                       </div>
                                       <div>
-                                      	
+                                      	<div>{{clean_detail.suggest}}</div>
                                       </div>
                                
 							    <!--  <table class="table" v-if="sessionId!=''">

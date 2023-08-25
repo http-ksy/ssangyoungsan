@@ -28,4 +28,19 @@ public class ContentRestController {
 		String json=mapper.writeValueAsString(list);
 		return json;
 	}
+	@GetMapping(value = "main/content_clean_vue.do",produces = "text/plain;charset=UTF-8")
+	public String content_clean() throws Exception{
+		List<CleanVO> list=service.cleanRandomList();
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
+	
+	@GetMapping(value = "main/content_move_vue.do",produces = "text/plain;charset=UTF-8")
+	public String content_move() throws Exception{
+		List<MoveVO> list=service.moveRandomList();
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
 }

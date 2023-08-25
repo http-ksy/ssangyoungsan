@@ -23,7 +23,7 @@ public interface MoveMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM move_detail")
 	public int MoveTotalPage();
 	
-	@Select("SELECT mno,title,address,poster,carrer,EMPLO,contanttime,service, score,category,INTRODUCE "
+	@Select("SELECT mno,title,address,poster,carrer,EMPLO,contanttime,service, score,category,INTRODUCE,suggest "
 			+ "FROM move_detail "
 			+ "WHERE mno=#{mno}")
 	public MoveVO MoveDetailData(int mno);

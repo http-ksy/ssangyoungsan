@@ -172,18 +172,18 @@
         </div>
             <!-- ///////////////////////////////// -->
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in estate_list">
-                <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                    <div class="popular-img">
-                        <a :href="'../zip/zip_detail.do?no='+vo.no"><img :src="vo.img" alt=""></a>
-                    </div>
-                    <div class="popular-caption">
-                        <h3><a :href="'../zip/zip_detail.do?no='+vo.no" style="color:black;">{{vo.name}}</a></h3>
-                        <div class="rating mb-10">{{vo.addr}}</div>
-                        <span>{{vo.dprice}}</span>
-                    </div>
-                </div>
-            </div>
+	            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in estate_list">
+	                <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+	                    <div class="popular-img">
+	                        <a :href="'../zip/zip_detail.do?no='+vo.no"><img :src="vo.img" alt=""></a>
+	                    </div>
+	                    <div class="popular-caption">
+	                        <h3><a :href="'../zip/zip_detail.do?no='+vo.no" style="color:black;">{{vo.name}}</a></h3>
+	                        <div class="rating mb-10">{{vo.addr}}</div>
+	                        <span>{{vo.dprice}}</span>
+	                    </div>
+	                </div>
+	            </div>
             <!-- ///////////////////////////////// -->
 <div class="row justify-content-center">
     <div class="room-btn">
@@ -264,65 +264,45 @@
              <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
                 <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                    <h2>new<br>arrival</h2>
+                    <h2>추천<br>청소업체</h2>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in clean_list">
                 <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
                     <div class="popular-img">
-                        <img src="../assets/img/gallery/arrival1.png" alt="">
-                        <div class="favorit-items">
-                            <!-- <span class="flaticon-heart"></span> -->
-                            <img src="../assets/img/gallery/favorit-card.png" alt="">
-                        </div>
+                        <a :href="'../clean/detail.do?cno='+vo.cno"><img :src="vo.poster" alt=""></a>
                     </div>
                     <div class="popular-caption">
-                        <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                        <div class="rating mb-10">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span>$ 30.00</span>
+                        <h3><a :href="'../clean/detail.do?cno='+vo.cno" style="color:black;">{{vo.title}}</a></h3>
+                        <div class="rating mb-10">{{vo.address}}</div>
+                        <span>경력 : {{vo.carrer}}</span>
                     </div>
                 </div>
             </div>
 <div class="row justify-content-center">
     <div class="room-btn">
-        <a href="catagori.html" class="border-btn">Browse More</a>
+        <a :href="'../clean/list.do'" class="border-btn">더보기</a>
     </div>
 </div>            
              <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-10">
                 <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                    <h2>new<br>arrival</h2>
+                    <h2>추천<br>이사업체</h2>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in move_list">
                 <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
                     <div class="popular-img">
-                        <img src="../assets/img/gallery/arrival1.png" alt="">
-                        <div class="favorit-items">
-                            <!-- <span class="flaticon-heart"></span> -->
-                            <img src="../assets/img/gallery/favorit-card.png" alt="">
-                        </div>
+                        <a :href="'../move/detail.do?mno='+vo.mno"><img :src="vo.poster" alt=""></a>
                     </div>
                     <div class="popular-caption">
-                        <h3><a href="product_details.html">Knitted Jumper</a></h3>
-                        <div class="rating mb-10">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span>$ 30.00</span>
+                        <h3><a :href="'../move/detail.do?mno='+vo.mno" style="color:black;">{{vo.title}}</a></h3>
+                        <div class="rating mb-10">{{vo.address}}</div>
+                        <span>경력 : {{vo.carrer}}</span>
                     </div>
                 </div>
             </div>
@@ -331,7 +311,7 @@
 <!-- Button -->
 <div class="row justify-content-center">
     <div class="room-btn">
-        <a href="catagori.html" class="border-btn">Browse More</a>
+        <a :href="'../move/list.do'" class="border-btn">더보기</a>
     </div>
 </div>
 </div>
@@ -362,10 +342,14 @@
 	new Vue({
 		el:'.new-arrival',
 		data:{
-			estate_list:[]
+			estate_list:[],
+			clean_list:[],
+			move_list:[]
 		},
 		mounted:function(){
-			this.estateListData()
+			this.estateListData();
+			this.cleanListData();
+			this.moveListData();
 		},
 		methods:{
 			estateListData:function(){
@@ -375,7 +359,24 @@
 				 }).catch(error=>{
 					 console.log(error.response)
 				 })
+			},
+			cleanListData:function(){
+				axios.get('../main/content_clean_vue.do').then(response=>{
+					console.log(response.data)
+					this.clean_list=response.data
+				}).catch(error=>{
+					 console.log(error.response)
+				 })
+			},
+			moveListData:function(){
+				axios.get('../main/content_move_vue.do').then(response=>{
+					console.log(response.data)
+					this.move_list=response.data
+				}).catch(error=>{
+					 console.log(error.response)
+				 })
 			}
+			
 		}
 	})
 </script>

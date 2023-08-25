@@ -6,7 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CleanVO {
-	private int cno,reviewcount;
+	private int cno,reviewcount,suggest;
 	private String title,content,address,carrer, INTRODUCE,EMPLO,contanttime, service,poster ,count,link,category;
 	private double score;
 }

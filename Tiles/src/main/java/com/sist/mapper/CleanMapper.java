@@ -17,7 +17,7 @@ public interface CleanMapper {
 	@Select("SELECT CEIL(COUNT(*)/12.0) FROM clean_detail")
 	public int CleanTotalPage();
 	
-	@Select("SELECT cno,title,address,poster,carrer,EMPLO,contanttime,service, score,category,INTRODUCE "
+	@Select("SELECT cno,title,address,poster,carrer,EMPLO,contanttime,service, score,category,INTRODUCE,suggest "
 			+ "FROM clean_detail "
 			+ "WHERE cno=#{cno}")
 	public CleanVO CleanDetailData(int cno);
