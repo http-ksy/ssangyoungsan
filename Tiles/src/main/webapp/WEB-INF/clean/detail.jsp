@@ -11,12 +11,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    
     <!-- CSS here -->
     <style type="text/css">
 	.blur {-webkit-filter: blur(20px);filter: blur(20px);}
-
+/* 	.form-control{
+		
+		width: 750px;
+		
+	}
+	.b-time .b-time-header output{
+		font-size: 150%
+	} */
+	
     </style>
 </head>
 <body class="full-wrapper">
@@ -81,49 +89,27 @@
                                           <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
                                          <a href="../clean/jjim_delete.do?cno=${ cno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt=""></a>
 						                </c:if>                  
-                                      </div>
+                                     
                                       <div>
                                       	<div>{{clean_detail.suggest}}</div>
                                       </div>
-                               
-							    <!--  <table class="table" v-if="sessionId!=''">
-							         <tr>
-							          <td>
-							            <textarea rows="4" cols="60" ref="msg" v-model="msg" style="float: left;"></textarea>
-							            <button style="float: left; background-color: blue; color: white; width: 100px; height: 87px;" @click="replyWrite()">댓글쓰기</button>
-							          </td>
-							         </tr>
-							        </table> -->
-                                
-                                 <!-- <div class="row1" v-for="rvo in reply_list">
-                                    <div class="col-lg-12">
-                                        <div class="form-box user-icon mb-15">
-                                            <input type="text" :placeholder="sessionId" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="form-box message-icon mb-15 updates" :id="'u'+rvo.no" style="display: none;">
-                                            <textarea ref="msg" placeholder="Comment">{{rvo.msg}}</textarea>
-                                            <button style="float: left; class="submit-btn2" type="submit" @click="replyUpdate(rvo.no)">후기 작성</button>
-                                        </div>
-                                    
-                                </div> -->
+                                </div>
                         </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <template>
+                        <template>
 										  <div class="row">
-										    <label for="datepicker-full-width"><h1>예약날짜 선택</h1></label>
+										    <h1><label for="datepicker-full-width">예약날짜 선택</label></h1>
+										    </div>
+										    <br>
 										    <b-form-datepicker
 										      id="datepicker-full-width"
 										      v-model="rday"
 										      menu-class="w-110"
 										      calendar-width="100%"
 										      class="mb-2"
-										      :date-disabled-fn="dateDisabled" 
+										      :date-disabled-fn="dateDisabled"
+										      style="width: 300px;"
 										    ></b-form-datepicker>
-										  </div>
 										    
 										  </div>
 										</template>
@@ -138,6 +124,7 @@
 											  </b-row>
 											</div>
 											</template>
+											
 											<div class="row" style="margin: 15px;"></div>
 										<div class="select-job-items2"><h1>방갯수</h1>
 		                                    <select name="select2" v-model="room">
@@ -152,8 +139,8 @@
 						<div class="row">
 						 <b-col>
 							<b style="display: block;">날짜 : '{{ rday }}'</b>
-							<b>시간 : '{{ rtime }}'</b>
-							<b >방 갯수 : {{room}}</b>		     
+							<b style="display: block;">시간 : '{{ rtime }}'</b>
+							<b style="display: block;">방 갯수 : {{room}}</b>		     
 						</b-col>
 						</div>
 						<div style="margin: 15px;"></div>
@@ -162,41 +149,19 @@
 						</div>
 						
         </div>
+                    </div>
+                </div>
+            </div>
+            
         
         <!--  Details End -->
         <!-- listing-area Area End -->
         <!--? Popular Locations Start 01-->
         <div class="popular-product pt-50">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="single-product mb-50">
-                            <div class="location-img">
-                                <img src="../assets/img/gallery/popular-imtes1.png" alt="">
-                            </div>
-                            <div class="location-details">
-                                <p><a href="../product_details.html">Established fact that by the<br> readable content</a></p>
-                                <a href="../product_details.html" class="btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="single-product mb-50">
-                            <div class="location-img">
-                                <img src="../assets/img/gallery/popular-imtes2.png" alt="">
-                            </div>
-                            <div class="location-details">
-                                <p><a href="../product_details.html">Established fact that by the<br> readable content</a></p>
-                                <a href="../product_details.html" class="btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row">
             <div class="row">
                <div class="small-tittle mb-30">
-                   <h2>후기</h2>
+                   <h1>후기</h1>
                </div>
             </div>
             
@@ -250,7 +215,6 @@
                                     </div>
 	        </div>
 	        </div>
-
         <!-- Popular Locations End -->
     </main>
 <!--? Search model Begin -->
