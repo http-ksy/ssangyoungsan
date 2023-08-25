@@ -21,6 +21,17 @@
 .row {
  width:1200px;
 }
+.b-calendar-grid-weekdays{
+
+		width:405px;
+	/* 	margin-left:5px; */
+	}
+
+	.b-calendar-grid-body > .row{
+
+		width:405px;
+/* margin-left:px; */
+	}
 </style>
 
 <body class="full-wrapper">
@@ -90,7 +101,7 @@
                                         <div class="" style="display: inline-block" v-if="sessionId!=''">
                                           <c:if test="${like_count == 0 }">
                                             <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
-                                           <a href="../inte/like_insert.do?ino=${ ino}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:45px; height:45px;" alt=""></a>
+                                           <a href="../inte/like_insert.do?ino=${ ino}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:45px; height:45px;" alt="">{{inte_detail.suggest}}</a>
                                            <!-- <a :href="'../inte/like_insert.do?ino='+ino" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></a> -->
 						                  </c:if> 
 						                   <c:if test="${like_count != 0 }">
@@ -143,7 +154,7 @@
                          <textarea rows="5" cols="60" ref="msg" v-model="msg" class="form-control" placeholder="댓글을 작성해주세요."></textarea>                                             
                          <button class="submit-btn2" style="border-radius: 10px;" @click="inteReplyWrite()">댓글쓰기</button> 
                         </div> 
-                      <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">댓글</a></h6>
+                      <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">💬&nbsp;댓글</a></h6>
                        <div class="media">
                          <table class="table">
                          <tbody>                     
@@ -152,7 +163,7 @@
                                 <table class="table" v-for="ivo in inteReply_list">
                                  <tr>
                                   <td class="text-left" style="border-top:none;">
-                                   ★{{ivo.name}}&nbsp;({{ivo.dbday}})
+                                   😎{{ivo.name}}&nbsp;({{ivo.dbday}})
                                    </td>
                                    <td class="text-right" style="border-top:none;">
                				        <span v-if="sessionId==ivo.id">
@@ -188,13 +199,13 @@
 					    <td width="65%" height="600"  style="color:gray;">
 						<table class="table">
 						 <thead><h3>예약일 정보</h3></thead>
- <template>
+						 <div class="col-lg-8">
+						  <template>
   <div>
     <label for="datepicker-full-width">Choose a date</label>
     <b-form-datepicker
       id="datepicker-full-width"
       v-model="reserve_date"
-      menu-class="w-105"
       calendar-width="100%"
       class="mb-10"
       :date-disabled-fn="dateDisabled" 
@@ -202,8 +213,6 @@
    
     <div v-if="reserve_date!=''">
     <hr>
-    	<!-- <button v-for="">10</button>  	 -->
-    	 <!-- 시간 -->
        <thead><h3>예약 시간</h3></thead>
 	   <b-time  v-model="reserve_time" show-seconds locale="en">
 	    <div class="d-flex" dir="ltr">
@@ -231,12 +240,24 @@
 	  <thead><h3>예약 정보</h3></thead>
 	   <h3>DATE: {{ reserve_date }}</h3>
 	   <h3>Time: {{ reserve_time }}</h3>
-	   <b-button @click="reserveOk">예약하기</b-button>
+	   <b-button @click="reserveOk(true)">예약하기</b-button>
 	  </div>
     </div>
   </div>
 </template>
-
+						 </div>
+						 <div class="col-lg-4" v-show="reShow">
+						   <h3><b>{{sessionName}}</b>님</h3>
+						   <h3>예약 완료 되었습니다.</h3>
+						   <h4><b>예약 번호:</b>&nbsp;{{reserve_list.no}}</h4>
+						   <h4><b>예약 날짜:</b>&nbsp;{{reserve_date}}</h4>
+						   <h4><b>예약 시간:</b>&nbsp;{{reserve_time}}</h4>
+						   <div>
+		                     <a href="../member/mypage.do">
+		                       <button class="btn"><span>마이페이지 이동</span></button>
+		                     </a>
+	                       </div>
+						 </div>
 					    </table>
                         </td>
 						
@@ -314,12 +335,14 @@
 		  inteReply_list:[],
 		  msg:'',
 		  sessionId:'${id}',
+		  sessionName:'${name}',
 		  no:0,
 		  isShow:false,
 		  today:'',
 		  reserve_date:'',
 		  reserve_time:'',
-		  reserve_list:[]
+		  reserve_list:{},
+		  reShow:false
 	  },
 	  mounted:function() {
 		    this.today = this.getToday();
@@ -452,7 +475,8 @@
 		    clearTime() {
 		        this.reserve_time = ''
 		    }, 
-		    reserveOk() {
+		    reserveOk(bool) {
+		    	
 		    	axios.post('../inte/reserve_vue.do',null,{
 		    		params:{
 		    			ino:this.ino,
@@ -462,13 +486,14 @@
 		    	}).then(response=>{
 		    		 console.log(response.data)
 		    		 this.reserve_list = response.data
+		    		 alert('예약완료')
+		    		 this.reShow=bool
+		    		 console.log(reserve_list.no)
+		    		 
 		    	}).catch(error=>{
 		    		console.log(error.response)
 		    	})
 		    } 
-		      
-		      
-
 	  }
   })
 </script>
