@@ -135,7 +135,7 @@ public class InteRestController {
 	public String inte_reserve(int ino, InteReserveVO vo, HttpSession session) throws Exception {
 		String id = (String)session.getAttribute("id");
 		vo.setId(id);
-		service.reserveOk(vo);
+		service.reserveOk(vo);		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(vo);
