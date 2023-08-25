@@ -30,4 +30,6 @@ public interface ProductMapper {
 	
 //	@Select("SELECT no,title,original_pri FROM ${table_name} WHERE no=#{no}")
 	public ProductVO productDetailData(Map map);
+	
+	public ProductVO productCartData(Map map);
 }

@@ -15,47 +15,32 @@ public class ProductReplyDAO {
 	@Autowired
 	private ProductReplyMapper mapper;
 	
-	/*@Select("SELECT prno,no,id,name,msg,TO_CHAR(regdate,'yyyy-mm-dd hh24:mi:ss') as dbday "
+	/*@Select("SELECT + INDEX_DESC(product_reply pdr_pno_pk)pno,no,id,name,msg,TO_CHAR(regdate,'yyyy-mm-dd hh24:mi:ss') as dbday "
 			+ "FROM product_reply "
 			+ "WHERE no=#{no}")*/
-	public List<ProductReplyVO> replyListData(int no)
+	public List<ProductReplyVO> replyListData(Map map)
 	{
-		return mapper.replyListData(no);
+		return mapper.replyListData(map);
 	}
 	
 	/*@Insert("INSERT INTO product_reply VALUES("
-			+ "pdr_prno_seq.nextval,#{no},#{id},#{name},#{msg},SYSDATE)")*/
+			+ "pdr_pno_seq.nextval,#{no},#{id},#{name},#{msg},SYSDATE)")*/
 	public void replyInsert(ProductReplyVO vo)
 	{
 		mapper.replyInsert(vo);
 	}
 	
-	/*@Select("SELECT name,msg,rownum "
-			+ "FROM product_reply "
-			+ "WHERE no=#{no} AND rownum<=1")*/
-	public ProductReplyVO productReplyData(int no)
+	//@Delete("DELETE FROM product_reply WHERE pno=#{pno}")
+	public void replyDelete(int pno)
 	{
-		return mapper.productReplyData(no);
-	}
-	
-	//@Select("SELECT COUNT(*) FROM product_reply WHERE no=#{no}")
-	public int productReplyCount(int no)
-	{
-		return mapper.productReplyCount(no);
-	}
-	
-	//@Delete("DELETE FROM product_reply WHERE prno=#{prno}")
-	public void replyDelete(int prno)
-	{
-		mapper.replyDelete(prno);
+		mapper.replyDelete(pno);
 	}
 	
 	/*@Update("UPDATE product_reply SET "
 			+ "msg=#{msg} "
-			+ "WHERE prno=#{prno}")*/
+			+ "WHERE pno=#{pno}")*/
 	public void replyUpdate(ProductReplyVO vo)
 	{
 		mapper.replyUpdate(vo);
 	}
-	
 }

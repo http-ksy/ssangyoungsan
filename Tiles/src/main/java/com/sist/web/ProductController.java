@@ -35,4 +35,10 @@ public class ProductController {
   		System.out.println("no"+no);
   		return "product/product_detail";
   	}
+  	
+  	@GetMapping("product/product_cart.do")
+  	public String product_cart(int no,int type,Model model)
+  	{
+  		return "product/product_cart";
+  	}
 }

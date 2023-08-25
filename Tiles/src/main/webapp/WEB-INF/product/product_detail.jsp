@@ -159,7 +159,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                     <div class="col-lg-7 mb-5 mb-lg-0">
                         <div class="blog_left_sidebar">
                                 <div class="blog_item_img">
-                                    <img :src="product_detail.poster" style="wdith: 500px;height: 500px" alt="">
+                                    <img :src="product_detail.poster" style="width: 500px;height: 500px" alt="">
                                 </div>
                                 <div class="blog_details text-right">
                                     <ul class="blog-info-link">
@@ -176,105 +176,117 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                               <div>
                                 <table class="table">
                                   <tr>
-                                    <th width=20%>브랜드</th>
-                                    <td width=80%>{{product_detail.brand}}</td>
+                                    <th width=25%>브랜드</th>
+                                    <td width=75%>{{product_detail.brand}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>제품명</th>
-                                    <td width=80%>{{product_detail.title}}</td>
+                                    <th width=25%>제품명</th>
+                                    <td width=75%>{{product_detail.title}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>원가</th>
-                                    <td width=80%>{{product_detail.original_pri}}</td>
+                                    <th width=25%>원가</th>
+                                    <td width=75%>{{product_detail.original_pri}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>할인율</th>
-                                    <td width=80%>{{product_detail.sale}}</td>
+                                    <th width=25%>할인율</th>
+                                    <td width=75%>{{product_detail.sale}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>할인가</th>
-                                    <td width=80%>{{product_detail.priced_sale}}</td>
+                                    <th width=25%>할인가</th>
+                                    <td width=75%>{{product_detail.priced_sale}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>배송</th>
-                                    <td width=80%>{{product_detail.delivery_pri}}</td>
+                                    <th width=25%>배송</th>
+                                    <td width=75%>{{product_detail.delivery_pri}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>수량</th>
-                                    <td width=80%>
-                                      <select name="account" class="input-sm" id="amount_select">
-                                        <c:forEach var="i" begin="1" end="${vo.account }">
-									      <option value="${i }">${i }개</option>
-									    </c:forEach>
-                                      </select>
+                                    <th width=25%><label for="sb-inline">수량</label></th>
+                                    <td width=75%>
+                                      <!-- <select ref="amount" @change="update_pri()">
+                                        <option v-for="i in maxAmount" :value="i">{{i}}개</option>
+                                        
+                                      </select> -->
+                                      <div>
+									    
+									    <b-form-spinbutton  v-model="amount" inline max="10"></b-form-spinbutton>
+									  </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <th width=25%>결제금액</th>
+                                    <td class="text-right" width=75%>
+                                      {{ total_price }}원
                                     </td>
                                   </tr>
                                 </table>
                                 <table>
                                   <tr>
                                    <th>
-                                    <button class="custom-btn btn-6"><a href="#">장바구니</a></button>
-                                    <button class="custom-btn btn-6"><a href="#">구매하기</a></button>
+                                    <button class="custom-btn btn-6"><a href="../product/product_cart.do?no='+vo.no+'&type='+type" style="color: black">장바구니</a></button>
+                                    <button class="custom-btn btn-6"><a href="#" style="color: black">구매하기</a></button>
                                    </th>
                                   </tr>
                                 </table>
                             </div>
-<!-- 검색바 -->
-							<!-- <aside class="single_sidebar_widget search_widget">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder='Search Keyword'
-                                            onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Search Keyword'">
-                                            <div class="input-group-append">
-                                                <button class="btns" type="button"><i class="ti-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">Search</button>
-                                </form>
-                            </aside> -->
-                            
                         </div>
                     </div>
-                    
                 </div>
 <!-- 상품 상세 사진 -->
             <div class="blog_item_img">
               <img :src="product_detail.detailposters" style="width: 900px" alt="">
             </div>
 <!-- 후기 -->
-<table class="table">
+
+<table class="table" v-for="rvo in reply_list">
   <tr>
     <td>
-	  <table class="table" v-for="rvo in reply_list">
+	  <table class="table">
 	    <tr>
-		  <td class="text-left">
-			{{rvo.id}}&nbsp;|&nbsp;({{rvo.dbday}})
+		  <td class="text-left" width=" 50%">
+			{{rvo.name}}&nbsp;|&nbsp;({{rvo.dbday}})
 		  </td>
-		  <td class="text-right">
-			<span >
-			  <button class="genric-btn info-border circle arrow">수정</button>
-			  <button class="genric-btn info-border circle arrow">삭제</button>
+		  <td class="text-right" width=" 50%">
+			<span v-if="sessionId==rvo.id">
+			  <button class="genric-btn info-border circle arrow ups" :id="'up'+rvo.pno" @click="replyUpdateForm(rvo.pno)">수정</button>
+			  <button class="genric-btn info-border circle arrow" @click="replyDelete(rvo.pno)">삭제</button>
 			</span>
 		  </td>
 		</tr>
-		<tr>
-		  <td colspan="2"><pre style="white-space: pre-wrap;background-color: white;border: none">{{rvo.msg}}</pre></td>
-		</tr>
-		<tr>
-		  <td>
-		    <textarea rows="4" cols="62" ref="msg" v-model="msg" style="float: right"></textarea>
-		      <button style="float: right;background-color: gray;color: black;width: 100px;height: 85px" @click="replyWrite()">리뷰쓰기</button>
-		    </td>
-		  </tr>
 	  </table>
+	  <table class="table">
+		<tr>
+		  <td><pre style="white-space: pre-wrap;background-color: white;border: none">{{rvo.msg}}</pre></td>
+		</tr>
+		<tr :id="'u'+rvo.pno" class="updates" style="display:none">
+	      <td colspan="2">
+	        <textarea rows="4" cols="62"  :id="'msg'+rvo.pno" style="float: left">{{rvo.msg}}</textarea>
+	        <button class="custom-btn btn-6" style="float: left;width: 100px;height: 85px" @click="replyUpdate(rvo.pno)">댓글수정</button>
+	      </td>
+	    </tr>
+	  </table>
+	</td>
   </tr>
 </table>
+	  <table class="table" v-for="rvo in reply_list">
+		<tr :id="'u'+rvo.pno" class="updates" style="display:none">
+	      <td colspan="2">
+	        <textarea rows="4" cols="62"  :id="'msg'+rvo.pno" style="float: left">{{rvo.msg}}</textarea>
+	        <button class="custom-btn btn-6" style="float: left;width: 100px;height: 85px" @click="replyUpdate(rvo.pno)">댓글수정</button>
+	      </td>
+	    </tr>
+	  </table>
+	  <table class="table" v-if="sessionId!=''">
+		<tr>
+		  <td>
+		    <textarea rows="4" cols="62" ref="msg" v-model="msg" style="float: left;"></textarea>
+		    <button class="custom-btn btn-6" style="color: black;width: 100px;height: 85px" @click="replyWrite()">리뷰쓰기</button>
+		  </td>
+		</tr>
+	  </table>
+	  
         <!-- Blog Area End -->
       </div>
+     
     </main>
 <!-- Scroll Up -->
 <div id="back-top" >
@@ -288,13 +300,17 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  product_detail:{},
 		  type:${type},
 		  reply_list:[],
+		  sessionId:'${id}',
 		  msg:'',
-		  prno:0
+		  isShow:false,
+		  pno:0,
+		  amount:1,
+		  total_price:''
 	  },
 	  mounted:function(){
 		 /*  console.log('no='+this.no)
 		  console.log('type='+this.type) */
-		  axios.get('http://localhost/web/product/product_detail_vue.do',{
+		  axios.get('../product/product_detail_vue.do',{
 			  params:{
 				  no:this.no,
 				  type:this.type
@@ -302,19 +318,35 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  }).then(response=>{
 			  console.log(response.data);
 			  this.product_detail=response.data;
+			  this.total_price=response.data.original_pri
 		  }).catch(error=>{
 			  console.log(error.response);
 		  })
 		  
 		  this.replyRead()
 	  },
+	  updated:function(){
+		  console.log('amount : '+this.amount)
+		  this.total_price = Number(this.amount) * Number(this.product_detail.original_pri);
+		  if(this.product_detail.priced_sale==null){
+			  this.total_price = Number(this.amount) * Number(this.product_detail.original_pri);
+		  }
+		  else
+			  {
+			  this.total_price = Number(this.amount) * Number(this.product_detail.priced_sale);
+
+			  }
+		  console.log('totalprice'+this.total_price)
+		  console.log('oriprice'+this.product_detail.original_pri)
+	  },
 	  methods:{
 		  replyRead:function(){
 			  axios.get('../product/reply_read_vue.do',{
 				  params:{
-					  no:this.no
+					  no:this.no,
+					  type:this.type
 				  }
-			  }).then(reponse=>{
+			  }).then(response=>{
 				  console.log(response.data)
 				  this.reply_list=response.data
 			  }).catch(error=>{
@@ -330,12 +362,71 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 			  axios.post('../product/reply_insert_vue.do',null,{
 				  params:{
 					  no:this.no,
-					  msg:this.msg
+					  msg:this.msg,
+					  type:this.type
+				  }
+			  }).then(response=>{
+				  console.log(response.data) // 자바 컨트롤러 리턴값 yes/no
+				  /* this.reply_list=response.data
+				  this.msg='';
+				  this.type=''; */
+				  if(response.data==='yes')
+				  {
+				  	this.msg='';  
+				  	this.replyRead(); 
+				  }
+				  else
+					 {
+					    alert("다시");
+					 }
+			  }).catch(error=>{
+				  console.log(error.response)
+			  })
+		  },
+		  replyDelete:function(pno){
+			  axios.get('../product/reply_delete_vue.do',{
+				  params:{
+					  pno:pno,
+					  no:this.no
 				  }
 			  }).then(response=>{
 				  console.log(response.data)
-				  this.reply_list=response.data
-				  this.msg='';
+				  this.replyRead();
+			  }).catch(error=>{
+				  console.log(error.response)
+			  })
+		  },
+		  replyUpdateForm:function(pno){
+			  // Jquery => Vue,React
+			  $('.updates').hide()
+			  $('.ups').text('수정');
+			  if(this.pno==0)
+			  {
+				  $('#u'+pno).show();
+				  $('#up'+pno).text('취소')
+				  this.pno=1;
+			  }
+			  else
+			  {
+				  $('#u'+pno).hide();
+				  $('#up'+pno).text('수정')
+				  this.pno=0;
+			  }
+		  },
+		  replyUpdate:function(pno){
+			  
+			  let msg=$('#msg'+pno).val()
+			  axios.post('../product/reply_update_vue.do',null,{
+				  params:{
+					  pno:pno,
+					  no:this.no,
+					  msg:msg
+				  }
+			  }).then(response=>{
+				  console.log(response.data)
+				  this.replyRead(); 
+				  $('#u'+pno).hide();
+				  $('#up'+pno).text('수정')
 			  }).catch(error=>{
 				  console.log(error.response)
 			  })

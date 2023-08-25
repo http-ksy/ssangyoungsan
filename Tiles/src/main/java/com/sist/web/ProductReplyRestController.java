@@ -16,43 +16,75 @@ public class ProductReplyRestController {
 	@Autowired
 	private ProductReplyDAO dao;
 	
-	public String reply_list_data(int no)
-	{
-		String json="";
-		try
-		{
-			List<ProductReplyVO> list=dao.replyListData(no);
-			ObjectMapper mapper=new ObjectMapper();
-			json=mapper.writeValueAsString(list);
-		}catch(Exception ex) {}
-		return json;
-	}
+	private String[] tables= {"","gagu_detail","fabric_detail","light_detail"};
+
 	
 	@GetMapping(value = "product/reply_read_vue.do",produces = "text/plain;charset=UTF-8")
-	public String reply_read(int no)
+	public String reply_read(int no,int type) throws Exception
 	{
-		return reply_list_data(no);
+		String json="";
+			Map map=new HashMap();
+			map.put("no", no);
+			map.put("type", type);
+			List<ProductReplyVO> list=dao.replyListData(map);
+			ObjectMapper mapper=new ObjectMapper();
+			json=mapper.writeValueAsString(list);
+		
+		return json;
 	}
 	@PostMapping(value = "product/reply_insert_vue.do",produces = "text/plain;charset=UTF-8")
 	public String reply_insert(ProductReplyVO vo,HttpSession session)
 	{
-		String id=(String)session.getAttribute("id");
-		String name=(String)session.getAttribute("name");
-		vo.setId(id);
-		vo.setName(name);
-		dao.replyInsert(vo);
-		return reply_list_data(vo.getNo());
+		String result="";
+		try
+		{
+			String id=(String)session.getAttribute("id");
+			String name=(String)session.getAttribute("name");
+			vo.setId(id);
+			vo.setName(name);
+			dao.replyInsert(vo);		
+			result="yes";
+			
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		
+		return result;
 	}
 	@GetMapping(value = "product/reply_delete_vue.do",produces = "text/plain;charset=UTF-8")
-	public String reply_delete(int prno,int no)
+	public String reply_delete(int pno,int no)
 	{
-		dao.replyDelete(prno);
-		return reply_list_data(no);
+		String result="";
+		try
+		{
+			dao.replyDelete(pno);
+			result="yes";
+			
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		
+		return result;
 	}
 	@PostMapping(value = "product/reply_update_vue.do",produces = "text/plain;charset=UTF-8")
 	public String reply_update(ProductReplyVO vo)
 	{
-		dao.replyUpdate(vo);
-		return reply_list_data(vo.getNo());
+		String result="";
+		try
+		{
+			dao.replyUpdate(vo);
+			result="yes";
+			
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		
+		return result;
 	}
 }

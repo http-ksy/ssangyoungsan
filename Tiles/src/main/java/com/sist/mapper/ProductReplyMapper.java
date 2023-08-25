@@ -8,28 +8,28 @@ import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.ProductReplyVO;
 public interface ProductReplyMapper {
-	@Select("SELECT COUNT(*) FROM product_reply WHERE no=#{no}")
-	public int productReplyCount(int no);
+//	@Select("SELECT COUNT(*) FROM product_reply WHERE no=#{no}")
+//	public int productReplyCount(int no);
 	
-	@Select("SELECT name,msg,rownum "
-			+ "FROM product_reply "
-			+ "WHERE no=#{no} AND rownum<=1")
-	public ProductReplyVO productReplyData(int no);
+//	@Select("SELECT name,msg,rownum "
+//			+ "FROM product_reply "
+//			+ "WHERE no=#{no} AND rownum<=1")
+//	public ProductReplyVO productReplyData(int no);
 	
-	@Select("SELECT /*+ INDEX_DESC(product_reply pdr_prno_pk)*/prno,no,id,name,msg,TO_CHAR(regdate,'yyyy-mm-dd hh24:mi:ss') as dbday "
+	@Select("SELECT /*+ INDEX_DESC(product_reply pdr_pno_pk)*/pno,no,id,name,msg,TO_CHAR(regdate,'yyyy-mm-dd hh24:mi:ss') as dbday,type "
 			+ "FROM product_reply "
-			+ "WHERE no=#{no}")
-	public List<ProductReplyVO> replyListData(int no);
+			+ "WHERE no=#{no} AND type=#{type}")
+	public List<ProductReplyVO> replyListData(Map map);
 	
 	@Insert("INSERT INTO product_reply VALUES("
-			+ "pdr_prno_seq.nextval,#{no},#{id},#{name},#{msg},SYSDATE)")
+			+ "pdr_pno_seq.nextval,#{no},#{id},#{name},#{msg},SYSDATE,#{type})")
 	public void replyInsert(ProductReplyVO vo);
+
+	@Delete("DELETE FROM product_reply WHERE pno=#{pno}")
+	public void replyDelete(int pno);
 	
 	@Update("UPDATE product_reply SET "
 			+ "msg=#{msg} "
-			+ "WHERE prno=#{prno}")
-	public void replyUpdate(ProductReplyVO vo);
-	
-	@Delete("DELETE FROM product_reply WHERE prno=#{prno}")
-	public void replyDelete(int prno);
+			+ "WHERE pno=#{pno}")
+	public void replyUpdate(ProductReplyVO vo);	
 }
