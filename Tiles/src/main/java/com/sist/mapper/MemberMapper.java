@@ -83,17 +83,30 @@ public interface MemberMapper {
 			+ "FROM interior_like WHERE id=#{id} ORDER BY no ASC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<Integer> inteLike(Map map);
-	@Select("SELECT CEIL(COUNT(*)/8) FROM interior_like WHERE id=#{id}")
+	@Select("SELECT CEIL(COUNT(*)/8.0) FROM interior_like WHERE id=#{id}")
 	public int inteLikeTotalPage(Map map);
 	@Delete("DELETE FROM INTERIOR_LIKE WHERE id=#{id} AND ino=#{ino}")
 	public void inteZimDelete(InteLikeVO vo);
-	
+	/////////////////////////////////////////////////////////////////////////
 	@Select("SELECT mno,num "
 			+ "FROM (SELECT mno,rownum as num "
 			+ "FROM (SELECT mno "
 			+ "FROM move_jjim WHERE id=#{id} ORDER BY no ASC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<Integer> moveZzim(Map map);
-	@Select("SELECT CEIL(COUNT(*)/8) FROM interior_like WHERE id=#{id}")
+	@Select("SELECT CEIL(COUNT(*)/8) FROM move_jjim WHERE id=#{id}")
 	public int moveZzimTotalPage(Map map);
+	@Delete("DELETE FROM move_jjim WHERE id=#{id} AND mno=#{mno}")
+	public void moveZimDelete(MoveJjimVO vo);
+	///////////////////////////////////////////////////////////////////////
+	@Select("SELECT cno,num "
+			+ "FROM (SELECT cno,rownum as num "
+			+ "FROM (SELECT cno "
+			+ "FROM clean_jjim WHERE id=#{id} ORDER BY no ASC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<Integer> cleanZzim(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM clean_jjim WHERE id=#{id}")
+	public int cleanZzimTotalPage(Map map);
+	@Delete("DELETE FROM clean_jjim WHERE id=#{id} AND cno=#{cno}")
+	public void cleanZimDelete(CleanJjimVO vo);
 }

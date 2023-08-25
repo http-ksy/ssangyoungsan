@@ -9,10 +9,13 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sist.dao.MemberDAO;
+import com.sist.vo.CleanJjimVO;
+import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.InteLikeVO;
 import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
 
 public interface MemberService {
@@ -53,7 +56,15 @@ public interface MemberService {
 	public int inteLikeTotalPage(Map map); 
 	
 	public void inteZimDelete(InteLikeVO vo);
+	
 	// 이사 찜
 	public List<MoveVO> moveZzim(Map map);
 	public int moveZzimTotalPage(Map map);
+	public void moveZimDelete(MoveJjimVO vo);
+	
+	// 청소 찜
+	public List<CleanVO> cleanZzim(Map map);
+	//@Select("SELECT CEIL(COUNT(*)/8) FROM clean_jjim WHERE id=#{id}")
+	public int cleanZzimTotalPage(Map map);
+	public void cleanZimDelete(CleanJjimVO vo);
 }

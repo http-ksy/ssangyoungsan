@@ -13,6 +13,8 @@ public class MemberServiceImpl implements MemberService{
   private InteDAO idao;
   @Autowired
   private MoveDAO mdao;
+  @Autowired
+  private CleanDAO cdao;
 	@Override
 	public void MemberInsert(MemberVO vo) {
 		// TODO Auto-generated method stub
@@ -136,6 +138,36 @@ public class MemberServiceImpl implements MemberService{
 	public int moveZzimTotalPage(Map map) {
 		// TODO Auto-generated method stub
 		return dao.moveZzimTotalPage(map);
+	}
+
+	@Override
+	public List<CleanVO> cleanZzim(Map map) {
+		// TODO Auto-generated method stub
+		List<CleanVO> list=new ArrayList<CleanVO>();
+		List<Integer> clist=dao.cleanZzim(map);
+		for(Integer cvo:clist)
+		{
+			list.add(cdao.CleanDetailData(cvo));
+		}
+		return list;
+	}
+
+	@Override
+	public int cleanZzimTotalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.cleanZzimTotalPage(map);
+	}
+
+	@Override
+	public void moveZimDelete(MoveJjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.moveZimDelete(vo);
+	}
+
+	@Override
+	public void cleanZimDelete(CleanJjimVO vo) {
+		// TODO Auto-generated method stub
+		dao.cleanZimDelete(vo);
 	}
  
 }

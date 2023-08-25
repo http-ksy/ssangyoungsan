@@ -69,6 +69,11 @@
            <a href="../member/intezim.do" class="genric-btn success circle btn" >인테리어 찜목록</a>
         </td>
       </tr> 
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/cleanzim.do" class="genric-btn success circle btn" >청소 찜목록</a>
+        </td>
+      </tr> 
       <tr style="height:30px;">
         <td>
            <a href="../member/movezim.do" class="genric-btn success circle btn" >이사 찜목록</a>

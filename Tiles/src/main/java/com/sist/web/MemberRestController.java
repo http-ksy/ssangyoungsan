@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.EstateQnaService;
 import com.sist.service.MemberService;
+import com.sist.vo.CleanJjimVO;
+import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.EstateQnaVO;
 import com.sist.vo.InteLikeVO;
 import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
+import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
 import com.sist.vo.PageVO;
 import com.sist.vo.zipZimVO;
@@ -472,7 +475,7 @@ public String memberDelete(String id,String pwd,HttpSession session)
 		 
 		
 		 
-		 final int BLOCK=5;
+		 final int BLOCK=3;
 		 int startPage=((page-1)/BLOCK*BLOCK)+1;
 		 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
 		 if(endPage>totalpage)
@@ -530,7 +533,7 @@ public String memberDelete(String id,String pwd,HttpSession session)
 		 
 		
 		 
-		 final int BLOCK=5;
+		 final int BLOCK=3;
 		 int startPage=((page-1)/BLOCK*BLOCK)+1;
 		 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
 		 if(endPage>totalpage)
@@ -545,5 +548,81 @@ public String memberDelete(String id,String pwd,HttpSession session)
 		 ObjectMapper mapper=new ObjectMapper();
 		 String json=mapper.writeValueAsString(vo);
 		 return json;
+	}
+	@GetMapping(value="member/moveZim_delete.do",produces = "text/plain;charset=UTF-8")
+	public String moveZim_delete(String id, int mno)
+	{
+		MoveJjimVO vo=new MoveJjimVO();
+		vo.setId(id);
+		vo.setMno(mno);
+		String result="";
+		try
+		{
+			service.moveZimDelete(vo);
+			result="yes";
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		return result;
+	}
+	@GetMapping(value = "member/cleanZim_list.do",produces = "text/plain;charset=UTF-8")
+	public String cleanZim_list(int page,String id) throws Exception
+	{
+		Map map=new HashMap();
+		map.put("id", id);
+		int rowSize=8;
+		int start=(rowSize*page)-(rowSize-1);
+		int end=(rowSize*page);
+		map.put("start", start);
+		map.put("end", end);
+		List<CleanVO> list=service.cleanZzim(map);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
+	@GetMapping(value="member/cleanzim_page.do",produces="text/plain;charset=UTF-8")
+	public String cleanzim_page(int page, String id) throws Exception
+	{
+		 Map map=new HashMap();
+		 map.put("id", id);		 
+		 int totalpage=service.cleanZzimTotalPage(map);
+		 
+		
+		 
+		 final int BLOCK=3;
+		 int startPage=((page-1)/BLOCK*BLOCK)+1;
+		 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+		 if(endPage>totalpage)
+			 endPage=totalpage;
+		 
+		 PageVO vo=new PageVO();
+		 vo.setCurpage(page);
+		 vo.setTotalpage(totalpage);
+		 vo.setStartPage(startPage);
+		 vo.setEndPage(endPage);
+		 
+		 ObjectMapper mapper=new ObjectMapper();
+		 String json=mapper.writeValueAsString(vo);
+		 return json;
+	}
+	@GetMapping(value="member/cleanZim_delete.do",produces = "text/plain;charset=UTF-8")
+	public String cleanZim_delete(String id, int cno)
+	{
+		CleanJjimVO vo=new CleanJjimVO();
+		vo.setId(id);
+		vo.setCno(cno);
+		String result="";
+		try
+		{
+			service.cleanZimDelete(vo);
+			result="yes";
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		return result;
 	}
 }

@@ -105,7 +105,7 @@
       </tr> 
        <tr style="height:30px;">
         <td>
-          <a href="../member/qna.do" class="genric-btn success circle btn" >문의하기</a>
+          <a href="../member/qna.do" class="genric-btn success circle btn" >답변하기</a>
         </td>
       </tr> 
         </table>

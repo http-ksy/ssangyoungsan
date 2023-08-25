@@ -114,9 +114,28 @@ public class MemberDAO {
 	{
 		return mapper.moveZzim(map);
 	}
-	@Select("SELECT CEIL(COUNT(*)/8) FROM interior_like WHERE id=#{id}")
+	//@Select("SELECT CEIL(COUNT(*)/8) FROM interior_like WHERE id=#{id}")
 	public int moveZzimTotalPage(Map map)
 	{
 		return mapper.moveZzimTotalPage(map);
 	}
+	public void moveZimDelete(MoveJjimVO vo)
+	{
+		mapper.moveZimDelete(vo);
+	}
+	
+	public List<Integer> cleanZzim(Map map)
+	{
+		return mapper.cleanZzim(map);
+	}
+	//@Select("SELECT CEIL(COUNT(*)/8) FROM clean_jjim WHERE id=#{id}")
+	public int cleanZzimTotalPage(Map map)
+	{
+		return mapper.cleanZzimTotalPage(map);
+	}
+	public void cleanZimDelete(CleanJjimVO vo)
+	{
+		mapper.cleanZimDelete(vo);
+	}
+	
 }

@@ -16,7 +16,79 @@
 </head>
 <body>
  <div class="container">
- <div class="container">
+ 
+	 <div class="row">
+  <template>
+  <div>
+    <b-button v-b-toggle.sidebar-border class="genric-btn primary-border small">Mypage</b-button>
+    <b-sidebar id="sidebar-border" title="MYPAGE!!" sidebar-class="border-right border-danger" width="250px">
+      <div class="px-3 py-2">
+      <table>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+       <tr style="height:30px;">
+        <td>
+        <a href="../member/zipbuy.do" class="genric-btn success circle btn" >부동산구매현황</a>
+        </td>
+      </tr>  
+      <tr style="height:30px;">
+        <td>
+        <input type="button" class="genric-btn success circle btn" value="예약현황">
+        </td>
+      </tr>  
+       <tr style="height:30px;">
+        <td>
+           <input type="button" class="genric-btn success circle btn" value="구매현황">
+        </td>
+      </tr>  
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/zipzim.do" class="genric-btn success circle btn" >부동산 찜목록</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/intezim.do" class="genric-btn success circle btn" >인테리어 찜목록</a>
+        </td>
+      </tr> 
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/cleanzim.do" class="genric-btn success circle btn" >청소 찜목록</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/movezim.do" class="genric-btn success circle btn" >이사 찜목록</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <input type="button" class="genric-btn success circle btn" value="장바구니">
+        </td>
+      </tr> 
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/zipbuy.do" class="genric-btn success circle btn" >리뷰쓰기</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/zipqna.do" class="genric-btn success circle btn" >문의하기</a>
+        </td>
+      </tr> 
+        </table>
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FSpongebob_UIB%2Fstatus%2F990890566706544642&psig=AOvVaw1omWyfKchCYw-55p5W7WlE&ust=1692613764838000&source=images&cd=vfe&opi=89978449&ved=0CA4QjRxqFwoTCPD08-SD64ADFQAAAAAdAAAAABAD" fluid thumbnail>
+      </div>
+    </b-sidebar>
+  </div>
+</template>
+  </div>
 	 <div class="row">
      <h1 class="text-left"><b>찜 목록</b></h1>
      </div>
@@ -63,7 +135,7 @@
         </ul>
      
       </div>
-	</div> 
+	
  </div>
  <script>
  new Vue({

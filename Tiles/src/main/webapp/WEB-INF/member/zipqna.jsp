@@ -20,7 +20,7 @@
 <body>
 <div class="container">
 <div class="row">
-   <template>
+  <template>
   <div>
     <b-button v-b-toggle.sidebar-border class="genric-btn primary-border small">Mypage</b-button>
     <b-sidebar id="sidebar-border" title="MYPAGE!!" sidebar-class="border-right border-danger" width="250px">
@@ -52,6 +52,21 @@
        <tr style="height:30px;">
         <td>
            <a href="../member/zipzim.do" class="genric-btn success circle btn" >부동산 찜목록</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/intezim.do" class="genric-btn success circle btn" >인테리어 찜목록</a>
+        </td>
+      </tr> 
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/cleanzim.do" class="genric-btn success circle btn" >청소 찜목록</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/movezim.do" class="genric-btn success circle btn" >이사 찜목록</a>
         </td>
       </tr> 
       <tr style="height:30px;">
