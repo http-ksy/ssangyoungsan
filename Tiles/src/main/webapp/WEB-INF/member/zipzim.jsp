@@ -50,7 +50,12 @@
       </tr> 
       <tr style="height:30px;">
         <td>
-           <input type="button" class="genric-btn success circle btn" value="장바구니">
+          <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의🕵️</a>
         </td>
       </tr> 
       

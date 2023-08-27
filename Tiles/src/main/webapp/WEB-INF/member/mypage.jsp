@@ -66,7 +66,7 @@
       </tr> 
       <tr style="height:30px;">
         <td>
-           <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의</a>
+           <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의🕵️</a>
         </td>
       </tr> 
         </table>

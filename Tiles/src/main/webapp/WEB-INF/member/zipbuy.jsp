@@ -51,7 +51,11 @@
            <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
         </td>
       </tr> 
-      
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의🕵️</a>
+        </td>
+      </tr> 
         </table>
         
       </div>

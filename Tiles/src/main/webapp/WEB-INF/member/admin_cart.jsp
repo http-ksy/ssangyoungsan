@@ -50,7 +50,7 @@
 <!--       </tr>  -->
       <tr style="height:30px;">
         <td>
-           <input type="button" class="genric-btn success circle btn" value="장바구니">
+           <a href="../member/admin_cart.do" class="genric-btn success circle btn" >장바구니</a>
         </td>
       </tr> 
       <tr style="height:30px;">
@@ -90,10 +90,10 @@
        </tr>
        <tr v-for="vo in cart_list">
         <td><img :src="vo.poster" style="width:40px;height:40px;"></td>
-        <td><a :href="'../product/product_list.do?no='+vo.no+'&type'=vo.type" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
-        <td>{{vo.total_pri}}</a></td>
-        <td>{{vo.amount}}</td>
-        <td>{{vo.id}}</td>
+        <td><a :href="'../product/product_detail.do?no='+vo.no+'&type='+vo.type" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
+        <td>{{vo.total_pri}}원</a></td>
+        <td>{{vo.amount}}개</td>
+        <td>{{vo.id}}회원님</td>
         
        </tr>
       </table>
