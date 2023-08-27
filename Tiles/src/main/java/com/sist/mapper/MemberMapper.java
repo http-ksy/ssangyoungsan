@@ -60,6 +60,10 @@ public interface MemberMapper {
 	@Update("UPDATE amem SET nickname=#{nickname},email=#{email},post=#{post},addr1=#{addr1},addr2=#{addr2},phone=#{phone},pwd=#{pwd} "
 			+ "WHERE id=#{id}")
 	public void memberUpdate(MemberVO vo);
+	// 비밀번호 찾기( 수정)
+		@Update("UPDATE amem SET pwd=#{pwd} "
+				+ "WHERE id=#{id}")
+		public void memberPwdUpdate(MemberVO vo);
 	// 회원 탈퇴 
 	@Delete("DELETE FROM amem WHERE id=#{id}")
 	public void memberDelete(String id);
@@ -185,4 +189,15 @@ public interface MemberMapper {
 	public List<ProductCartVO> admin_cart(Map map);
 	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart  ")
 	public int admin_cart_totalpage(Map map);
+	
+	@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
+			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount,rownum as num "
+			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount "
+			+ "FROM product_cart WHERE id=#{id} ORDER BY cno desc)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<ProductCartVO> user_cart(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart WHERE id=#{id}  ")
+	public int user_cart_totalpage(Map map);
+	@Delete("DELETE FROM product_cart WHERE id=#{id} and cno=#{cno}")
+	public void user_cart_delete(ProductCartVO vo);
 }

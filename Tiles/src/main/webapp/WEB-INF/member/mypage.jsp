@@ -69,6 +69,11 @@
            <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의🕵️</a>
         </td>
       </tr> 
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/user_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
+        </td>
+      </tr> 
         </table>
         
       </div>
@@ -232,6 +237,31 @@
 	   methods:{
 		   update:function(){
    			
+		     /////////
+      		let pwdck = String(this.pwd);
+   			let num = pwdck.search(/[0-9]/g)
+   			let eng = pwdck.search(/[a-z]/ig)
+   			if(pwdck.length<8 || this.pwd.length>20)
+   			{
+   				alert('비밀번호는 8자리~20자리 이내로 입력하세요')
+   				return;
+   				
+   			}
+   			else if(pwdck.search(/\s/)!=-1)
+   			{
+   				alert('비밀번호는 공백없이 입력해라')
+   				return;
+   			}
+   			else if(num<0 || eng<0)
+   			{
+   				alert('비밀번호는 영문,숫자를 혼합해서 써야돼요')
+   				return;
+   			}
+   			 else if(this.pwd!=this.pwdcheck){
+   				alert('비밀번호가 다릅니다.')	
+   				return;
+   			}
+      			/////////   
    			let pwd=this.$refs.pwd.value;
    			let pwdcheck=this.$refs.pwdcheck.value;
    			if(pwd.trim()==="")
@@ -324,7 +354,7 @@
 			   if(pwd.trim()=='')
 				{
 					this.$refs.pwd.focus()
-					alert('비밀번호 입려가세요')
+					alert('비밀번호 입력하세요')
 					return
 				}
 			   axios.post('../member/pwd_ok.do',null,{
@@ -360,7 +390,7 @@
 			   if(pwd.trim()=='')
 				{
 					this.$refs.pwd1.focus()
-					alert('비밀번호 입려가세요')
+					alert('비밀번호 입력하세요')
 					return
 				}
 			   axios.post('../member/delete_ok.do',null,{

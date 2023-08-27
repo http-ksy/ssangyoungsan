@@ -84,4 +84,14 @@ public class MemberController {
  {
 	 return "member/admin_cart";
  }
+ @GetMapping("member/user_cart.do")
+ public String member_user_cart()
+ {
+	 return "member/user_cart";
+ }
+ @GetMapping("member/pwdfind.do")
+ public String member_pwdfind()
+ {
+	 return "member/pwdfind";
+ }
 }

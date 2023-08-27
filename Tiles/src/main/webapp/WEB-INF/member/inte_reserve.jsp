@@ -18,7 +18,7 @@
 <body>
  <div class="container">
   <div class="row">
-  <template>
+ <template>
   <div>
     <b-button v-b-toggle.sidebar-border class="genric-btn primary-border small">Mypage</b-button>
     <b-sidebar id="sidebar-border" title="MYPAGE!!" sidebar-class="border-right border-danger" width="250px">
@@ -49,7 +49,7 @@
       </tr> 
       <tr style="height:30px;">
         <td>
-          <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
+           <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
         </td>
       </tr> 
       <tr style="height:30px;">
@@ -57,7 +57,11 @@
            <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의🕵️</a>
         </td>
       </tr> 
-      
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/user_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
+        </td>
+      </tr> 
         </table>
         
       </div>

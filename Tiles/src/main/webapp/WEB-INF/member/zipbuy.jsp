@@ -56,6 +56,11 @@
            <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의🕵️</a>
         </td>
       </tr> 
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/user_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
+        </td>
+      </tr> 
         </table>
         
       </div>

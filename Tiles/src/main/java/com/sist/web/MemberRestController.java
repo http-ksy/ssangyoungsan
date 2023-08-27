@@ -921,4 +921,88 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	 String json=mapper.writeValueAsString(vo);
 	 return json;
  }
+ 
+ @GetMapping(value="member/user_cart.do", produces="text/plain;charset=UTF-8")
+ public String admin_cart(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);
+	 int rowSize=8;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=(rowSize*page);
+	 map.put("start", start);
+	 map.put("end", end);
+	 List<ProductCartVO> list=service.user_cart(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+
+ }
+ @GetMapping(value="member/user_cart_page.do",produces="text/plain;charset=UTF-8")
+ public String admin_cart_page(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);	 
+	 int totalpage=service.user_cart_totalpage(map);
+	 
+	 final int BLOCK=3;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ @GetMapping(value="member/user_cart_delete.do",produces = "text/plain;charset=UTF-8")
+	public String user_cart_delete(String id, int cno)
+	{
+		ProductCartVO vo=new ProductCartVO();
+		vo.setId(id);
+		vo.setCno(cno);
+		String result="";
+		try
+		{
+			service.user_cart_delete(vo);
+			result="yes";
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		return result;
+	}
+ @PostMapping(value="member/pwd_update.do",produces="text/plain;charset=UTF-8")
+ public String memberPwdUpdate(MemberVO vo)
+ {
+ 	String result="";
+ 	System.out.println(vo.getId());
+ 	try
+ 	{
+ 		String en=encoder.encode(vo.getPwd());
+ 		vo.setPwd(en);
+ 		service.memberPwdUpdate(vo);
+ 		int count=service.memberIdCheck(vo.getId());
+ 		if(count==0)
+ 		{
+ 			result="noid";
+ 		}
+ 		else
+ 		{	
+ 		 result="yes";
+ 		}
+ 	}catch(Exception ex)
+ 	{
+ 		result="no";
+ 		ex.printStackTrace();
+ 	}
+ 	return result;		
+ }
 }

@@ -97,7 +97,8 @@
 								        <tr>
 								          <td colspan="2" class="text-center">
 								           <input type=button value="로그인" class="genric-btn info-border circle arrow" v-on:click="login()">
-								           <a href="../member/find.do" class="genric-btn info-border circle arrow">아이디/비밀번호 찾기</a>
+								           <a href="../member/find.do" class="genric-btn info-border circle arrow">아이디찾기</a>
+								           <a href="../member/pwdfind.do" class="genric-btn info-border circle arrow">비밀번호찾기</a>
 								          </td>
 								        </tr>
 								      </table>

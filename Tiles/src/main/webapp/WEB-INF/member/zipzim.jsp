@@ -50,7 +50,7 @@
       </tr> 
       <tr style="height:30px;">
         <td>
-          <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
+           <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
         </td>
       </tr> 
       <tr style="height:30px;">
@@ -58,7 +58,11 @@
            <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의🕵️</a>
         </td>
       </tr> 
-      
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/user_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
+        </td>
+      </tr> 
         </table>
         
       </div>
@@ -89,7 +93,7 @@
         
         <th>중개사</th>
         <th>가격</th>
-        <th>영구 정지</th>
+        <th>찜 취소</th>
        </tr>
        <tr v-for="vo in zimlist">
         <td><a :href="'../zip/zip_detail.do?no='+vo.no" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.name}}</a></td>
