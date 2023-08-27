@@ -36,7 +36,6 @@ public class landboardReplyDAO {
 		mapper.replyDeleteYesDepth(no);
 	}
 	
-	
 //	@Delete("delete from landboardreply where no=#{no}") 
 	public void replyDeleteNoDepth(int no) {
 		mapper.replyDeleteNoDepth(no);
@@ -52,8 +51,27 @@ public class landboardReplyDAO {
 		mapper.replyUpdate(map);
 	}
 	
+	////////////////////// 대댓글 ///////////////////////////// 
 //	@Select("select group_id,group_step,group_tab from landboardreply where no=#{no}")
-	public landboardReplyVO reply_info(Map map) {
-		return mapper.reply_info(map);
+	public landboardReplyVO reply_info(int no) {
+		return mapper.reply_info(no);
+	}
+//	@Update("update landboardreply set group_step=group_step where group_id=#{group_id} and group_step>#{group_step}")
+	public void landboardReplyreUpdate(Map map) {
+		mapper.landboardReplyreUpdate(map);
+	}
+	
+	// insert @@@@
+//	@Insert("insert into landboardreply(no,bno,id,nickname,content,group_id,group_step,"
+//			+ "group_tab,root) values(lbr_no_seq.nextval,#{bno},#{id},#{nickname},#{content},"
+//			+ "#{group_id},#{group_step},#{group_tab},#{root})")
+	public void landboardReplyreInsert(landboardReplyVO vo) {
+		mapper.landboardReplyreInsert(vo);
+	}
+	
+	//depth -> +1 자기 댓글 밑에 대댓글 갯수
+//	@Update("update landboardreply depth = depth+1 where no=#{no}")
+	public void landboardReplyreDepthIncrement(int no) {
+		mapper.landboardReplyreDepthIncrement(no);
 	}
 }

@@ -56,15 +56,27 @@
     <hr>
  <h4><b-icon icon="chat-square-dots-fill"></b-icon>&nbsp;댓글!!!</h4>
  <hr>
+ <!-- 댓글 출력 !!! -->
 <div>
-	<div class="row" style="width: 100%" v-for="rvo in landboard_reply">
-		
-		<div class="col-md-10" >
+	<div class="row" style="width: 100%" v-for="rvo,index in landboard_reply">
+	<div class="row" v-if="rvo.group_tab>=0">
+			<span v-for="idx in rvo.group_tab">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<div class="col-md-10">
       	<span>{{rvo.nickname}}</span>
       	<span>{{rvo.dbday}}</span>
+      	<span v-if="id==rvo.id">
+      <!-- 수정 버튼 !! -->
+	      <b-button 
+	      class="genric-btn primary-border small ups" 
+	      :id="'upbtn'+rvo.no"
+	      @click="updateBtn(rvo.no)">수정</b-button>
+	      <b-button class="genric-btn primary-border small" :id="'del'+rvo.no" @click="replyDelete(index,rvo.no)">삭제</b-button>
+	      <b-button class="genric-btn primary-border small" :id="'save'+rvo.no" style="display:none" @click="updateReply(index,rvo.no)">저장하기</b-button>
+	      <!-- 삭제버튼 필요!!!! -->
+      </span>
       	<div style="border: 1px solid black;margin: 5px;">
       <b-form-textarea
-	    id="textarea-no-resize"
+	    :id="'textarea-no-resize'+rvo.no"
 	    placeholder="Fixed height textarea"
 	    rows="3"
 	    no-resize
@@ -72,57 +84,49 @@
 	    readonly
 	  ></b-form-textarea>
       </div>
-      </div>
-      <div class="col-md-2" v-if="id==rvo.id">
-      <br>
-	      <b-button v-b-toggle:my-collapse class="genric-btn info small circle arrow" >수정<b-icon icon="hammer"></b-icon></b-button>
-	      <b-button class="genric-btn danger small circle arrow">삭제<b-icon icon="backspace-fill"></b-icon></b-button>
-      </div>
-       <div class="col-md-2" v-else>
-      <br>
-	      <!-- <b-button v-b-toggle:my-collapse class="genric-btn info small circle arrow" >수정<b-icon icon="hammer"></b-icon></b-button>
-	      <b-button class="genric-btn danger small circle arrow">삭제<b-icon icon="backspace-fill"></b-icon></b-button> -->
-      </div>
-      <br>
-      <div>
-      	 <b-collapse id="my-collapse">
-	      	
-    	</b-collapse>
-      </div>
+      <!-- <b-button v-b-toggle="'collapse-'+rvo.no" class="m-1 genric-btn info-border btn small"><b-icon icon="arrow-return-right"></b-icon></b-button> -->
+      <b-badge v-b-toggle="'collapse-'+rvo.no" variant="light"><b-icon icon="arrow-return-right"></b-icon></b-badge>
       <div v-if="id!=null">
-      	<b-button v-b-toggle="'collapse-'+rvo.no" class="m-1 genric-btn info-border btn small"><b-icon icon="arrow-return-right"></b-icon></b-button>
-      		
       		<b-collapse :id="'collapse-'+rvo.no">
       		<div class="row">
 			  <div class="col-md-8">
 		      		<b-form-textarea
 					    id="textarea-no-resize"
-					    placeholder="댓글 입력하세요"
+					    placeholder="대댓글 입력하세요"
 					    rows="3"
 					    no-resize
+					    v-model="remsg"
 		         	 ></b-form-textarea>
 		      </div>
 		      <div class="col-md-2">
-		      	<b-button class="genric-btn info small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
+		      	<b-button class="genric-btn primary small" style="width:100%; height:100%;" @click="addreply(rvo.no)"><b-icon icon="vector-pen"></b-icon></b-button>
 		      </div>
 		    </div>
 		  </b-collapse>
       </div>
       </div>
-		  
-	 
+      
+      <!-- 
+	      :pressed.sync="myToggle"  -->
+       <!-- <div class="col-md-2" v-else>
+      <br>
+	      <b-button v-b-toggle:my-collapse class="genric-btn info small circle arrow" >수정<b-icon icon="hammer"></b-icon></b-button>
+	      <b-button class="genric-btn danger small circle arrow">삭제<b-icon icon="backspace-fill"></b-icon></b-button>
+      </div> -->
+      <br>
+      <div>
+      	 <!-- <b-collapse id="my-collapse">
+	      	<!-- 대댓글 추가 -->
+    	<!-- </b-collapse>  -->
+      </div>
+      
+      </div>
 		 <div>
-		   
-		
 		  <!-- Using value -->
-		  
-		
 		  <!-- Element to collapse -->
-		  
-		  <b-collapse id="collapse-2">
-		  
+		  <!-- 일반 댓글 추가 -->
+		  <b-collapse id="collapse-b">
 		    <div class="row" style="width: 100%">
-
 				<div class="col-md-10">
 		      <b-form-textarea
 					    id="textarea-no-resize"
@@ -132,10 +136,11 @@
 		          ></b-form-textarea>
 		      </div>
 		      <div class="col-md-2">
-		      	<b-button class="genric-btn info small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
+		      	<b-button class="genric-btn primary border small" style="width:100%; height:100%;"><b-icon icon="vector-pen"></b-icon></b-button>
 		      </div>
 		      </div>
 		  </b-collapse>
+		</div>
 		</div>
 </div>
 <hr>
@@ -150,7 +155,7 @@
 			    :placeholder="id=='' ? notice='로그인 후 사용해주세요': '댓글!!'"
 			    rows="3"
 			    no-resize
-			    v-model="content"
+			    v-model="contents"
 			    :readonly="id=='' ? '': false"
           ></b-form-textarea>
       </div>
@@ -173,8 +178,10 @@ new Vue({
 		notice:'',
 		id:'${sessionScope.id}',
 		landboard_reply:[],
-		content:'',
-		size:''
+		contents:'',
+		size:'',
+		reno:0,
+		remsg:''
 	},
 	mounted:function(){
 		console.log('id: '+this.id)
@@ -212,13 +219,87 @@ new Vue({
 	    	  axios.post("http://localhost/web/landboard/landboardreply_insert.do",null,{
 	    		  params:{
 	    			  bno:this.no,
-	    			  content:this.content,
+	    			  content:this.contents,
 	    			  id:this.id
 	    		  }
 	    	  }).then(response=>{
 	    		  console.log(response.data)
 	    		  this.landboard_reply=response.data
-	    		  this.content=''
+	    		  this.contents=''
+	    	  }).catch(error=>{
+	    		  console.log(error.response)
+	    	  })
+	      },
+	      updateBtn:function(no){
+	    	  $('.ups'+no).text('수정')
+	    	  if(this.reno==0){
+	    		  $('#upbtn'+no).html('취소')
+	    		  $('#textarea-no-resize'+no).attr("readonly",false)
+	    		  $('#del'+no).hide()
+	    		  $('#save'+no).show()
+	    		  this.reno=1
+	    		  console.log("reno = "+this.reno);
+	    	  } else{
+	    		  $('#upbtn'+no).text('수정')	
+	    		  $('#textarea-no-resize'+no).attr("readonly",true)
+	    		  $('#save'+no).hide()
+	    		  $('#del'+no).show()
+	    		  this.reno=0;
+	    		  console.log("reno = "+this.reno);
+	    	  }
+	      },
+	      addreply:function(no){
+	    	  /* bno,id,content,nickname */
+	    	  axios.post("http://localhost/web/landboard/landboardreply_add.do",null,{
+	    		  params:{
+	    			  rootno:no,
+	    			  bno:this.no,
+	    			  content:this.remsg,
+	    			  id:this.id
+	    		  }
+	    	  }).then(response=>{
+	    		  console.log(response.data)
+	    		  this.landboard_reply=response.data
+	    		  $('#collapse-'+no).hide()
+	    	  }).catch(error=>{
+	    		  console.log(error.response)
+	    	  })
+	      },
+	      updateReply:function(index,no){
+	    	  let msg=this.landboard_reply[index].content
+	    	  
+	    	  console.log('msg'+msg+', index :'+index);
+	    	  axios.get('http://localhost/web/landboard/landboardreply_update.do',{
+	    		  params:{
+	    			  bno:this.no,
+	    			  content:msg,
+	    			  no:no
+	    		  }
+	    	  }).then(response=>{
+	    		  console.log("updateReply()")
+	    		  $('#upbtn'+no).text('수정')	
+	    		  $('#textarea-no-resize'+no).attr("readonly",true)
+	    		  $('#save'+no).hide()
+	    		  $('#del'+no).show()
+	    		  console.log(response.data)
+	    		  this.landboard_reply=response.data
+	    		  this.reno=0;
+	    	  }).catch(error=>{
+	    		  console.log(error.response)
+	    	  })
+	      },
+	      replyDelete:function(index,no){
+	    	  let root = this.landboard_reply[index].root
+	    	  axios.get('http://localhost/web/landboard/landboardreply_delete.do',{
+	    		  params:{
+	    			  root:root,
+	    			  no:no,
+	    			  bno:this.no
+	    		  }
+	    	  }).then(response=>{
+	    		  console.log(response.data)
+	    		  this.landboard_reply=response.data
+	    		  this.size=landboard_reply.length
 	    	  }).catch(error=>{
 	    		  console.log(error.response)
 	    	  })

@@ -19,5 +19,5 @@ public interface landboardReplyService {
 //	@Update("update landboardreply set content=${content} where no=#{no}")
 	public void replyUpdate(Map map);
 	
-	public void replyAddReply(Map map);
+	public void replyAddReply(int no,landboardReplyVO vo);
 }

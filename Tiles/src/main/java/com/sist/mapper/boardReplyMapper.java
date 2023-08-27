@@ -43,14 +43,26 @@ public interface boardReplyMapper {
 	//////////////////////// 삭제 ///////////////////////////
 	
 	//////////////////////// 수정 ///////////////////////////
-	@Update("update landboardreply set content=${content} where no=#{no}")
+	@Update("update landboardreply set content=#{content} where no=#{no}")
 	public void replyUpdate(Map map);
 	
 	/////////////////////////////////////////////////////////
 	// 대댓글 추가 
+	// 바로 댓글달 댓글 바로위
 	@Select("select * from landboardreply where no=#{no}")
-	public landboardReplyVO reply_info(Map map);
+	public landboardReplyVO reply_info(int no);
 	
+	// 중간에 대댓글 들어오면 중간아래것들은 +1 해줘야 출력 순서가 밀린다.
 	@Update("update landboardreply set group_step=group_step where group_id=#{group_id} and group_step>#{group_step}")
-	public void landboardReplyAdd(Map map);
+	public void landboardReplyreUpdate(Map map);
+	
+	// insert @@@@
+	@Insert("insert into landboardreply(no,bno,id,nickname,content,group_id,group_step,"
+			+ "group_tab,root) values(lbr_no_seq.nextval,#{bno},#{id},#{nickname},#{content},"
+			+ "#{group_id},#{group_step},#{group_tab},#{root})")
+	public void landboardReplyreInsert(landboardReplyVO vo);
+	
+	//depth -> +1 자기 댓글 밑에 대댓글 갯수
+	@Update("update landboardreply set depth=depth+1 where no=#{no}")
+	public void landboardReplyreDepthIncrement(int no);
 }
