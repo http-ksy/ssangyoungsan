@@ -64,4 +64,14 @@ public class MemberController {
  {
 	 return "member/customer_reserve";
  }
+ @GetMapping("member/inte_reserve.do")
+ public String member_inte_user_reserve()
+ {
+	 return "member/inte_reserve";
+ }
+ @GetMapping("member/admin_reserve.do")
+ public String member_admin_reserve()
+ {
+	 return "member/admin_reserve";
+ }
 }

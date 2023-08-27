@@ -47,7 +47,7 @@
       </tr>
       <tr style="height:30px;">
         <td>
-        <input type="button" class="genric-btn success circle btn" value="예약현황">
+       <a href="../member/admin_reserve.do" class="genric-btn success circle btn" >예약현황</a>
         </td>
       </tr>  
        <tr style="height:30px;">

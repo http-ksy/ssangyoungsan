@@ -181,5 +181,65 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.inte_reserve_totalPage(map);
 	}
+
+	@Override
+	public List<InteReserveVO> inte_user_reserve(Map map) {
+		// TODO Auto-generated method stub
+		return dao.inte_user_reserve(map);
+	}
+
+	@Override
+	public int inte_user_reserve_totalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.inte_user_reserve_totalPage(map);
+	}
+
+	@Override
+	public List<ReserveMoveVO> move_admin_reserve(Map map) {
+		// TODO Auto-generated method stub
+		return dao.move_admin_reserve(map);
+	}
+
+	@Override
+	public int move_admin_reserve_totalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.move_admin_reserve_totalPage(map);
+	}
+
+	@Override
+	public List<ReserveCleanVO> clean_admin_reserve(Map map) {
+		// TODO Auto-generated method stub
+		return dao.clean_admin_reserve(map);
+	}
+
+	@Override
+	public int clean_admin_reserve_totalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.clean_admin_reserve_totalPage(map);
+	}
+
+	@Override
+	public List<ReserveMoveVO> move_user_reserve(Map map) {
+		// TODO Auto-generated method stub
+		return dao.move_user_reserve(map);
+	}
+
+	@Override
+	public int move_user_reserve_totalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.move_user_reserve_totalPage(map);
+	}
+
+	@Override
+	public List<ReserveCleanVO> clean_user_reserve(Map map) {
+		// TODO Auto-generated method stub
+		return dao.clean_user_reserve(map);
+	}
+
+	@Override
+	public int clean_admin_user_totalPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.clean_admin_user_totalPage(map);
+	}
  
 }

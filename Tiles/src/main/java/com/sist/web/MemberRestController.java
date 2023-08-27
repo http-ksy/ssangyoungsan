@@ -28,6 +28,8 @@ import com.sist.vo.MemberVO;
 import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
 import com.sist.vo.PageVO;
+import com.sist.vo.ReserveCleanVO;
+import com.sist.vo.ReserveMoveVO;
 import com.sist.vo.zipZimVO;
 
 @RestController
@@ -647,6 +649,206 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	 Map map=new HashMap();
 	 	 
 	 int totalpage=service.inte_reserve_totalPage(map);
+	 
+	 final int BLOCK=3;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ 
+ @GetMapping(value="member/inte_user_reserve.do", produces="text/plain;charset=UTF-8")
+ public String inte_user_reserve(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);
+	 int rowSize=8;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=(rowSize*page);
+	 map.put("start", start);
+	 map.put("end", end);
+	 List<InteReserveVO> list=service.inte_user_reserve(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+
+ }
+ @GetMapping(value="member/inte_user_reserve_page.do",produces="text/plain;charset=UTF-8")
+ public String inte_user_reserve_page(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);	 
+	 int totalpage=service.inte_reserve_totalPage(map);
+	 
+	 final int BLOCK=3;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ @GetMapping(value="member/move_admin_reserve.do",produces="text/plain;charset=UTF-8")
+ public String move_admin_reserve(int page) throws Exception
+ {
+	 Map map=new HashMap();
+	 
+	 int rowSize=8;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=rowSize*page;
+	 map.put("start", start);
+	 map.put("end", end);
+	 
+	 List<ReserveMoveVO> list=service.move_admin_reserve(map);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+ }
+ @GetMapping(value="member/move_admin_reserve_page.do",produces="text/plain;charset=UTF-8")
+ public String move_admin_reserve_page(int page) throws Exception
+ {
+	 Map map=new HashMap();
+ 	 
+	 int totalpage=service.move_admin_reserve_totalPage(map);
+	 
+	 final int BLOCK=3;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ 
+ @GetMapping(value="member/clean_admin_reserve.do",produces="text/plain;charset=UTF-8")
+ public String clean_admin_reserve(int page) throws Exception
+ {
+	 Map map=new HashMap();
+	 
+	 int rowSize=8;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=rowSize*page;
+	 map.put("start", start);
+	 map.put("end", end);
+	 
+	 List<ReserveCleanVO> list=service.clean_admin_reserve(map);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+ }
+ @GetMapping(value="member/clean_admin_reserve_page.do",produces="text/plain;charset=UTF-8")
+ public String clean_admin_reserve_page(int page) throws Exception
+ {
+	 Map map=new HashMap();
+ 	 
+	 int totalpage=service.clean_admin_reserve_totalPage(map);
+	 
+	 final int BLOCK=3;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ 
+ @GetMapping(value="member/move_user_reserve.do", produces="text/plain;charset=UTF-8")
+ public String move_user_reserve(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);
+	 int rowSize=8;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=(rowSize*page);
+	 map.put("start", start);
+	 map.put("end", end);
+	 List<ReserveMoveVO> list=service.move_user_reserve(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+
+ }
+ @GetMapping(value="member/move_user_reserve_page.do",produces="text/plain;charset=UTF-8")
+ public String move_user_reserve_page(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);	 
+	 int totalpage=service.move_user_reserve_totalPage(map);
+	 
+	 final int BLOCK=3;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ @GetMapping(value="member/clean_user_reserve.do", produces="text/plain;charset=UTF-8")
+ public String clean_user_reserve(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);
+	 int rowSize=8;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=(rowSize*page);
+	 map.put("start", start);
+	 map.put("end", end);
+	 List<ReserveCleanVO> list=service.clean_user_reserve(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+
+ }
+ @GetMapping(value="member/clean_user_reserve_page.do",produces="text/plain;charset=UTF-8")
+ public String clean_user_reserve_page(int page,String id) throws Exception
+ {
+	 Map map=new HashMap();
+	 map.put("id", id);	 
+	 int totalpage=service.clean_admin_user_totalPage(map);
 	 
 	 final int BLOCK=3;
 	 int startPage=((page-1)/BLOCK*BLOCK)+1;

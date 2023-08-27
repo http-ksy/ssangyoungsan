@@ -120,4 +120,54 @@ public interface MemberMapper {
 	public List<InteReserveVO> inte_reserve(Map map);
 	@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_inte ")
 	public int inte_reserve_totalPage(Map map);
+	/// 인테리어 예약목록 사용자
+	@Select("SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time,num "
+			+ "FROM (SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time,rownum as num "
+			+ "FROM (SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time "
+			+ "FROM reserve_info_inte WHERE id=#{id} ORDER BY no ASC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<InteReserveVO> inte_user_reserve(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_inte WHERE id=#{id} ")
+	public int inte_user_reserve_totalPage(Map map);
+	/////////////////////////////////////////////////////////////////////
+	// 이사 예약목록 
+	@Select("SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime,num "
+			+ "FROM (SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime,rownum as num "
+			+ "FROM (SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime "
+			+ "FROM reserve_info_move ORDER BY no desc)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<ReserveMoveVO> move_admin_reserve(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_move ")
+	public int move_admin_reserve_totalPage(Map map);
+	
+	
+	//// 청소 예약목록 
+	@Select("SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime,num "
+			+ "FROM (SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime,rownum as num "
+			+ "FROM (SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime "
+			+ "FROM reserve_info_clean ORDER BY no desc)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<ReserveCleanVO> clean_admin_reserve(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_clean ")
+	public int clean_admin_reserve_totalPage(Map map);
+	
+	// 이사 사용자
+		@Select("SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime,num "
+				+ "FROM (SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime,rownum as num "
+				+ "FROM (SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime "
+				+ "FROM reserve_info_move WHERE id=#{id} ORDER BY no desc)) "
+				+ "WHERE num BETWEEN #{start} AND #{end} ")
+		public List<ReserveMoveVO> move_user_reserve(Map map);
+		@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_move WHERE id=#{id}")
+		public int move_user_reserve_totalPage(Map map);
+		
+////청소 사용자 예약목록 
+	@Select("SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime,num "
+			+ "FROM (SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime,rownum as num "
+			+ "FROM (SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime "
+			+ "FROM reserve_info_clean WHERE id=#{id} ORDER BY no desc)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<ReserveCleanVO> clean_user_reserve(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_clean WHERE id=#{id} ")
+	public int clean_admin_user_totalPage(Map map);
 }
