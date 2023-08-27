@@ -218,9 +218,9 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                             
                                            </div>
                                            <div class="text-right">
-	                                        <span>{{vo.original_pri}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vo.sale}}</span>
-	                                        <span>{{vo.priced_sale}}</span>
-                                          </div>
+	                                         <span v-if="vo.priced_sale!==null"><s>{{vo.original_pri}}원</s></span><span v-else>{{vo.original_pri}}원</span>
+	                                         <span v-if="vo.priced_sale!==null"><span style="color: red;">{{vo.sale}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vo.priced_sale}}원</span>
+                                           </div>
                                         </div>
                                 </div>
                             </div>

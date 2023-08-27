@@ -3,6 +3,7 @@ package com.sist.web;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 
@@ -15,7 +16,6 @@ import com.sist.dao.*;
 public class ProductRestController {
 	@Autowired
 	private ProductDAO dao;
-	
 	
 	private String[] tables= {"","gagu_detail","fabric_detail","light_detail"};
 	
@@ -94,8 +94,8 @@ public class ProductRestController {
 		   map.put("fd", fd);
 		   
 		   int count=dao.productFindCount(map);
-		   System.out.println("count="+count);
-		   System.out.println("fd="+fd);
+//		   System.out.println("count="+count);
+//		   System.out.println("fd="+fd);
 		   int totalpage=(int)(Math.ceil(count/20.0));
 		   final int BLOCK=10;
 		   int startPage=((page-1)/BLOCK*BLOCK)+1;
@@ -125,21 +125,62 @@ public class ProductRestController {
 		ProductVO vo=dao.productDetailData(map);
 		String original_pri=vo.getOriginal_pri().replaceAll("[^0-9]", "");
 		vo.setOriginal_pri(original_pri);
+        String priced_sale = vo.getPriced_sale() != null ? vo.getPriced_sale().replaceAll("[^0-9]", "") : "";
+		vo.setPriced_sale(priced_sale);
+		String sale=vo.getSale();
+		vo.setSale(sale);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(vo);
 		return json;
 	}
-
 	
-	@GetMapping(value = "product/product_cart_vue.do",produces = "text/plain;charset=UTF-8")
-	public String product_cart(int no,int type) throws Exception
+	// 장바구니
+	@PostMapping(value = "product/cart_insert_vue.do",produces = "text/plain;charset=UTF-8")
+	public String cart_insert(ProductCartVO vo,HttpSession session)
+	{
+		String result="";
+		try
+		{
+			String id=(String)session.getAttribute("id");
+			vo.setId(id);
+			dao.cartInsert(vo);		
+			result="yes";
+			
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		
+		return result;
+	}
+	
+	@GetMapping(value = "product/cart_read_vue.do",produces = "text/plain;charset=UTF-8")
+	public String cart_read(String id) throws Exception
 	{
 		Map map=new HashMap();
-		map.put("table_name", tables[type]);
-		map.put("no", no);
-		ProductVO vo=dao.productCartData(map);
+		map.put("id", id);
+		List<ProductCartVO> list=dao.cartListData(map);
 		ObjectMapper mapper=new ObjectMapper();
-		String json=mapper.writeValueAsString(vo);
+		String json=mapper.writeValueAsString(list);
 		return json;
 	}
+	@GetMapping(value = "product/cart_delete_vue.do",produces = "text/plain;charset=UTF-8")
+	public String cart_delete(String id)
+	{
+		String result="";
+		try
+		{
+			dao.cartDelete(id);
+			result="yes";
+			
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		
+		return result;
+	}
+
 }
