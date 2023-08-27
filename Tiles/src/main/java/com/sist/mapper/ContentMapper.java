@@ -20,4 +20,9 @@ public interface ContentMapper {
 	@Select("SELECT mno,title,address,poster,carrer,rownum FROM (SELECT mno,title,address,poster,carrer FROM move_detail ORDER BY DBMS_RANDOM.RANDOM) "
 			+ "WHERE rownum <=4")
 	public List<MoveVO> moveRandomList();
+	
+	//인테리어
+	@Select("SELECT ino,title,poster,gubun,price,rownum FROM (SELECT ino,title,poster,gubun,price FROM inte_detail ORDER BY DBMS_RANDOM.RANDOM) "
+			+ "WHERE rownum <= 4")
+	public List<InteVO> inteRandomList();
 }
