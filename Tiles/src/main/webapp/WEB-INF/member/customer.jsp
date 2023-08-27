@@ -83,26 +83,26 @@
       </tr>
       <tr style="height:30px;">
       </tr>
-      <tr style="height:30px;">
-        <td>
-        <input type="button" class="genric-btn success circle btn" value="예약현황">
-        </td>
-      </tr>  
+<!--       <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--         <input type="button" class="genric-btn success circle btn" value="예약현황"> -->
+<!--         </td> -->
+<!--       </tr>   -->
        <tr style="height:30px;">
         <td>
-           <input type="button" class="genric-btn success circle btn" value="구매현황">
+           <a href="../member/customer_buy.do" class="genric-btn success circle btn" >매매현황</a>
         </td>
       </tr>  
-       <tr style="height:30px;">
-        <td>
-           <input type="button" class="genric-btn success circle btn" value="찜 목록">
-        </td>
-      </tr> 
-      <tr style="height:30px;">
-        <td>
-           <input type="button" class="genric-btn success circle btn" value="장바구니">
-        </td>
-      </tr> 
+<!--        <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--            <input type="button" class="genric-btn success circle btn" value="찜 목록"> -->
+<!--         </td> -->
+<!--       </tr>  -->
+<!--       <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--            <input type="button" class="genric-btn success circle btn" value="장바구니"> -->
+<!--         </td> -->
+<!--       </tr>  -->
        <tr style="height:30px;">
         <td>
           <a href="../member/qna.do" class="genric-btn success circle btn" >답변하기</a>

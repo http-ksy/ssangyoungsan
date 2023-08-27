@@ -46,42 +46,31 @@
       </tr>
        <tr style="height:30px;">
         <td>
-        <a href="../member/zipbuy.do" class="genric-btn success circle btn" >부동산구매현황</a>
+        <a href="../member/zipbuy.do" class="genric-btn success circle btn" >부동산🏦</a>
         </td>
       </tr>  
       <tr style="height:30px;">
         <td>
-        <a href="../member/inte_reserve.do" class="genric-btn success circle btn" >예약현황</a>
+        <a href="../member/inte_reserve.do" class="genric-btn success circle btn" >예약📝</a>
         </td>
       </tr>  
        <tr style="height:30px;">
         <td>
-           <a href="../member/zipzim.do" class="genric-btn success circle btn" >부동산 찜목록</a>
+           <a href="../member/zipzim.do" class="genric-btn success circle btn" >찜💕</a>
         </td>
       </tr> 
       <tr style="height:30px;">
         <td>
-           <a href="../member/intezim.do" class="genric-btn success circle btn" >인테리어 찜목록</a>
-        </td>
-      </tr> 
-       <tr style="height:30px;">
-        <td>
-           <a href="../member/cleanzim.do" class="genric-btn success circle btn" >청소 찜목록</a>
+           <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
         </td>
       </tr> 
       <tr style="height:30px;">
         <td>
-           <a href="../member/movezim.do" class="genric-btn success circle btn" >이사 찜목록</a>
+           <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의</a>
         </td>
       </tr> 
-      <tr style="height:30px;">
-        <td>
-           <input type="button" class="genric-btn success circle btn" value="장바구니">
-        </td>
-      </tr> 
-      
         </table>
-        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FSpongebob_UIB%2Fstatus%2F990890566706544642&psig=AOvVaw1omWyfKchCYw-55p5W7WlE&ust=1692613764838000&source=images&cd=vfe&opi=89978449&ved=0CA4QjRxqFwoTCPD08-SD64ADFQAAAAAdAAAAABAD" fluid thumbnail>
+        
       </div>
     </b-sidebar>
   </div>

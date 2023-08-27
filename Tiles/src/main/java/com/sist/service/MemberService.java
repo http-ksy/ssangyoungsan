@@ -18,6 +18,7 @@ import com.sist.vo.InteVO;
 import com.sist.vo.MemberVO;
 import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
+import com.sist.vo.ProductCartVO;
 import com.sist.vo.ReserveCleanVO;
 import com.sist.vo.ReserveMoveVO;
 
@@ -120,4 +121,21 @@ public interface MemberService {
 	  public List<ReserveCleanVO> clean_user_reserve(Map map);
 
 	  public int clean_admin_user_totalPage(Map map);
+	  
+	  /// 부동산 사장님 구매현황 
+//	  @Select("SELECT no,etype,dprice,name,type,addr,state,num "
+//				+ "FROM (SELECT no,etype,dprice,name,type,addr,state,rownum as num "
+//				+ "FROM (SELECT no,etype,dprice,name,type,addr,state "
+//				+ "FROM estate_detail WHERE company=#{id} AND state='매매진행완료'")
+		public List<EstateDetailVO> customer_zip_buy(Map map);
+		
+/////////// 관리자 장바구니s 
+//	@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
+//			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount,rownum as num "
+//			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount "
+//			+ "FROM product_cart where type=#{type} ORDER BY cno desc)) "
+//			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<ProductCartVO> admin_cart(Map map);
+//	@Select("SELECT CEIL(COUNT(*)/8 FROM product_cart WHERE type=#{type} ")
+	public int admin_cart_totalpage(Map map);
 }

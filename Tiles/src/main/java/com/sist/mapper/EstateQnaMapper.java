@@ -20,11 +20,11 @@ public interface EstateQnaMapper {
 	public int customerTotalPage(Map map);
 	@Select("SELECT no,cno,id,question,company,answer,num FROM "
 			+ "(SELECT no,cno,id,question,company,answer,rownum as num FROM"
-			+ "(SELECT no,cno,id,question,company,answer FROM estateQna WHERE id=#{id} AND answer NOT LIKE '%'||'답변대기'||'%' "
+			+ "(SELECT no,cno,id,question,company,answer FROM estateQna WHERE id=#{id} "
 			+ "ORDER BY NO DESC )) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<EstateQnaVO> estateQnaUserListData(Map map);
-	@Select("SELECT CEIL(COUNT(*)/5) FROM estateqna WHERE answer LIKE '%'||'답변대기'||'%' AND id=#{id}")
+	@Select("SELECT CEIL(COUNT(*)/5) FROM estateqna WHERE id=#{id}")
 	public int userTotalPage(Map map);
 	/*
   id varchar2(100) CONSTRAINT eq_id_nn NOT NULL,

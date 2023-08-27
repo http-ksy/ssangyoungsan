@@ -50,26 +50,26 @@
        <a href="../member/admin_reserve.do" class="genric-btn success circle btn" >예약현황</a>
         </td>
       </tr>  
-       <tr style="height:30px;">
-        <td>
-           <input type="button" class="genric-btn success circle btn" value="구매현황">
-        </td>
-      </tr>  
-       <tr style="height:30px;">
-        <td>
-           <input type="button" class="genric-btn success circle btn" value="찜 목록">
-        </td>
-      </tr> 
+<!--        <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--            <input type="button" class="genric-btn success circle btn" value="구매현황"> -->
+<!--         </td> -->
+<!--       </tr>   -->
+<!--        <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--            <input type="button" class="genric-btn success circle btn" value="찜 목록"> -->
+<!--         </td> -->
+<!--       </tr>  -->
       <tr style="height:30px;">
         <td>
-           <input type="button" class="genric-btn success circle btn" value="장바구니">
+           <a href="../member/admin_cart.do" class="genric-btn success circle btn" >장바구니</a>
         </td>
       </tr> 
-       <tr style="height:30px;">
-        <td>
-           <input type="button" class="genric-btn success circle btn" value="문의하기">
-        </td>
-      </tr> 
+<!--        <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--            <input type="button" class="genric-btn success circle btn" value="문의하기"> -->
+<!--         </td> -->
+<!--       </tr>  -->
         </table>
         <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FSpongebob_UIB%2Fstatus%2F990890566706544642&psig=AOvVaw1omWyfKchCYw-55p5W7WlE&ust=1692613764838000&source=images&cd=vfe&opi=89978449&ved=0CA4QjRxqFwoTCPD08-SD64ADFQAAAAAdAAAAABAD" fluid thumbnail>
       </div>

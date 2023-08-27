@@ -74,4 +74,14 @@ public class MemberController {
  {
 	 return "member/admin_reserve";
  }
+ @GetMapping("member/customer_buy.do")
+ public String member_customer_buy()
+ {
+	return "member/customer_buy" ;
+ }
+ @GetMapping("member/admin_cart.do")
+ public String member_admin_cart()
+ {
+	 return "member/admin_cart";
+ }
 }

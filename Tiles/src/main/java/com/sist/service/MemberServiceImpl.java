@@ -241,5 +241,23 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.clean_admin_user_totalPage(map);
 	}
+
+	@Override
+	public List<EstateDetailVO> customer_zip_buy(Map map) {
+		// TODO Auto-generated method stub
+		return dao.customer_zip_buy(map);
+	}
+
+	@Override
+	public List<ProductCartVO> admin_cart(Map map) {
+		// TODO Auto-generated method stub
+		return dao.admin_cart(map);
+	}
+
+	@Override
+	public int admin_cart_totalpage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.admin_cart_totalpage(map);
+	}
  
 }

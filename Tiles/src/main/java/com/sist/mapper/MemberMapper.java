@@ -170,4 +170,19 @@ public interface MemberMapper {
 	public List<ReserveCleanVO> clean_user_reserve(Map map);
 	@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_clean WHERE id=#{id} ")
 	public int clean_admin_user_totalPage(Map map);
+	
+	/////////////////////////////// 부동산 사장님 페이지 부동산 구매 현황 
+	@Select("SELECT no,etype,dprice,name,type,addr,state "
+			+ "FROM estate_detail WHERE company=#{name} AND state='매매진행완료'")
+	public List<EstateDetailVO> customer_zip_buy(Map map);
+	
+	/////////// 관리자 장바구니s 
+	@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
+			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount,rownum as num "
+			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount "
+			+ "FROM product_cart ORDER BY cno desc)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<ProductCartVO> admin_cart(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart  ")
+	public int admin_cart_totalpage(Map map);
 }

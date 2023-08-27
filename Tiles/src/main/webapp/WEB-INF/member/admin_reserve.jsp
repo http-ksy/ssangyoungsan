@@ -9,17 +9,68 @@
 	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 	<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<!-- 	<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script> -->
-<!-- 	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script> -->
+	<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
  <div class="container">
+   <div class="row">
+  <template>
+  <div>
+    <b-button v-b-toggle.sidebar-border1 class="genric-btn primary-border small">관리자페이지</b-button>
+    <b-sidebar id="sidebar-border1" title="ADMIN!" sidebar-class="border-right border-danger" width="250px">
+      <div class="px-3 py-2">
+      <table>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+        <td>
+       <a href="../member/admin_reserve.do" class="genric-btn success circle btn" >예약현황</a>
+        </td>
+      </tr>  
+<!--        <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--            <input type="button" class="genric-btn success circle btn" value="구매현황"> -->
+<!--         </td> -->
+<!--       </tr>   -->
+<!--        <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--            <input type="button" class="genric-btn success circle btn" value="찜 목록"> -->
+<!--         </td> -->
+<!--       </tr>  -->
+      <tr style="height:30px;">
+        <td>
+           <input type="button" class="genric-btn success circle btn" value="장바구니">
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+       <a href="../member/admin.do" class="genric-btn success circle btn" >회원정보</a>
+        </td>
+      </tr>  
+<!--        <tr style="height:30px;"> -->
+<!--         <td> -->
+<!--            <input type="button" class="genric-btn success circle btn" value="문의하기"> -->
+<!--         </td> -->
+<!--       </tr>  -->
+        </table>
+     
+      </div>
+    </b-sidebar>
+  </div>
+</template>
+  </div>
     <div class="row">
      <h1 class="text-left"><b>예약 목록</b></h1>
-      
      </div>
    <div class="container">
       <ul class="nav nav-tabs">
@@ -103,7 +154,7 @@
  </div>
  <script>
  new Vue({
-	 el:'.tab-content',
+	 el:'.container',
 	 data:{
 		 reserve_list:[],
 		 clean_reserve_list:[],

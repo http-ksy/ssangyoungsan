@@ -28,6 +28,7 @@ import com.sist.vo.MemberVO;
 import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
 import com.sist.vo.PageVO;
+import com.sist.vo.ProductCartVO;
 import com.sist.vo.ReserveCleanVO;
 import com.sist.vo.ReserveMoveVO;
 import com.sist.vo.zipZimVO;
@@ -849,6 +850,60 @@ public String memberDelete(String id,String pwd,HttpSession session)
 	 Map map=new HashMap();
 	 map.put("id", id);	 
 	 int totalpage=service.clean_admin_user_totalPage(map);
+	 
+	 final int BLOCK=3;
+	 int startPage=((page-1)/BLOCK*BLOCK)+1;
+	 int endPage=((page-1)/BLOCK*BLOCK)+BLOCK;
+	 if(endPage>totalpage)
+		 endPage=totalpage;
+	 
+	 PageVO vo=new PageVO();
+	 vo.setCurpage(page);
+	 vo.setTotalpage(totalpage);
+	 vo.setStartPage(startPage);
+	 vo.setEndPage(endPage);
+	 
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(vo);
+	 return json;
+ }
+ 
+ @GetMapping(value="member/customer_buy.do",produces="text/plain;charset=UTF-8")
+ public String customer_zip(String name) throws Exception
+ {
+	 Map map=new HashMap();
+	 
+	 map.put("name", name);
+	 int rowSize=10;
+	
+	 List<EstateDetailVO> list=service.customer_zip_buy(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+ }
+ 
+ ///////////// 장바구니 관리자 
+ @GetMapping(value="member/admin_cart.do", produces="text/plain;charset=UTF-8")
+ public String admin_cart(int page) throws Exception
+ {
+	 Map map=new HashMap();
+	 int rowSize=8;
+	 int start=(rowSize*page)-(rowSize-1);
+	 int end=(rowSize*page);
+	 map.put("start", start);
+	 map.put("end", end);
+	 List<ProductCartVO> list=service.admin_cart(map);
+	 ObjectMapper mapper=new ObjectMapper();
+	 String json=mapper.writeValueAsString(list);
+	 return json;
+
+ }
+ @GetMapping(value="member/admin_cart_page.do",produces="text/plain;charset=UTF-8")
+ public String admin_cart_page(int page) throws Exception
+ {
+	 Map map=new HashMap();
+	 	 
+	 int totalpage=service.admin_cart_totalpage(map);
 	 
 	 final int BLOCK=3;
 	 int startPage=((page-1)/BLOCK*BLOCK)+1;

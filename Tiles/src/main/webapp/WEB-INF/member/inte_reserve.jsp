@@ -9,15 +9,57 @@
 	<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
 	<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<!-- 	<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script> -->
-<!-- 	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script> -->
+	<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
  <div class="container">
-  
+  <div class="row">
+  <template>
+  <div>
+    <b-button v-b-toggle.sidebar-border class="genric-btn primary-border small">Mypage</b-button>
+    <b-sidebar id="sidebar-border" title="MYPAGE!!" sidebar-class="border-right border-danger" width="250px">
+      <div class="px-3 py-2">
+      <table>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+      <tr style="height:30px;">
+      </tr>
+       <tr style="height:30px;">
+        <td>
+        <a href="../member/zipbuy.do" class="genric-btn success circle btn" >부동산🏦</a>
+        </td>
+      </tr>  
+      <tr style="height:30px;">
+        <td>
+        <a href="../member/inte_reserve.do" class="genric-btn success circle btn" >예약📝</a>
+        </td>
+      </tr>  
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/zipzim.do" class="genric-btn success circle btn" >찜💕</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+          <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
+        </td>
+      </tr> 
+      
+        </table>
+        
+      </div>
+    </b-sidebar>
+  </div>
+</template>
+  </div>
     <div class="row">
      <h1 class="text-left"><b>예약 목록</b></h1>
      </div>
