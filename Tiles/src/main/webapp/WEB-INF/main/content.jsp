@@ -199,7 +199,7 @@
                     <h2>추천<br>인테리어</h2>
                 </div>
             </div>
-            </div>
+            </div> 
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in inte_list">
                 <div class="single-new-arrival mb-10 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
