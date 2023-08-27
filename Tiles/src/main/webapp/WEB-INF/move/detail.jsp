@@ -11,11 +11,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <!-- CSS here -->
 
     <style type="text/css">
-		.blur {-webkit-filter: blur(4px);filter: blur(4px);}
+
+		
+		.b-calendar-grid-weekdays{
+			width:250px;
+			margin-left: 2px; 
+		}
+	
+		.b-calendar-grid-body > .row{
+			width:250px;
+			margin-left: 2px;
+		}
+		.row {
+			    margin-right: -37px;
+	   			margin-left: -1px;
+		}
+		.pt-50 {
+		    margin-left: 150px;
+		}
     </style>
 </head>
 <body class="full-wrapper">
@@ -29,15 +47,12 @@
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="../main/main.do">Home</a></li>
                                 <li class="breadcrumb-item"><a href="../move/list.do">.zip이사하기</a></li> 
-                                <li class="breadcrumb-item">.zip이사하기</li> 
+                                <li class="breadcrumb-item">.zip이사하기 상세</li> 
                             </ol>
                         </nav>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid blur">
-        	<img :src="move_detail.poster" style="width: 100%" height="200px;">
         </div>
         <!-- breadcrumb End-->
         <!--?  Details start -->
@@ -78,46 +93,16 @@
 						                </c:if> 
 						                 <c:if test="${jjim_count != 0 }">
                                           <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
-                                         <a href="../move/jjim_delete.do?mno=${ mno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt=""></a>
+                                         <a href="../move/jjim_delete.do?mno=${ mno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt="">{{move_detail.suggest}}</a>
 						                </c:if>                  
                                       </div>
-                                <!-- <div class="col-xl-12">
-                                    <div class="small-tittle mb-30">
-                                        <h2>댓글</h2>
-                                    </div>
-                                </div> -->
-                            
-                            <!-- <form id="contact-form" action="#" method="POST">
-                                <div class="row1">
-                                    <div class="col-lg-12">
-                                        <div class="form-box user-icon mb-15">
-                                            <input type="text" name="name" placeholder="Your name">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-box email-icon mb-15">
-                                            <input type="text" name="email" placeholder="Email address">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="form-box message-icon mb-15">
-                                            <textarea name="message" id="message" placeholder="Comment"></textarea>
-                                        </div>
-                                        <div class="submit-info">
-                                            <button class="submit-btn2" type="submit">Send Message</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form> -->
                         </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <template>
+                        <template  v-if="sessionId!=''">
 										  <div class="row">
-										    <label for="datepicker-full-width"><h1>예약날짜 선택</h1></label>
+										    <h1><label for="datepicker-full-width">예약날짜 선택</label></h1>
+										    </div>
+										    <br>
 										    <b-form-datepicker
 										      id="datepicker-full-width"
 										      v-model="rday"
@@ -126,8 +111,7 @@
 										      class="mb-2"
 										      :date-disabled-fn="dateDisabled" 
 										    ></b-form-datepicker>
-										  </div>
-										    
+										  
 										  </div>
 										</template>
 										<div class="row" style="margin: 15px;"></div>
@@ -155,50 +139,28 @@
 						<div class="row">
 						 <b-col>
 							<b style="display: block;">날짜 : '{{ rday }}'</b>
-							<b>시간 : '{{ rtime }}'</b>
-							<b >방 갯수 : {{room}}</b>		     
+							<b style="display: block;">시간 : '{{ rtime }}'</b>
+							<b style="display: block;">방 갯수 : {{room}}</b>		     
 						</b-col>
 						</div>
 						<div style="margin: 15px;"></div>
 						<div v-if="rday && rtime && room!=''">
 							<button class="btn" @click="reserveOk">예약하기</button>
 						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 						
         </div>
         <!--  Details End -->
         <!-- listing-area Area End -->
         <!--? Popular Locations Start 01-->
-        <div class="popular-product pt-50">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="single-product mb-50">
-                            <div class="location-img">
-                                <img src="../assets/img/gallery/popular-imtes1.png" alt="">
-                            </div>
-                            <div class="location-details">
-                                <p><a href="../product_details.html">Established fact that by the<br> readable content</a></p>
-                                <a href="../product_details.html" class="btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="single-product mb-50">
-                            <div class="location-img">
-                                <img src="../assets/img/gallery/popular-imtes2.png" alt="">
-                            </div>
-                            <div class="location-details">
-                                <p><a href="../product_details.html">Established fact that by the<br> readable content</a></p>
-                                <a href="../product_details.html" class="btn">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="popular-product pt-50 row1">
             <div class="row">
-            <div class="row">
-               <div class="small-tittle mb-30">
-                   <h2>후기</h2>
+               <div class="small-tittle mb-30 row1">
+                   <h1>후기</h1>
                </div>
             </div>
              <div style="height: 20px"></div>
@@ -250,7 +212,6 @@
                                         </div>
                                     </div>
                                 </div>
-        </div>
 
         <!-- Popular Locations End -->
     </main>
@@ -400,7 +361,12 @@
     	        			rtime:this.rtime,
     	        			room:this.room
     	        		}
-    	        	})
+    	        	}).then(response=>{
+      	        		console.log(response.data)
+      	        		this.reserve_list=response.data
+      	        		alert('예약성공')
+      	        		return location.href="../member/mypage.do";
+      	        	})
     	        }
         }
 	})

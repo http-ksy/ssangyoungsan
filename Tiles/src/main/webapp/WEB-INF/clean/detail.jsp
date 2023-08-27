@@ -15,16 +15,22 @@
    
     <!-- CSS here -->
     <style type="text/css">
-	.blur {-webkit-filter: blur(20px);filter: blur(20px);}
-/* 	.form-control{
-		
-		width: 750px;
-		
+	.b-calendar-grid-weekdays{
+		width:250px;
+		margin-left: 2px; 
 	}
-	.b-time .b-time-header output{
-		font-size: 150%
-	} */
-	
+
+	.b-calendar-grid-body > .row{
+		width:250px;
+		margin-left: 2px;
+	}
+	.row {
+		    margin-right: -37px;
+   			margin-left: -1px;
+	}
+	.pt-50 {
+	    margin-left: 150px;
+	}
     </style>
 </head>
 <body class="full-wrapper">
@@ -47,9 +53,6 @@
         </div>
         <!-- breadcrumb End-->
         <!--?  Details start -->
-        <div class="container-fluid blur">
-        	<img :src="clean_detail.poster" style="width: 100%" height="200px;">
-        </div>
         <div class="directory-details pt-padding">
             <div class="container">
                 <div class="row">
@@ -87,16 +90,14 @@
 						                </c:if> 
 						                 <c:if test="${jjim_count != 0 }">
                                           <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
-                                         <a href="../clean/jjim_delete.do?cno=${ cno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt=""></a>
+                                         <a href="../clean/jjim_delete.do?cno=${ cno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt="">{{clean_detail.suggest}}</a>
 						                </c:if>                  
                                      
-                                      <div>
-                                      	<div>{{clean_detail.suggest}}</div>
-                                      </div>
+                                      	
                                 </div>
                         </div>
                         </div>
-                        <template>
+                        <template v-if="sessionId!=''">
 										  <div class="row">
 										    <h1><label for="datepicker-full-width">예약날짜 선택</label></h1>
 										    </div>
@@ -104,11 +105,9 @@
 										    <b-form-datepicker
 										      id="datepicker-full-width"
 										      v-model="rday"
-										      menu-class="w-110"
 										      calendar-width="100%"
 										      class="mb-2"
 										      :date-disabled-fn="dateDisabled"
-										      style="width: 300px;"
 										    ></b-form-datepicker>
 										    
 										  </div>
@@ -157,13 +156,10 @@
         <!--  Details End -->
         <!-- listing-area Area End -->
         <!--? Popular Locations Start 01-->
-        <div class="popular-product pt-50">
-            <div class="row">
-            <div class="row">
-               <div class="small-tittle mb-30">
+        <div class="popular-product pt-50 row1">
+               <div class="small-tittle mb-30 row1">
                    <h1>후기</h1>
                </div>
-            </div>
             
              <div style="height: 20px"></div>
 							     <table class="table">
@@ -213,7 +209,6 @@
                                             <button class="submit-btn2" type="submit" @click="replyWrite()">후기 작성</button>
                                         </div>
                                     </div>
-	        </div>
 	        </div>
         <!-- Popular Locations End -->
     </main>
@@ -364,6 +359,11 @@
   	        			rtime:this.rtime,
   	        			room:this.room
   	        		}
+  	        	}).then(response=>{
+  	        		console.log(response.data)
+  	        		this.reserve_list=response.data
+  	        		alert('예약성공')
+  	        		return location.href="../member/mypage.do";
   	        	})
   	        }
         }

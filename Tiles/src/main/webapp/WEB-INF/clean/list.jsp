@@ -62,42 +62,6 @@
                     <!--? Left content -->
                     <div class="col-xl-3 col-lg-3 col-md-4 ">
                         <!-- Job Category Listing start -->
-                        <div class="category-listing mb-50">
-                            <!-- single one -->
-                            <div class="single-listing">
-                                <!-- Select City items start -->
-                                <div class="select-job-items2">
-                                    <select name="select2">
-                                        <option value="">전체</option>
-                                        <option value="">업체명</option>
-                                        <option value="">지역</option>
-                                        <option value="">분류(에어컨,하수구 등)</option>
-                                    </select>
-                                </div>
-                                <!--  Select City items End-->
-                                <!-- Select State items start -->
-                                <div class="select-job-items2">
-                                    <select name="select3">
-                                        <option value="">서울</option>
-                                        <option value="">경기</option>
-                                        <option value="">인천</option>
-                                        <option value="">강원도</option>
-                                        <option value="">충청도</option>
-                                    </select>
-                                </div>
-                                <!--  Select State items End-->
-                                <!-- Select km items start -->
-                                <div class="select-job-items2">
-                                    <select name="select4">
-                                        <option value="">에어컨</option>
-                                        <option value="">하수구</option>
-                                        <option value="">해충</option>
-                                        <option value="">누수</option>
-                                        <option value="">입주청소</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         <!-- Job Category Listing End -->
                     </div>
                     <!--?  Right content -->

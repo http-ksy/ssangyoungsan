@@ -35,7 +35,7 @@
                         <div class="header-left d-flex align-items-center">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="../main/main.do"><img src="../assets/img/logo/logo.png" alt=""></a>
+                                <a href="../main/main.do"><img src="../assets/img/logo/logo.png" style="width:120px;"></a>
                             </div>
                             <!-- Main-menu -->
                             <div class="main-menu  d-none d-lg-block">
