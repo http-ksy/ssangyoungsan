@@ -45,9 +45,9 @@
                     <div class="col-lg-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">shop</a></li> 
-                                <li class="breadcrumb-item"><a href="#">Product Details</a></li> 
+                                <li class="breadcrumb-item"><a href="../inte/inte_list.do">목록으로</a></li>
+                                <li class="breadcrumb-item"><a href="#">상세보기</a></li> 
+                                
                             </ol>
                         </nav>
                     </div>
@@ -97,6 +97,9 @@
                                         
                                         <div class="submit-info" style="display: inline-block" > 
                                             <button type="button"  class="submit-btn2" style="border-radius: 10px;" @click="foodDetail(true)">이 컨셉으로 신청</button>
+                                        </div>
+                                        <div class="" style="display: inline-block" v-if="sessionId==''">
+                                         <a href="#" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt="">{{inte_detail.suggest}}</a>
                                         </div>
                                         <div class="" style="display: inline-block" v-if="sessionId!=''">
                                           <c:if test="${like_count == 0 }">
@@ -193,16 +196,22 @@
                   
                   <!-- 예약 -->
                   <div id="reserve" class="tab-pane fade">
+                   <div v-if="sessionId==''">
+                    <h3><b>예약을 원하시면 로그인을 해주세용.</b></h3>
+                    <a href="../member/join.do"><button class="submit-btn2">회원가입 하러가기</button></a>
+                   </div>
+                   
                   <div v-if="sessionId!=''">
     			    <table class="table" height=700>
       				  <tr>
 					    <td width="65%" height="600"  style="color:gray;">
 						<table class="table">
-						 <thead><h3>예약일 정보</h3></thead>
+						 <thead><h2>예약일 정보</h2></thead>
+						  <h3>달력을 눌러서 예약일을 선택해주세요.</h3>
 						 <div class="col-lg-8">
 						  <template>
   <div>
-    <label for="datepicker-full-width">Choose a date</label>
+    <label for="datepicker-full-width"></label>
     <b-form-datepicker
       id="datepicker-full-width"
       v-model="reserve_date"
@@ -213,7 +222,8 @@
    
     <div v-if="reserve_date!=''">
     <hr>
-       <thead><h3>예약 시간</h3></thead>
+       <thead><h3><b>예약 시간</b></h3></thead>
+        <h3>화살표를 눌러서 예약시간을 선택해주세요.</h3>
 	   <b-time  v-model="reserve_time" show-seconds locale="en">
 	    <div class="d-flex" dir="ltr">
 	      <b-button
@@ -237,9 +247,10 @@
 	  	
 	  <div v-if="reserve_time!=''">
 	  <hr>
-	  <thead><h3>예약 정보</h3></thead>
-	   <h3>DATE: {{ reserve_date }}</h3>
-	   <h3>Time: {{ reserve_time }}</h3>
+	  <thead><h3><b>선택하신 정보가 맞습니까?</b></h3></thead>
+	  
+	   <h3>예약일: {{ reserve_date }}</h3>
+	   <h3>시간: {{ reserve_time }}</h3>
 	   <b-button @click="reserveOk(true)">예약하기</b-button>
 	  </div>
     </div>
@@ -482,6 +493,7 @@
 		    			ino:this.ino,
 		    			reserve_date:this.reserve_date,
 		    			reserve_time:this.reserve_time
+		    			
 		    		}
 		    	}).then(response=>{
 		    		 console.log(response.data)

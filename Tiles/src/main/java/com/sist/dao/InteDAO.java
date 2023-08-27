@@ -94,4 +94,7 @@ public class InteDAO {
 	public void reserveOk(InteReserveVO vo) {
 		mapper.reserveOk(vo);
 	}
+	public String reserveNo(String id) {
+		return mapper.reserveNo(id);
+	}
 }

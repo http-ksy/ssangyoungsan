@@ -8,6 +8,7 @@ import java.util.*;
 
 import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
+import com.sist.vo.InteVO;
 import com.sist.vo.MoveVO;
 @Repository
 public class ContentDAO {
@@ -32,5 +33,10 @@ public class ContentDAO {
 				+ "WHERE rownum <=4")*/
 	public List<MoveVO> moveRandomList(){
 		return mapper.moveRandomList();
+	}
+	
+	//인테리어
+	public List<InteVO> inteRandomList() {
+		return mapper.inteRandomList();
 	}
 }

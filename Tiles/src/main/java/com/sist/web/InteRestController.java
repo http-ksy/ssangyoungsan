@@ -136,7 +136,8 @@ public class InteRestController {
 		String id = (String)session.getAttribute("id");
 		vo.setId(id);
 		service.reserveOk(vo);		
-		
+		//System.out.println(vo.getRok());
+		vo.setNo(Integer.parseInt(service.reserveNo(id)));
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(vo);
 		return json;

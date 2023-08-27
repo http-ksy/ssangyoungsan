@@ -27,5 +27,10 @@ public class ContentServiceImpl implements ContentService{
 		// TODO Auto-generated method stub
 		return dao.moveRandomList();
 	}
+
+	@Override
+	public List<InteVO> inteRandomList() {
+		return dao.inteRandomList();
+	}
 	
 }

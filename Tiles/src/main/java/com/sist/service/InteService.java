@@ -46,5 +46,6 @@ public interface InteService {
 	
 	//이거 예약
 	public void reserveOk(InteReserveVO vo);
+	public String reserveNo(String id);
 
 }

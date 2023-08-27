@@ -43,4 +43,13 @@ public class ContentRestController {
 		String json=mapper.writeValueAsString(list);
 		return json;
 	}
+	
+	@GetMapping(value = "main/content_inte_vue.do", produces = "text/plain;charset=UTF-8")
+	public String inte_move() throws Exception {
+		List<InteVO> list = service.inteRandomList();
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(list);
+		return json;
+	}
+	
 }

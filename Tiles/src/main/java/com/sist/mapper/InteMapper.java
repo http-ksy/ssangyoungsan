@@ -60,4 +60,7 @@ public interface InteMapper {
 	@Insert("INSERT INTO reserve_info_inte VALUES(rii_no_seq.nextval,"
 			+ "#{id},#{ino},#{reserve_date},#{reserve_time},'y',SYSDATE)")
 	public void reserveOk(InteReserveVO vo);
+	@Select("SELECT no FROM reserve_info_inte WHERE id=#{id}")
+	public String reserveNo(String id);
+	 
 }
