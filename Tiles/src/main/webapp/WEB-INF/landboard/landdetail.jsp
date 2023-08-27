@@ -43,8 +43,17 @@
        <li><b-icon icon="chat-square-dots-fill" ></b-icon>&nbsp;{{landboard_reply.length}} Comments</li>
        
        <li><b-icon icon="eye-fill" ></b-icon>&nbsp;{{landboard_detail.hit}}</li>
-       <li><b-icon icon="hand-thumbs-up"></b-icon>좋아요</li>
        <li><b-icon icon="calendar-date"></b-icon>&nbsp;{{landboard_detail.dbday}}</li>
+       <li>
+       	<b-badge variant="secondary" v-b-toggle.collapse-down class="m-1">
+      	 <b-icon icon="file-earmark-image"></b-icon>첨부파일
+        </b-badge>
+		  <b-collapse id="collapse-down">
+		    <b-card v-for="fn,indexs in filenames">
+		    <a :href="'../databoard/download.do?fn='+fn">{{fn}}</a>&nbsp;({{filesizes[indexs]}}Bytes)
+		    </b-card>
+		  </b-collapse>
+ 	 </li>
        <!-- calendar-date -->
      </ul>
      <hr>
@@ -178,6 +187,9 @@ new Vue({
 		notice:'',
 		id:'${sessionScope.id}',
 		landboard_reply:[],
+		filecount:0,
+		filenames:[],
+		filesizes:[],
 		contents:'',
 		size:'',
 		reno:0,
@@ -193,6 +205,10 @@ new Vue({
 		}).then(response=>{
 			console.log(response.data)
 			this.landboard_detail=response.data
+			this.filecount=this.landboard_detail.filecount
+			this.filenames=response.data.filename.split(",")
+			this.filesizes=response.data.filesize.split(",")
+			console.log(filenames)
 		}).catch(error=>{
 			console.log(error.response)
 		})

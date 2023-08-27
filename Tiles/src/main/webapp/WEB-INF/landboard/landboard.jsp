@@ -46,7 +46,7 @@
 														<div class="serial">등록일</div>
 														<div class="serial">조회수</div>
 													</div>
-													<div class="table-row" v-for="vo in landboard_list">
+													<div class="table-row" v-for="vo,index in landboard_list">
 														<div class="serial">{{vo.no}}</div>
 														<div class="percentage"><a :href="'../landboard/detail.do?no='+vo.no" style="color: black">{{vo.title}}</a></div>
 														<div class="serial">{{vo.id}}</div>

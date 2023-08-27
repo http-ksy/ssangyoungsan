@@ -20,7 +20,8 @@ public interface landboardMapper {
 	public List<landboardVO> landboard_list(Map map);
 	@Update("UPDATE landboard set hit=hit+1 where no=#{no}")
 	public void incrementHit(int no);
-	@Select("SELECT no,title,id,hit,subject,TO_CHAR(regdate,'yyyy-mm-dd')as dbday "
+	@Select("SELECT no,title,id,hit,subject,TO_CHAR(regdate,'yyyy-mm-dd')as dbday,"
+			+ "filename,filesize,filecount "
 			+ "FROM landboard where no=#{no}")
 	public landboardVO landboard_detail(int no);
 }
