@@ -14,4 +14,7 @@ public interface landboardService {
 	
 	public landboardVO landboard_detail(int no);
 	
+	public void landboard_update(landboardVO vo);
+
+	public void landboard_delete(int no);
 }

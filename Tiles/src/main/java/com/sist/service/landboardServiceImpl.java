@@ -1,10 +1,11 @@
 package com.sist.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sist.dao.landboardDAO;
 import com.sist.vo.landboardVO;
@@ -32,5 +33,18 @@ public class landboardServiceImpl implements landboardService{
 		dao.incrementHit(no);
 		return dao.landboard_detail(no);
 	}
+
+	@Override
+	public void landboard_update(landboardVO vo) {
+		// TODO Auto-generated method stub
+		dao.landboard_update(vo);
+	}
+
+	@Override
+	public void landboard_delete(int no) {
+		// TODO Auto-generated method stub
+		dao.landboard_delete(no);
+	}
+	
 
 }

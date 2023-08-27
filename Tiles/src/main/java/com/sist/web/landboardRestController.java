@@ -94,5 +94,30 @@ public class landboardRestController {
 		json=mapper.writeValueAsString(vo);
 		return json;
 	}
-
+	@PostMapping(value = "landboard/landboardUpdate.do", produces = "text/plain;charset=utf-8")
+	public String landboardUpdate(landboardVO vo) {
+		String result="no";
+		try {
+			service.landboard_update(vo);
+			result = "yes";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	@GetMapping(value = "landboard/landboard_delete.do", produces = "text/plain;charset=utf-8")
+	public String landboardDelete(int no) {
+		String result="no";
+		try {
+			service.landboard_delete(no);
+			result = "yes";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

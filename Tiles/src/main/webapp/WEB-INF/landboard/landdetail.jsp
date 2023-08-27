@@ -45,7 +45,7 @@
        <li><b-icon icon="eye-fill" ></b-icon>&nbsp;{{landboard_detail.hit}}</li>
        <li><b-icon icon="calendar-date"></b-icon>&nbsp;{{landboard_detail.dbday}}</li>
        <li>
-       	<b-badge variant="secondary" v-b-toggle.collapse-down class="m-1">
+       	<b-badge variant="secondary" v-b-toggle.collapse-down class="m-1" href="#">
       	 <b-icon icon="file-earmark-image"></b-icon>첨부파일
         </b-badge>
 		  <b-collapse id="collapse-down">
@@ -62,12 +62,19 @@
        {{landboard_detail.subject}}
       </div>
     </div>
+    <div class="text-right">
+    	<!-- dddddddddd -->
+    	<h2 v-if="id==landboard_detail.id"><b-badge variant="light" :href="'../landboard/landboard_update.do?no='+landboard_detail.no">수정<b-icon icon="hammer"></b-icon></b-badge>&nbsp;&nbsp;<b-badge href="#" variant="light" @click="boardDelete()">삭제<b-icon icon="trash-fill" ></b-icon></b-badge></h2>
+    </div>
     <hr>
  <h4><b-icon icon="chat-square-dots-fill"></b-icon>&nbsp;댓글!!!</h4>
  <hr>
+ 
  <!-- 댓글 출력 !!! -->
 <div>
+<h3 v-if="landboard_reply.length==0">첫 댓글의 주인이 되어보세요!!!</h3>
 	<div class="row" style="width: 100%" v-for="rvo,index in landboard_reply">
+	
 	<div class="row" v-if="rvo.group_tab>=0">
 			<span v-for="idx in rvo.group_tab">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<div class="col-md-10">
@@ -316,6 +323,19 @@ new Vue({
 	    		  console.log(response.data)
 	    		  this.landboard_reply=response.data
 	    		  this.size=landboard_reply.length
+	    	  }).catch(error=>{
+	    		  console.log(error.response)
+	    	  })
+	      },
+	      boardDelete:function(){
+	    	  
+	    	  axios.get('http://localhost/web/landboard/landboard_delete.do',{
+	    		  params:{
+	    			  no:this.no
+	    		  }
+	    	  }).then(response=>{
+	    		  alert('삭제완료')
+	    		  location.href="../sotong/haeyo.do"
 	    	  }).catch(error=>{
 	    		  console.log(error.response)
 	    	  })

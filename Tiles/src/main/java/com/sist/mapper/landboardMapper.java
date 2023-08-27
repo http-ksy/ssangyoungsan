@@ -1,5 +1,6 @@
 package com.sist.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -18,10 +19,18 @@ public interface landboardMapper {
 			+ "where bno=#{bno}"
 			+ " order by no desc")
 	public List<landboardVO> landboard_list(Map map);
+	
 	@Update("UPDATE landboard set hit=hit+1 where no=#{no}")
 	public void incrementHit(int no);
+	
 	@Select("SELECT no,title,id,hit,subject,TO_CHAR(regdate,'yyyy-mm-dd')as dbday,"
 			+ "filename,filesize,filecount "
 			+ "FROM landboard where no=#{no}")
 	public landboardVO landboard_detail(int no);
+	
+	@Update("update landboard set title=#{title}, subject=#{subject} where no=#{no}")
+	public void landboard_update(landboardVO vo);
+	
+	@Delete("delete from landboard where no=#{no}")
+	public void landboard_delete(int no);
 }

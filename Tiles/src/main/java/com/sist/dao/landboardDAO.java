@@ -3,6 +3,7 @@ package com.sist.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -32,5 +33,15 @@ public class landboardDAO {
 	public landboardVO landboard_detail(int no)
 	{
 		return mapper.landboard_detail(no);
+	}
+	
+//	@Update("update landboard set title=#{title}, subject=#{subject} where no=#{no}")
+	public void landboard_update(landboardVO vo) {
+		mapper.landboard_update(vo);
+	}
+	
+//	@Delete("delete from landboard where no=#{no}")
+	public void landboard_delete(int no) {
+		mapper.landboard_delete(no);
 	}
 }

@@ -66,4 +66,9 @@ public class landboardController {
 			   bos.close();
 		   }catch(Exception ex){}
 	   }
+	@GetMapping("landboard/landboard_update.do")
+	public String landboard_Update(int no,Model model) {
+		model.addAttribute("no", no);
+		return "landboard/landboardupdate";
+	}
 }
