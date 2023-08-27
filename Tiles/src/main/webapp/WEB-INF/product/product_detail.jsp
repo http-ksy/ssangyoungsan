@@ -11,21 +11,6 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- CSS here -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/slicknav.css">
-    <link rel="stylesheet" href="../assets/css/flaticon.css">
-    <link rel="stylesheet" href="../assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="../assets/css/gijgo.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/animated-headline.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../assets/css/themify-icons.css">
-    <link rel="stylesheet" href="../assets/css/slick.css">
-    <link rel="stylesheet" href="../assets/css/nice-select.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
@@ -34,6 +19,12 @@
 <style type="text/css">
 .container{
 	width: 960px;
+}
+.row{
+	width: 100%;
+}
+.aa{
+	width: 100%;
 }
 </style>
 <style type="text/css">
@@ -155,7 +146,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
         <!--? Blog Area Start-->
             <div class="container vue">
                 <div class="row">
-<!-- 상품 사진 -->                
+<!-- 상품 사진 -->              
                     <div class="col-lg-7 mb-5 mb-lg-0">
                         <div class="blog_left_sidebar">
                                 <div class="blog_item_img">
@@ -171,59 +162,56 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                     </div>
 <!-- 상품 정보 -->                    
                     <div class="col-lg-5">
-                        <div class="blog_right_sidebar">
+                        <div class="aa">
                             <div>
                               <div>
                                 <table class="table">
                                   <tr>
-                                    <th width=25%>브랜드</th>
-                                    <td width=75%>{{product_detail.brand}}</td>
+                                    <th width=40%>브랜드</th>
+                                    <td width=60%>{{product_detail.brand}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=25%>제품명</th>
-                                    <td width=75%>{{product_detail.title}}</td>
+                                    <th width=40%>제품명</th>
+                                    <td width=60%>{{product_detail.title}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=25%>원가</th>
-                                    <td width=75%>{{product_detail.original_pri}}</td>
+                                    <th width=40%>원가</th>
+                                    <td width=60%>{{product_detail.original_pri|currency}}원</td>
+                                  </tr>
+                                  <tr v-if="product_detail.sale!==null">
+                                    <th width=40%>할인율</th>
+                                    <td width=60%>{{product_detail.sale}}</td>
+                                  </tr>
+                                  <tr v-if="product_detail.priced_sale!==''">
+                                    <th width=40%>할인가</th>
+                                    <td width=60%>{{product_detail.priced_sale|currency}}원</td>
+                                    
                                   </tr>
                                   <tr>
-                                    <th width=25%>할인율</th>
-                                    <td width=75%>{{product_detail.sale}}</td>
+                                    <th width=40%>배송</th>
+                                    <td width=60%>{{product_detail.delivery_pri}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=25%>할인가</th>
-                                    <td width=75%>{{product_detail.priced_sale}}</td>
-                                  </tr>
-                                  <tr>
-                                    <th width=25%>배송</th>
-                                    <td width=75%>{{product_detail.delivery_pri}}</td>
-                                  </tr>
-                                  <tr>
-                                    <th width=25%><label for="sb-inline">수량</label></th>
-                                    <td width=75%>
+                                    <th width=40%><label for="sb-inline">수량</label></th>
+                                    <td width=60% class="text-right">
                                       <!-- <select ref="amount" @change="update_pri()">
-                                        <option v-for="i in maxAmount" :value="i">{{i}}개</option>
-                                        
+                                        <option v-for="i in maxAmount" :value="i">{{i}}개<*/option>
                                       </select> -->
-                                      <div>
-									    
-									    <b-form-spinbutton  v-model="amount" inline max="10"></b-form-spinbutton>
-									  </div>
+									    <b-form-spinbutton style="height: 5rem;font-size: 13px" v-model="amount" inline max="10" @change="ups()"></b-form-spinbutton>
                                     </td>
                                   </tr>
                                   <tr>
-                                    <th width=25%>결제금액</th>
-                                    <td class="text-right" width=75%>
-                                      {{ total_price }}원
+                                    <th width=width=40%>결제금액</th>
+                                    <td class="text-right" width=60%>
+                                      {{ total_price|currency }}원
                                     </td>
                                   </tr>
                                 </table>
                                 <table>
                                   <tr>
                                    <th>
-                                    <button class="custom-btn btn-6"><a href="../product/product_cart.do?no='+vo.no+'&type='+type" style="color: black">장바구니</a></button>
-                                    <button class="custom-btn btn-6"><a href="#" style="color: black">구매하기</a></button>
+                                    <button class="custom-btn btn-6" @click="plusCart()"><a :href="'../product/product_cart.do?id='+id" style="color: black">장바구니</a></button>
+                                    <button class="custom-btn btn-6"><a :href="'../product/product_order.do?no='+no+'&type='+type" style="color: black">구매하기</a></button>
                                    </th>
                                   </tr>
                                 </table>
@@ -267,14 +255,14 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 	</td>
   </tr>
 </table>
-	  <table class="table" v-for="rvo in reply_list">
+	  <!-- <table class="table" v-for="rvo in reply_list">
 		<tr :id="'u'+rvo.pno" class="updates" style="display:none">
 	      <td colspan="2">
 	        <textarea rows="4" cols="62"  :id="'msg'+rvo.pno" style="float: left">{{rvo.msg}}</textarea>
 	        <button class="custom-btn btn-6" style="float: left;width: 100px;height: 85px" @click="replyUpdate(rvo.pno)">댓글수정</button>
 	      </td>
 	    </tr>
-	  </table>
+	  </table> -->
 	  <table class="table" v-if="sessionId!=''">
 		<tr>
 		  <td>
@@ -301,12 +289,23 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  type:${type},
 		  reply_list:[],
 		  sessionId:'${id}',
+		  id:'${id}',
 		  msg:'',
 		  isShow:false,
 		  pno:0,
 		  amount:1,
 		  total_price:''
 	  },
+	  filters:{
+          currency: function(value){
+              let total_price = new Number(value);
+              return total_price.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+              let original_pri = new Number(value);
+              return original_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+              let priced_sale = new Number(value);
+              return priced_sale.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+          }
+      },
 	  mounted:function(){
 		 /*  console.log('no='+this.no)
 		  console.log('type='+this.type) */
@@ -318,26 +317,13 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  }).then(response=>{
 			  console.log(response.data);
 			  this.product_detail=response.data;
-			  this.total_price=response.data.original_pri
+			  this.total_price=response.data.original_pri;
+			  this.total_price=response.data.priced_sale
 		  }).catch(error=>{
 			  console.log(error.response);
 		  })
 		  
 		  this.replyRead()
-	  },
-	  updated:function(){
-		  console.log('amount : '+this.amount)
-		  this.total_price = Number(this.amount) * Number(this.product_detail.original_pri);
-		  if(this.product_detail.priced_sale==null){
-			  this.total_price = Number(this.amount) * Number(this.product_detail.original_pri);
-		  }
-		  else
-			  {
-			  this.total_price = Number(this.amount) * Number(this.product_detail.priced_sale);
-
-			  }
-		  console.log('totalprice'+this.total_price)
-		  console.log('oriprice'+this.product_detail.original_pri)
 	  },
 	  methods:{
 		  replyRead:function(){
@@ -427,6 +413,44 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 				  this.replyRead(); 
 				  $('#u'+pno).hide();
 				  $('#up'+pno).text('수정')
+			  }).catch(error=>{
+				  console.log(error.response)
+			  })
+		  },
+		  ups:function(){
+			  
+			  console.log('amount : '+this.amount)
+	  		  if(this.product_detail.priced_sale==''){
+				  this.total_price = Number(this.amount) * Number(this.product_detail.original_pri);
+			  } 
+	 		  else{
+				  this.total_price = Number(this.amount) * Number(this.product_detail.priced_sale);
+			  }  
+			  console.log('totalprice:'+this.total_price)
+			  console.log('oriprice:'+this.product_detail.original_pri)
+			  console.log('saleprice:'+this.product_detail.priced_sale)
+		  },
+		  plusCart:function(){
+			  if(this.product_detail.priced_sale=="")
+				  {
+				  this.product_detail.priced_sale=0
+				  }
+			  axios.post('../product/cart_insert_vue.do',null,{
+				  params:{
+					  id:this.id,
+					  no:this.no,
+					  type:this.type,
+					  amount:this.amount,
+					  total_pri:this.total_price,
+					  poster:this.product_detail.poster,
+					  title:this.product_detail.title,
+					  brand:this.product_detail.brand,
+					  delivery_pri:this.product_detail.delivery_pri,
+					  original_pri:this.product_detail.original_pri,
+					  priced_sale:this.product_detail.priced_sale
+				  }
+			  }).then(response=>{
+				  console.log(response.data)
 			  }).catch(error=>{
 				  console.log(error.response)
 			  })

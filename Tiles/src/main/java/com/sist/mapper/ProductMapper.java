@@ -1,35 +1,40 @@
 package com.sist.mapper;
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import com.sist.vo.ProductCartVO;
+import com.sist.vo.ProductReplyVO;
 import com.sist.vo.ProductVO;
 
 public interface ProductMapper {
-/*
- *   <select id="productListData" resultType="ProductVO" parameterType="hashmap">
-	    SELECT no,poster,brand,title,original_pri,num 
-	    FROM (SELECT no,poster,brand,title,original_pri,rownum as num
-	    FROM (SELECT no,poster,brand,title,original_pri
-	    FROM ${table_name} ORDER BY no ASC))
-	    WHERE num BETWEEN #{start} AND #{end}
-	  </select>
- */
+	// 목록
 	public List<ProductVO> productListData(Map map);
 	
 	@Select("SELECT CEIL(COUNT(*)/21.0) FROM ${table_name}")
 	public int productTotalPage(Map map);
 	
+	// 검색
 	public List<ProductVO> productFindData(Map map);
 	public int productFindCount(Map map);
-	/*
-	 *  private String poster,title,original_pri,sale,priced_sale,brand,
-		 	delivery_pri,score,detailposters;
-		private int no,review_cnt;
-	 */
-	
-//	@Select("SELECT no,title,original_pri FROM ${table_name} WHERE no=#{no}")
+	 
+	// 상세
 	public ProductVO productDetailData(Map map);
+
+	// 장바구니	
+	@Insert("INSERT INTO product_cart VALUES("
+			+ "pdc_cno_seq.nextval,#{no},#{type},#{id},#{poster},#{title},#{brand},#{delivery_pri},#{total_pri},#{amount},#{original_pri},#{priced_sale})")
+	public void cartInsert(ProductCartVO vo);
+		
+	@Select("SELECT /*+ INDEX_DESC(product_cart pdc_cno_pk)*/cno,no,type,id,poster,title,brand,delivery_pri,total_pri,amount,original_pri,priced_sale "
+			+ "FROM product_cart "
+			+ "WHERE id=#{id}")
+	public List<ProductCartVO> cartListData(Map map);
 	
-	public ProductVO productCartData(Map map);
+	@Delete("DELETE FROM product_cart WHERE id=#{id}")
+	public void cartDelete(String id);
+	
+
 }

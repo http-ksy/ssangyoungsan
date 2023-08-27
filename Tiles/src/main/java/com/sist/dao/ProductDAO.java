@@ -9,7 +9,7 @@ import com.sist.mapper.*;
 public class ProductDAO {
 	@Autowired
 	private ProductMapper mapper;
-	
+	// 목록
 	public List<ProductVO> productListData(Map map)
 	{
 		return mapper.productListData(map);
@@ -20,6 +20,7 @@ public class ProductDAO {
 		return mapper.productTotalPage(map);
 	}
 	
+	// 검색
 	public List<ProductVO> productFindData(Map map)
 	{
 		return mapper.productFindData(map);
@@ -29,13 +30,26 @@ public class ProductDAO {
 		return mapper.productFindCount(map);
 	}
 	
+	// 상세페이지
 	public ProductVO productDetailData(Map map)
 	{
 		return mapper.productDetailData(map);
 	}
 	
-	public ProductVO productCartData(Map map)
+	// 장바구니
+	public void cartInsert(ProductCartVO vo)
 	{
-		return mapper.productCartData(map);
+		mapper.cartInsert(vo);
 	}
+	public List<ProductCartVO> cartListData(Map map)
+	{
+		return mapper.cartListData(map);
+	}
+	public void cartDelete(String id)
+	{
+		mapper.cartDelete(id);
+	}
+
+
+
 }

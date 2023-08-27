@@ -25,20 +25,22 @@ public class ProductController {
 		return "main/main";
 	}
   	
-  	
   	@GetMapping("product/product_detail.do")
   	public String product_detail(int no,int type,Model model)
   	{
   		model.addAttribute("type",type);
   		model.addAttribute("no",no);
-  		System.out.println("type"+type);
-  		System.out.println("no"+no);
+//  		System.out.println("type"+type);
+//  		System.out.println("no"+no);
   		return "product/product_detail";
   	}
   	
   	@GetMapping("product/product_cart.do")
-  	public String product_cart(int no,int type,Model model)
+  	public String product_cart(String id,Model model)
   	{
+  		model.addAttribute("id",id);
+  		System.out.println("id"+id);
   		return "product/product_cart";
   	}
+  	
 }
