@@ -203,7 +203,7 @@
 							       </td>
 							      </tr>
 							     </table>
-							     <div class="row" v-if="sessionId!=''">
+							     <div class="row" v-if="sessionId!=''"> 
 							     <div class="col-lg-12">
                                         <div class="form-box user-icon mb-15">
                                             작성자 : <input type="text" :placeholder="name" readonly>
