@@ -97,4 +97,10 @@ public class InteDAO {
 	public String reserveNo(String id) {
 		return mapper.reserveNo(id);
 	}
+	public int reserveCheck(InteReserveVO vo) {
+		return mapper.reserveCheck(vo);
+	}
+	public InteReserveVO reserveDate(String id) {
+		return mapper.reserveDate(id);
+	}
 }
