@@ -10,6 +10,7 @@ import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.InteVO;
 import com.sist.vo.MoveVO;
+import com.sist.vo.ProductVO;
 @Repository
 public class ContentDAO {
 	@Autowired
@@ -38,5 +39,11 @@ public class ContentDAO {
 	//인테리어
 	public List<InteVO> inteRandomList() {
 		return mapper.inteRandomList();
+	}
+	
+	// 스토어
+	public List<ProductVO> productRandomList()
+	{
+		return mapper.productRandomList();
 	}
 }

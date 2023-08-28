@@ -137,18 +137,15 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                     <div class="col-lg-8">
                       <div class="blog_right_sidebar">
                         <div class="text-right">
-                          <button class="genric-btn info-border circle arrow">모두삭제</button>
+                          <button class="genric-btn info-border circle arrow" @click="cartAllDelete(id)">모두삭제</button>
                         </div>
                         <div v-for="vo in product_cart">
                           <table class="table">
                             <tr>
-                            <!--   <td>
-	                            <input type="checkbox">                             
-                              </td> -->
-                              <td>
+                              <td width=5%>
                             	<img :src="vo.poster" style="wdith: 100px;height: 100px" alt="">
                               </td>
-                              <td>
+                              <td class="text-left" width=90%>
                                 <h4>[{{vo.brand}}]&nbsp;&nbsp;&nbsp;{{vo.title}}</h4>
                                 <p>배송정보 | </p>
                                 <p>{{vo.delivery_pri}}</p>
@@ -156,39 +153,37 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                 </h4> -->
                                 <p class="text-right">수량 | {{vo.amount}}개</p>
                                 <h4 class="text-right">{{vo.total_pri|currency}}원</h4>
-                                
                               </td>
-                              <td>
-                              <img src="../assets/img/product/delete.png" style="width:30px;height:30px">
-
-                              </td>
+                              <td width=5%>
+                                <img src="../assets/img/product/delete.png" style="width:30px;height:30px" @click="cartDelete(vo.cno)">
+							  </td>
                             </tr>
                           </table>
                         </div>
                       </div>                    
                     </div>
                     <div class="col-lg-4">
-                        <div class="blog_right_sidebar">
+                        <div class="blog_right_sidebar" style="border: 2px solid gray; border-radius: 30px; padding: 35px;">
                             <div>
                               <div>
                                 <table class="table">
                                   <tr>
-                                    <th width=20%>상품금액</th>
-                                    <td width=80%>{{select_pri}}원</td>
+                                    <th width=30%>상품금액</th>
+                                    <td width=70%>{{select_pri|currency}}원</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>배송비</th>
-                                    <td width=80%>{{del_pri}}</td>
+                                    <th width=30%>배송비</th>
+                                    <td width=70%>{{del_pri|currency}}원</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>결제금액</th>
-                                    <td width=80%>{{final_pri}}원</td>
+                                    <th width=30%>결제금액</th>
+                                    <td width=70%>{{final_pri|currency}}원</td>
                                   </tr>
                                 </table>
                                 <table>
                                   <tr class="text-center">
                                    <th>
-                                    <button class="custom-btn btn-6"><a href="#" style="color: black">구매하기</a></button>
+                                    <button class="custom-btn btn-6" @click="porder()"><a :href="'../product/product_order.do?id='+id" style="color: black">구매하기</a></button>
                                    </th>
                                   </tr>
                                 </table>
@@ -211,9 +206,10 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  product_cart:[],
 		  id:'${id}',
 		  total_pri:'',
-		  select_pri:'',
-		  del_pri:'3,000원',
-		  final_pri:''
+		  select_pri:0,
+		  del_pri:3000,
+		  final_pri:0,
+		  cno:'${cno}'
 	  },
  	  filters:{
           currency: function(value){
@@ -223,31 +219,69 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
               return select_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
               let final_pri = new Number(value);
               return final_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+              let del_pri = new Number(value);
+              return del_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
           }
       }, 
 	  mounted:function(){
-		  axios.get('../product/cart_read_vue.do',{
-			  params:{
-				  id:this.id				  
-			  }
-		  }).then(response=>{
-			  console.log(response.data);
-			  this.product_cart=response.data;
-			  this.total_pri=response.data.original_pri;
-			  this.total_pri=response.data.priced_sale
-		  }).catch(error=>{
-			  console.log(error.response);
-		  })
+		  this.cartRead()
 	  },
 	  methods:{
-		  cartDelete:function(id){
+		  cartRead:function(){
+			  axios.get('../product/cart_read_vue.do',{
+				  params:{
+					  id:this.id				  
+				  }
+			  }).then(response=>{
+				  console.log(response.data);
+				  this.product_cart=response.data;
+				  for(let i=0;i<this.product_cart.length;i++)
+				  {
+					 this.select_pri+=this.product_cart[i].total_pri;  
+				  }
+				  this.final_pri=this.select_pri+this.del_pri;
+				  
+			  }).catch(error=>{
+				  console.log(error.response);
+			  })
+		  },
+		  cartDelete:function(cno){
 			  axios.get('../product/cart_delete_vue.do',{
+				  params:{
+					  id:this.id,
+					  cno:cno
+				  }
+			  }).then(response=>{
+				  console.log(response.data)
+				  alert("삭제완료")
+				  this.cartRead(); 
+			  }).catch(error=>{
+				  console.log(error.response)
+			  })
+		  },
+		  cartAllDelete:function(id){
+			  axios.get('../product/cart_alldelete_vue.do',{
 				  params:{
 					  id:this.id
 				  }
 			  }).then(response=>{
 				  console.log(response.data)
-				  this.product_cart=response.data;
+				  alert("삭제완료")
+				  this.cartRead();
+			  }).catch(error=>{
+				  console.log(error.response)
+			  })
+		  },
+		  porder:function(){
+			  axios.post('../product/order_insert_vue.do',null,{
+				  params:{	
+					  id:this.id,
+					  select_pri:this.select_pri,
+					  del_pri:this.del_pri,
+					  final_pri:this.final_pri
+				  }
+			  }).then(response=>{
+				  console.log(response.data)
 			  }).catch(error=>{
 				  console.log(error.response)
 			  })

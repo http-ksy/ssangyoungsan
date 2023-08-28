@@ -32,5 +32,11 @@ public class ContentServiceImpl implements ContentService{
 	public List<InteVO> inteRandomList() {
 		return dao.inteRandomList();
 	}
+
+	@Override
+	public List<ProductVO> productRandomList() {
+		// TODO Auto-generated method stub
+		return dao.productRandomList();
+	}
 	
 }

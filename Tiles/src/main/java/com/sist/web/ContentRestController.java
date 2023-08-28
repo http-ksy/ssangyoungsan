@@ -52,4 +52,12 @@ public class ContentRestController {
 		return json;
 	}
 	
+	@GetMapping(value = "main/content_product_vue.do", produces = "text/plain;charset=UTF-8")
+	public String content_product() throws Exception {
+		List<ProductVO> list = service.productRandomList();
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(list);
+		return json;
+	}
+	
 }

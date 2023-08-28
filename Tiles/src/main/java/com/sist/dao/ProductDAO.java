@@ -45,9 +45,23 @@ public class ProductDAO {
 	{
 		return mapper.cartListData(map);
 	}
-	public void cartDelete(String id)
+	public void cartDelete(int cno)
 	{
-		mapper.cartDelete(id);
+		mapper.cartDelete(cno);
+	}
+	public void cartAllDelete(String id)
+	{
+		mapper.cartAllDelete(id);
+	}
+	
+	// 결제
+	public void orderInsert(ProductOrderVO vo)
+	{
+		mapper.orderInsert(vo);
+	}
+	public List<ProductOrderVO> orderListData(Map map)
+	{
+		return mapper.orderListData(map);
 	}
 
 

@@ -211,7 +211,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                   <tr>
                                    <th>
                                     <button class="custom-btn btn-6" @click="plusCart()"><a :href="'../product/product_cart.do?id='+id" style="color: black">장바구니</a></button>
-                                    <button class="custom-btn btn-6"><a :href="'../product/product_order.do?no='+no+'&type='+type" style="color: black">구매하기</a></button>
+                                    <button class="custom-btn btn-6"><a :href="'../product/product_order.do?id='+id" style="color: black">구매하기</a></button>
                                    </th>
                                   </tr>
                                 </table>

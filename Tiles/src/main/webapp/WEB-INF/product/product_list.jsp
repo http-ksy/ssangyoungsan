@@ -32,7 +32,9 @@
 <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style type="text/css">
-
+.find{
+	width: 1100px;
+}
 .frame {
   width: 100%;
   text-align: center;
@@ -151,15 +153,20 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
         <!-- listing Area Start -->
         <div class="category-area">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-50">
-                            <h2>{{title}}</h2>                            
+                          <table>
+                            <tr>
+                              <td>
+                              <h2>{{title}}</h2> 
+                              </td>
+                              <td class="text-right" style="text-align: right;">
+                                <a :href="'../product/product_cart.do?id='+id"><img src="../assets/img/product/cart.png" style="width:100px;height:100px"></a>
+                              </td>
+                            </tr>
+                          </table>
                         </div>
-                    </div>
-                </div>
                 <!-- 검색 시작 -->
-				<div class="text-right" style="margin-bottom:15px">
+				<div class="find text-right" style="margin-bottom:15px">
 				  <input type=text placeholder="검색어를 입력하세요" size=30 ref="fd" class="input-sm" v-model="fd" style="height:40px">
 				  <input type=button value="검색" class="custom-btn btn-6" @click="find()" style="width:100px;height:40px">
 				</div>
@@ -342,7 +349,8 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  startPage:0,
 		  endPage:0,
 		  fd:'',
-		  count:0
+		  count:0,
+		  id:'${id}'
 	  },
 	  mounted:function(){
 		  this.dataRecv()

@@ -134,7 +134,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
         <!--? Blog Area Start-->
             <div class="container">
 <!-- 상품 정보 -->                    
-                    <div class="col-lg-7" v-for="me">
+                    <div class="col-lg-7">
                       <div class="blog_right_sidebar">
                         <div>
                           <table class="table">
@@ -146,9 +146,10 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                 <h3>배송지</h3>
                                 
                                 <p>주소 | </p>
-                                <p>{{}}</p>
+                                <p>{{product_order.addr1}}</p>
+                                <p>{{product_order.addr2}}</p>
                                 <p>배송 요청사항 | </p>
-                                <p>{{}}</p>
+                                <p></p>
                               </td>
                             </tr>
                           </table>
@@ -163,11 +164,11 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                             <tr>
                               <td>
                                 <p>이름 | </p>
-                                <p>{{}}</p>
+                                <p>{{product_order.name}}</p>
                                 <p>이메일 | </p>
-                                <p>{{}}</p>
+                                <p>{{product_order.email}}</p>
                                 <p>휴대전화 | </p>
-                                <p>{{}}</p>
+                                <p>{{product_order.phone}}</p>
                               </td>
                             </tr>
                           </table>
@@ -180,22 +181,22 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                               <div>
                                 <table class="table">
                                   <tr>
-                                    <th width=20%>상품금액</th>
-                                    <td width=80%>{{}}원</td>
+                                    <th width=30%>상품금액</th>
+                                    <td width=70%>{{product_order.select_pri}}원</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>배송비</th>
-                                    <td width=80%>{{product_cart.title}}</td>
+                                    <th width=30%>배송비</th>
+                                    <td width=70%>{{product_order.del_pri}}</td>
                                   </tr>
                                   <tr>
-                                    <th width=20%>결제금액</th>
-                                    <td width=80%>{{product_cart.original_pri}}</td>
+                                    <th width=30%>결제금액</th>
+                                    <td width=70%>{{product_order.final_pri}}</td>
                                   </tr>
                                 </table>
                                 <table>
                                   <tr class="text-center">
                                    <th>
-                                    <button class="custom-btn btn-6"><a :href="'../product/product_order.do?no='+no+'&type='+type" style="color: black">구매하기</a></button>
+                                    <button class="custom-btn btn-6"><a href="#" style="color: black">구매하기</a></button>
                                    </th>
                                   </tr>
                                 </table>
@@ -215,53 +216,30 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
   new Vue({
 	  el:'.container',
 	  data:{
-		  no:${no},
-		  product_cart:{},
-		  type:${type},
-		  amount:1,
-		  total_price:''
+		  product_order:{},
+		  id:'${id}',
+		  total_pri:0,
+		  select_pri:0,
+		  del_pri:3000,
+		  final_pri:0
 	  },
-	  filters:{
-          currency: function(value){
-              let total_price = new Number(value);
-              return total_price.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
-              let original_pri = new Number(value);
-              return original_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
-              let priced_sale = new Number(value);
-              return priced_sale.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
-          }
-      },
 	  mounted:function(){
-		 /*  console.log('no='+this.no)
-		  console.log('type='+this.type) */
-		  axios.get('../product/product_order_vue.do',{
-			  params:{
-				  no:this.no,
-				  type:this.type
-			  }
-		  }).then(response=>{
-			  console.log(response.data);
-			  this.product_cart=response.data;
-			  this.total_price=response.data.original_pri;
-			  this.total_price=response.data.priced_sale
-		  }).catch(error=>{
-			  console.log(error.response);
-		  })
+		  this.orderRead()
 	  },
 	  methods:{
-		  ups:function(){
-			  console.log('amount : '+this.amount)
-	  		  if(this.product_cart.priced_sale==''){
-				  this.total_price = Number(this.amount) * Number(this.product_cart.original_pri);
-			  } 
-	 		  else{
-				  this.total_price = Number(this.amount) * Number(this.product_cart.priced_sale);
-			  }  
-			  console.log('totalprice:'+this.total_price)
-			  console.log('oriprice:'+this.product_cart.original_pri)
-			  console.log('saleprice:'+this.product_cart.priced_sale)
+		  orderRead:function(){
+			  axios.get('../product_order_vue.do',null,{
+				  params:{
+					  id:this.id				  
+				  }
+			  }).then(response=>{
+				  console.log(response.data);
+				  this.product_order=response.data;
+			  }).catch(error=>{
+				  console.log(error.response);
+			  })
 		  }
-	  }
+	  } 
   })
 </script>
 </body>

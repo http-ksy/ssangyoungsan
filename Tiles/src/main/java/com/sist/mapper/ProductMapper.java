@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.ProductCartVO;
+import com.sist.vo.ProductOrderVO;
 import com.sist.vo.ProductReplyVO;
 import com.sist.vo.ProductVO;
 
@@ -33,8 +34,20 @@ public interface ProductMapper {
 			+ "WHERE id=#{id}")
 	public List<ProductCartVO> cartListData(Map map);
 	
-	@Delete("DELETE FROM product_cart WHERE id=#{id}")
-	public void cartDelete(String id);
+	@Delete("DELETE FROM product_cart WHERE cno=#{cno}")
+	public void cartDelete(int cno);
 	
+	@Delete("DELETE FROM product_cart WHERE id=#{id}")
+	public void cartAllDelete(String id);
+	
+	// 결제
+	@Insert("INSERT INTO product_order VALUES("
+			+ "pdo_ono_seq.nextval,#{no},#{type},#{title},#{brand},#{poster},#{id},#{addr1},#{addr2},#{name},#{email},#{phone},#{select_pri},#{del_pri},#{final_pri})")
+	public void orderInsert(ProductOrderVO vo);
+	
+	@Select("SELECT /*+ INDEX_DESC(product_order pdo_ono_pk)*/ono,no,type,title,brand,poster,id,addr1,addr2,name,email,phone,select_pri,del_pri,final_pri "
+			+ "FROM product_order "
+			+ "WHERE id=#{id}")
+	public List<ProductOrderVO> orderListData(Map map);	
 
 }

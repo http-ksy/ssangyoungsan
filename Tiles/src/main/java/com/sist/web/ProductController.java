@@ -12,6 +12,7 @@ public class ProductController {
 	{
 		model.addAttribute("type",type);
 		model.addAttribute("title",titles[type]);
+		
 		model.addAttribute("main_jsp","../product/product_list.jsp");
 		return "product/product_list";
 	}
@@ -41,6 +42,14 @@ public class ProductController {
   		model.addAttribute("id",id);
   		System.out.println("id"+id);
   		return "product/product_cart";
+  	}
+  	
+  	@GetMapping("product/product_order.do")
+  	public String product_order(String id,Model model)
+  	{
+  		model.addAttribute("id",id);
+  		System.out.println("id"+id);
+  		return "product/product_order";
   	}
   	
 }

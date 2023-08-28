@@ -166,12 +166,60 @@ public class ProductRestController {
 		return json;
 	}
 	@GetMapping(value = "product/cart_delete_vue.do",produces = "text/plain;charset=UTF-8")
-	public String cart_delete(String id)
+	public String cart_delete(int cno,String id)
 	{
 		String result="";
 		try
 		{
-			dao.cartDelete(id);
+			dao.cartDelete(cno);
+			result="yes";
+			
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		
+		return result;
+	}
+	@GetMapping(value = "product/cart_alldelete_vue.do",produces = "text/plain;charset=UTF-8")
+	public String cart_alldelete(String id)
+	{
+		String result="";
+		try
+		{
+			dao.cartAllDelete(id);
+			result="yes";
+			
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+			result="no";
+		}
+		
+		return result;
+	}
+	
+	// 결제페이지
+	@PostMapping(value = "product/order_insert_vue.do",produces = "text/plain;charset=UTF-8")
+	public String order_insert(ProductOrderVO vo,HttpSession session)
+	{
+		String result="";
+		try
+		{
+			String id=(String)session.getAttribute("id");
+			vo.setId(id);
+			String name=(String)session.getAttribute("name");
+			vo.setName(name);
+			String addr1=(String)session.getAttribute("addr1");
+			vo.setAddr1(addr1);
+			String addr2=(String)session.getAttribute("addr2");
+			vo.setAddr2(addr2);
+			String email=(String)session.getAttribute("email");
+			vo.setEmail(email);
+			String phone=(String)session.getAttribute("phone");
+			vo.setPhone(phone);			
+			dao.orderInsert(vo);		
 			result="yes";
 			
 		}catch(Exception ex) 
@@ -183,4 +231,23 @@ public class ProductRestController {
 		return result;
 	}
 
+//			int no=vo.getNo();
+//			vo.setNo(no);
+//			int type=vo.getType();
+//			vo.setType(type);
+//			String brand=vo.getBrand();
+//			vo.setBrand(brand);
+//			String poster=vo.getPoster();
+//			vo.setPoster(poster);	
+	
+	@GetMapping(value = "product/product_order_vue.do",produces = "text/plain;charset=UTF-8")
+	public String order_read(String id) throws Exception
+	{
+		Map map=new HashMap();
+		map.put("id", id);
+		List<ProductOrderVO> list=dao.orderListData(map);
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
 }

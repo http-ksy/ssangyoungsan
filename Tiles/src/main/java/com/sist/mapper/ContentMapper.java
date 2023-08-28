@@ -25,4 +25,9 @@ public interface ContentMapper {
 	@Select("SELECT ino,title,poster,gubun,price,rownum FROM (SELECT ino,title,poster,gubun,price FROM inte_detail ORDER BY DBMS_RANDOM.RANDOM) "
 			+ "WHERE rownum <= 4")
 	public List<InteVO> inteRandomList();
+	
+	// 스토어
+	@Select("SELECT no,title,poster,brand,original_pri,rownum FROM (SELECT no,title,poster,brand,original_pri FROM gagu_detail ORDER BY DBMS_RANDOM.RANDOM) "
+			+ "WHERE rownum <= 4")
+	public List<ProductVO> productRandomList();
 }

@@ -6,6 +6,7 @@ import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.InteVO;
 import com.sist.vo.MoveVO;
+import com.sist.vo.ProductVO;
 
 import java.util.*;
 public interface ContentService {
@@ -20,4 +21,7 @@ public interface ContentService {
 	
 	//인테리어
 	public List<InteVO> inteRandomList();
+	
+	// 스토어
+	public List<ProductVO> productRandomList();
 }
