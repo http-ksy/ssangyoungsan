@@ -75,73 +75,8 @@
 }
 </style>
 
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
-<script type="text/javascript">
-let websocket;
-function connection() {	//서버 연결
-	websocket=new WebSocket("ws://localhost/web/chat/chat-ws")
-	websocket.onopen = onOpen;
-	websocket.onclose = onClose;
-	websocket.onmessage = onMessage;
-}
-// on => Callback (자동 호출)
-function onOpen(event) {  //연결되었을때 처리
-	alert("채팅서버와 연결되었습니다!!")
-}
-function onClose(event) {  //퇴장시에 처리
-	alert("채팅서버와 연결 종료되었습니다!!")
-}
-function onMessage(event) {   //채팅 메세지 전송시
-	// msg:데이터전송 , 구분자 => roomin:
-	let data=event.data;
-	if(data.substring(0,4)==="msg:") {	//전체적으로 메세지 뿌려줌
-		appendMessage(data.substring(4));
-	}
-}
-function disconnection() {    //퇴장시 처리
-	websocket.close();
-}
-function send() {    //서버에 채팅 요청 => 값 전송
-	let name=$('#name').val();
-	if(name.trim()==="") {
-		$('#name').focus();
-		return;
-	}
-	let msg=$('#sendMsg').val();
-	if(msg.trim()==="") {
-		$('#sendMsg').focus();
-		return;
-	}
-	websocket.send("msg:["+name+"]"+msg);
-	$('#sendMsg').val("")
-	$('#sendMsg').focus()
-}
-function appendMessage(msg) {	//div에 문자열 결합
-	$('#recvMsg').append(msg+"<br>");
-	let ch = $('#chatArea').height();
-	let m = $('#recvMsg').height()-ch;
-	$('#chatArea').scrollTop(m);	//스크롤 위치 아래로 고정
-}
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>-->
 
-$(function() {
-	$('#startBtn').click(function(){
-		connection()
-	})
-	$('#endBtn').click(function() {
-		disconnection()
-	})
-	$('#sendBtn').click(function() {	//전송버튼
-		send();
-	})
-	$('#sendMsg').keydown(function(key) {
-		if(key.keyCode==13) {  //엔터쳤을때
-			send();
-		}
-	}) 
-
-})
-
-</script> -->
 
 <body class="full-wrapper">
 
@@ -206,7 +141,8 @@ $(function() {
                                         
                                         <div class="submit-info" style="display: inline-block" > 
                                             <!-- <button type="button"  class="submit-btn2" style="border-radius: 10px;" @click="inteChatOpen(true)">이 컨셉으로 신청</button> -->
-                                         <a href="../chat/chat.do"><button type="button"  class="submit-btn2" style="border-radius: 10px;">이 컨셉으로 신청</button></a>
+                                         <!-- <a href="../chat/chat.do"><button type="button"  class="submit-btn2" style="border-radius: 10px;">이 컨셉으로 신청</button></a> -->
+                                         <button @click="popup" class="submit-btn2" style="border-radius: 10px;">이 컨셉으로 신청</button>
                                         </div>
                                         <div class="" style="display: inline-block" v-if="sessionId==''">
                                          <a href="#" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt="">{{inte_detail.suggest}}</a>
@@ -222,14 +158,7 @@ $(function() {
                                            <a href="../inte/like_delete.do?ino=${ ino}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt="">{{inte_detail.suggest}}</a>
 						                  </c:if> 
                                         </div>
-                                    </div>
-                                     <div id="dialog" v-if="isShow">
-                                        <div class="wrapper row3">
-									   
-									   
-									  </div>
-                                     </div>
-                                    
+                                    </div>                               
                                 </div>
                             </form> 
                         </div>
@@ -470,6 +399,12 @@ $(function() {
 		  this.replyRead()
 	  },
 	  methods:{
+		  popup:function(e){ 
+			  e.preventDefault()
+			  let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=800, height=580, top=0,left=0";
+
+			  window.open("http://localhost/web/site/chat/chat.jsp","_blank", options);
+			},
 		   replyRead:function(){
 			   axios.get('../inte/reply_read_vue.do',{
 				   params:{

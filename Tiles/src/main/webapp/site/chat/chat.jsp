@@ -8,14 +8,22 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 .row1{
-   width: 800px;
-   height: 750px;
+   width: 620px;
+   height: 550px;
    margin: 0px auto;
 }
 #chatArea{
-  height: 250px;
+  height: 400px;
   overflow-y:auto;
   border:1px solid black;
+  background-color: #E0F8F7;
+}
+
+#recvMsg > h5 {
+  font-size: 13pt;
+  border-radius:10px;
+  margin: 0px auto;
+  width:170px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
@@ -68,7 +76,7 @@ function send()
 		return;
 	}
 	
-	websocket.send("msg:["+name+"]: "+msg); // onMessage
+	websocket.send("msg:🐢["+name+"]: "+"<h5 style=background-color:yellow;>"+msg+"</h5>"); // onMessage
 	$('#sendMsg').val("");
 	$('#sendMsg').focus();
 }
@@ -109,22 +117,22 @@ $(function(){
       <table class="table">
        <tr>
         <td>
-         이름:<input type=text id="name" size=15 class="input-sm" value="${sessionScope.name }" readonly> 
-         <input type=button id="startBtn" value="문의하기" class="btn btn-sm btn-danger">
-         <input type=button id="endBtn" value="퇴장" class="btn btn-sm btn-primary">
+         이름:<input type=text id="name" size=15 class="input-sm" value="${sessionScope.name }님" style="border: none;font-size: 20px;" readonly> 
+         <input type=button id="startBtn" value="👋 문의하기" class="btn btn-sm btn-primary" style="margin-left:170px;">
+         <input type=button id="endBtn" value="💨💣 퇴장" class="btn btn-sm btn-danger">
         </td>
        </tr>
        <tr>
          <td>
-	         <div id="chatArea">
+	         <div id="chatArea" style="border: none">
 	           <div id="recvMsg"></div>
 	         </div>
          </td>
        </tr>
        <tr>
          <td>
-           <input type="text" id="sendMsg" size=80 class="input-sm">
-           <input type=button id="sendBtn" value="전송" class="btn btn-sm btn-success">
+           <input type="text" id="sendMsg" size=80 class="input-sm" placeholder="메세지를 입력해주세요.">
+           <input type=button id="sendBtn" value="💌" class="btn btn-sm btn-primary">
          </td>
        </tr>
       </table>
