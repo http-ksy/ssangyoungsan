@@ -56,11 +56,11 @@
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
         <div class="single-footer-caption mb-50">
             <div class="footer-tittle">
-                <h4>Shop Category</h4>
+                <h4>인테리어 베스트 TOP7</h4>
                 <ul>
-                    <li><a href="#">Image Licensin</a></li>
-                    <li><a href="#">Style Guide</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                <c:forEach var="vo" items="${iList }">
+                    <li><a href="../inte/inte_detail.do?ino=${vo.ino }">${vo.title}<br>(${vo.price})</a></li>
+                </c:forEach>
                 </ul>
             </div>
         </div>
@@ -68,11 +68,11 @@
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
         <div class="single-footer-caption mb-50">
             <div class="footer-tittle">
-                <h4>Pertners</h4>
+                <h4>스토어 가구 TOP7</h4>
                 <ul>
-                    <li><a href="#">Image Licensin</a></li>
-                    <li><a href="#">Style Guide</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                <c:forEach var="vo" items="${gList }">
+                    <li><a href="../product/product_detail.do?no=${vo.no }&type=1">${vo.title}<br>(${vo.priced_sale}원)</a></li>
+                </c:forEach>
                 </ul>
             </div>
         </div>

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.sist.mapper.FooterMapper;
 import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
+import com.sist.vo.InteVO;
+import com.sist.vo.ProductVO;
 @Repository
 public class FooterDAO {
 	@Autowired
@@ -19,6 +21,14 @@ public class FooterDAO {
 	public List<EstateDetailVO> estateTop7()
 	{
 		return mapper.estateTop7();
+	}
+	
+	public List<InteVO> InteTop7(){
+		return mapper.InteTop7();
+	}
+	
+	public List<ProductVO> GaguTop7(){
+		return mapper.GaguTop7();
 	}
 	
 	public List<CleanVO> cleanTop7(){

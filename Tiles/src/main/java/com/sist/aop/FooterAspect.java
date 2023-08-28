@@ -27,9 +27,12 @@ public class FooterAspect {
 
 	  List<EstateDetailVO> elist=service.estateTop7();
 	  List<CleanVO> cList=service.cleanTop7();
+	  List<InteVO> iList=service.InteTop7();
+	  List<ProductVO> gList=service.GaguTop7();
 	  
 	  request.setAttribute("elist", elist);
 	  request.setAttribute("cList", cList);
-	  	
+	  request.setAttribute("iList", iList);
+	  request.setAttribute("gList", gList);
   }
 }

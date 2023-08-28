@@ -22,5 +22,15 @@ public class FooterServiceImpl implements FooterService{
 	public List<CleanVO> cleanTop7() {
 		return dao.cleanTop7();
 	}
+
+	@Override
+	public List<InteVO> InteTop7() {
+		return dao.InteTop7();
+	}
+
+	@Override
+	public List<ProductVO> GaguTop7() {
+		return dao.GaguTop7();
+	}
 	
 }
