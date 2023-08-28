@@ -60,17 +60,11 @@
                     <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-50">
                             <h2>부동산</h2>
-                            <p>${total } 개의 정보</p>
-<!--                             <div class="select-job-items2"> -->
-<!--   	                            <select name="select2" ref="column"> -->
-<!-- 	                            	<option value="all">전체</option> -->
-<!-- 	                            	<option value="title">업체명</option> -->
-<!-- 	                            	<option value="address">지역</option> -->
-<!-- 	                            	<option value="category">분류(에어컨,하수구 등)</option> -->
-<!-- 	                            </select> -->
-<!-- 	                        <input type="text" ref="fd" class="input-sm" size="25" style="height: 41px;" v-model="fd"> -->
-<!--           					<input type="button" class="btn btn-sm btn-default" style="height: 43px;" value="검색" @click="find()"> -->
-<!-- 	                        </div> -->
+                            <p style="width:100px;float:left">${total } 개의 정보</p>
+                            <div class="text-right" style="width:350px;float:left">
+		                        <input type="text" ref="fd" class="input-sm" size="25" style="height: 41px;" v-model="fd" placeholder="주소,이름,가격,중개사로 검색...">
+	          					<input type="button" class="genric-btn info-border" style="height: 43px;" value="검색" @click="find()">
+          					</div>
                         </div>
                     </div>
                 </div>
@@ -86,43 +80,43 @@
                                 	<table>
                                 	<tr>
                                 		<td>
-                                    		<input type=button class="genric-btn info-border circle" style="width:150px" value="아파트" @click="ListData(1)">
+                                    		<input type=button class="genric-btn info-border " style="width:150px" value="아파트" @click="ListData(1)">
                                     	</td>
                                     </tr>
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="오피스텔" @click="ListData(2)">
+		                                    <input type=button class="genric-btn info-border " style="width:150px" value="오피스텔" @click="ListData(2)">
 		                            	</td>
                                     </tr>
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="분양권" @click="ListData(3)">
+		                                    <input type=button class="genric-btn info-border " style="width:150px" value="분양권" @click="ListData(3)">
 		                            	</td>
                                     </tr>
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="주택" @click="ListData(4)">
+		                                    <input type=button class="genric-btn info-border " style="width:150px" value="주택" @click="ListData(4)">
 		                            	</td>
                                     </tr>
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="원룸" @click="ListData(5)">   
+		                                    <input type=button class="genric-btn info-border " style="width:150px" value="원룸" @click="ListData(5)">   
 		                            	</td>
                                     </tr>   
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="상가" @click="ListData(6)">   
+		                                    <input type=button class="genric-btn info-border " style="width:150px" value="상가" @click="ListData(6)">   
 		                            	</td>
                                     </tr>   
                                     <tr><td style="height:5px;"></td></tr>
                                     <tr>
                                 		<td>
-		                                    <input type=button class="genric-btn info-border circle" style="width:150px" value="사무실" @click="ListData(7)">   
+		                                    <input type=button class="genric-btn info-border " style="width:150px" value="사무실" @click="ListData(7)">   
 		                            	</td>
                                     </tr>   
 <!--                                     <option value="2">오피스텔</option>                                 -->
@@ -134,18 +128,18 @@
                                 <!--  Select km items End-->
                             </div>
                             <div class="ad-card" style="height: 300px">
-				               <br><h3 class=" ">최근 본 부동산</h3>
+				               <br><h3>최근 본 부동산</h3>
 				                   <div>
 					                 <c:forEach var="cvo" items="${clist }" varStatus="s">
 						                 <c:if test="${s.index>=0 && s.index<3 }">
-						                 <table class="table">
+						                 <table class="single-new-arrival">
 							                 <tr>
 								                 <td><a href="../zip/zip_detail.do?no=${cvo.no }"> <img src="${cvo.img }" style="width: 200px; height:150px; border-radius:30px !important;">
 												 </a> 
 								                 </td>
 								             </tr>
 								             <tr>
-								                 <td>${cvo.name }</td>
+								                 <td><a href="../zip/zip_detail.do?no=${cvo.no }" style="color:black">${cvo.name }</a></td>
 							                 </tr>
 						                 </table>
 						                 </c:if>
@@ -222,7 +216,8 @@
 			totalpage:0,
 			startPage:0,
 			endPage:0,
-			cookie:[]
+			cookie:[],
+			fd:''
 		}, 	
 		mounted:function(){
 			this.ListData(1)
@@ -230,6 +225,7 @@
 		 methods:{
 			 ListData:function(etype){
 				 this.etype=etype
+				 this.fd=''
 				 axios.get('http://localhost/web/zip/zip_list_vue.do',{
 					 params:{
 						 etype:etype,
@@ -245,12 +241,10 @@
 				 axios.get('http://localhost/web/zip/zip_page_vue.do',{
 						params:{
 							page:1,
-							etype:this.etype
-//	 						fd:this.fd,
+							etype:this.etype,
 							
 						}
 					}).then(response=>{
-//	 					console.log('검색결과2:'+this.fd)
 						console.log(response.data)
 						this.page_list=response.data;
 						this.curpage=this.page_list.curpage;
@@ -261,10 +255,11 @@
 			 },
 			 pageData:function(etype){
 				 this.etype=etype
-				 axios.get('http://localhost/web/zip/zip_list_vue.do',{
+				 axios.get('http://localhost/web/zip/zip_find_vue.do',{
 					 params:{
 						 etype:etype,
-						 page:this.curpage
+						 page:this.curpage,
+						 fd:this.fd
 					 }
 				 })
 				 .then(response=>{
@@ -273,15 +268,14 @@
 				 }).catch(error=>{
 					 console.log(error.response)
 				 })
-				axios.get('http://localhost/web/zip/zip_page_vue.do',{
+				axios.get('http://localhost/web/zip/zip_find_page_vue.do',{
 					params:{
 						page:this.curpage,
-						etype:this.etype
-// 						fd:this.fd,
+						etype:this.etype,
+						fd:this.fd
 						
 					}
 				}).then(response=>{
-// 					console.log('검색결과2:'+this.fd)
 					console.log(response.data)
 					this.page_list=response.data;
 					this.curpage=this.page_list.curpage;
@@ -289,16 +283,6 @@
 					this.startPage=this.page_list.startPage;
 					this.endPage=this.page_list.endPage;
 				})
-/* 				axios.get('http://localhost/web/clean/list_find_vue.do',{
-					params:{
-						column:this.column,
-						fd:this.fd,
-						page:this.curpage
-					}
-				}).then(response=>{
-					console.log(response.data)
-					this.clean_list_find=response.data;
-				}) */
 				this.curpage=1
 			},
 			range:function(start,end){
@@ -326,12 +310,43 @@
 				this.curpage=this.endPage+1;
 				this.pageData(etype)
 			},
-// 			find:function(){
-// 				this.etype=this.$refs.column.value
-// 				console.log('fd : '+this.fd)
-// 				this.curpage=1;
-// 				this.send();
-// 			},
+			find:function(){
+				etype=this.etype
+				console.log('fd : '+this.fd)
+				this.curpage=1;
+				this.findData();
+			},
+			findData:function(){
+				 this.etype=etype
+				 axios.get('http://localhost/web/zip/zip_find_vue.do',{
+					 params:{
+						 etype:etype,
+						 page:1,
+						 fd:this.fd
+					 }
+				 }).then(response=>{
+					 console.log(response.data)
+					 this.list_data=response.data
+				 }).catch(error=>{
+					 console.log(error.response)
+				 })
+				 axios.get('http://localhost/web/zip/zip_find_page_vue.do',{
+						params:{
+							page:1,
+							etype:this.etype,
+	 						fd:this.fd
+							
+						}
+					}).then(response=>{
+	 					console.log('검색결과:'+this.fd)
+						console.log(response.data)
+						this.page_list=response.data;
+						this.curpage=this.page_list.curpage;
+						this.totalpage=this.page_list.totalpage;
+						this.startPage=this.page_list.startPage;
+						this.endPage=this.page_list.endPage;
+					})
+			}
 		}
 	})
 </script>

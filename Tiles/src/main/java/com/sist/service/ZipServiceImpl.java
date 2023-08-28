@@ -93,6 +93,18 @@ public class ZipServiceImpl implements ZipService{
 		return dao.zimTotalPage(map);
 	}
 
+	@Override
+	public List<EstateDetailVO> estateFindData(Map map) {
+		// TODO Auto-generated method stub
+		return dao.estateFindData(map);
+	}
+
+	@Override
+	public int estateFindPage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.estateFindPage(map);
+	}
+
 	
 	
 	

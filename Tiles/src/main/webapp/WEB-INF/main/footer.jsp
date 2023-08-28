@@ -1,120 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 </head>
-<body>
-<div class="popular-items">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular1.png" alt="">
-                        <div class="img-cap">
-                            <span>Glasses</span>
-                        </div>
-                        <div class="favorit-items">
-                            <a href="shop.html" class="btn">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-popular-items mb-50 text-center">
-                    <div class="popular-img">
-                        <img src="../assets/img/gallery/popular2.png" alt="">
-                        <div class="img-cap">
-                            <span>Watches</span>
-                        </div>
-                        <div class="favorit-items">
-                         <a href="shop.html" class="btn">Shop Now</a>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="single-popular-items mb-50 text-center">
-                <div class="popular-img">
-                    <img src="../assets/img/gallery/popular3.png" alt="">
-                    <div class="img-cap">
-                        <span>Jackets</span>
-                    </div>
-                    <div class="favorit-items">
-                     <a href="shop.html" class="btn">Shop Now</a>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="single-popular-items mb-50 text-center">
-            <div class="popular-img">
-                <img src="../assets/img/gallery/popular4.png" alt="">
-                <div class="img-cap">
-                    <span>Clothes</span>
-                </div>
-                <div class="favorit-items">
-                 <a href="shop.html" class="btn">Shop Now</a>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
-</div>
-</div>
-<div class="categories-area section-padding40 gray-bg">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services1.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services2.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services3.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="single-cat wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-                    <div class="cat-icon">
-                        <img src="../assets/img/icon/services4.svg" alt="">
-                    </div>
-                    <div class="cat-cap">
-                        <h5>Fast & Free Delivery</h5>
-                        <p>Free delivery on all orders</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>        
+<body>      
 	<footer>
     <!-- Footer Start-->
     <div class="footer-area footer-padding">
@@ -144,12 +38,13 @@
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
         <div class="single-footer-caption mb-50">
             <div class="footer-tittle">
-                <h4>Quick links</h4>
-                <ul>
-                    <li><a href="#">Image Licensin</a></li>
-                    <li><a href="#">Style Guide</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
+                <h4>.zip사기 베스트 Top7</h4>
+			      <ul class="nospace linklist">
+			        <c:forEach var="vo" items="${elist}">
+			        <li><a href="../zip/zip_list.do">${vo.name}<br>(${vo.dprice})</a></li>
+			        
+					</c:forEach>
+			      </ul>
             </div>
         </div>
     </div>

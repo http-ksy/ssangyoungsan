@@ -245,4 +245,68 @@ public class ZipRestController {
 		String result=qservice.estateQnaInsert(map);
 		return result;
 	}
+	@GetMapping(value = "zip/zip_find_vue.do",produces = "text/plain;charset=UTF-8")
+	public String zipFind(String fd,int etype, int page) throws Exception
+	{
+		System.out.println(etype);
+		Map map=new HashMap();
+			int curpage=page;
+			int rowSize=16;
+			int start=(rowSize*curpage)-(rowSize-1);
+			int end=rowSize*curpage;
+			map.put("start", start);
+			map.put("end", end);
+			map.put("etype", etype);
+			map.put("fd1", fd);
+			map.put("fd2", fd);
+			map.put("fd3", fd);
+			map.put("fd4", fd);
+			int totalpage=service.EstateTotalPage(etype);
+			int total=service.EstateTotalData();
+			int BLOCK=5;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+			if(endPage>totalpage)
+				endPage=totalpage;
+			List<EstateDetailVO> list=service.estateFindData(map);
+			for(EstateDetailVO vo:list)
+			{
+				
+				String img=vo.getImg();
+				img=img.substring(0,img.indexOf("^"));
+				vo.setImg(img);
+			}
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(list);
+		return json;
+	}
+	@GetMapping(value="zip/zip_find_page_vue.do",produces = "text/plain;charset=UTF-8")
+	public String page_data(int page, int etype , String fd) throws Exception
+	{
+		 Map map=new HashMap();
+		 map.put("etype", etype);
+		 map.put("fd1", fd);
+	 	 map.put("fd2", fd);
+		 map.put("fd3", fd);
+		 map.put("fd4", fd);
+		 int curpage=page;
+		 int rowSize=16;
+		 int start=(rowSize*curpage)-(rowSize-1);
+		 int end=rowSize*curpage;
+		 int totalpage=service.estateFindPage(map);
+		 int total=service.EstateTotalData();
+		 int BLOCK=5;
+		 int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+		 int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		 PageVO vo=new PageVO();
+		 if(endPage>totalpage)
+				endPage=totalpage;
+		 vo.setCurpage(curpage);
+		 vo.setEndPage(endPage);
+		 vo.setTotalpage(totalpage);
+		 vo.setStartPage(startPage);
+		 ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(vo);
+		return json;
+	}
 }

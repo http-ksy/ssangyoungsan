@@ -9,96 +9,97 @@
 </head>
 <body>
 	<main>
+	<div class="zipmain">
         <!--? Hero Area Start-->
-        <div class="container-fluid">
-            <div class="slider-area">
-                <!-- Mobile Device Show Menu-->
-                <div class="header-right2 d-flex align-items-center">
-                    <!-- Social -->
-                    <div class="header-social  d-block d-md-none">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                    </div>
-                    <!-- Search Box -->
-                    <div class="search d-block d-md-none" >
-                        <ul class="d-flex align-items-center">
-                            <li class="mr-15">
-                                <div class="nav-search search-switch">
-                                    <i class="ti-search"></i>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card-stor">
-                                    <img src="../assets/img/gallery/card.svg" alt="">
-                                    <span>0</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /End mobile  Menu-->
+<!--         <div class="container-fluid"> -->
+<!--             <div class="slider-area"> -->
+<!--                 Mobile Device Show Menu -->
+<!--                 <div class="header-right2 d-flex align-items-center"> -->
+<!--                     Social -->
+<!--                     <div class="header-social  d-block d-md-none"> -->
+<!--                         <a href="#"><i class="fab fa-twitter"></i></a> -->
+<!--                         <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a> -->
+<!--                         <a href="#"><i class="fab fa-pinterest-p"></i></a> -->
+<!--                     </div> -->
+<!--                     Search Box -->
+<!--                     <div class="search d-block d-md-none" > -->
+<!--                         <ul class="d-flex align-items-center"> -->
+<!--                             <li class="mr-15"> -->
+<!--                                 <div class="nav-search search-switch"> -->
+<!--                                     <i class="ti-search"></i> -->
+<!--                                 </div> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <div class="card-stor"> -->
+<!--                                     <img src="../assets/img/gallery/card.svg" alt=""> -->
+<!--                                     <span>0</span> -->
+<!--                                 </div> -->
+<!--                             </li> -->
+<!--                         </ul> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 /End mobile  Menu -->
 
-                <div class="slider-active dot-style">
-                    <!-- Single -->
-                    <div class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>fashion<br>changing<br>always</h1>
-                                        <a href="shop.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="single-slider slider-bg2 hero-overly slider-height d-flex align-items-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>fashion<br>changing<br>always</h1>
-                                        <a href="shop.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="single-slider slider-bg3 hero-overly slider-height d-flex align-items-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>fashion<br>changing<br>always</h1>
-                                        <a href="shop.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--                 <div class="slider-active dot-style"> -->
+<!--                     Single -->
+<!--                     <div class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center"> -->
+<!--                         <div class="container"> -->
+<!--                             <div class="row justify-content-center"> -->
+<!--                                 <div class="col-xl-8 col-lg-9"> -->
+<!--                                     Hero Caption -->
+<!--                                     <div class="hero__caption"> -->
+<!--                                         <h1>fashion<br>changing<br>always</h1> -->
+<!--                                         <a href="shop.html" class="btn">Shop Now</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     Single -->
+<!--                     <div class="single-slider slider-bg2 hero-overly slider-height d-flex align-items-center"> -->
+<!--                         <div class="container"> -->
+<!--                             <div class="row justify-content-center"> -->
+<!--                                 <div class="col-xl-8 col-lg-9"> -->
+<!--                                     Hero Caption -->
+<!--                                     <div class="hero__caption"> -->
+<!--                                         <h1>fashion<br>changing<br>always</h1> -->
+<!--                                         <a href="shop.html" class="btn">Shop Now</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     Single -->
+<!--                     <div class="single-slider slider-bg3 hero-overly slider-height d-flex align-items-center"> -->
+<!--                         <div class="container"> -->
+<!--                             <div class="row justify-content-center"> -->
+<!--                                 <div class="col-xl-8 col-lg-9"> -->
+<!--                                     Hero Caption -->
+<!--                                     <div class="hero__caption"> -->
+<!--                                         <h1>fashion<br>changing<br>always</h1> -->
+<!--                                         <a href="shop.html" class="btn">Shop Now</a> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
         <!-- End Hero -->
         <!--? Popular Items Start -->
         <div class="popular-items pt-50" style="height:300px;">
             <div class="container-fluid" style="width:1000px;height:300px">
-                <div class="row" style="width:1000px;height:300px;margin-right:60px;">
-                    <div class="">
+                <div class="row" style="width:1000px;height:300px;margin-right:60px;" >
+                    <div class="" >
                         <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
                             <div class="popular-img">
-                                <img src="../assets/img/gallery/popular1.png" alt="" style="width:200px;height:300px;">
+                                <img :src="estate_list[4].img" alt="" style="width:195px;height:195px;">
                                 <div class="img-cap">
-                                    <span>Glasses</span>
+                                    <span style="font-size:1em">{{estate_list[4].name}}</span>
                                 </div>
                                 <div class="favorit-items">
-                                 <a href="shop.html" class="btn">Shop Now</a>
+                                 <a href="../zip/zip_list.do" class="genric-btn info-border">.zip사러가기</a>
                              </div>
                          </div>
                      </div>
@@ -106,12 +107,12 @@
                  <div class="">
                     <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
                         <div class="popular-img">
-                            <img src="../assets/img/gallery/popular2.png" alt="" style="width:200px;height:300px;">
+                            <img :src="inte_list[4].poster" alt="" style="width:195px;height:195px;">
                             <div class="img-cap">
-                                <span>Watches</span>
+                                <span style="font-size:1em">{{inte_list[4].title}}</span>
                             </div>
                             <div class="favorit-items">
-                             <a href="shop.html" class="btn">Shop Now</a>
+                             <a href="../inte/inte_list.do" class="genric-btn info-border">.zip인테리어</a>
                          </div>
                      </div>
                  </div>
@@ -119,12 +120,12 @@
              <div class="">
                 <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
                     <div class="popular-img">
-                        <img src="../assets/img/gallery/popular3.png" alt="" style="width:200px;height:300px;">
+                        <img :src="product_list[4].poster" alt="" style="width:195px;height:195px;">
                         <div class="img-cap">
-                            <span>Jackets</span>
+                            <span style="font-size:1em">{{product_list[4].title}}</span>
                         </div>
                         <div class="favorit-items">
-                         <a href="shop.html" class="btn">Shop Now</a>
+                         <a href="../product/product_list.do?type=1" class="genric-btn info-border">.zip스토어</a>
                      </div>
                  </div>
              </div>
@@ -132,12 +133,12 @@
          <div class="">
             <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
                 <div class="popular-img">
-                    <img src="../assets/img/gallery/popular4.png" alt="" style="width:200px;height:300px;">
+                    <img :src="clean_list[4].poster" alt="" style="width:195px;height:195px;">
                     <div class="img-cap">
-                        <span>Clothes</span>
+                        <span style="font-size:1em">{{clean_list[4].title}}</span>
                     </div>
                     <div class="favorit-items">
-                     <a href="shop.html" class="btn">Shop Now</a>
+                     <a :href="'../clean/list.do'" class="genric-btn info-border">.zip청소</a>
                  </div>
              </div>
          </div>
@@ -145,12 +146,12 @@
      <div class="">
             <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
                 <div class="popular-img">
-                    <img src="../assets/img/gallery/popular4.png" alt="" style="width:200px;height:300px;">
+                    <img :src="move_list[4].poster" alt="" style="width:195px;height:195px;">
                     <div class="img-cap">
-                        <span>Clothes</span>
+                        <span style="font-size:1em">{{move_list[4].title}}</span>
                     </div>
                     <div class="favorit-items">
-                     <a href="shop.html" class="btn">Shop Now</a>
+                     <a :href="'../move/list.do'" class="genric-btn info-border">.zip이사</a>
                  </div>
              </div>
          </div>
@@ -164,15 +165,19 @@
     <div class="container">
         <!-- Section tittle -->
         <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10">
-                <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                    <h2>추천<br>부동산</h2>
+            <div class="col-xl-7 col-lg-8 col-md-10" style="height:80px">
+                <div class="section-tittle mb-60 text-center wow fadeInUp" style="width:900px;height:80px" data-wow-duration="2s" data-wow-delay=".2s">
+                    <h2 style="width:535px;height:80px;float:left;font-size:3em;">.zip사기 추천</h2>
+	                <div class="room-btn mb-60" style="width:150px;height:80px;float:left">
+						<a href="../zip/zip_list.do" class="border-btn">더보기</a>
+					</div>
                 </div>
+
             </div>
         </div>
             <!-- ///////////////////////////////// -->
-        <div class="row">
-	            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in estate_list">
+        <div class="row justify-content-center">
+	            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo,index in estate_list"  v-if="index<4">
 	                <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
 	                    <div class="popular-img">
 	                        <a :href="'../zip/zip_detail.do?no='+vo.no"><img :src="vo.img" alt=""></a>
@@ -184,24 +189,24 @@
 	                    </div>
 	                </div>
 	            </div>
+	      </div>
             <!-- ///////////////////////////////// -->
-<div class="row justify-content-center">
-    <div class="room-btn mb-60">
-        <a href="catagori.html" class="border-btn">Browse More</a>
-    </div>
-</div>
+
 <div style="height:50px;"></div>
 <hr>
 <!-- 인테리어 메인 시작 -->
             <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10">
-                <div class="section-tittle mb-40 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                    <h2>추천<br>인테리어</h2>
-                </div>
-            </div>
+                <div class="col-xl-7 col-lg-8 col-md-10" style="height:80px">
+               	 	<div class="section-tittle mb-60 text-center wow fadeInUp" style="width:900px;height:80px" data-wow-duration="2s" data-wow-delay=".2s">
+                    <h2 style="width:535px;height:80px;float:left;font-size:3em;">.zip인테리어 추천</h2>
+	                	<div class="room-btn mb-60" style="width:150px;height:80px;float:left">
+					        <a href="../inte/inte_list.do" class="border-btn">더보기</a>
+					    </div>
+					</div>
+           		</div>
             </div> 
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in inte_list">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo,index in inte_list" v-if="index<4">
                 <div class="single-new-arrival mb-10 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
                     <div class="popular-img">
                         <a :href="'../inte/inte_detail.do?ino='+vo.ino"><img :src="vo.poster" style="width:210px;height:150px;"></a>
@@ -214,21 +219,21 @@
                 </div>
             </div>
           </div>
-<div class="row justify-content-center">
-    <div class="room-btn">
-        <a href="../inte/inte_list.do" class="border-btn">더보기</a>
-    </div>
-</div>
+          
+<div style="height:50px;"></div>
+<hr>
 <!-- 스토어 메인 시작-->
           <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10">
-              <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                <h2>추천<br>스토어</h2>
-              </div>
+                <div class="col-xl-7 col-lg-8 col-md-10" style="height:80px">
+               	 	<div class="section-tittle mb-60 text-center wow fadeInUp" style="width:900px;height:80px" data-wow-duration="2s" data-wow-delay=".2s">
+                    <h2 style="width:535px;height:80px;float:left;font-size:3em;">.zip스토어 추천</h2>
+	                	<div class="room-btn mb-60" style="width:150px;height:80px;float:left">
+					        <a href="../product/product_list?type=1" class="border-btn">더보기</a>
+					    </div>
+					</div>
             </div>
-          </div>
           <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in product_list">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo,index in product_list" v-if="index<4">
               <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
                 <div class="popular-img">
                   <a :href="'../product/product_detail.do?no='+vo.no+'&type='+type"><img :src="vo.poster"></a>
@@ -236,29 +241,29 @@
                 <div class="popular-caption">
                   <h3><a href="'../product/product_detail.do?no='+vo.no+'&type=1'" style="color:black;">[{{vo.brand}}]</a></h3>
                   <div class="rating mb-10">{{vo.title}}</div>
-                  <span>{{vo.original_pri}}</span>
+                  <span>{{vo.original_pri}}원</span>
                 </div>
               </div>
             </div>
-
-<div class="row justify-content-center">
-    <div class="room-btn">
-        <a href="catagori.html" class="border-btn">더보기</a>
-    </div>
-</div>
+            
+<div style="height:50px;"></div>
+<hr>
 <!-- 스토어 메인 끝-->
              <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10">
-                <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                    <h2>추천<br>청소업체</h2>
+                <div class="col-xl-7 col-lg-8 col-md-10" style="height:80px">
+               	 	<div class="section-tittle mb-60 text-center wow fadeInUp" style="width:900px;height:80px" data-wow-duration="2s" data-wow-delay=".2s">
+                    <h2 style="width:535px;height:80px;float:left;font-size:3em;">.zip청소 추천</h2>
+	                	<div class="room-btn mb-60" style="width:150px;height:80px;float:left">
+					         <a :href="'../clean/list.do'" class="border-btn">더보기</a>
+					    </div>
+					</div>
                 </div>
             </div>
-        </div>
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in clean_list">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo,index in clean_list" v-if="index<4">
                 <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
                     <div class="popular-img">
-                        <a :href="'../clean/detail.do?cno='+vo.cno"><img :src="vo.poster" alt=""></a>
+                        <a :href="'../clean/detail.do?cno='+vo.cno"><img :src="vo.poster" style="width:195px;height:195px;"alt=""></a>
                     </div>
                     <div class="popular-caption">
                         <h3><a :href="'../clean/detail.do?cno='+vo.cno" style="color:black;">{{vo.title}}</a></h3>
@@ -267,23 +272,24 @@
                     </div>
                 </div>
             </div>
-<div class="row justify-content-center">
-    <div class="room-btn">
-        <a :href="'../clean/list.do'" class="border-btn">더보기</a>
-    </div>
-</div>            
+            
+<div style="height:50px;"></div>
+<hr>
              <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10">
-                <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                    <h2>추천<br>이사업체</h2>
+                <div class="col-xl-7 col-lg-8 col-md-10" style="height:80px">
+               	 	<div class="section-tittle mb-60 text-center wow fadeInUp" style="width:900px;height:80px" data-wow-duration="2s" data-wow-delay=".2s">
+                    <h2 style="width:535px;height:80px;float:left;font-size:3em;">.zip이사 추천</h2>
+	                	<div class="room-btn mb-60" style="width:150px;height:80px;float:left">
+					        <a :href="'../move/list.do'" class="border-btn">더보기</a>
+					    </div>
+					</div>
                 </div>
             </div>
-        </div>
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo in move_list">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" v-for="vo,index in move_list" v-if="index<4">
                 <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
                     <div class="popular-img">
-                        <a :href="'../move/detail.do?mno='+vo.mno"><img :src="vo.poster" alt=""></a>
+                        <a :href="'../move/detail.do?mno='+vo.mno"><img :src="vo.poster" style="width:195px;height:195px;" alt=""></a>
                     </div>
                     <div class="popular-caption">
                         <h3><a :href="'../move/detail.do?mno='+vo.mno" style="color:black;">{{vo.title}}</a></h3>
@@ -295,11 +301,7 @@
       </div>
 </div>
 <!-- Button -->
-<div class="row justify-content-center">
-    <div class="room-btn">
-        <a :href="'../move/list.do'" class="border-btn">더보기</a>
-    </div>
-</div>
+
 </div>
 </div>
 <!--? New Arrival End -->
@@ -324,9 +326,10 @@
 <!--? Services Area End -->
 </div>
 </div>
+</div>
 <script>
 	new Vue({
-		el:'.new-arrival',
+		el:'.zipmain',
 		data:{
 			estate_list:[],
 			clean_list:[],
