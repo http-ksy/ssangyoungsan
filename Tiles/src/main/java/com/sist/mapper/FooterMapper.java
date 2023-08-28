@@ -21,4 +21,7 @@ public interface FooterMapper {
 	@Select("SELECT cno,TITLE,SCORE,rownum FROM (SELECT cno,TITLE,SCORE FROM CLEAN_DETAIL ORDER BY SCORE DESC) WHERE ROWNUM <=7")
 	public List<CleanVO> cleanTop7();
 	
+	@Select("SELECT mno,TITLE,SCORE,rownum FROM (SELECT mno,TITLE,SCORE FROM MOVE_DETAIL ORDER BY SCORE DESC) WHERE ROWNUM <=7")
+	public List<MoveVO> moveTop7();
+	
 }

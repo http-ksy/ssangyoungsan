@@ -86,9 +86,18 @@
                     <li><a href="../clean/detail.do?cno=${vo.cno }">${vo.title } &nbsp;(${vo.score})</a></li>
                 </c:forEach>
                 </ul>
+                <br>
+                <h4>청소잘하는 집 TOP7</h4>
+                <ul>
+                <c:forEach var="vo" items="${mList }">
+                    <li><a href="../move/detail.do?mno=${vo.mno }">${vo.title } &nbsp;(${vo.score})</a></li>
+                </c:forEach>
+                </ul>
             </div>
         </div>
     </div>
+    
+    
 </div>
 </div>
 

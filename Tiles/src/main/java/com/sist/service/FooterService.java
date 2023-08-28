@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.InteVO;
+import com.sist.vo.MoveVO;
 import com.sist.vo.ProductVO;
 
 public interface FooterService {
@@ -20,4 +21,6 @@ public interface FooterService {
 	public List<ProductVO> GaguTop7();
 	
 	public List<CleanVO> cleanTop7();
+	
+	public List<MoveVO> moveTop7();
 }

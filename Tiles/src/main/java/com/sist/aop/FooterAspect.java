@@ -29,10 +29,12 @@ public class FooterAspect {
 	  List<CleanVO> cList=service.cleanTop7();
 	  List<InteVO> iList=service.InteTop7();
 	  List<ProductVO> gList=service.GaguTop7();
+	  List<MoveVO> mList=service.moveTop7();
 	  
 	  request.setAttribute("elist", elist);
 	  request.setAttribute("cList", cList);
 	  request.setAttribute("iList", iList);
 	  request.setAttribute("gList", gList);
+	  request.setAttribute("mList", mList);
   }
 }

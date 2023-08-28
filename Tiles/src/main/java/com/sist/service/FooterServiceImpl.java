@@ -32,5 +32,11 @@ public class FooterServiceImpl implements FooterService{
 	public List<ProductVO> GaguTop7() {
 		return dao.GaguTop7();
 	}
+
+	@Override
+	public List<MoveVO> moveTop7() {
+		// TODO Auto-generated method stub
+		return dao.moveTop7();
+	}
 	
 }

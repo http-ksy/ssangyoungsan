@@ -10,6 +10,7 @@ import com.sist.mapper.FooterMapper;
 import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 import com.sist.vo.InteVO;
+import com.sist.vo.MoveVO;
 import com.sist.vo.ProductVO;
 @Repository
 public class FooterDAO {
@@ -33,5 +34,9 @@ public class FooterDAO {
 	
 	public List<CleanVO> cleanTop7(){
 		return mapper.cleanTop7();
+	}
+	
+	public List<MoveVO> moveTop7(){
+		return mapper.moveTop7();
 	}
 }
