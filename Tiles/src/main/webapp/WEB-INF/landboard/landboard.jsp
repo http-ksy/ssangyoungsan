@@ -31,11 +31,11 @@
 														</div> -->
 <div>
   <b-tabs content-class="mt-3" fill align="left" style="color:black;">
-    <b-tab title="자유게시판" title-link-class="text-primary" @click="getList(1)"></b-tab>
-    <b-tab title="부동산" title-link-class="text-primary" @click="getList(2)"></b-tab>
-    <b-tab title="이사/청소" title-link-class="text-primary" @click="getList(3)"></b-tab>
-    <b-tab title="가구" title-link-class="text-primary" @click="getList(4)"></b-tab>
-    <b-tab title="인테리어" title-link-class="text-primary" @click="getList(5)"></b-tab>
+    <b-tab title="자유게시판" title-link-class="text-primary" @click="getList(1,1)"></b-tab>
+    <b-tab title="부동산" title-link-class="text-primary" @click="getList(2,1)"></b-tab>
+    <b-tab title="이사/청소" title-link-class="text-primary" @click="getList(3,1)"></b-tab>
+    <b-tab title="가구" title-link-class="text-primary" @click="getList(4,1)"></b-tab>
+    <b-tab title="인테리어" title-link-class="text-primary" @click="getList(5,1)"></b-tab>
   </b-tabs>
 </div>
 											<div class="progress-table-wrap">
@@ -71,6 +71,7 @@
       next-text="Next"
       last-text="Last"
       align="center"
+      @click="mounted()"
     ></b-pagination>
   </div>
   <template>
@@ -87,21 +88,20 @@ new Vue({
 		landboard_list:[],
 		pageList:{},
         perPage:10,  // 전체 페이지 수
-        rows:0
+        rows:100
 	},
 	mounted:function(){
-		this.getList(this.boardno)
+		this.getList(this.boardno,this.currentPage)
 	},
 	updated:function(){
-		this.getList(this.boardno)
 	},
 	methods:{
-		getList:function(bno){
+		getList:function(bno,curPage){
 			this.boardno=bno;
 			axios.get('http://localhost/web/landboard/landboard_list.do',{
 				params:{
 					bno:bno,
-					page:this.currentPage
+					page:curPage
 				}
 			}).then(res=>{
 				console.log(res.data)
@@ -113,13 +113,13 @@ new Vue({
 			axios.get('http://localhost/web/landboard/landboard_page.do',{
 				params:{
 					bno:bno,
-					page:this.currentPage
+					page:curPage
 				}
 			}).then(response=>{
 				console.log(response.data)
 				this.pageList=response.data
 				this.perPage=this.pageList.totalpage
-				this.curPage=this.pageList.curpage
+				this.currentPage=this.pageList.curpage
 			})
 		}
 	}

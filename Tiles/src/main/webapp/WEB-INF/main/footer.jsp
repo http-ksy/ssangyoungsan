@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <style type="text/css">
-.row{
-	width: 100%;
-}
+/* .row{ */
+/* 	width: 100%; */
+/* } */
 </style>
 </head>
 <body>      
@@ -18,7 +18,7 @@
     <!-- Footer Start-->
     <div class="footer-area footer-padding">
         <div class="container-fluid ">
-            <div class="row d-flex justify-content-between">
+            <div class="row d-flex justify-content-between" style="width:100%">
                 <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
                  <div class="single-footer-caption mb-50">
                    <div class="single-footer-caption mb-30">
