@@ -19,6 +19,12 @@
 	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <style type="text/css">
+    	.footer-area {
+   		 	padding-left: 310px;
+   		 }
+    </style>
 </head>
 <body class="full-wrapper">
     <main>
@@ -72,19 +78,11 @@
                                     <div class="single-new-arrival mb-50 text-center">
                                         <div class="popular-img">
                                             <a :href="'../move/detail.do?mno='+vo.mno"><img :src="vo.poster" alt=""></a>
-                                            <div class="favorit-items">
-                                                <!-- <span class="flaticon-heart"></span> -->
-                                                <img src="../assets/img/gallery/favorit-card.png" alt="">
-                                            </div>
                                         </div>
                                         <div class="popular-caption">
                                          <h3><a :href="'../move/detail.do?mno='+vo.mno">{{vo.title}}</a></h3>
                                          <div class="rating mb-10">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star" v-for="index in Math.round(vo.score)" :key="index"></i>
                                         </div> 
                                         <span>{{vo.score}}점</span>
                                     </div>

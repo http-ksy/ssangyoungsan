@@ -34,6 +34,13 @@
 		.pt-50 {
 		    margin-left: 150px;
 		}
+		.footer-area {
+   		 	padding-left: 310px;
+   		 }
+   		 .submit-btn2 {
+		    width: 100%;
+		    height: 106px;
+		 }
     </style>
 </head>
 <body class="full-wrapper">
@@ -183,12 +190,12 @@
 							            <td colspan="2"><pre style="white-space: pre-wrap; background-color: white; border: none;">{{rvo.msg}}</pre></td>
 							          </tr>
 							          <tr :id="'u'+rvo.no" class="updates" style="display: none;">
-							          <td colspan="2">
+							          <td colspan="2" class="row1">
 							          	<div class="form-box message-icon">
                                             <textarea rows="5" cols="103" :id="'msg'+rvo.no" placeholder="Comment">{{rvo.msg}}</textarea>
                                         </div>
-                                        <div class="submit-info" style="width: 1720px;">
-                                            <button class="submit-btn2" type="submit" @click="replyUpdate(rvo.no)">후기 수정</button>
+                                        <div class="submit-info">
+                                            <button class="submit-btn2" style="width: 785px; height: 70px;" type="submit" @click="replyUpdate(rvo.no)">후기 수정</button>
                                         </div>
 							            <!-- <textarea rows="4" cols="60" id="msg" style="float: left;">{{rvo.msg}}</textarea> -->
 							            <!-- <button style="float: left; background-color: blue; color: white; width: 100px; height: 87px;" @click="replyUpdate(rvo.no)">수정하기</button> -->
@@ -205,9 +212,9 @@
                                         </div>
                                     </div>
                                         <div class="form-box message-icon">
-                                            <textarea rows="5" cols="103" ref="msg" v-model="msg" placeholder="작성할 후기를 적어주세요!"></textarea>
+                                            <textarea rows="5" cols="103" ref="msg" v-model="msg" placeholder="후기를 작성해 주세요!"></textarea>
                                         </div>
-                                        <div class="submit-info" style="width: 1720px;">
+                                        <div class="submit-info">
                                             <button class="submit-btn2" type="submit" @click="replyWrite()">후기 작성</button>
                                         </div>
                                     </div>
