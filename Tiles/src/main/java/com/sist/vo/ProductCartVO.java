@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class ProductCartVO {
 	private int cno,no,type,total_pri,amount,original_pri,priced_sale;
-	private String id,poster,title,brand,delivery_pri;
+	private String id,poster,title,brand,delivery_pri,buy;
 }

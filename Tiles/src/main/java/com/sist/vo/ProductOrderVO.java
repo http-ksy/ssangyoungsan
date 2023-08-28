@@ -24,5 +24,5 @@ import lombok.Setter;
 @Setter
 public class ProductOrderVO {
 	private int ono,no,type,select_pri,del_pri,final_pri;
-	private String title,brand,poster,id,addr1,addr2,name,email,phone;
+	private String title,brand,poster,id;
 }

@@ -294,7 +294,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  isShow:false,
 		  pno:0,
 		  amount:1,
-		  total_price:''
+		  total_price:0
 	  },
 	  filters:{
           currency: function(value){

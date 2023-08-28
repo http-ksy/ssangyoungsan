@@ -142,6 +142,13 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                         <div v-for="vo in product_cart">
                           <table class="table">
                             <tr>
+                              <td>
+                                <div v-for="(option, index) in options" :key="index">
+							      <label>
+							        <input type="checkbox" :value="option.value" v-model="selected"> {{ option.text }}
+							      </label>
+							    </div>
+                              </td>
                               <td width=5%>
                             	<img :src="vo.poster" style="wdith: 100px;height: 100px" alt="">
                               </td>
@@ -180,7 +187,8 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                     <td width=70%>{{final_pri|currency}}원</td>
                                   </tr>
                                 </table>
-                                <table>
+                                <table v-if="sessionId!=''">
+                                
                                   <tr class="text-center">
                                    <th>
                                     <button class="custom-btn btn-6" @click="porder()"><a :href="'../product/product_order.do?id='+id" style="color: black">구매하기</a></button>
@@ -200,12 +208,25 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
 <script>
+  export default {
+    data() {
+      return {
+        selected: [], // Must be an array reference!
+        options: [
+          { text: 'Orange', value: 'orange' }
+        ]
+      }
+    }
+  }
+</script>
+<script>
   new Vue({
 	  el:'.container',
 	  data:{
 		  product_cart:[],
 		  id:'${id}',
 		  total_pri:'',
+		  sessionId:'${id}',
 		  select_pri:0,
 		  del_pri:3000,
 		  final_pri:0,
@@ -230,7 +251,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  cartRead:function(){
 			  axios.get('../product/cart_read_vue.do',{
 				  params:{
-					  id:this.id				  
+					  id:this.id
 				  }
 			  }).then(response=>{
 				  console.log(response.data);
@@ -273,18 +294,25 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 			  })
 		  },
 		  porder:function(){
-			  axios.post('../product/order_insert_vue.do',null,{
-				  params:{	
-					  id:this.id,
-					  select_pri:this.select_pri,
-					  del_pri:this.del_pri,
-					  final_pri:this.final_pri
-				  }
-			  }).then(response=>{
-				  console.log(response.data)
-			  }).catch(error=>{
-				  console.log(error.response)
-			  })
+			  for(let i=0 ; i < this.product.length;i++){
+				  /* 데이터 베이스 insert */
+				  axios.post('../product/order_insert_vue.do',null,{
+					  params:{	
+						  id:this.id,
+						//  no:this.no,
+						 // type:this.type,
+						  poster:this.product_cart[0].poster,
+						  no:this.product_cart[i].no,
+						  type:this.product_cart[i].type,
+						  title:this.product_cart[i].title,
+						  brand:this.product_cart[i].brand
+					  }
+				  }).then(response=>{
+					  console.log(response.data)
+				  }).catch(error=>{
+					  console.log(error.response)
+				  })
+			  }
 		  }
 		/* ups:function(){
 			  console.log('amount : '+this.amount)

@@ -156,10 +156,15 @@ public class ProductRestController {
 	}
 	
 	@GetMapping(value = "product/cart_read_vue.do",produces = "text/plain;charset=UTF-8")
-	public String cart_read(String id) throws Exception
+	public String cart_read(String id) throws Exception  //int no,int type
 	{
 		Map map=new HashMap();
 		map.put("id", id);
+		//map.put("table_name", tables[type]);
+		//map.put("no", no);
+		//System.out.println("no:"+no);
+		//System.out.println("type:"+tables[type]);
+	//	System.out.println("id:"+no);
 		List<ProductCartVO> list=dao.cartListData(map);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
@@ -202,33 +207,34 @@ public class ProductRestController {
 	
 	// 결제페이지
 	@PostMapping(value = "product/order_insert_vue.do",produces = "text/plain;charset=UTF-8")
-	public String order_insert(ProductOrderVO vo,HttpSession session)
+	public String order_insert(ProductOrderVO vo,HttpSession session,String id) throws Exception
 	{
-		String result="";
-		try
-		{
-			String id=(String)session.getAttribute("id");
-			vo.setId(id);
-			String name=(String)session.getAttribute("name");
-			vo.setName(name);
-			String addr1=(String)session.getAttribute("addr1");
-			vo.setAddr1(addr1);
-			String addr2=(String)session.getAttribute("addr2");
-			vo.setAddr2(addr2);
-			String email=(String)session.getAttribute("email");
-			vo.setEmail(email);
-			String phone=(String)session.getAttribute("phone");
-			vo.setPhone(phone);			
-			dao.orderInsert(vo);		
-			result="yes";
-			
-		}catch(Exception ex) 
-		{
-			ex.printStackTrace();
-			result="no";
-		}
 		
-		return result;
+		
+		//String result="";
+	//	try
+	//	{
+			id=(String)session.getAttribute("id");
+			vo.setId(id);	
+		     System.out.println("ono: "+vo.getOno());
+		     System.out.println("tt: "+vo.getTitle());
+		     System.out.println("id: "+vo.getId());
+		     System.out.println("brand: "+vo.getBrand());
+			dao.orderInsert(vo);		
+			//result="yes";
+			
+			
+			ObjectMapper mapper=new ObjectMapper();
+			String json=mapper.writeValueAsString(vo);
+			return json;
+			
+		//}catch(Exception ex) 
+		//{
+			//ex.printStackTrace();
+			//result="no";
+	//}
+		
+		//return result;
 	}
 
 //			int no=vo.getNo();
