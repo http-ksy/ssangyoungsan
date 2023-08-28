@@ -94,4 +94,9 @@ public class MemberController {
  {
 	 return "member/pwdfind";
  }
+ @GetMapping("member/idfind.do")
+ public String member_idfind()
+ {
+	 return "member/idfind";
+ }
 }

@@ -152,4 +152,8 @@ public interface MemberService {
 	// 비밀번호 수정
 	public void memberPwdUpdate(MemberVO vo);
 	
+//	@Select("SELECT id,pwd,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin FROM amem "
+//			+ "WHERE email=#{email}")
+	// 아이디 찾기 
+	public MemberVO memberId(String email);
 }

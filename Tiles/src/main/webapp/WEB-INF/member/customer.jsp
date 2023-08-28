@@ -108,6 +108,11 @@
           <a href="../member/qna.do" class="genric-btn success circle btn" >답변하기</a>
         </td>
       </tr> 
+      <tr style="height:30px;">
+        <td>
+          <a href="../member/customer.do" class="genric-btn success circle btn" >사장님페이지</a>
+        </td>
+      </tr> 
         </table>
         <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FSpongebob_UIB%2Fstatus%2F990890566706544642&psig=AOvVaw1omWyfKchCYw-55p5W7WlE&ust=1692613764838000&source=images&cd=vfe&opi=89978449&ved=0CA4QjRxqFwoTCPD08-SD64ADFQAAAAAdAAAAABAD" fluid thumbnail>
       </div>

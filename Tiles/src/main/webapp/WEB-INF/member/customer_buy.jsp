@@ -56,6 +56,11 @@
 <!--            <input type="button" class="genric-btn success circle btn" value="장바구니"> -->
 <!--         </td> -->
 <!--       </tr>  -->
+		<tr style="height:30px;">
+		        <td>
+		          <a href="../member/customer.do" class="genric-btn success circle btn" >사장님페이지</a>
+		        </td>
+		      </tr> 
        <tr style="height:30px;">
         <td>
           <a href="../member/qna.do" class="genric-btn success circle btn" >답변하기</a>
