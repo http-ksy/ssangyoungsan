@@ -19,13 +19,13 @@
   background-color: #E0F8F7;
 }
 
-#recvMsg > h5 {
+#recvMsg1 > h5 {
   font-size: 13pt;
   border-radius:10px;
-  
+  color:red;
   width:170px;
 }
-#recvMsg{
+#recvMsg1{
 margin-left:400px;
 }
 </style>
@@ -85,9 +85,9 @@ function send()
 }
 function appendMessage(msg)// 채팅 문자열 추가
 {
-	$('#recvMsg').append(msg+"<br>");
+	$('#recvMsg1').append(msg+"<br>");
 	let ch=$('#chatArea').height();
-    let m=$('#recvMsg').height()-ch;
+    let m=$('#recvMsg1').height()-ch;
 	$('#chatArea').scrollTop(m);
 }
 $(function(){
@@ -128,7 +128,7 @@ $(function(){
        <tr>
          <td>
 	         <div id="chatArea" style="border: none">
-	           <div id="recvMsg"></div>
+	           <div id="recvMsg1"></div>
 	         </div>
          </td>
        </tr>
