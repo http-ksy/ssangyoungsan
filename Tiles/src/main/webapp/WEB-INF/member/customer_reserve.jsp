@@ -34,7 +34,7 @@
         <th>예약일</th>
        
         <th>예약시간</th>
-        
+        <th>실시간 문의</th>
         
        </tr>
        <tr v-for="vo in reserve_list">
@@ -43,7 +43,7 @@
         <td>{{vo.id}}</a></td>
         <td>{{vo.reserve_date}}</td>
         <td>{{vo.reserve_time}}</td>
-        
+        <td><a href="../chat/chat1.do" class="genric-btn success circle btn" >채팅</td>
        </tr>
       </table>
       <div class="justify-content-center">
