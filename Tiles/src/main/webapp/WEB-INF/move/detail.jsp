@@ -34,9 +34,6 @@
 		.pt-50 {
 		    margin-left: 150px;
 		}
-		.footer-area {
-   		 	padding-left: 310px;
-   		 }
    		 .submit-btn2 {
 		    width: 100%;
 		    height: 106px;
@@ -372,7 +369,7 @@
       	        		console.log(response.data)
       	        		this.reserve_list=response.data
       	        		alert('예약성공')
-      	        		return location.href="../member/mypage.do";
+      	        		return location.href="../member/inte_reserve.do";
       	        	})
     	        }
         }

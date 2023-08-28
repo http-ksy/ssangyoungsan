@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
+import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 
 public interface FooterService {
@@ -11,4 +12,6 @@ public interface FooterService {
 //			+ "ORDER BY dprice DESC) "
 //			+ "WHERE rownum<=7")
 	public List<EstateDetailVO> estateTop7();
+	
+	public List<CleanVO> cleanTop7();
 }

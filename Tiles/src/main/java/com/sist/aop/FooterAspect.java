@@ -26,8 +26,10 @@ public class FooterAspect {
 	  HttpServletRequest request= ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 
 	  List<EstateDetailVO> elist=service.estateTop7();
+	  List<CleanVO> cList=service.cleanTop7();
 	  
 	  request.setAttribute("elist", elist);
+	  request.setAttribute("cList", cList);
 	  	
   }
 }

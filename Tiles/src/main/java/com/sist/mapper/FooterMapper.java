@@ -10,4 +10,7 @@ public interface FooterMapper {
 			+ "WHERE rownum<=7")
 	public List<EstateDetailVO> estateTop7();
 	
+	@Select("SELECT cno,TITLE,SCORE,rownum FROM (SELECT cno,TITLE,SCORE FROM CLEAN_DETAIL ORDER BY SCORE DESC) WHERE ROWNUM <=7")
+	public List<CleanVO> cleanTop7();
+	
 }

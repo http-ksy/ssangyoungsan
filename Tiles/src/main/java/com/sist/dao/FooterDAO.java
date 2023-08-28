@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.FooterMapper;
+import com.sist.vo.CleanVO;
 import com.sist.vo.EstateDetailVO;
 @Repository
 public class FooterDAO {
@@ -18,5 +19,9 @@ public class FooterDAO {
 	public List<EstateDetailVO> estateTop7()
 	{
 		return mapper.estateTop7();
+	}
+	
+	public List<CleanVO> cleanTop7(){
+		return mapper.cleanTop7();
 	}
 }

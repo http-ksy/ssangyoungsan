@@ -17,5 +17,10 @@ public class FooterServiceImpl implements FooterService{
 		// TODO Auto-generated method stub
 		return dao.estateTop7();
 	}
+
+	@Override
+	public List<CleanVO> cleanTop7() {
+		return dao.cleanTop7();
+	}
 	
 }
