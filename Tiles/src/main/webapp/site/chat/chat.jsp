@@ -22,7 +22,7 @@
 #recvMsg > h5 {
   font-size: 13pt;
   border-radius:10px;
-  margin: 0px auto;
+  margin-top: 5px;
   width:170px;
 }
 </style>

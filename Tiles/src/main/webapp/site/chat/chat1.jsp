@@ -22,8 +22,11 @@
 #recvMsg > h5 {
   font-size: 13pt;
   border-radius:10px;
-  margin: 0px auto;
+  
   width:170px;
+}
+#recvMsg{
+margin-left:400px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
