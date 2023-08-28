@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -71,61 +72,13 @@
                                 <!-- Select City items start -->
                                 <div class="select-job-items2">
                                     <select name="select2">
-                                        <option value="">Category</option>
-                                        <option value="">Shat</option>
-                                        <option value="">T-shart</option>
-                                        <option value="">Pent</option>
-                                        <option value="">Dress</option>
+                                        <option value="re_inte">최근 본 인테리어</option>                                   
                                     </select>
+                                    <c:forEach var="ivo" items="${iList }">
+                                       <a href="../inte/inte_detail.do?ino=${ivo.ino }"><img src="${ivo.poster }" style="width: 200px; height:150px;"></a>
+                                       <h4>${ivo.title }</h4>
+                                    </c:forEach>
                                 </div>
-                                <!--  Select City items End-->
-                                <!-- Select State items start -->
-                                <div class="select-job-items2">
-                                    <select name="select3">
-                                        <option value="">Type</option>
-                                        <option value="">SM</option>
-                                        <option value="">LG</option>
-                                        <option value="">XL</option>
-                                        <option value="">XXL</option>
-                                    </select>
-                                </div>
-                                <!--  Select State items End-->
-                                <!-- Select km items start -->
-                                <div class="select-job-items2">
-                                    <select name="select4">
-                                        <option value="">Size</option>
-                                        <option value="">1.2ft</option>
-                                        <option value="">2.5ft</option>
-                                        <option value="">5.2ft</option>
-                                        <option value="">3.2ft</option>
-                                    </select>
-                                </div>
-                                <!--  Select km items End-->
-                                <!-- Select km items start -->
-                                <div class="select-job-items2">
-                                    <select name="select5">
-                                        <option value="">Color</option>
-                                        <option value="">Whit</option>
-                                        <option value="">Green</option>
-                                        <option value="">Blue</option>
-                                        <option value="">Sky Blue</option>
-                                        <option value="">Gray</option>
-                                    </select>
-                                </div>
-                                <!--  Select km items End-->
-                                <!-- Select km items start -->
-                                <div class="select-job-items2">
-                                    <select name="select6">
-                                        <option value="">Price range</option>
-                                        <option value="">$10 to $20</option>
-                                        <option value="">$20 to $30</option>
-                                        <option value="">$50 to $80</option>
-                                        <option value="">$100 to $120</option>
-                                        <option value="">$200 to $300</option>
-                                        <option value="">$500 to $600</option>
-                                    </select>
-                                </div>
-                                <!--  Select km items End-->
                             </div>
                         </div>
                         <!-- Job Category Listing End -->
@@ -141,14 +94,14 @@
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-5" v-for="vo in inte_list">
                                     <div class="single-new-arrival mb-50 text-center" >
                                         <div class="popular-img">
-                                           <a :href="'../inte/inte_detail.do?ino='+vo.ino"><img :src="vo.poster" alt="" style="width:270px;height:180px"></a>
+                                           <a :href="'../inte/inte_before_detail.do?ino='+vo.ino"><img :src="vo.poster" alt="" style="width:270px;height:180px"></a>
                                             <div class="favorit-items">
                                                 <!-- <span class="flaticon-heart"></span> -->
                                                 <img src="../assets/img/gallery/favorit-card.png" alt="">
                                             </div>
                                         </div>
                                         <div class="popular-caption">
-                                         <h3><a :href="'../inte/inte_detail.do?ino='+vo.ino">{{vo.title}}</a></h3>
+                                         <h3><a :href="'../inte/inte_before_detail.do?ino='+vo.ino">{{vo.title}}</a></h3>
                                          <div class="rating mb-10">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
@@ -218,6 +171,7 @@
 					 column:this.column,
 					 fd:this.fd,
 					 page:this.curpage
+					 
 				 }
 			 }).then(response=>{
 				 console.log(response.data)

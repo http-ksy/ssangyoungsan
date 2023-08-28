@@ -17,6 +17,7 @@
 	  WHERE num BETWEEN #{start} AND #{end}
 	</select>
 	
+	
 	<select id="inteTotalPage" resultType="int" parameterType="hashmap">
 	 SELECT CEIL(COUNT(*)/12.0)
 	 FROM inte_detail

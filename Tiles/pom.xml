@@ -21,32 +21,26 @@
 		</repository>
 	</repositories>
 	<dependencies>
-	    <!-- ojdbc(Maven에서 사용이 안된다)-->
-	    <!-- 시스템 경로 줄때 사용  -->
-	    <!-- <dependency>
-		    <groupId>com.oracle</groupId>
-		    <artifactId>ojdbc8</artifactId>
-		    <version>8.0</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc8.jar</systemPath>
-		</dependency>-->
-		<!-- Spring -->
-		<dependency>
-         <groupId>org.simplejavamail</groupId>
-         <artifactId>simple-java-mail</artifactId>
-         <version>6.0.4</version>
-        </dependency>
-
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.9.10</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-core</artifactId>
-		    <version>2.9.10</version>
+   			 <groupId>com.fasterxml.jackson.core</groupId>
+   		 	 <artifactId>jackson-core</artifactId>
+    		<version>2.9.10</version>
 		</dependency>
+	    <!-- ojdbc(Maven에서 사용이 안된다)-->
+	    <!-- 시스템 경로 줄때 사용  -->
+	     <dependency>
+		    <groupId>org.snu</groupId>
+		    <artifactId>kokoma</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.snu.ids.ha.jar</systemPath>
+		</dependency>
+		<!-- Spring -->
 		<dependency>
     <groupId>com.oracle.database.jdbc</groupId>
 	    <artifactId>ojdbc8</artifactId>
@@ -117,7 +111,7 @@
 		    <artifactId>spring-websocket</artifactId>
 		    <version>5.1.5.RELEASE</version>
 		</dependency>
-      
+     
       <!-- <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-expression</artifactId>
@@ -168,7 +162,7 @@
          <artifactId>spring-webmvc-portlet</artifactId>
          <version>5.1.5.RELEASE</version>
       </dependency> -->
-      
+     
       <dependency>
          <groupId>taglibs</groupId>
          <artifactId>standard</artifactId>
@@ -185,7 +179,7 @@
          <artifactId>REngine</artifactId>
          <version>1.7-3</version>
       </dependency>
-      <!-- 
+      <!--
          @Select("<script>SELECT~~ <if test="">")
        -->
       <dependency>
@@ -304,7 +298,7 @@
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.4.0</version>
 		</dependency> -->
-        
+       
 		<!-- End -->	
 		<!-- AspectJ -->
 		<dependency>
@@ -388,11 +382,11 @@
 			<version>2.2.11</version>
 		</dependency>
 		
-		<!-- 
+		<!--
 		   jaxb-core
 		   jaxb-impl
 		   jaxb-api
-		   
+		  
 		   json-simple
 		   commons-lang
 		   ezmorph
@@ -509,11 +503,36 @@
 		</dependency>		
 		<dependency>
 		    <groupId>org.springframework.security.oauth</groupId>
-		    <artifactId>spring-security-oauth2</artifactId>
+		    <artifactId>spring-security-oauth2</artifactId>	<!-- 네이버,카카오로그인 API -->
 		    <version>2.5.2.RELEASE</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>5.1.5.RELEASE</version>
+		</dependency>
 		
-        
+		<!--자바 메일 -->
+		<dependency>
+         <groupId>javax.mail</groupId>
+         <artifactId>javax.mail-api</artifactId>
+         <version>1.4.7</version>
+        </dependency>
+        <dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		
+		<!-- 자바 웹소켓 -->
+		<dependency>
+		    <groupId>javax.websocket</groupId>
+		    <artifactId>javax.websocket-api</artifactId>
+		    <version>1.1</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+       
 	</dependencies>
 	
 	

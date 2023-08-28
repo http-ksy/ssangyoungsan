@@ -1,11 +1,14 @@
 package com.sist.web;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sist.dao.InteDAO;
 import com.sist.vo.InteLikeVO;
@@ -27,10 +31,34 @@ public class InteController {
 	private InteDAO dao;
 	
 	@GetMapping("inte/inte_list.do")
-	public String inte_list(Model model) {
+	public String inte_list(Model model, HttpServletRequest request) {
+		
+		Cookie[] cookies = request.getCookies();
+		List<InteVO> iList = new ArrayList<InteVO>();
+		if(cookies != null) {
+			for(int i=cookies.length-1; i>=0; i--) {
+				if(cookies[i].getName().startsWith("inte_")) {
+					String ino = cookies[i].getValue();
+					InteVO vo = dao.inteDetailData(Integer.parseInt(ino));
+					iList.add(vo);
+				}
+			}		
+		}
+		model.addAttribute("iList", iList);
 		return "inte/inte_list";
 	}
+	//쿠키
+	@GetMapping("inte/inte_before_detail.do")
+	public String inte_before_detail(int ino, RedirectAttributes ra, HttpServletResponse response) {
+		Cookie cookie = new Cookie("inte_"+ino, String.valueOf(ino));
+		cookie.setPath("/");
+		cookie.setMaxAge(60*60*24);
+			
+		response.addCookie(cookie);
+		ra.addAttribute("ino", ino);
+		return "redirect:../inte/inte_detail.do";
 	
+	}
 	@GetMapping("inte/inte_detail.do")
 	public String inte_detail(int ino, Model model,HttpServletRequest request) {
 		model.addAttribute("ino", ino);

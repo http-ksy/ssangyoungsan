@@ -1,12 +1,18 @@
 package com.sist.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,7 +29,7 @@ public class InteRestController {
 	private InteService service;
 	
 	@PostMapping(value = "inte/list_vue.do", produces = "text/plain;charset=UTF-8")
-	public String inte_list(int page,String column,String fd) throws Exception {
+	public String inte_list(int page,String column,String fd, HttpServletRequest request) throws Exception {
 		if(fd==null || fd.equals("")) {
 			fd="all";
 		}
@@ -36,6 +42,7 @@ public class InteRestController {
 		int end = rowSize*page;
 		map.put("start", start);
 		map.put("end", end);
+		
 		
 		List<InteVO> list = dao.inteListData(map);
 		ObjectMapper mapper = new ObjectMapper();
@@ -68,22 +75,13 @@ public class InteRestController {
 		 String json = mapper.writeValueAsString(vo);
 		 return json;
 	}
+
 	
 	@GetMapping(value = "inte/inte_detail_vue.do", produces = "text/plain;charset=UTF-8")
 	public String inte_detail(int ino) throws Exception {
+		
 		InteVO vo = dao.inteDetailData(ino);
-	//	System.out.println(vo.getGubun());
-		
-		/*List<InteVO> list = dao.inteDetailData(no);
-		for(InteVO vo : list) {
-			String hashtag = vo.getHashtag();
-			int start=hashtag.indexOf("#");
-			int end=hashtag.indexOf("#", start+1);
-			hashtag = hashtag.substring(start, end);
-			vo.setHashtag(hashtag);
-		}*/
-		
-		//System.out.println(vo.getHashtag());
+
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(vo);
 		return json;
