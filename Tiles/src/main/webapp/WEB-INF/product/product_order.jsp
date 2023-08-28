@@ -220,14 +220,14 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  id:'${id}',
 		  total_pri:0,
 		  select_pri:0,
-		  del_pri:3000,
+		  del_pri:0,
 		  final_pri:0
 	  },
 	  mounted:function(){
-		  this.orderRead()
+		  //this.orderRead()
 	  },
 	  methods:{
-		  orderRead:function(){
+		/*   orderRead:function(){
 			  axios.get('../product_order_vue.do',null,{
 				  params:{
 					  id:this.id				  
@@ -238,7 +238,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 			  }).catch(error=>{
 				  console.log(error.response);
 			  })
-		  }
+		  } */
 	  } 
   })
 </script>

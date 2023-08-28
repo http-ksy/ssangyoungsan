@@ -26,12 +26,12 @@ public interface ProductMapper {
 
 	// 장바구니	
 	@Insert("INSERT INTO product_cart VALUES("
-			+ "pdc_cno_seq.nextval,#{no},#{type},#{id},#{poster},#{title},#{brand},#{delivery_pri},#{total_pri},#{amount},#{original_pri},#{priced_sale})")
+			+ "pdc_cno_seq.nextval,#{no},#{type},#{id},#{poster},#{title},#{brand},#{delivery_pri},#{total_pri},#{amount},#{original_pri},#{priced_sale},'n')")
 	public void cartInsert(ProductCartVO vo);
 		
-	@Select("SELECT /*+ INDEX_DESC(product_cart pdc_cno_pk)*/cno,no,type,id,poster,title,brand,delivery_pri,total_pri,amount,original_pri,priced_sale "
+	@Select("SELECT /*+ INDEX_DESC(product_cart pdc_cno_pk)*/cno,no,type,id,poster,title,brand,delivery_pri,total_pri,amount,original_pri,priced_sale,buy "
 			+ "FROM product_cart "
-			+ "WHERE id=#{id}")
+			+ "WHERE id=#{id} AND buy='n'")
 	public List<ProductCartVO> cartListData(Map map);
 	
 	@Delete("DELETE FROM product_cart WHERE cno=#{cno}")
@@ -42,10 +42,10 @@ public interface ProductMapper {
 	
 	// 결제
 	@Insert("INSERT INTO product_order VALUES("
-			+ "pdo_ono_seq.nextval,#{no},#{type},#{title},#{brand},#{poster},#{id},#{addr1},#{addr2},#{name},#{email},#{phone},#{select_pri},#{del_pri},#{final_pri})")
+			+ "pdo_ono_seq.nextval,#{no},#{type},#{title},#{brand},#{poster},#{id},#{select_pri},#{del_pri},#{final_pri})")
 	public void orderInsert(ProductOrderVO vo);
 	
-	@Select("SELECT /*+ INDEX_DESC(product_order pdo_ono_pk)*/ono,no,type,title,brand,poster,id,addr1,addr2,name,email,phone,select_pri,del_pri,final_pri "
+	@Select("SELECT /*+ INDEX_DESC(product_order pdo_ono_pk)*/ono,no,type,title,brand,poster,id,select_pri,del_pri,final_pri "
 			+ "FROM product_order "
 			+ "WHERE id=#{id}")
 	public List<ProductOrderVO> orderListData(Map map);	
