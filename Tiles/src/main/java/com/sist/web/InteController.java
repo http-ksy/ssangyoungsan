@@ -113,5 +113,8 @@ public class InteController {
 	public String chat_chat(Model model) {
 		return "site/chat/chat";
 	}
-
+	@GetMapping("chat/chat1.do")
+	public String chat_chat1(Model model) {
+		return "site/chat/chat1";
+	}
 }
