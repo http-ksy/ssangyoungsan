@@ -16,4 +16,5 @@ public class MainController {
 	public String main_main(Model model) {
 		return "main";
 	}
+	
 }

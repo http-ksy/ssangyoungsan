@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+    <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -42,9 +43,39 @@
 	overflow-y:auto;
 	border: 1px solid black 
 }
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
 </style>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
 <script type="text/javascript">
 let websocket;
 function connection() {	//서버 연결
@@ -110,7 +141,7 @@ $(function() {
 
 })
 
-</script>
+</script> -->
 
 <body class="full-wrapper">
 
@@ -174,7 +205,8 @@ $(function() {
                                         </div> -->
                                         
                                         <div class="submit-info" style="display: inline-block" > 
-                                            <button type="button"  class="submit-btn2" style="border-radius: 10px;" @click="foodDetail(true)">이 컨셉으로 신청</button>
+                                            <!-- <button type="button"  class="submit-btn2" style="border-radius: 10px;" @click="inteChatOpen(true)">이 컨셉으로 신청</button> -->
+                                         <a href="../chat/chat.do"><button type="button"  class="submit-btn2" style="border-radius: 10px;">이 컨셉으로 신청</button></a>
                                         </div>
                                         <div class="" style="display: inline-block" v-if="sessionId==''">
                                          <a href="#" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/like1.png" style="width:45px; height:45px;" alt="">{{inte_detail.suggest}}</a>
@@ -193,33 +225,8 @@ $(function() {
                                     </div>
                                      <div id="dialog" v-if="isShow">
                                         <div class="wrapper row3">
-									   <main class="container clear">
-									    <h2 class="sectiontitle">실시간 채팅</h2>
-									     <div class="row myrow">
-									      <table class="table">
-									       <tr>
-									        <td class="inline">
-									         이름: {{sessionId}}
-									         <input type=button id="startBtn" value="입장" class="btn btn-sm btn-danger">
-									         <input type=button id="endBtn" value="퇴장" class="btn btn-sm btn-primary">
-									        </td>
-									       </tr>
-									       <tr>
-									        <td>
-									         <div id="chatArea">
-									          <div id="recvMsg"></div>	<!-- 채팅문자열 위치 -->
-									         </div>
-									        </td>
-									       </tr>
-									       <tr>
-									        <td class="inline">
-									         <input type=text id="sendMsg" size=80 class="input-sm">
-									         <input type=button id=sendBtn value=전송 class="btn btn-sm btn-success">
-									        </td>
-									       </tr>
-									      </table>
-									     </div>
-									   </main>
+									   
+									   
 									  </div>
                                      </div>
                                     
@@ -260,6 +267,18 @@ $(function() {
                       <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Write Your Comment</a></h6>
                         <hr>  
                         <div v-if="sessionId!=''">             
+                          <div class="star-rating space-x-4 mx-auto">
+							<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+							<label for="5-stars" class="star pr-4">★</label>
+							<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+							<label for="4-stars" class="star">★</label>
+							<input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+							<label for="3-stars" class="star">★</label>
+							<input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+							<label for="2-stars" class="star">★</label>
+							<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
+							<label for="1-star" class="star">★</label>
+						</div>
                          <textarea rows="5" cols="60" ref="msg" v-model="msg" class="form-control" placeholder="댓글을 작성해주세요."></textarea>                                             
                          <button class="submit-btn2" style="border-radius: 10px;" @click="inteReplyWrite()">댓글쓰기</button> 
                         </div> 
@@ -524,7 +543,7 @@ $(function() {
             		console.log(error.response)
             	})
             },
-            foodDetail:function(bool) {
+            inteChatOpen:function(bool) {
             	 this.isShow=bool;
             	 $('#dialog').dialog({
  					autoOpen:false,

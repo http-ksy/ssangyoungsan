@@ -108,5 +108,10 @@ public class InteController {
 		return "redirect:../inte/inte_detail.do?ino="+ino;
 		
 	}
+	
+	@GetMapping("chat/chat.do")
+	public String chat_chat(Model model) {
+		return "site/chat/chat";
+	}
 
 }
