@@ -165,7 +165,7 @@
 	 },
 	 methods: {
 		 send:function() {
-			 axios.post('http://localhost/web/inte/list_vue.do',null,{
+			 axios.post('../inte/list_vue.do',null,{
 				 params: {
 					 //보내는 데이터
 					 column:this.column,
@@ -182,7 +182,7 @@
 			 })
 			 
 			 //페이지
-			 axios.get('http://localhost/web/inte/inte_page_vue.do',{
+			 axios.get('../inte/inte_page_vue.do',{
 				 params: {
 					 column:this.column,
 					 fd:this.fd,

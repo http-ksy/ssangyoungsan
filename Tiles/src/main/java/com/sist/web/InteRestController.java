@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.*;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -80,8 +79,14 @@ public class InteRestController {
 	@GetMapping(value = "inte/inte_detail_vue.do", produces = "text/plain;charset=UTF-8")
 	public String inte_detail(int ino) throws Exception {
 		
-		InteVO vo = dao.inteDetailData(ino);
-
+		//String id = (String)session.getAttribute("id");
+		//InteReserveVO vo = new InteReserveVO();
+		//vo.setId(id);
+		//InteVO vo1 = dao.inteDetailData(ino);
+	//	int count = dao.reserveCheck(vo);
+		
+		 InteVO vo = dao.inteDetailData(ino);
+		//vo.setNo(Integer.parseInt(service.reserveNo(id)));
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(vo);
 		return json;

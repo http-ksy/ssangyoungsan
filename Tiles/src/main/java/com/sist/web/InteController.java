@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sist.dao.InteDAO;
 import com.sist.vo.InteLikeVO;
+import com.sist.vo.InteReserveVO;
 import com.sist.vo.InteVO;
 
 @Controller
@@ -67,15 +68,31 @@ public class InteController {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		vo.setIno(ino);
-		//System.out.println(vo.getIno());
 		vo.setId(id);
+		
+		InteReserveVO vo3 = new InteReserveVO();
+		vo3.setIno(ino);
+		vo3.setId(id);
+		
 		if(id != null) {
 			int like_count = dao.inteLikeOk(vo);
 			request.setAttribute("like_count",like_count);	
-		//	System.out.println("like_count: "+like_count);
-			//System.out.println("id"+id);
+			
+			int reserve_count = dao.reserveCheck(vo3);
+			request.setAttribute("reserve_count", reserve_count);
+			System.out.println(reserve_count);
 		}
 		InteVO vo2 = dao.inteDetailData(ino);
+		
+		//vo3.setNo(Integer.parseInt(dao.reserveNo(id)));
+		
+		//InteReserveVO vo4 = dao.reserveDate(id);
+
+		//System.out.println("date"+vo4.getReserve_date());
+		//System.out.println("time"+vo4.getReserve_time());
+		//model.addAttribute("vo4", vo4);
+		
+	//	model.addAttribute("vo3", vo3);
 		model.addAttribute("vo2", vo2);
 		model.addAttribute("ino", ino);
 		

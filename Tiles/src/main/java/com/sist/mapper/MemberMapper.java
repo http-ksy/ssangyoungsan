@@ -116,18 +116,18 @@ public interface MemberMapper {
 	
 	////////////////////////////////////////////////////////////
 	// 인테리어 사장님 예약 목록 // 사용자 인테리어 예약 목록
-	@Select("SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time,num "
-			+ "FROM (SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time,rownum as num "
-			+ "FROM (SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time "
+	@Select("SELECT inteGetTitle(ino) as title,integetPoster(ino) as poster,no,id,ino,reserve_date,reserve_time,num "
+			+ "FROM (SELECT inteGetTitle(ino) as title,integetPoster(ino) as poster,no,id,ino,reserve_date,reserve_time,rownum as num "
+			+ "FROM (SELECT inteGetTitle(ino) as title,integetPoster(ino) as poster,no,id,ino,reserve_date,reserve_time "
 			+ "FROM reserve_info_inte ORDER BY no ASC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<InteReserveVO> inte_reserve(Map map);
 	@Select("SELECT CEIL(COUNT(*)/8) FROM reserve_info_inte ")
 	public int inte_reserve_totalPage(Map map);
 	/// 인테리어 예약목록 사용자
-	@Select("SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time,num "
-			+ "FROM (SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time,rownum as num "
-			+ "FROM (SELECT inteGetTitle(ino) as title,no,id,ino,reserve_date,reserve_time "
+	@Select("SELECT inteGetTitle(ino) as title,integetPoster(ino) as poster,no,id,ino,reserve_date,reserve_time,num "
+			+ "FROM (SELECT inteGetTitle(ino) as title,integetPoster(ino) as poster,no,id,ino,reserve_date,reserve_time,rownum as num "
+			+ "FROM (SELECT inteGetTitle(ino) as title,integetPoster(ino) as poster,no,id,ino,reserve_date,reserve_time "
 			+ "FROM reserve_info_inte WHERE id=#{id} ORDER BY no ASC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<InteReserveVO> inte_user_reserve(Map map);
@@ -135,9 +135,9 @@ public interface MemberMapper {
 	public int inte_user_reserve_totalPage(Map map);
 	/////////////////////////////////////////////////////////////////////
 	// 이사 예약목록 
-	@Select("SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime,num "
-			+ "FROM (SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime,rownum as num "
-			+ "FROM (SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime "
+	@Select("SELECT moveGetTitle(mno) as title,moveGetPoster(mno) as poster,no,id,mno,rday,rtime,num "
+			+ "FROM (SELECT moveGetTitle(mno) as title,moveGetPoster(mno) as poster,no,id,mno,rday,rtime,rownum as num "
+			+ "FROM (SELECT moveGetTitle(mno) as title,moveGetPoster(mno) as poster,no,id,mno,rday,rtime "
 			+ "FROM reserve_info_move ORDER BY no desc)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<ReserveMoveVO> move_admin_reserve(Map map);
@@ -146,9 +146,9 @@ public interface MemberMapper {
 	
 	
 	//// 청소 예약목록 
-	@Select("SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime,num "
-			+ "FROM (SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime,rownum as num "
-			+ "FROM (SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime "
+	@Select("SELECT cleanGetTitle(cno) as title,cleanGetPoster(cno) as poster,no,id,cno,rday,rtime,num "
+			+ "FROM (SELECT cleanGetTitle(cno) as title,cleanGetPoster(cno) as poster,no,id,cno,rday,rtime,rownum as num "
+			+ "FROM (SELECT cleanGetTitle(cno) as title,cleanGetPoster(cno) as poster,no,id,cno,rday,rtime "
 			+ "FROM reserve_info_clean ORDER BY no desc)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<ReserveCleanVO> clean_admin_reserve(Map map);
@@ -156,9 +156,9 @@ public interface MemberMapper {
 	public int clean_admin_reserve_totalPage(Map map);
 	
 	// 이사 사용자
-		@Select("SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime,num "
-				+ "FROM (SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime,rownum as num "
-				+ "FROM (SELECT moveGetTitle(mno) as title,no,id,mno,rday,rtime "
+		@Select("SELECT moveGetTitle(mno) as title,moveGetPoster(mno) as poster,no,id,mno,rday,rtime,num "
+				+ "FROM (SELECT moveGetTitle(mno) as title,moveGetPoster(mno) as poster,no,id,mno,rday,rtime,rownum as num "
+				+ "FROM (SELECT moveGetTitle(mno) as title,moveGetPoster(mno) as poster,no,id,mno,rday,rtime "
 				+ "FROM reserve_info_move WHERE id=#{id} ORDER BY no desc)) "
 				+ "WHERE num BETWEEN #{start} AND #{end} ")
 		public List<ReserveMoveVO> move_user_reserve(Map map);
@@ -166,9 +166,9 @@ public interface MemberMapper {
 		public int move_user_reserve_totalPage(Map map);
 		
 ////청소 사용자 예약목록 
-	@Select("SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime,num "
-			+ "FROM (SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime,rownum as num "
-			+ "FROM (SELECT cleanGetTitle(cno) as title,no,id,cno,rday,rtime "
+	@Select("SELECT cleanGetTitle(cno) as title,cleanGetPoster(cno) as poster,no,id,cno,rday,rtime,num "
+			+ "FROM (SELECT cleanGetTitle(cno) as title,cleanGetPoster(cno) as poster,no,id,cno,rday,rtime,rownum as num "
+			+ "FROM (SELECT cleanGetTitle(cno) as title,cleanGetPoster(cno) as poster,no,id,cno,rday,rtime "
 			+ "FROM reserve_info_clean WHERE id=#{id} ORDER BY no desc)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<ReserveCleanVO> clean_user_reserve(Map map);
@@ -176,27 +176,33 @@ public interface MemberMapper {
 	public int clean_admin_user_totalPage(Map map);
 	
 	/////////////////////////////// 부동산 사장님 페이지 부동산 구매 현황 
-	@Select("SELECT no,etype,dprice,name,type,addr,state "
-			+ "FROM estate_detail WHERE company=#{name} AND state='매매진행완료'")
+//	@Select("SELECT no,etype,dprice,name,type,addr,state "
+//			+ "FROM estate_detail WHERE company=#{name} AND state='매매진행완료'")
+	@Select("SELECT no,etype,dprice,name,type,addr,state,num "
+			+ "FROM (SELECT no,etype,dprice,name,type,addr,state,rownum as num "
+			+ "FROM (SELECT no,etype,dprice,name,type,addr,state "
+			+ "FROM estate_detail WHERE company=#{name} AND state='매매진행완료' ORDER BY no desc)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<EstateDetailVO> customer_zip_buy(Map map);
-	
+	@Select("SELECT CEIL(COUNT(*)/8) FROM estate_detail WHERE company=#{name} AND state='매매진행완료'")
+	public int customer_zip_buy_totalpage(Map map);
 	/////////// 관리자 장바구니s 
 	@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
 			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount,rownum as num "
 			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount "
-			+ "FROM product_cart ORDER BY cno desc)) "
+			+ "FROM product_cart WHERE buy='n' ORDER BY cno desc)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<ProductCartVO> admin_cart(Map map);
-	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart  ")
+	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart WHERE buy='n' ")
 	public int admin_cart_totalpage(Map map);
 	
 	@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
 			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount,rownum as num "
 			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount "
-			+ "FROM product_cart WHERE id=#{id} ORDER BY cno desc)) "
+			+ "FROM product_cart WHERE id=#{id} and buy='n' ORDER BY cno desc)) "
 			+ "WHERE num BETWEEN #{start} AND #{end} ")
 	public List<ProductCartVO> user_cart(Map map);
-	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart WHERE id=#{id}  ")
+	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart WHERE id=#{id} and buy='n' ")
 	public int user_cart_totalpage(Map map);
 	@Delete("DELETE FROM product_cart WHERE id=#{id} and cno=#{cno}")
 	public void user_cart_delete(ProductCartVO vo);
@@ -205,4 +211,24 @@ public interface MemberMapper {
 	@Select("SELECT id FROM amem "
 			+ "WHERE email=#{email}")
 	public MemberVO memberId(String email);
+	/// 구매내역 관리자 페이지    여기에 buy d를 y로 바꾸기
+	@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
+			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount,rownum as num "
+			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount "
+			+ "FROM product_cart WHERE buy='y' ORDER BY cno desc)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<ProductCartVO> admin_purchase(Map map);
+	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart WHERE buy='y' ") // y로 바꾸기
+	public int admin_purchase_totalpage(Map map);
+	// 구매내역 사용자 페이지
+	@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
+			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount,rownum as num "
+			+ "FROM (SELECT cno,no,type,id,poster,title,total_pri,amount "
+			+ "FROM product_cart WHERE id=#{id} and buy='y' ORDER BY cno desc)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<ProductCartVO> user_purchase(Map map); // y로 바꾸기
+	@Select("SELECT CEIL(COUNT(*)/8) FROM product_cart WHERE id=#{id} and buy='y' ") // y로바꾸기
+	public int user_purchase_totalpage(Map map);
+	@Delete("DELETE FROM product_cart WHERE id=#{id} and cno=#{cno}")
+	public void user_purchase_delete(ProductCartVO vo);
 }

@@ -34,7 +34,7 @@
       </tr>
       <tr style="height:30px;">
         <td>
-       <a href="../member/admin_reserve.do" class="genric-btn success circle btn" >예약현황</a>
+       <a href="../member/admin_reserve.do" class="genric-btn success circle btn" >예약🔖</a>
         </td>
       </tr>  
 <!--        <tr style="height:30px;"> -->
@@ -49,14 +49,19 @@
 <!--       </tr>  -->
       <tr style="height:30px;">
         <td>
-           <input type="button" class="genric-btn success circle btn" value="장바구니">
+          <a href="../member/admin_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
         </td>
       </tr> 
       <tr style="height:30px;">
         <td>
-       <a href="../member/admin.do" class="genric-btn success circle btn" >회원정보</a>
+       <a href="../member/admin.do" class="genric-btn success circle btn" >관리자👨🏻‍💼</a>
         </td>
       </tr>  
+      <tr style="height:30px;">
+        <td>
+       <a href="../member/admin_purchase.do" class="genric-btn success circle btn" >판매내역🛍️</a>
+        </td>
+      </tr> 
 <!--        <tr style="height:30px;"> -->
 <!--         <td> -->
 <!--            <input type="button" class="genric-btn success circle btn" value="문의하기"> -->
@@ -85,6 +90,7 @@
        <tr>
        
         <th>예약번호</th>
+        <th>사진</th>
         <th>이사</th>
         <th>아이디</th>
         
@@ -96,6 +102,7 @@
        </tr>
        <tr v-for="vo in reserve_list">
         <td>{{vo.no}}</td>
+        <td><img :src="vo.poster" style="width:40px;height:40px;"></td>
         <td><a :href="'../move/detail.do?mno='+vo.mno" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
         <td>{{vo.id}}</a></td>
         <td>{{vo.rday}}</td>
@@ -120,6 +127,7 @@
        <tr>
        
         <th>예약번호</th>
+        <th>사진</th>
         <th>이사</th>
         <th>아이디</th>
         
@@ -131,6 +139,7 @@
        </tr>
        <tr v-for="vo in clean_reserve_list">
         <td>{{vo.no}}</td>
+        <td><img :src="vo.poster" style="width:40px;height:40px;"></td>
         <td><a :href="'../clean/detail.do?cno='+vo.cno" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
         <td>{{vo.id}}</a></td>
         <td>{{vo.rday}}</td>

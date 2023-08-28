@@ -196,7 +196,7 @@
                       <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Write Your Comment</a></h6>
                         <hr>  
                         <div v-if="sessionId!=''">             
-                          <div class="star-rating space-x-4 mx-auto">
+                           <!-- <div class="star-rating space-x-4 mx-auto">
 							<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
 							<label for="5-stars" class="star pr-4">★</label>
 							<input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
@@ -207,7 +207,7 @@
 							<label for="2-stars" class="star">★</label>
 							<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
 							<label for="1-star" class="star">★</label>
-						</div>
+						   </div> -->
                          <textarea rows="5" cols="60" ref="msg" v-model="msg" class="form-control" placeholder="댓글을 작성해주세요."></textarea>                                             
                          <button class="submit-btn2" style="border-radius: 10px;" @click="inteReplyWrite()">댓글쓰기</button> 
                         </div> 
@@ -256,6 +256,18 @@
                    </div>
                    
                   <div v-if="sessionId!=''">
+                  <c:if test="${reserve_count != 0 }">
+                   <div style="text-align: center;">
+                    <h3>이미 예약 되었습니다.</h3>
+                      <br>
+                      <h4><b>예약 번호:</b>&nbsp;${vo3.no}</h4>
+                       <h4><b>예약자명:</b>&nbsp;${sessionScope.name}님</h4>
+					<%--  <h4><b>예약 날짜:</b>&nbsp; ${vo4.reserve_date }</h4>
+					  <h4><b>예약 시간:</b>&nbsp; ${vo4.reserve_time } </h4> --%>
+				   </div>	  
+                   </c:if> 
+             
+                    
     			    <table class="table" height=700>
       				  <tr>
 					    <td width="65%" height="600"  style="color:gray;">
@@ -328,8 +340,10 @@
 						
 					</tr>
 						 
-    			    </table> 			 
+    			    </table> 	
+    			 
     			 </div> <!-- 예약 -->
+    			 
     			 </div>
                 </div> <!-- tab-content --> 
             </div>
@@ -393,6 +407,7 @@
 				  this.hashtags=this.inte_detail.hashtag.split("#")
 				  this.posters=this.inte_detail.poster2.split("^")
 				  //console.log(this.inte_detail.subject)
+				   //console.log(inte_detail.no)
 			  }).catch(error=>{
 				console.log(error.response)  
 			  })
@@ -477,16 +492,6 @@
             	}).catch(error=>{
             		console.log(error.response)
             	})
-            },
-            inteChatOpen:function(bool) {
-            	 this.isShow=bool;
-            	 $('#dialog').dialog({
- 					autoOpen:false,
- 					modal:true,
- 					width:700,
- 					height:600
- 				}).dialog("open");
-            	 
             },
   	        dateDisabled(ymd, date) {
   	          // Disable weekends (Sunday = `0`, Saturday = `6`) and

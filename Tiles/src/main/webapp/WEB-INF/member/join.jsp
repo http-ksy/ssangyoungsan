@@ -198,12 +198,12 @@
     			}
     			else if(pwdck.search(/\s/)!=-1)
     			{
-    				alert('비밀번호는 공백없이 입력해라')
+    				alert('비밀번호는 공백없이 입력하세요')
     				return;
     			}
     			else if(num<0 || eng<0)
     			{
-    				alert('비밀번호는 영문,숫자를 혼합해서 써야돼요')
+    				alert('비밀번호는 영문,숫자를 혼합해서 써야됩니다')
     				return;
     			}
     			 else if(this.pwd!=this.pwdcheck){
@@ -342,7 +342,7 @@
     			}
     			else if(pwdck.search(/\s/)!=-1)
     			{
-    				this.pwdmsg='비밀번호는 공백없이 입력해라'
+    				this.pwdmsg='비밀번호는 공백없이 입력하세요'
     				return;
     			}
     			else if(num<0 || eng<0)
@@ -355,7 +355,7 @@
     				return;
     				
     			} else if(pwd!=pwdcheck){
-    				this.pwdmsg='비밀번호가 달라.';
+    				this.pwdmsg='비밀번호가 다릅니다.';
     				return;
     			}
     		},
@@ -440,7 +440,7 @@
     			if(!emailck.test(email)){
     				this.$refs.email.focus()
     				this.$refs.email.value=''
-    				alert('이메일를 다시 입력해주세용')
+    				alert('이메일를 다시 입력해주세요')
     				return;
     				
     			}
@@ -459,7 +459,7 @@
     					alert("사용가능한 이메일입니다.")
     					this.lock2 = true;
     				} else{
-    					alert("불가 이메일입니다.")
+    					alert("사용불가 이메일입니다.")
     					this.$refs.email.value=''
     					this.$refs.email.focus()
     				}
@@ -471,7 +471,7 @@
     			if(!phoneck.test(phone)){
     				this.$refs.phone.focus()
     				this.$refs.phone.value=''
-    				alert('핸드폰번호를 다시 입력해주세용')
+    				alert('핸드폰번호를 다시 입력해주세요')
     				return;
     				
     			}
@@ -490,7 +490,7 @@
     					alert("사용가능한 번호입니다.")
     					this.lock3 = true;
     				} else{
-    					alert("이미 가입된 번호 입니다.")
+    					alert("이미 가입된 번호입니다.")
     					this.$refs.phone.value=''
     					this.$refs.phone.focus()
     				}

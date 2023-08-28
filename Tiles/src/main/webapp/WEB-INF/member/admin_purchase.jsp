@@ -76,13 +76,13 @@
 </template>
   </div>
   <div class="row">
-     <h1 class="text-left"><b>장바구니</b></h1>
+     <h1 class="text-left"><b>판매내역</b></h1>
      </div>
      <div class="container">
     
   <table class="table">
-       <tr>
-       
+        <tr>
+        <th>번호</th>
         <th>사진</th>
         <th>물건명</th>
         <th>가격</th>
@@ -93,12 +93,13 @@
         
         
        </tr>
-       <tr v-for="vo in cart_list">
-        <td><img :src="vo.poster" style="width:40px;height:40px;"></td>
+       <tr v-for="vo in purchase_list">
+       <td>{{vo.no}}</td>
+        <td><img :src="vo.poster" style="width:40px;height:40px;"></td> <!--<img :src="vo.poster" style="width:40px;height:40px;">-->
         <td><a :href="'../product/product_detail.do?no='+vo.no+'&type='+vo.type" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
         <td>{{vo.total_pri}}원</a></td>
         <td>{{vo.amount}}개</td>
-        <td>{{vo.id}}회원님</td>
+         <td>{{vo.id}}&nbsp;회원님</td>
         
        </tr>
       </table>
@@ -118,7 +119,7 @@
  new Vue({
 	 el:'.container',
 	 data:{
-		 cart_list:[],
+		 purchase_list:[],
 		 page_list:{},
 		 curpage:1,
 		 totalpage:0,
@@ -126,21 +127,21 @@
 		 endPage:0
 	 },
 	 mounted:function(){
-		 this.cart()
+		 this.purchase()
 	 },
 	 methods:{
-		 cart:function(){
-			 axios.get('../member/admin_cart.do',{
+		 purchase:function(){
+			 axios.get('../member/admin_purchase.do',{
 				 params:{
 					 page:this.curpage
 				 }
 			 }).then(response=>{
 				 console.log(response.data)
-				 this.cart_list=response.data
+				 this.purchase_list=response.data
 			 }).catch(error=>{
 				 console.log(error.response)
 			 })
-			 axios.get('../member/admin_cart_page.do',{
+			 axios.get('../member/admin_purchase_page.do',{
 				 params:{
 					
 					 page:this.curpage
@@ -167,15 +168,15 @@
 			},
 			pageChange:function(page){
 				this.curpage=page
-				this.cart();
+				this.purchase()
 			},
 			prev:function(){
 				this.curpage=this.startPage-1;
-				this.cart();
+				this.purchase()
 			},
 			next:function(){
 				this.curpage=this.endPage+1;
-				this.cart();
+				this.purchase()
 			}
 	 }
 	

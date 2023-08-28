@@ -244,6 +244,10 @@ public class MemberDAO {
 	{
 		return mapper.customer_zip_buy(map);
 	}
+	public int customer_zip_buy_totalpage(Map map)
+	{
+		return mapper.customer_zip_buy_totalpage(map);
+	}
 	
 /////////// 관리자 장바구니s 
 //@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
@@ -286,4 +290,42 @@ public MemberVO memberId(String email)
 {
 	return mapper.memberId(email);
 }
+
+///// 구매내역 관리자 페이지 
+//@Select("SELECT ono,no,type,id,poster,title,final_pri,num "
+//		+ "FROM (SELECT ono,no,type,id,poster,title,final_pri,rownum as num "
+//		+ "FROM (SELECT ono,no,type,id,poster,title,final_pri "
+//		+ "FROM product_order ORDER BY ono desc)) "
+//		+ "WHERE num BETWEEN #{start} AND #{end}")
+public List<ProductCartVO> admin_purchase(Map map)
+{
+	return mapper.admin_purchase(map);
+}
+//@Select("SELECT CEIL(COUNT(*)/8) FROM product_order ")
+public int admin_purchase_totalpage(Map map)
+{
+	return mapper.admin_purchase_totalpage(map);
+}
+// 구매내역 사용자 페이지
+//@Select("SELECT ono,no,type,id,poster,title,final_pri,num "
+//		+ "FROM (SELECT ono,no,type,id,poster,title,final_pri,rownum as num "
+//		+ "FROM (SELECT ono,no,type,id,poster,title,final_pri "
+//		+ "FROM product_order WHERE id=#{id} ORDER BY ono desc)) "
+//		+ "WHERE num BETWEEN #{start} AND #{end}")
+public List<ProductCartVO> user_purchase(Map map)
+{
+	return mapper.user_purchase(map);
+}
+//@Select("SELECT CEIL(COUNT(*)/8) FROM product_order WHERE id=#{id}")
+public int user_purchase_totalpage(Map map)
+{
+	return mapper.user_purchase_totalpage(map);
+}
+//@Delete("DELETE FROM product_order WHERE id=#{id} and ono=#{ono}")
+public void user_purchase_delete(ProductCartVO vo)
+{
+	mapper.user_purchase_delete(vo);
+}
+//@Select("SELECT CEIL(COUNT(*)/8) FROM estate_detail WHERE company=#{name} AND state='매매진행완료'")
+
 }

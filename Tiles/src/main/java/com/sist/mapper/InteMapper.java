@@ -62,5 +62,11 @@ public interface InteMapper {
 	public void reserveOk(InteReserveVO vo);
 	@Select("SELECT no FROM reserve_info_inte WHERE id=#{id}")
 	public String reserveNo(String id);
+	
+	@Select("SELECT reserve_date,reserve_time FROM reserve_info_inte WHERE id=#{id}")
+	public InteReserveVO reserveDate(String id);
+	
+	@Select("SELECT count(*) FROM RESERVE_INFO_INTE WHERE ino=#{ino} AND id=#{id}")
+	public int reserveCheck(InteReserveVO vo);
 	 
 }

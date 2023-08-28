@@ -83,6 +83,16 @@ public class InteServiceImpl implements InteService {
 	public String reserveNo(String id) {
 		return dao.reserveNo(id);
 	}
+
+	@Override
+	public int reserveCheck(InteReserveVO vo) {
+		return dao.reserveCheck(vo);
+	}
+
+	@Override
+	public InteReserveVO reserveDate(String id) {
+		return dao.reserveDate(id);
+	}
 	
 
 /*	@Override

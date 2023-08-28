@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 public class InteReserveVO {
 	private int no,ino;
-	private String id,reserve_date,reserve_time,rok,dbday,title;
+	private String id,reserve_date,reserve_time,rok,dbday,title,poster;
 	private Date regdate;
 	
 }

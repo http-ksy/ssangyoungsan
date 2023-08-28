@@ -22,7 +22,6 @@
 #recvMsg1 > h5 {
   font-size: 13pt;
   border-radius:10px;
-  color:red;
   width:170px;
 }
 #recvMsg1{
@@ -84,7 +83,7 @@ function send()
 	if(name == cur_session ) {
 		websocket.send("msg:🐢["+name+"]: "+"<h5 style=background-color:yellow;>"+msg+"</h5>"); 
 	} else {
-		websocket.send("msg:🐢["+name+"]: "+"<h5 style=background-color:red;>"+msg+"</h5>"); 
+		websocket.send("msg:🐢["+name+"]: "+"<h5 style=background-color:gray;>"+msg+"</h5>"); 
 	}
 	// onMessage
 	$('#sendMsg').val("");
@@ -127,7 +126,7 @@ $(function(){
       <table class="table">
        <tr>
         <td>
-         이름:<input type=text id="name" size=15 class="input-sm" value="${sessionScope.name }님" style="border: none;font-size: 20px;" readonly> 
+         이름:<input type=text id="name" size=15 class="input-sm" value="${sessionScope.name }" style="border: none;font-size: 20px;" readonly> 
          <input type=button id="startBtn" value="👋 문의하기" class="btn btn-sm btn-primary" style="margin-left:170px;">
          <input type=button id="endBtn" value="💨💣 퇴장" class="btn btn-sm btn-danger">
         </td>
