@@ -21,8 +21,8 @@
   <div class="row">
   <template>
   <div>
-    <b-button v-b-toggle.sidebar-border1 class="genric-btn primary-border small">관리자페이지</b-button>
-    <b-sidebar id="sidebar-border1" title="ADMIN!" sidebar-class="border-right border-danger" width="250px">
+    <b-button v-b-toggle.sidebar-border class="genric-btn primary-border small">Mypage</b-button>
+    <b-sidebar id="sidebar-border" title="MYPAGE!!" sidebar-class="border-right border-danger" width="250px">
       <div class="px-3 py-2">
       <table>
       <tr style="height:30px;">
@@ -33,73 +33,82 @@
       </tr>
       <tr style="height:30px;">
       </tr>
-      <tr style="height:30px;">
+       <tr style="height:30px;">
         <td>
-       <a href="../member/admin_reserve.do" class="genric-btn success circle btn" >예약🔖</a>
+        <a href="../member/zipbuy.do" class="genric-btn success circle btn" >부동산🏦</a>
         </td>
       </tr>  
-<!--        <tr style="height:30px;"> -->
-<!--         <td> -->
-<!--            <input type="button" class="genric-btn success circle btn" value="구매현황"> -->
-<!--         </td> -->
-<!--       </tr>   -->
-<!--        <tr style="height:30px;"> -->
-<!--         <td> -->
-<!--            <input type="button" class="genric-btn success circle btn" value="찜 목록"> -->
-<!--         </td> -->
-<!--       </tr>  -->
       <tr style="height:30px;">
         <td>
-           <a href="../member/admin_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
+        <a href="../member/inte_reserve.do" class="genric-btn success circle btn" >예약📝</a>
+        </td>
+      </tr>  
+       <tr style="height:30px;">
+        <td>
+           <a href="../member/zipzim.do" class="genric-btn success circle btn" >찜💕</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/mypage.do" class="genric-btn success circle btn" >my🤷‍♂️</a>
+        </td>
+      </tr> 
+      <tr style="height:30px;">
+        <td>
+           <a href="../member/zipqna.do" class="genric-btn success circle btn" >부동산문의🕵️</a>
         </td>
       </tr> 
        <tr style="height:30px;">
         <td>
-       <a href="../member/admin.do" class="genric-btn success circle btn" >관리자👨🏻‍💼</a>
+           <a href="../member/user_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
         </td>
       </tr> 
       <tr style="height:30px;">
         <td>
-       <a href="../member/admin_purchase.do" class="genric-btn success circle btn" >판매내역🛍️</a>
+       <a href="../member/user_purchase.do" class="genric-btn success circle btn" >구매내역🛍️</a>
         </td>
       </tr> 
-<!--        <tr style="height:30px;"> -->
-<!--         <td> -->
-<!--            <input type="button" class="genric-btn success circle btn" value="문의하기"> -->
-<!--         </td> -->
-<!--       </tr>  -->
         </table>
-     
+        
       </div>
     </b-sidebar>
   </div>
 </template>
   </div>
   <div class="row">
-     <h1 class="text-left"><b>장바구니</b></h1>
+     <h1 class="text-left"><b>구매내역</b></h1>
      </div>
      <div class="container">
     
   <table class="table">
        <tr>
-       
+       <th>상품번호</th>
         <th>사진</th>
         <th>물건명</th>
         <th>가격</th>
         
         <th>수량</th>
-       
-        <th>아이디</th>
-        
+        <th>회원</th>
+        <th>삭제</th>
         
        </tr>
-       <tr v-for="vo in cart_list">
+       <tr v-for="vo in purchase_list">
+       <td>{{vo.no}}</td>
         <td><img :src="vo.poster" style="width:40px;height:40px;"></td>
         <td><a :href="'../product/product_detail.do?no='+vo.no+'&type='+vo.type" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
         <td>{{vo.total_pri}}원</a></td>
         <td>{{vo.amount}}개</td>
-        <td>{{vo.id}}회원님</td>
-        
+        <td>${sessionScope.name}&nbsp;회원님</td>
+         <td>
+    <input type="button" class="genric-btn success circle btn" value="취소" style="background-color:red" @click="purchaseDelete(vo.cno)"> 
+<!--             <b-button  v-b-modal.modal-lg2 variant="primary" class="genric-btn info-border circle arrow btn" >정지</b-button> -->
+<!-- 			<b-modal  id="modal-lg2" size="lg" title="회원 탈퇴"  hide-footer> -->
+<!-- 			<div> -->
+<!-- 			<input type="password" size=20 > -->
+<!-- 			<a href="#" @click="memberDelete()" class="genric-btn info-border circle" >확인</a> -->
+<!-- 			</div>  -->
+<!-- 			</b-modal> -->
+        </td>
        </tr>
       </table>
       <div class="justify-content-center">
@@ -118,31 +127,33 @@
  new Vue({
 	 el:'.container',
 	 data:{
-		 cart_list:[],
+		 purchase_list:[],
 		 page_list:{},
 		 curpage:1,
 		 totalpage:0,
 		 startPage:0,
-		 endPage:0
+		 endPage:0,
+		 id:'${sessionScope.id}'
 	 },
 	 mounted:function(){
-		 this.cart()
+		 this.purchase()
 	 },
 	 methods:{
-		 cart:function(){
-			 axios.get('../member/admin_cart.do',{
+		 purchase:function(){
+			 axios.get('../member/user_purchase.do',{
 				 params:{
+					 id:this.id,
 					 page:this.curpage
 				 }
 			 }).then(response=>{
 				 console.log(response.data)
-				 this.cart_list=response.data
+				 this.purchase_list=response.data
 			 }).catch(error=>{
 				 console.log(error.response)
 			 })
-			 axios.get('../member/admin_cart_page.do',{
+			 axios.get('../member/user_purchase_page.do',{
 				 params:{
-					
+					 id:this.id,
 					 page:this.curpage
 				 }
 			 }).then(response=>{
@@ -167,15 +178,35 @@
 			},
 			pageChange:function(page){
 				this.curpage=page
-				this.cart();
+				 this.purchase()
 			},
 			prev:function(){
 				this.curpage=this.startPage-1;
-				this.cart();
+				 this.purchase()
 			},
 			next:function(){
 				this.curpage=this.endPage+1;
-				this.cart();
+				 this.purchase()
+			},
+		purchaseDelete:function(cno){
+
+				axios.get('../member/user_purchase_delete.do',{
+					params:{
+						id:this.id,
+						cno:cno
+					}
+				}).then(response=>{
+					console.log(response.data)
+					if(response.data=='yes')
+					{
+						alert('구매 취소')
+						location.href="../member/user_purchase.do";
+					}
+					else
+					{
+					   alert("찜 취소 불가")	
+					}
+				})
 			}
 	 }
 	

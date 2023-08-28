@@ -99,4 +99,14 @@ public class MemberController {
  {
 	 return "member/idfind";
  }
+ @GetMapping("member/admin_purchase.do")
+ public String member_admin_purchase()
+ {
+	 return "member/admin_purchase";
+ }
+ @GetMapping("member/user_purchase.do")
+ public String member_user_purchase()
+ {
+	 return "member/user_purchase";
+ }
 }

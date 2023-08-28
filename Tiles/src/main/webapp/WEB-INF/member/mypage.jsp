@@ -74,6 +74,11 @@
            <a href="../member/user_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
         </td>
       </tr> 
+      <tr style="height:30px;">
+        <td>
+       <a href="../member/user_purchase.do" class="genric-btn success circle btn" >구매내역🛍️</a>
+        </td>
+      </tr> 
         </table>
         
       </div>
@@ -249,7 +254,7 @@
    			}
    			else if(pwdck.search(/\s/)!=-1)
    			{
-   				alert('비밀번호는 공백없이 입력해라')
+   				alert('비밀번호는 공백없이 입력하세요')
    				return;
    			}
    			else if(num<0 || eng<0)
@@ -438,7 +443,7 @@
     			}
     			else if(pwdck.search(/\s/)!=-1)
     			{
-    				this.pwdmsg='비밀번호는 공백없이 입력해라'
+    				this.pwdmsg='비밀번호는 공백없이 입력하세요'
     				return;
     			}
     			else if(num<0 || eng<0)
@@ -451,7 +456,7 @@
     				return;
     				
     			} else if(pwd!=pwdcheck){
-    				this.pwdmsg='비밀번호가 달라.';
+    				this.pwdmsg='비밀번호가 다릅니다.';
     				return;
     			}
     		},
@@ -515,7 +520,7 @@
     			if(!phoneck.test(phone)){
     				this.$refs.phone.focus()
     				this.$refs.phone.value=''
-    				alert('핸드폰번호를 다시 입력해주세용')
+    				alert('핸드폰번호를 다시 입력해주세요')
     				return;
     				
     			}
@@ -534,7 +539,7 @@
     					alert("사용가능한 번호입니다.")
     					this.lock3 = true;
     				} else{
-    					alert("이미 가입된 번호 입니다.")
+    					alert("이미 가입된 번호입니다.")
     					this.$refs.phone.value=''
     					this.$refs.phone.focus()
     				}

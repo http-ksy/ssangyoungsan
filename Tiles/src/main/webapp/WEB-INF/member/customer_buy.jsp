@@ -43,7 +43,7 @@
 <!--       </tr>   -->
        <tr style="height:30px;">
         <td>
-           <a href="../member/customer_buy.do" class="genric-btn success circle btn" >매매현황</a>
+           <a href="../member/customer_buy.do" class="genric-btn success circle btn" >성사매물🏦</a>
         </td>
       </tr>  
 <!--        <tr style="height:30px;"> -->
@@ -58,16 +58,16 @@
 <!--       </tr>  -->
 		<tr style="height:30px;">
 		        <td>
-		          <a href="../member/customer.do" class="genric-btn success circle btn" >사장님페이지</a>
+		          <a href="../member/customer.do" class="genric-btn success circle btn" >사장님💰︎</a>
 		        </td>
 		      </tr> 
        <tr style="height:30px;">
         <td>
-          <a href="../member/qna.do" class="genric-btn success circle btn" >답변하기</a>
+          <a href="../member/qna.do" class="genric-btn success circle btn" >답변하기🏷️</a>
         </td>
       </tr> 
         </table>
-        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FSpongebob_UIB%2Fstatus%2F990890566706544642&psig=AOvVaw1omWyfKchCYw-55p5W7WlE&ust=1692613764838000&source=images&cd=vfe&opi=89978449&ved=0CA4QjRxqFwoTCPD08-SD64ADFQAAAAAdAAAAABAD" fluid thumbnail>
+        
       </div>
     </b-sidebar>
   </div>
@@ -109,6 +109,16 @@
 <!-- 			</b-modal> -->
        </tr>
       </table>
+        <div class="justify-content-center">
+      
+        <ul class="pagination" style="margin-left:400px;">
+         <li v-if="startPage>1"><a href="#" @click="prev()">이전</a></li>
+         <li v-for="i in range(startPage,endPage)" :class="i==curpage?'active':''">
+         <a href="#" @click="pageChange(i)">{{i}}</a></li>
+         <li v-if="endPage<totalpage"><a href="#" @click="next()">다음</li>
+        </ul>
+     
+      </div>
       </div>
   </div>
   </div>
@@ -117,6 +127,11 @@
 	  el:'.container',
 	  data:{
 		  ziplist:[],
+		  page_list:{},
+		  curpage:1,
+		  totalpage:0,
+		  startPage:0,
+		  endPage:0,
 		  name:'${sessionScope.name}',
 		 
 		  
@@ -128,7 +143,7 @@
 			  axios.get('../member/customer_buy.do',{
 				  params:{
 					  name:this.name,
-					  
+					  page:this.curpage
 				  }
 			  }).then(response=>{
 				  console.log(response.data)
@@ -137,8 +152,41 @@
 			  }).catch(error=>{
 				  console.log(error.response)
 			  })
-		  }
-		
+			  axios.get('../member/customer_buy_page.do',{
+				  params:{
+					  page:this.curpage,
+					  name:this.name
+				  }
+			  }).then(response=>{
+				  this.page_list=response.data
+				  this.curpage=this.page_list.curpage
+				  this.totalpage=this.page_list.totalpage
+				  this.startPage=this.page_list.startPage
+				  this.endPage=this.page_list.endPage
+			  })
+		  },
+		  range:function(start,end){
+			  let arr=[];
+			  let length=end-start;
+			  for(let i=0;i<=length;i++)
+			   {
+				  arr[i]=start
+				  start++;
+			   }
+			  return arr;
+		  },
+		   pageChange:function(page){
+			   this.curpage=page
+			   this.zipzip();
+		   },
+		   prev:function(){
+			   this.curpage=this.startPage-1;
+			   this.zipzip();
+		   },
+		   next:function(){
+			   this.curpage=this.endPage+1;
+			   this.zipzip();
+		   }
 		
 	  }
   })

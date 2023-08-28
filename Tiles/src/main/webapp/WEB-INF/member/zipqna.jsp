@@ -64,6 +64,11 @@
            <a href="../member/user_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
         </td>
       </tr> 
+      <tr style="height:30px;">
+        <td>
+       <a href="../member/user_purchase.do" class="genric-btn success circle btn" >구매내역🛍️</a>
+        </td>
+      </tr> 
         </table>
         
       </div>
@@ -83,16 +88,17 @@
        
         <th>번호</th>
         <th>부동산</th>
-        <th>답변</th> <!-- answer를 출력하는 줄 -->
+        <th>Q&A</th> <!-- answer를 출력하는 줄 -->
         <th>상태</th>
        </tr>
        <tr v-for="vo in question_list">
 <!--         <td><a :href="'../zip/zip_detail.do?no='+vo.no" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.name}}</a></td> -->
         <td>{{vo.no}}</td>
         <td>{{vo.company}}</td>
-        <td>{{vo.answer}}</td>
-        <td v-if="vo.answer!='답변대기'">답변완료</td>
-        <td v-if="vo.answer=='답변대기'">답변대기</td>
+        <td v-if="vo.answer!='답변대기'">{{vo.answer}}</td>
+        <td v-if="vo.answer=='답변대기'">{{vo.question}}</td>
+        <td v-if="vo.answer!='답변대기'" style="color:blue;">답변완료</td>
+        <td v-if="vo.answer=='답변대기'" style="color:red;">답변대기</td>
        </tr>
       </table>
       <div class="justify-content-center">

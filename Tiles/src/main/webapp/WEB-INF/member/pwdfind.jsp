@@ -84,7 +84,7 @@
     			}
     			else if(pwdck.search(/\s/)!=-1)
     			{
-    				this.pwdmsg='비밀번호는 공백없이 입력해라'
+    				this.pwdmsg='비밀번호는 공백없이 입력하세요'
     				return;
     			}
     			else if(num<0 || eng<0)
@@ -97,7 +97,7 @@
     				return;
     				
     			} else if(pwd!=pwdcheck){
-    				this.pwdmsg='비밀번호가 달라.';
+    				this.pwdmsg='비밀번호가 다릅니다.';
     				return;
     			}
    		},
@@ -122,7 +122,7 @@
 			}
 			else if(pwdck.search(/\s/)!=-1)
 			{
-				alert('비밀번호는 공백없이 입력해라')
+				alert('비밀번호는 공백없이 입력하세요')
 				return;
 			}
 			else if(num<0 || eng<0)

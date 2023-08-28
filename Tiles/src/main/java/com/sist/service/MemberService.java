@@ -19,6 +19,7 @@ import com.sist.vo.MemberVO;
 import com.sist.vo.MoveJjimVO;
 import com.sist.vo.MoveVO;
 import com.sist.vo.ProductCartVO;
+import com.sist.vo.ProductOrderVO;
 import com.sist.vo.ReserveCleanVO;
 import com.sist.vo.ReserveMoveVO;
 
@@ -128,6 +129,7 @@ public interface MemberService {
 //				+ "FROM (SELECT no,etype,dprice,name,type,addr,state "
 //				+ "FROM estate_detail WHERE company=#{id} AND state='매매진행완료'")
 		public List<EstateDetailVO> customer_zip_buy(Map map);
+		public int customer_zip_buy_totalpage(Map map);
 		
 /////////// 관리자 장바구니s 
 //	@Select("SELECT cno,no,type,id,poster,title,total_pri,amount,num "
@@ -156,4 +158,25 @@ public interface MemberService {
 //			+ "WHERE email=#{email}")
 	// 아이디 찾기 
 	public MemberVO memberId(String email);
+	
+///// 구매내역 관리자 페이지 
+//	@Select("SELECT ono,no,type,id,poster,title,final_pri,num "
+//			+ "FROM (SELECT ono,no,type,id,poster,title,final_pri,rownum as num "
+//			+ "FROM (SELECT ono,no,type,id,poster,title,final_pri "
+//			+ "FROM product_order ORDER BY ono desc)) "
+//			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<ProductCartVO> admin_purchase(Map map);
+//	@Select("SELECT CEIL(COUNT(*)/8) FROM product_order ")
+	public int admin_purchase_totalpage(Map map);
+	// 구매내역 사용자 페이지
+//	@Select("SELECT ono,no,type,id,poster,title,final_pri,num "
+//			+ "FROM (SELECT ono,no,type,id,poster,title,final_pri,rownum as num "
+//			+ "FROM (SELECT ono,no,type,id,poster,title,final_pri "
+//			+ "FROM product_order WHERE id=#{id} ORDER BY ono desc)) "
+//			+ "WHERE num BETWEEN #{start} AND #{end}")
+	public List<ProductCartVO> user_purchase(Map map);
+//	@Select("SELECT CEIL(COUNT(*)/8) FROM product_order WHERE id=#{id}")
+	public int user_purchase_totalpage(Map map);
+//	@DELETE("DELETE FROM PRODUCT_ORDER WHERE ID=#{ID} AND ONO=#{ONO}")
+	public void user_purchase_delete(ProductCartVO vo);
 }

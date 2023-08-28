@@ -26,8 +26,9 @@
       
       <table class="table">
        <tr>
-       
+        
         <th>예약번호</th>
+        <th>사진</th>
         <th>인테리어</th>
         <th>아이디</th>
         
@@ -38,7 +39,9 @@
         
        </tr>
        <tr v-for="vo in reserve_list">
+      
         <td>{{vo.no}}</td>
+         <td><img :src="vo.poster" style="width:40px;height:40px;"></td>
         <td><a :href="'../inte/inte_detail.do?ino='+vo.ino" type="button" class="genric-btn success circle btn" style="color:black;background-color:white">{{vo.title}}</a></td>
         <td>{{vo.id}}</a></td>
         <td>{{vo.reserve_date}}</td>

@@ -289,5 +289,41 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.memberId(email);
 	}
+
+	@Override
+	public List<ProductCartVO> admin_purchase(Map map) {
+		// TODO Auto-generated method stub
+		return dao.admin_purchase(map);
+	}
+
+	@Override
+	public int admin_purchase_totalpage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.admin_purchase_totalpage(map);
+	}
+
+	@Override
+	public List<ProductCartVO> user_purchase(Map map) {
+		// TODO Auto-generated method stub
+		return dao.user_purchase(map);
+	}
+
+	@Override
+	public int user_purchase_totalpage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.user_purchase_totalpage(map);
+	}
+
+	@Override
+	public void user_purchase_delete(ProductCartVO vo) {
+		// TODO Auto-generated method stub
+		dao.user_purchase_delete(vo);
+	}
+
+	@Override
+	public int customer_zip_buy_totalpage(Map map) {
+		// TODO Auto-generated method stub
+		return dao.customer_zip_buy_totalpage(map);
+	}
  
 }

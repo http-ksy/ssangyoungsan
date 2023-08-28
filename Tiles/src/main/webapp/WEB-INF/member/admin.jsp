@@ -47,7 +47,7 @@
       </tr>
       <tr style="height:30px;">
         <td>
-       <a href="../member/admin_reserve.do" class="genric-btn success circle btn" >예약현황</a>
+       <a href="../member/admin_reserve.do" class="genric-btn success circle btn" >예약🔖</a>
         </td>
       </tr>  
 <!--        <tr style="height:30px;"> -->
@@ -62,23 +62,28 @@
 <!--       </tr>  -->
       <tr style="height:30px;">
         <td>
-           <a href="../member/admin_cart.do" class="genric-btn success circle btn" >장바구니</a>
+           <a href="../member/admin_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
         </td>
       </tr> 
-<!--        <tr style="height:30px;"> -->
-<!--         <td> -->
-<!--            <input type="button" class="genric-btn success circle btn" value="문의하기"> -->
-<!--         </td> -->
-<!--       </tr>  -->
+       <tr style="height:30px;">
+        <td>
+       <a href="../member/admin.do" class="genric-btn success circle btn" >관리자👨🏻‍💼</a>
+        </td>
+      </tr>   
+	  <tr style="height:30px;">
+        <td>
+       <a href="../member/admin_purchase.do" class="genric-btn success circle btn" >판매내역🛍️</a>
+        </td>
+      </tr> 
         </table>
-        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FSpongebob_UIB%2Fstatus%2F990890566706544642&psig=AOvVaw1omWyfKchCYw-55p5W7WlE&ust=1692613764838000&source=images&cd=vfe&opi=89978449&ved=0CA4QjRxqFwoTCPD08-SD64ADFQAAAAAdAAAAABAD" fluid thumbnail>
+        
       </div>
     </b-sidebar>
   </div>
 </template>
   </div>
   
-  <br>
+
      <div class="container">
 	 <div class="row">
      <h1 class="text-left"><b>회원정보</b></h1>
@@ -219,7 +224,7 @@ new Vue({
 		},
 		memberDelete:function(id){
 			
-			axios.post('http://localhost/web/member/member_ban.do',null,{
+			axios.post('../member/member_ban.do',null,{
 				params:{
 					id:id
 				}

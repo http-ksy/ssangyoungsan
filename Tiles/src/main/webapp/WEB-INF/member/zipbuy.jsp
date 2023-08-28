@@ -61,6 +61,11 @@
            <a href="../member/user_cart.do" class="genric-btn success circle btn" >장바구니🛒</a>
         </td>
       </tr> 
+      <tr style="height:30px;">
+        <td>
+       <a href="../member/user_purchase.do" class="genric-btn success circle btn" >구매내역🛍️</a>
+        </td>
+      </tr> 
         </table>
         
       </div>
@@ -94,6 +99,7 @@
 				<td>
 			</tr>
 		</table>
+		
 	</div>
 </div>
 <script>
