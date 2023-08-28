@@ -188,7 +188,7 @@
 <!--? New Arrival End -->
  				<div class="text-center" style="margin-left:380px">	
 					<div class="">
-					<ul class="pagination">
+					<ul class="pagination"> 
 					  <li class="page-item" v-if="startPage>1" ><a class="page-link" href="#" @click="prev()">&lt;</a></li>
 					  <li class="page-item" v-for="i in range(startPage,endPage)"	:class="i==curpage?'active':''" style="widht:30px;height:20px;font-color:black;background-color:white;"><a class="page-link" href="#" @click="selectPage(i)">{{i}}</a></li>
 					  <li class="page-item" v-if="endPage<totalpage"><a class="page-link" href="#" @click="next()">&gt;</a></li>
