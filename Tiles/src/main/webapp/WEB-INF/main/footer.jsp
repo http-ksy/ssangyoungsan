@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<style type="text/css">
+.row{
+	width: 100%;
+}
+</style>
 </head>
 <body>      
 	<footer>

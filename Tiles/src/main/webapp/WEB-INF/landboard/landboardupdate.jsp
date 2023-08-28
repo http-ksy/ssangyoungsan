@@ -77,7 +77,7 @@ new Vue({
 				alert('내용 or 제목을 입력하세요!');
 				return
 			}
-			axios.posts('http://localhost/web/landboard/landboardUpdate.do',null,{
+			axios.post('http://localhost/web/landboard/landboardUpdate.do',null,{
 				params:{
 					no:this.no,
 					title:this.title,

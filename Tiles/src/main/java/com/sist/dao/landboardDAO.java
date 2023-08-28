@@ -25,6 +25,12 @@ public class landboardDAO {
 	public List<landboardVO> landboard_list(Map map){
 		return mapper.landboard_list(map);
 	}
+//	@Select("select ceil(count(*)/20.0) where bno=#{bno}")
+	// total page
+	public int boardListTotalPage(int bno) {
+		return mapper.boardListTotalPage(bno);
+	}
+	
 	//@Update("UPDATE landboard set hit=hit+1 where no=#{no}")
 	public void incrementHit(int no)
 	{

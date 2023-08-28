@@ -22,6 +22,7 @@ public class landboardReplyDAO {
 	public List<landboardReplyVO> boardReply_list(int bno) {
 		return mapper.boardReply_list(bno);
 	}
+
 	
 //	@Insert("insert into landboardreply(no,bno,content,nickname,regdate) "
 //			+ "values(lbr_no_seq.nextval,#{bno},#{content},#{nickname},#{regdate})")

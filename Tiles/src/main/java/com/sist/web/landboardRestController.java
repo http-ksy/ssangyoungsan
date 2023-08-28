@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sist.service.landboardService;
+import com.sist.vo.PageVO;
 import com.sist.vo.landboardVO;
 
 
@@ -76,10 +77,15 @@ public class landboardRestController {
 		return result;
 	}
 	@GetMapping(value = "landboard/landboard_list.do", produces = "text/plain;charset=utf-8")
-	public String landboardList(int bno) throws Exception {
+	public String landboardList(int bno,int page) throws Exception {
 		
 		Map map = new HashMap();
 		map.put("bno",bno);
+		int rowSize=10;
+		int start = (rowSize*page)-(rowSize-1);
+		int end = (rowSize*page);
+		map.put("start", start);
+		map.put("end", end);
 		List<landboardVO> list = service.landboard_list(map);
 		ObjectMapper mapper = new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
@@ -119,5 +125,13 @@ public class landboardRestController {
 		}
 		
 		return result;
+	}
+	@GetMapping(value = "landboard/landboard_page.do",produces = "text/plain;charset=utf-8")
+	public String landboardPage(int page,int bno)throws Exception {
+		String json ="";
+		PageVO vo = service.landboard_page(bno,page);
+		ObjectMapper mapper = new ObjectMapper();
+		json=mapper.writeValueAsString(vo);
+		return json;
 	}
 }

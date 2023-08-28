@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sist.dao.landboardDAO;
+import com.sist.vo.PageVO;
 import com.sist.vo.landboardVO;
 
 @Service
@@ -44,6 +45,21 @@ public class landboardServiceImpl implements landboardService{
 	public void landboard_delete(int no) {
 		// TODO Auto-generated method stub
 		dao.landboard_delete(no);
+	}
+
+	@Override
+	public PageVO landboard_page(int bno,int page) {
+		// TODO Auto-generated method stub
+		// map -> page , bno
+		PageVO vo = new PageVO();
+		final int BLOCK = 10;
+		int startPage = ((page-1)/BLOCK*BLOCK)+1;
+		int endPage = ((page-1)/BLOCK*BLOCK)+BLOCK;
+		vo.setTotalpage(dao.boardListTotalPage(bno));
+		vo.setCurpage(page);
+		vo.setStartPage(startPage);
+		vo.setEndPage(endPage);
+		return vo;
 	}
 	
 

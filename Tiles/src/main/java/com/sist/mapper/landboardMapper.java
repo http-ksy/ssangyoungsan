@@ -14,11 +14,20 @@ public interface landboardMapper {
 			+ "values(lb_no_seq.nextVal, #{bno}, #{title}, #{subject}, #{id},#{filesize},#{filename},#{filecount})")
 	public void landboardInsert(landboardVO vo);
 	
-	@Select("select no,title,subject,id,to_char(regdate,'yy-mm-dd')as dbday,hit "
-			+"from landboard "
-			+ "where bno=#{bno}"
-			+ " order by no desc")
+//	@Select("select no,title,subject,id,to_char(regdate,'yy-mm-dd')as dbday,hit "
+//			+"from landboard "
+//			+ "where bno=#{bno}"
+//			+ " order by no desc")
+	@Select("select no,bno,title,subject,id,to_char(regdate,'yy-mm-dd')as dbday,hit,num "
+			+"from (select no,bno,title,subject,id,regdate,hit,rownum as num "
+			+ "from (select no,bno,title,subject,id,regdate,hit "
+			+ "from landboard where bno=#{bno} "
+			+ "order by no desc)) where num between #{start} and #{end}")
 	public List<landboardVO> landboard_list(Map map);
+	
+	// totalpage
+	@Select("select ceil(count(*)/10.0) from landboard where bno=#{bno}")
+	public int boardListTotalPage(int bno);
 	
 	@Update("UPDATE landboard set hit=hit+1 where no=#{no}")
 	public void incrementHit(int no);

@@ -12,6 +12,7 @@
 <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
 </head>
 <body>
 <div class="section-top-border">
@@ -59,26 +60,22 @@
 <div class="text-right">
 	<a v-if="${sessionScope.id!=null }" class="genric-btn danger-border circle arrow text-right" href="../landboard/landinsert.do">🐦‍⬛글</a>
 </div>
-<template >
+<template>
   <div class="overflow-auto">
     <b-pagination
       v-model="currentPage"
-      :total-rows="rows"
       :per-page="perPage"
-      aria-controls="my-table"
+      first-text="First"
+      :total-rows="rows"
+      prev-text="Prev"
+      next-text="Next"
+      last-text="Last"
       align="center"
     ></b-pagination>
-
-    <p class="mt-3">Current Page: {{ currentPage }}</p>
-
-    <b-table
-      id="my-table"
-      :items="items"
-      :per-page="perPage"
-      :current-page="currentPage"
-      small
-    ></b-table>
   </div>
+  <template>
+  	currentPage : {{currentPage}}
+  </template>
 </template>
 </div>
 <script>
@@ -86,22 +83,43 @@ new Vue({
 	el:'.section-top-border',
 	data:{
 		currentPage:1,
-		landboard_list:[]
+		boardno:1,
+		landboard_list:[],
+		pageList:{},
+        perPage:10,  // 전체 페이지 수
+        rows:0
 	},
 	mounted:function(){
-		this.getList(1)
+		this.getList(this.boardno)
+	},
+	updated:function(){
+		this.getList(this.boardno)
 	},
 	methods:{
 		getList:function(bno){
+			this.boardno=bno;
 			axios.get('http://localhost/web/landboard/landboard_list.do',{
 				params:{
-					bno:bno
+					bno:bno,
+					page:this.currentPage
 				}
 			}).then(res=>{
 				console.log(res.data)
 				this.landboard_list=res.data
+				this.rows=this.landboard_list.length
 			}).catch(error=>{
 				console.log(error.res)
+			})
+			axios.get('http://localhost/web/landboard/landboard_page.do',{
+				params:{
+					bno:bno,
+					page:this.currentPage
+				}
+			}).then(response=>{
+				console.log(response.data)
+				this.pageList=response.data
+				this.perPage=this.pageList.totalpage
+				this.curPage=this.pageList.curpage
 			})
 		}
 	}
