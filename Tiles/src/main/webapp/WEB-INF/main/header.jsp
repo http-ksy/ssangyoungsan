@@ -97,7 +97,7 @@
 								        <tr>
 								          <td colspan="2" class="text-center">
 								           <input type=button value="로그인" class="genric-btn info-border circle arrow" v-on:click="login()">
-								           <a href="../member/find.do" class="genric-btn info-border circle arrow">아이디찾기</a>
+								           <a href="../member/idfind.do" class="genric-btn info-border circle arrow">아이디찾기</a>
 								           <a href="../member/pwdfind.do" class="genric-btn info-border circle arrow">비밀번호찾기</a>
 								          </td>
 								        </tr>
@@ -115,7 +115,7 @@
                              <div v-if="sessionck=='관리자'"><a href="../member/admin.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
                              <div v-if="sessionck=='사용자'"><a href="../member/mypage.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
                              <div v-if="sessionck=='사장님'&&sessionname!='쌍용인테리어'"><a href="../member/customer.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
-                             <div v-if="sessionck=='사장님'&&sessionname=='쌍용인테리어'"><a href="../member/intecustomer.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
+                             <div v-if="sessionck=='사장님'&&sessionname=='쌍용인테리어'"><a href="../member/customer_reserve.do" class="genric-btn info-border circle arrow btn">${sessionScope.name }님(${sessionScope.admin })</a></div>
 <!--                              <a href="#" v-if="sessionck=='사용자'">My🏠</a> -->
 <!--                              <a href="#" v-if="sessionck=='사장님'">C🏠</a> -->
                              &nbsp;<a href="../member/logout.do" class="genric-btn info-border circle arrow btn">logout</a>

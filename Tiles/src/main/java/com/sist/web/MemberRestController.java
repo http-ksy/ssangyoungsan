@@ -1005,4 +1005,29 @@ public String memberDelete(String id,String pwd,HttpSession session)
  	}
  	return result;		
  }
+ @PostMapping(value="member/idfind.do",produces="text/plain;charset=UTF-8")
+ public String memberId(String email) throws Exception
+ {
+	 
+ 	String result="";
+ 	
+ 	MemberVO vo=service.memberId(email);
+ 	int count=service.memberEmailCheck(email);
+ 	if(count==0)
+ 	{
+ 		result="이메일이 없습니다.";
+ 	}
+ 	else 
+ 	{
+ 		String id = vo.getId();
+ 		for(int i =0 ; i < id.length();i++) {
+ 			if(i<4) {
+ 				result+=id.charAt(i);
+ 			} else {
+ 				result+="*";
+ 			}
+ 		}
+ 	}
+ 	return result;
+ }
 }

@@ -51,4 +51,16 @@ public interface ZipMapper {
 	public List<Integer> zipZimList(Map map);
 	@Select("SELECT CEIL(COUNT(*)/8) FROM zipZim WHERE id=#{id}")
 	public int zimTotalPage(Map map);
+//  검색
+	@Select("SELECT etype,no,name,type,addr,dprice,company,img,num "
+			+ "FROM (SELECT etype,no,name,type,addr,dprice,company,img,rownum as num "
+			+ "FROM (SELECT etype,no,name,type,addr,dprice,company,img "
+			+ "FROM estate_detail WHERE etype=#{etype} "
+			+ "AND (addr LIKE '%'||#{fd1}||'%' or name LIKE '%'||#{fd2}||'%' or company LIKE '%'||#{fd3}||'%' or dprice LIKE '%'||#{fd4}||'%') "
+			+ "ORDER BY no ASC)) "
+			+ "WHERE num BETWEEN #{start} AND #{end} ")
+	public List<EstateDetailVO> estateFindData(Map map);
+	@Select("SELECT CEIL(COUNT(*)/16) FROM estate_detail WHERE etype=#{etype} "
+			+ "AND (addr LIKE '%'||#{fd1}||'%' or name LIKE '%'||#{fd2}||'%' or company LIKE '%'||#{fd3}||'%' or dprice LIKE '%'||#{fd4}||'%') ")
+	public int estateFindPage(Map map);
 }

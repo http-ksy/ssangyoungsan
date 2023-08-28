@@ -280,5 +280,10 @@ public void user_cart_delete(ProductCartVO vo)
 {
 	mapper.user_cart_delete(vo);
 }
-
+//@Select("SELECT id,pwd,email,name,nickname,sex,birthday,phone,addr1,addr2,post,admin FROM amem "
+//		+ "WHERE email=#{email}")
+public MemberVO memberId(String email)
+{
+	return mapper.memberId(email);
+}
 }

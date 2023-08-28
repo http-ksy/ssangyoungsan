@@ -200,4 +200,9 @@ public interface MemberMapper {
 	public int user_cart_totalpage(Map map);
 	@Delete("DELETE FROM product_cart WHERE id=#{id} and cno=#{cno}")
 	public void user_cart_delete(ProductCartVO vo);
+	
+	////////////// 아이디 찾기 
+	@Select("SELECT id FROM amem "
+			+ "WHERE email=#{email}")
+	public MemberVO memberId(String email);
 }

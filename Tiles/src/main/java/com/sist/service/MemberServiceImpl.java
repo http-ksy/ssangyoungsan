@@ -283,5 +283,11 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		dao.memberPwdUpdate(vo);
 	}
+
+	@Override
+	public MemberVO memberId(String email) {
+		// TODO Auto-generated method stub
+		return dao.memberId(email);
+	}
  
 }

@@ -45,5 +45,14 @@ public interface ZipService {
 		// 찜 리스트 마이페이지에 출력
 		public List<EstateDetailVO> zipZimList(Map map);
 		public int zimTotalPage(Map map);
-		
+//		@Select("SELECT etype,no,name,type,addr,dprice,company,img,num "
+//				+ "FROM (SELECT etype,no,name,type,addr,dprice,company,img,rownum as num "
+//				+ "FROM (SELECT etype,no,name,type,addr,dprice,company,img "
+//				+ "FROM estate_detail WHERE etype=#{etype} ORDER BY no ASC)"
+//				+ "WHERE addr LIKE '%'||#{fd}||'%' or name LIKE '%'||#{fd}||'%' or company LIKE '%'||#{fd}||'%' or dprice LIKE '%'||#{fd}||'%') "
+//				+ "WHERE num BETWEEN #{start} AND #{end} ")
+		public List<EstateDetailVO> estateFindData(Map map);
+//		@Select("SELECT CEIL(COUNT(*)/16) FROM estate_detail WHERE etype=#{etype} "
+//				+ "AND (addr LIKE '%'||#{fd1}||'%' or name LIKE '%'||#{fd2}||'%' or company LIKE '%'||#{fd3}||'%' or dprice LIKE '%'||#{fd4}||'%') ")
+		public int estateFindPage(Map map);
 }
