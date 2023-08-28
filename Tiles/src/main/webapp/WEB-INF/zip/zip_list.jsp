@@ -18,7 +18,11 @@
 	<script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 	<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+ 
+ >
+	
     <!-- CSS here -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
@@ -56,12 +60,12 @@
         <!-- listing Area Start -->
         <div class="category-area">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="row" style="width:1141px;">
+                    <div class="" style="width:1141px;">
                         <div class="section-tittle mb-50">
                             <h2>부동산</h2>
                             <p style="width:100px;float:left">${total } 개의 정보</p>
-                            <div class="text-right" style="width:350px;float:left">
+                            <div class="text-right" style="float:right;">
 		                        <input type="text" ref="fd" class="input-sm" size="25" style="height: 41px;" v-model="fd" placeholder="주소,이름,가격,중개사로 검색...">
 	          					<input type="button" class="genric-btn info-border" style="height: 43px;" value="검색" @click="find()">
           					</div>
@@ -182,12 +186,12 @@
        					</div>
 					</div>
 <!--? New Arrival End -->
- 				<div>
-					<div class="text-center">
+ 				<div class="text-center" style="margin-left:380px">	
+					<div class="">
 					<ul class="pagination">
-					  <li v-if="startPage>1"><a href="#" @click="prev()">&lt;</a></li>
-					  <li v-for="i in range(startPage,endPage)"	:class="i==curpage?'active':''"><a href="#" @click="selectPage(i)">{{i}}</a></li>
-					  <li v-if="endPage<totalpage"><a href="#" @click="next()">&gt;</a></li>
+					  <li class="page-item" v-if="startPage>1" ><a class="page-link" href="#" @click="prev()">&lt;</a></li>
+					  <li class="page-item" v-for="i in range(startPage,endPage)"	:class="i==curpage?'active':''" style="widht:30px;height:20px;font-color:black;background-color:white;"><a class="page-link" href="#" @click="selectPage(i)">{{i}}</a></li>
+					  <li class="page-item" v-if="endPage<totalpage"><a class="page-link" href="#" @click="next()">&gt;</a></li>
 					</ul>
 					</div>
 				</div>
