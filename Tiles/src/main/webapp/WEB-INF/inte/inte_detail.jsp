@@ -389,7 +389,7 @@ $(function() {
 						   <h4><b>예약 날짜:</b>&nbsp;{{reserve_date}}</h4>
 						   <h4><b>예약 시간:</b>&nbsp;{{reserve_time}}</h4>
 						   <div>
-		                     <a href="../member/mypage.do">
+		                     <a href="../member/inte_reserve.do">
 		                       <button class="btn"><span>마이페이지 이동</span></button>
 		                     </a>
 	                       </div>
