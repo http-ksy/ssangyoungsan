@@ -92,6 +92,7 @@
       	   <td width=80%>
       	     <input type="radio" value="사용자" checked ref="admin" name="admin" v-model="admin">사용자
       	     <input type="radio" value="사장님" ref="admin" name="admin" v-model="admin">사장님
+      	     
       	   </td>
       	 </tr>
       	  <tr>
