@@ -260,14 +260,14 @@
                    <div style="text-align: center;">
                     <h3>이미 예약 되었습니다.</h3>
                       <br>
-                      <h4><b>예약 번호:</b>&nbsp;${vo3.no}</h4>
+                       <%-- <h4><b>예약 번호:</b>&nbsp;${vo4.no }</h4> --%>
                        <h4><b>예약자명:</b>&nbsp;${sessionScope.name}님</h4>
-					<%--  <h4><b>예약 날짜:</b>&nbsp; ${vo4.reserve_date }</h4>
-					  <h4><b>예약 시간:</b>&nbsp; ${vo4.reserve_time } </h4> --%>
+					   <!-- <h4><b>예약 날짜:</b>&nbsp; {{reserve_date}}</h4>
+					   <h4><b>예약 시간:</b>&nbsp; {{reserveInfo_list.reserve_time}}</h4> -->
 				   </div>	  
                    </c:if> 
              
-                    
+                    <c:if test="${reserve_count == 0 }">
     			    <table class="table" height=700>
       				  <tr>
 					    <td width="65%" height="600"  style="color:gray;">
@@ -326,7 +326,7 @@
 						 <div class="col-lg-4" v-show="reShow">
 						   <h3><b>{{sessionName}}</b>님</h3>
 						   <h3>예약 완료 되었습니다.</h3>
-						   <h4><b>예약 번호:</b>&nbsp;{{reserve_list.no}}</h4>
+						   <h4><b>예약 번호:</b>&nbsp;{{reserveInfo_list.no}}</h4>
 						   <h4><b>예약 날짜:</b>&nbsp;{{reserve_date}}</h4>
 						   <h4><b>예약 시간:</b>&nbsp;{{reserve_time}}</h4>
 						   <div>
@@ -341,7 +341,7 @@
 					</tr>
 						 
     			    </table> 	
-    			 
+    			 </c:if>
     			 </div> <!-- 예약 -->
     			 
     			 </div>
@@ -386,7 +386,8 @@
 		  reserve_date:'',
 		  reserve_time:'',
 		  reserve_list:{},
-		  reShow:false
+		  reShow:false,
+		  reserveInfo_list:{}
 	  },
 	  mounted:function() {
 		    this.today = this.getToday();
@@ -408,9 +409,13 @@
 				  this.posters=this.inte_detail.poster2.split("^")
 				  //console.log(this.inte_detail.subject)
 				   //console.log(inte_detail.no)
+				 
 			  }).catch(error=>{
 				console.log(error.response)  
 			  })
+			
+			
+			 
 		  this.replyRead()
 	  },
 	  methods:{
@@ -527,15 +532,28 @@
 		    		}
 		    	}).then(response=>{
 		    		 console.log(response.data)
-		    		 this.reserve_list = response.data
+		    		// this.reserve_list = response.data
 		    		 alert('예약완료')
 		    		 this.reShow=bool
-		    		 console.log(reserve_list.no)
-		    		 
+		    		// console.log(reserve_list.no)
+		    		 this.infoData()
 		    	}).catch(error=>{
 		    		console.log(error.response)
 		    	})
-		    } 
+		    },
+		    infoData:function() {
+	    		 axios.post('../inte/reserve_info_vue.do',null,{
+	 	    		params:{
+	 	    			ino:this.ino
+	     			
+	 	    		}
+	 	    		}).then(response=>{
+	 	    		 console.log(response.data)
+	 	    		 this.reserveInfo_list = response.data		    		 		    		 		    		 
+	 	    		}).catch(error=>{
+	 	    			console.log(error.response)
+	 	    	})
+		    }
 	  }
   })
 </script>

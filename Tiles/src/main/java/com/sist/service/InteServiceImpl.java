@@ -79,31 +79,32 @@ public class InteServiceImpl implements InteService {
 		//return dao.reserveNo(vo.getId());
 	}
 
-	@Override
-	public String reserveNo(String id) {
-		return dao.reserveNo(id);
-	}
+	
 
 	@Override
 	public int reserveCheck(InteReserveVO vo) {
 		return dao.reserveCheck(vo);
 	}
 
-	@Override
-	public InteReserveVO reserveDate(String id) {
-		return dao.reserveDate(id);
-	}
 	
 
-/*	@Override
-	public List<InteVO> inteListData(Map map) {
-		return dao.inteListData(map);
+	@Override
+	public List<InteReserveVO> reserveNo(String id) {
+		return dao.reserveNo(id);
 	}
+//
+//	@Override
+//	public int reserveOkNo(String id) {
+//		return dao.reserveOkNo(id);
+//	}
 
 	@Override
-	public int inteTotalPage() {
-		return dao.inteTotalPage();
+	public InteReserveVO reserveDate(InteReserveVO vo) {
+		return dao.reserveDate(vo);
 	}
-	*/
+
+	
+
+
 	
 }

@@ -94,13 +94,16 @@ public class InteDAO {
 	public void reserveOk(InteReserveVO vo) {
 		mapper.reserveOk(vo);
 	}
-	public String reserveNo(String id) {
+	public List<InteReserveVO> reserveNo(String id) {
 		return mapper.reserveNo(id);
 	}
 	public int reserveCheck(InteReserveVO vo) {
 		return mapper.reserveCheck(vo);
 	}
-	public InteReserveVO reserveDate(String id) {
-		return mapper.reserveDate(id);
+	public InteReserveVO reserveDate(InteReserveVO vo) {
+		return mapper.reserveDate(vo);
 	}
+	/*
+	 * public int reserveOkNo(String id) { return mapper.reserveOkNo(id); }
+	 */
 }

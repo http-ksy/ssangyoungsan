@@ -139,12 +139,30 @@ public class InteRestController {
 		String id = (String)session.getAttribute("id");
 		vo.setId(id);
 		service.reserveOk(vo);		
-		//System.out.println(vo.getRok());
-		vo.setNo(Integer.parseInt(service.reserveNo(id)));
+		
+		//List<InteReserveVO> list = service.reserveNo(id);
+		
+		//vo.setNo(Integer.parseInt(service.reserveNo(id)));
+		//vo.setNo(service.reserveOkNo(id));
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(vo);
 		return json;
 		
+	}
+	
+	@PostMapping(value = "inte/reserve_info_vue.do" ,produces = "text/plain;charset=UTF-8")
+	public String reserve_info(int ino,HttpSession session) throws Exception {
+	
+		String id = (String)session.getAttribute("id");
+		InteReserveVO vo = new InteReserveVO();
+		vo.setId(id);
+		vo.setIno(ino);
+		//vo.setNo(Integer.parseInt(service.reserveNo(id)));
+	   vo= service.reserveDate(vo);
+	   // System.out.println(vo.getNo());
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(vo);
+		return json;
 	}
 	
 }

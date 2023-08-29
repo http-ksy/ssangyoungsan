@@ -84,15 +84,15 @@ public class InteController {
 		}
 		InteVO vo2 = dao.inteDetailData(ino);
 		
-		//vo3.setNo(Integer.parseInt(dao.reserveNo(id)));
+		//vo3.setNo(dao.reserveOkNo(id));
 		
-		//InteReserveVO vo4 = dao.reserveDate(id);
-
+		//InteReserveVO vo4 = new InteReserveVO();
+		//vo4 = dao.reserveDate(vo4);
 		//System.out.println("date"+vo4.getReserve_date());
 		//System.out.println("time"+vo4.getReserve_time());
 		//model.addAttribute("vo4", vo4);
 		
-	//	model.addAttribute("vo3", vo3);
+		model.addAttribute("vo3", vo3);
 		model.addAttribute("vo2", vo2);
 		model.addAttribute("ino", ino);
 		
