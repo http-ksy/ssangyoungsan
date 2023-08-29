@@ -82,10 +82,9 @@ function send()
 	console.log("name"+name);
 	if(name == cur_session ) {
 		websocket.send("msg:🐢["+name+"]: "+"<h5 style=background-color:yellow;>"+msg+"</h5>"); 
-	} 
-	//else {
-	//	websocket.send("msg:🐢["+name+"]: "+"<h5 style=background-color:gray;>"+msg+"</h5>"); 
-	//}
+	} else {
+		websocket.send("msg:🐢["+name+"]: "+"<h5 style=background-color:gray;>"+msg+"</h5>"); 
+	}
 	// onMessage
 	$('#sendMsg').val("");
 	$('#sendMsg').focus();
