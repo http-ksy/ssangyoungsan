@@ -26,39 +26,13 @@
 </head>
 <body>
    <div class="container">
-     <h3 class="text-center">계약서</h3>
      <div class="row">
-      <table class="table">
+      <table class="table" style="width:100%">
       	 <tr>
-      	   <th width=20% class="text-right">매물명</th>
-      	   <td width=80% class="text-right"></td>
+      	   <td style="width:885px;height:800px"><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA1MjhfMTQ2%2FMDAxNjIyMTg4MDQwNTAw.yCUNQkyK4Wx4TUoLf_i2L2tEEzQGyZsahqHjH9qPCmAg.7JEeRK7HfMSq7DjfDPi2yTqA0ef-tex-6mFWf2gj7fQg.PNG.happydaen%2Fimage.png&type=sc960_832" style="width:100%;height:800px"></td>
+		 </tr>
       	  <tr>
-      	  <tr>
-      	   <th width=20% class="text-right">계약자명</th>
-      	   <td width=80% class="text-right"></td>
-      	  <tr>
-      	  <tr>
-      	   <th width=20% class="text-right">매매형식</th>
-      	   <td width=80% class="text-right"></td>
-      	  <tr>
-      	  <tr>
-      	   <th width=20% class="text-right">주소</th>
-      	   <td width=80% class="text-right"></td>
-      	  <tr>
-      	  <tr>
-      	   <th width=20% class="text-right">날짜</th>
-      	   <td width=80% class="text-right"></td>
-      	  <tr>
-      	  <tr>
-      	   <th width=20% class="text-right">이름</th>
-      	   <td width=80% class="text-right"></td>
-      	  <tr>
-      	  <tr>
-      	   <th width=20% class="text-right">이름</th>
-      	   <td width=80% class="text-right"></td>
-      	  <tr>
-      	  <tr>
-           <td colspan="2" class="text-center">
+           <td class="text-center">
             <a class="genric-btn info-border circle" v-model="no" @click="zipsagomove(no)">계약하기</a>
              <input type=button value="취소" class="genric-btn info-border circle"
               onclick="javascript:history.back()">

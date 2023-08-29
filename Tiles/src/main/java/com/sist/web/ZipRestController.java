@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.http.Cookie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,8 @@ import oracle.jdbc.proxy.annotation.Post;
 
 @RestController
 public class ZipRestController {
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	@Autowired
 	private ZipService service;
 	@Autowired
@@ -132,7 +135,6 @@ public class ZipRestController {
 		vo.setCno(no);
 		vo.setId(id);
 		vo.setContent(content);
-		reservice.companyReviewInsert(vo);
 		try
 		{
 			reservice.companyReviewInsert(vo);
@@ -144,6 +146,23 @@ public class ZipRestController {
 			json="NO";
 		}
 		
+		return json;
+	}
+	@GetMapping(value="zip/reviewDelete_vue.do",produces = "text/plain;charset=UTF-8")
+	public String companyReviewDelete(int rno,String id,String pwd) throws Exception
+	{
+		String json="";
+		String dbpwd=reservice.companyReviewPwd(id);
+
+			if(encoder.matches(pwd, dbpwd))
+			{
+				reservice.companyReviewDelete(rno);
+				json="OK";
+			}
+			else
+			{
+				json="NO";
+			}
 		return json;
 	}
 	@GetMapping(value="zip/zipZim_vue.do",produces = "text/plain;charset=UTF-8")
@@ -309,4 +328,5 @@ public class ZipRestController {
 		String json=mapper.writeValueAsString(vo);
 		return json;
 	}
+	
 }

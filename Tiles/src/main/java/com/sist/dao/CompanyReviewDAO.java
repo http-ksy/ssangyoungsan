@@ -1,5 +1,6 @@
 package com.sist.dao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,16 @@ public class CompanyReviewDAO {
 		public void companyReviewInsert(CompanyReviewVO vo)
 		{
 			mapper.companyReviewInsert(vo);
+		}
+//		@Delete("DELETE FROM company_review WHERE no=#{no}")
+		public void companyReviewDelete(int rno)
+		{
+			mapper.companyReviewDelete(rno);
+		}
+		// 비밀번호 확인
+//		@Select("SELECT pwd FROM amem WHERE id=#{id}")
+		public String companyReviewPwd(String id)
+		{
+			return mapper.companyReviewPwd(id);
 		}
 }

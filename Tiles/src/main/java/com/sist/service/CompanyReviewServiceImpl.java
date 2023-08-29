@@ -24,5 +24,17 @@ public class CompanyReviewServiceImpl implements CompanyReviewService{
 		// TODO Auto-generated method stub
 		dao.companyReviewInsert(vo);
 	}
+
+	@Override
+	public void companyReviewDelete(int rno) {
+		// TODO Auto-generated method stub
+		dao.companyReviewDelete(rno);
+	}
+
+	@Override
+	public String companyReviewPwd(String id) {
+		// TODO Auto-generated method stub
+		return dao.companyReviewPwd(id);
+	}
 	
 }

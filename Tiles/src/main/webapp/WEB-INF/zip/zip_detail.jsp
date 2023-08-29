@@ -14,6 +14,28 @@
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+let u=0;
+$(function(){
+	$('.ups').click(function(){
+		let no=$(this).attr("data-no");
+		
+		$('.ups').text("삭제");
+		if(u===0)
+		{
+			$('#u'+no).show();
+			$(this).text("취소");
+			u=1;
+		}
+		else
+		{
+			$('#u'+no).hide();
+			$(this).text("삭제");
+			u=0;
+		}
+	})
+})
+</script>
 </head>
 <body>
 <div class="page-notification">
@@ -144,14 +166,23 @@
 			<table class="table" >
 				<tr>
 					<th width=20%>이름</th>
-					<th width=60%>내용</th>
+					<th width=50%>내용</th>
 					<th width=20%>날짜</th>
+					<th width=10%></th>
 				</tr>
 				<tr v-for="vo in review">
 					<td width=20%>{{vo.id}}</td>
-					<td width=60%>{{vo.content}}</td>
+					<td width=50%>{{vo.content}}</td>
 					<td width=20%>{{vo.dbday}}</td>
-				</tr>
+					<td width=10%><span class="btn btn-xs btn-danger ups" :data-no="vo.no" style="width: 70px">삭제</span></td>
+<!-- 				</tr> -->
+<!-- 				<tr class="table" v-for="vo in review"> -->
+			        <td style="display: none" class="updates" :id="'u'+vo.no">
+				         <input type=password ref="rpwd" size=15 class="input-sm" v-model="rpwd" @keyup.enter="companyReviewDelete(vo.no)">
+				         <input type=button value="삭제" class="genric-btn info-border arrow" @click="companyReviewDelete(vo.no)">
+			        </td>
+			    </tr>
+			    
 			</table>
 		</div> 
 	</div>
@@ -169,11 +200,10 @@
 			id:'${sessionScope.id}',
 			state:'',
 			company:'',
-			question:''
+			question:'',
+			rpwd:''
 		},
 		mounted:function(){
-			
-			
 			 this.estateDetailData(this.no)
 			 this.reviewData(this.no)
 			 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -284,6 +314,29 @@
 						alert("질문 완료")
 						this.$refs.question.value='';
 					}
+				})
+			},
+			companyReviewDelete:function(rno){
+				console.log(this.rpwd)
+				axios.get('../zip/reviewDelete_vue.do',{
+					params:{
+						rno:rno,
+						id:this.id,
+						pwd:this.rpwd
+					}
+				}).then(response=>{
+					console.log(response.data)
+					if(response.data==='OK')
+					{
+						alert("삭제 완료")
+						location.reload()
+					}
+					else
+					{
+						alert("삭제 실패")
+					}
+				}).catch(error=>{
+					console.log(error.response)
 				})
 			}
 		}

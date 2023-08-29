@@ -93,7 +93,7 @@
 				<td>{{vo.addr}}</td>
 				<td>{{vo.manager}}</td>
 				<td>{{vo.dprice}}</td>
-				<td><textarea ref="content" v-model="content" name="content"></textarea></td>
+				<td><textarea :id="'content'+vo.no" name="content"></textarea></td>
 				<td>
 					<input type="button" class="genric-btn info-border circle" @click="reviewInsert(vo.no)" value="저장">
 				<td>
@@ -130,11 +130,17 @@ new Vue({
 			})
 		},
 		reviewInsert:function(no){
+			let _content=$('#content'+no).val()
+			if(_content=='')
+			  {
+				alert('리뷰를 입력해주세요')
+				return;
+			  }	 
 			axios.get('../zip/review_insert_vue.do',{
 				params:{
 					no:no,
 					id:this.id,
-					content:this.content
+					content:_content
 				}
 			}).then(response=>{
 				console.log(response.data)
