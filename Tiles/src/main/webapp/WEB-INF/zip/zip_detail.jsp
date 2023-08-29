@@ -15,23 +15,23 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-let u=0;
+let d=0;
 $(function(){
-	$('.ups').click(function(){
+	$('.dels').click(function(){
 		let no=$(this).attr("data-no");
 		
-		$('.ups').text("삭제");
-		if(u===0)
+		$('.dels').text("삭제");
+		if(d===0)
 		{
-			$('#u'+no).show();
+			$('#d'+no).show();
 			$(this).text("취소");
-			u=1;
+			d=1;
 		}
 		else
 		{
-			$('#u'+no).hide();
+			$('#d'+no).hide();
 			$(this).text("삭제");
-			u=0;
+			d=0;
 		}
 	})
 })
@@ -174,12 +174,12 @@ $(function(){
 					<td width=20%>{{vo.id}}</td>
 					<td width=50%>{{vo.content}}</td>
 					<td width=20%>{{vo.dbday}}</td>
-					<td width=10%><span class="btn btn-xs btn-danger ups" :data-no="vo.no" style="width: 70px">삭제</span></td>
+					<td width=10% v-if="id==vo.id"><span class="genric-btn info-border btn-sm dels" :data-no="vo.no" style="width: 70px">삭제</span></td>
 <!-- 				</tr> -->
 <!-- 				<tr class="table" v-for="vo in review"> -->
-			        <td style="display: none" class="updates" :id="'u'+vo.no">
+			        <td style="display: none" class="deletes" :id="'d'+vo.no" >
 				         <input type=password ref="rpwd" size=15 class="input-sm" v-model="rpwd" @keyup.enter="companyReviewDelete(vo.no)">
-				         <input type=button value="삭제" class="genric-btn info-border arrow" @click="companyReviewDelete(vo.no)">
+				         <input type=button value="삭제" class="genric-btn info-border" @click="companyReviewDelete(vo.no)">
 			        </td>
 			    </tr>
 			    
