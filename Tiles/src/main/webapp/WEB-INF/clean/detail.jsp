@@ -162,11 +162,11 @@
         <!--? Popular Locations Start 01-->
         <div class="popular-product pt-50 row1">
                <div class="small-tittle mb-30 row1">
-                   <h1>후기</h1>
+                   <h1 style="display: inline;">후기</h1>&nbsp;
+                   &nbsp;<span style="font-size:20pt;">{{clean_detail.score}}점</span>
                    <div class="rating mb-10">
-                       <i class="fas fa-star" v-for="index in Math.round(clean_detail.score)" :key="index" style="color: yellow;display: inline-block;"></i>
+                       <i class="fas fa-star" v-for="index in Math.round(clean_detail.score)" :key="index" style="color: yellow;font-size: xxx-large;"></i>
                    </div> 
-                   <span>{{clean_detail.score}}점</span>
                </div>
             
              <div style="height: 20px"></div>
@@ -349,7 +349,7 @@
   	          // disable days that fall on the 13th of the month
   	          // Return `true` if the date should be disabled
   	          // yyyy-mm-dd
-  	          return ymd<= this.today
+  	          return ymd< this.today
   	        },
   	        getToday:function(){
   	            var date = new Date();
