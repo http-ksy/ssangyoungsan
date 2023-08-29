@@ -45,7 +45,7 @@ public interface notificationMapper {
 	@Update("update land_notice set hit=hit+1 where no=#{no}")
 	public void landnoticeHitIncre(int no);
 	
-	@Select("select * from land_notice where no=#{no}")
+	@Select("select no,id,name,type,subject,content,to_char(regdate,'yy-mm-dd')as dbday, hit from land_notice where no=#{no}")
 	public notificationVO landnoticeDetail(int no);
 	
 	// totalpage

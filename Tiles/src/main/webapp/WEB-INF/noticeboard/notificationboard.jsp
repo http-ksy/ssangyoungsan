@@ -38,7 +38,7 @@
 											</div>
 											<hr>
 <div class="text-right">
-	<a v-if="${sessionScope.id!=null }" class="genric-btn danger-border circle arrow text-right" href="../noticeboard/notificationInsert.do">🐦‍⬛글</a>
+	<a v-if="${sessionScope.admin=='admin' }" class="genric-btn danger-border circle arrow text-right" href="../noticeboard/notificationInsert.do">🐦‍⬛글</a>
 </div>
 		<div class="text-center">
          <ul class="pagination">

@@ -52,7 +52,7 @@
     </div>
     <div class="text-right">
     	<!-- dddddddddd -->
-    	<h2 v-if="id==landnotice_detail.id"><b-badge variant="light" :href="'../noticeboard/notificationUpdate.do?no='+landnotice_detail.no">수정<b-icon icon="hammer"></b-icon></b-badge>&nbsp;&nbsp;<b-badge href="#" variant="light" @click="boardDelete()">삭제<b-icon icon="trash-fill" ></b-icon></b-badge></h2>
+    	<h2 v-if="${sessionScope.admin=='admin' }"><b-badge variant="light" :href="'../noticeboard/notificationUpdate.do?no='+landnotice_detail.no">수정<b-icon icon="hammer"></b-icon></b-badge>&nbsp;&nbsp;<b-badge href="#" variant="light" @click="boardDelete()">삭제<b-icon icon="trash-fill" ></b-icon></b-badge></h2>
     </div>
  <!-- 댓글 출력 !!! -->
 

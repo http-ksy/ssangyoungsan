@@ -51,7 +51,7 @@ new Vue({
 		no:'${no}'
 	},
 	mounted:function(){
-		axios.get("http://localhost/web/landboard/landboard_detail.do",{
+		axios.get("../landboard/landboard_detail.do",{
 			params:{
 				no:this.no
 			}
@@ -77,7 +77,7 @@ new Vue({
 				alert('내용 or 제목을 입력하세요!');
 				return
 			}
-			axios.post('http://localhost/web/landboard/landboardUpdate.do',null,{
+			axios.post('../landboard/landboardUpdate.do',null,{
 				params:{
 					no:this.no,
 					title:this.title,

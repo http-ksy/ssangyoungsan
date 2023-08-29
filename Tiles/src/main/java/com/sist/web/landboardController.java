@@ -43,7 +43,7 @@ public class landboardController {
 	   public void databoard_download(String fn,
 			   HttpServletRequest request,HttpServletResponse response)
 	   {
-		   String path=request.getSession().getServletContext().getRealPath("/")+"upload/";
+		   String path=request.getSession().getServletContext().getRealPath("/")+"upload\\";
 		   path=path.replace("\\", File.separator);
 		   try
 		   {

@@ -205,7 +205,7 @@ new Vue({
 	mounted:function(){
 		console.log('id: '+this.id)
 		
-		axios.get('http://localhost/web/landboard/landboard_detail.do',{
+		axios.get('../landboard/landboard_detail.do',{
 			params:{
 				no:this.no
 			}
@@ -227,7 +227,7 @@ new Vue({
 	        this.isHovered = hovered
 	      },
 	      reply_list(){
-	          axios.get('http://localhost/web/landboard/landboardreply_list.do',{
+	          axios.get('../landboard/landboardreply_list.do',{
 	  	          params:{
 	  				  bno:this.no
 	  			  }
@@ -239,7 +239,7 @@ new Vue({
 	  		  })
 	      },
 	      boardreplyInsert:function(){
-	    	  axios.post("http://localhost/web/landboard/landboardreply_insert.do",null,{
+	    	  axios.post("../landboard/landboardreply_insert.do",null,{
 	    		  params:{
 	    			  bno:this.no,
 	    			  content:this.contents,
@@ -273,7 +273,7 @@ new Vue({
 	      },
 	      addreply:function(no){
 	    	  /* bno,id,content,nickname */
-	    	  axios.post("http://localhost/web/landboard/landboardreply_add.do",null,{
+	    	  axios.post("../landboard/landboardreply_add.do",null,{
 	    		  params:{
 	    			  rootno:no,
 	    			  bno:this.no,
@@ -292,7 +292,7 @@ new Vue({
 	    	  let msg=this.landboard_reply[index].content
 	    	  
 	    	  console.log('msg'+msg+', index :'+index);
-	    	  axios.get('http://localhost/web/landboard/landboardreply_update.do',{
+	    	  axios.get('../landboard/landboardreply_update.do',{
 	    		  params:{
 	    			  bno:this.no,
 	    			  content:msg,
@@ -313,7 +313,7 @@ new Vue({
 	      },
 	      replyDelete:function(index,no){
 	    	  let root = this.landboard_reply[index].root
-	    	  axios.get('http://localhost/web/landboard/landboardreply_delete.do',{
+	    	  axios.get('../landboard/landboardreply_delete.do',{
 	    		  params:{
 	    			  root:root,
 	    			  no:no,
@@ -329,7 +329,7 @@ new Vue({
 	      },
 	      boardDelete:function(){
 	    	  
-	    	  axios.get('http://localhost/web/landboard/landboard_delete.do',{
+	    	  axios.get('../landboard/landboard_delete.do',{
 	    		  params:{
 	    			  no:this.no
 	    		  }
