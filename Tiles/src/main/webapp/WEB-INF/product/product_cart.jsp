@@ -134,7 +134,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
         <!--? Blog Area Start-->
             <div class="container">
 <!-- 상품 정보 -->                    
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" >
                       <div class="blog_right_sidebar">
                         <div class="text-right">
                           <button class="genric-btn info-border circle arrow" @click="cartAllDelete(id)">모두삭제</button>
@@ -142,12 +142,10 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                         <div v-for="vo in product_cart">
                           <table class="table">
                             <tr>
-                              <td>
-                                <div v-for="(option, index) in options" :key="index">
-							      <label>
-							        <input type="checkbox" :value="option.value" v-model="selected"> {{ option.text }}
-							      </label>
-							    </div>
+                              <td> 
+                                <label>
+							      <input type="checkbox" v-model="myCheck" :value="vo.cno">
+							    </label>
                               </td>
                               <td width=5%>
                             	<img :src="vo.poster" style="wdith: 100px;height: 100px" alt="">
@@ -169,14 +167,15 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                         </div>
                       </div>                    
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" >
                         <div class="blog_right_sidebar" style="border: 2px solid gray; border-radius: 30px; padding: 35px;">
                             <div>
                               <div>
+                              <!-- <form method="post" action="../product/product_order.do" @submit="buy()"> -->
                                 <table class="table">
                                   <tr>
                                     <th width=30%>상품금액</th>
-                                    <td width=70%>{{select_pri|currency}}원</td>
+                                    <td width=70% >{{ myCheckTotalPri() | currency }}원</td>
                                   </tr>
                                   <tr>
                                     <th width=30%>배송비</th>
@@ -184,14 +183,11 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                   </tr>
                                   <tr>
                                     <th width=30%>결제금액</th>
-                                    <td width=70%>{{final_pri|currency}}원</td>
+                                    <td width=70% >{{ (myCheckTotalPri() + del_pri) | currency }}원</td>
                                   </tr>
-                                </table>
-                                <table v-if="sessionId!=''">
-                                
-                                  <tr class="text-center">
+                                  <tr class="text-center" v-if="sessionId!=''">
                                    <th>
-                                    <button class="custom-btn btn-6" @click="porder()"><a :href="'../product/product_order.do?id='+id" style="color: black">구매하기</a></button>
+                                    <a :href="'../product/product_order.do?select_pri='+select_pri+'&mycheck='+myCheck"><button class="custom-btn btn-6" >구매하기</button></a>
                                    </th>
                                   </tr>
                                 </table>
@@ -199,6 +195,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                         </div>
                     </div>                    
                 </div>
+                <template>myCheck : {{myCheck}}</template>
         <!-- Blog Area End -->
       </div>
      
@@ -207,18 +204,6 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
-<script>
-  export default {
-    data() {
-      return {
-        selected: [], // Must be an array reference!
-        options: [
-          { text: 'Orange', value: 'orange' }
-        ]
-      }
-    }
-  }
-</script>
 <script>
   new Vue({
 	  el:'.container',
@@ -230,16 +215,26 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  select_pri:0,
 		  del_pri:3000,
 		  final_pri:0,
-		  cno:'${cno}'
+		  cno:'${cno}',
+		  myCheck:[],
+		  myCheckTotalPri(cno){
+			  const selectedProducts = this.product_cart.filter(item => this.myCheck.includes(item.cno));
+			  const totalPri = selectedProducts.reduce((sum, item) => sum + item.total_pri, 0);
+			  this.select_pri=totalPri;
+			  this.final_pri=totalPri+3000;
+			  console.log(this.select_pri)
+			  console.log(this.final_pri)
+			  return totalPri;
+		  }
 	  },
  	  filters:{
           currency: function(value){
               let total_pri = new Number(value);
               return total_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
-              let select_pri = new Number(value);
-              return select_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
-              let final_pri = new Number(value);
-              return final_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+              let myCheckTotalPri = new Number(value);
+              return myCheckTotalPri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+              let (myCheckTotalPri() + del_pri) = new Number(value);
+              return (myCheckTotalPri() + del_pri).toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
               let del_pri = new Number(value);
               return del_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
           }
@@ -293,40 +288,20 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 				  console.log(error.response)
 			  })
 		  },
-		  porder:function(){
-			  for(let i=0 ; i < this.product.length;i++){
-				  /* 데이터 베이스 insert */
-				  axios.post('../product/order_insert_vue.do',null,{
-					  params:{	
-						  id:this.id,
-						//  no:this.no,
-						 // type:this.type,
-						  poster:this.product_cart[0].poster,
-						  no:this.product_cart[i].no,
-						  type:this.product_cart[i].type,
-						  title:this.product_cart[i].title,
-						  brand:this.product_cart[i].brand
-					  }
-				  }).then(response=>{
-					  console.log(response.data)
-				  }).catch(error=>{
-					  console.log(error.response)
-				  })
-			  }
+		  addToCart(){
+			  for (let i = 0; i < this.product_cart.length; i++) {
+				    if (this.myCheck.includes(this.product_cart[i].cno)) {
+				      this.select_pri += this.product_cart[i].total_pri;
+				    }
+				  }
+		      this.final_pri = this.select_pri + this.del_pri; // 최종 가격을 업데이트합니다.
+		  },
+		  buy:function(e){
+			  console.log("sele :"+this.select_pri)
+			  console.log("sele :"+this.final_pri)
+			  e.preventDefault()
 		  }
-		/* ups:function(){
-			  console.log('amount : '+this.amount)
-	  		  if(this.product_cart.priced_sale==''){
-				  this.total_price = Number(this.amount) * Number(this.product_cart.original_pri);
-			  } 
-	 		  else{
-				  this.total_price = Number(this.amount) * Number(this.product_cart.priced_sale);
-			  }  
-			  console.log('totalprice:'+this.total_price)
-			  console.log('oriprice:'+this.product_cart.original_pri)
-			  console.log('saleprice:'+this.product_cart.priced_sale)
-		  }*/
-	  } 
+	  }
   })
 </script>
 </body>

@@ -137,13 +137,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 </head>
 <body class="full-wrapper">
     <main>
-        <!-- breadcrumb Start-->
-        <div class="page-notification page-notification2">
-            <div class="container">
-                
-            </div>
-        </div>
-        <!--? Blog Area Start-->
+        
             <div class="container vue">
                 <div class="row">
 <!-- 상품 사진 -->              
@@ -197,7 +191,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                       <!-- <select ref="amount" @change="update_pri()">
                                         <option v-for="i in maxAmount" :value="i">{{i}}개<*/option>
                                       </select> -->
-									    <b-form-spinbutton style="height: 5rem;font-size: 13px" v-model="amount" inline max="10" @change="ups()"></b-form-spinbutton>
+									    <b-form-spinbutton style="height: 4rem;font-size: 13px" v-model="amount" inline max="10" @change="ups()"></b-form-spinbutton>
                                     </td>
                                   </tr>
                                   <tr>
@@ -210,8 +204,8 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                 <table>
                                   <tr>
                                    <th>
-                                    <button class="custom-btn btn-6" @click="plusCart()"><a :href="'../product/product_cart.do?id='+id" style="color: black">장바구니</a></button>
-                                    <button class="custom-btn btn-6"><a :href="'../product/product_order.do?id='+id" style="color: black">구매하기</a></button>
+                                    <a :href="'../product/product_cart.do?id='+id" style="color: black"><button class="custom-btn btn-6" @click="plusCart()">장바구니</button></a>
+                                    <a :href="'../product/product_order.do?id='+id" style="color: black"><button class="custom-btn btn-6">구매하기</button></a>
                                    </th>
                                   </tr>
                                 </table>
@@ -430,31 +424,32 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 			  console.log('oriprice:'+this.product_detail.original_pri)
 			  console.log('saleprice:'+this.product_detail.priced_sale)
 		  },
-		  plusCart:function(){
-			  if(this.product_detail.priced_sale=="")
-				  {
-				  this.product_detail.priced_sale=0
-				  }
-			  axios.post('../product/cart_insert_vue.do',null,{
-				  params:{
-					  id:this.id,
-					  no:this.no,
-					  type:this.type,
-					  amount:this.amount,
-					  total_pri:this.total_price,
-					  poster:this.product_detail.poster,
-					  title:this.product_detail.title,
-					  brand:this.product_detail.brand,
-					  delivery_pri:this.product_detail.delivery_pri,
-					  original_pri:this.product_detail.original_pri,
-					  priced_sale:this.product_detail.priced_sale
-				  }
-			  }).then(response=>{
-				  console.log(response.data)
-			  }).catch(error=>{
-				  console.log(error.response)
-			  })
+		  plusCart:function(pno){
+				  if(this.product_detail.priced_sale=="")
+					  {
+					  this.product_detail.priced_sale=0
+					  }
+				  axios.post('../product/cart_insert_vue.do',null,{
+					  params:{
+						  id:this.id,
+						  no:this.no,
+						  type:this.type,
+						  amount:this.amount,
+						  total_pri:this.total_price,
+						  poster:this.product_detail.poster,
+						  title:this.product_detail.title,
+						  brand:this.product_detail.brand,
+						  delivery_pri:this.product_detail.delivery_pri,
+						  original_pri:this.product_detail.original_pri,
+						  priced_sale:this.product_detail.priced_sale
+					  }
+				  }).then(response=>{
+					  console.log(response.data)
+				  }).catch(error=>{
+					  console.log(error.response)
+				  })
 		  }
+		  
 	  }
   })
 </script>

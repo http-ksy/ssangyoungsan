@@ -11,21 +11,6 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- CSS here -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../assets/css/slicknav.css">
-    <link rel="stylesheet" href="../assets/css/flaticon.css">
-    <link rel="stylesheet" href="../assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="../assets/css/gijgo.css">
-    <link rel="stylesheet" href="../assets/css/animate.min.css">
-    <link rel="stylesheet" href="../assets/css/animated-headline.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../assets/css/themify-icons.css">
-    <link rel="stylesheet" href="../assets/css/slick.css">
-    <link rel="stylesheet" href="../assets/css/nice-select.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
@@ -144,12 +129,6 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 </head>
 <body class="full-wrapper">
     <main>
-        <!-- breadcrumb Start-->
-        <div class="page-notification">
-            <div class="container">
-                
-            </div>
-        </div>
         <!-- listing Area Start -->
         <div class="category-area">
             <div class="container">
@@ -185,9 +164,9 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                 	
                                	  </div>  
                                 		<div class="frame">
-                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=1" style="color: black">가구</a></button>
-                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=2" style="color: black">패브릭</a></button>
-                                		  <button class="custom-btn btn-6"><a href="../product/product_list.do?type=3" style="color: black">조명</a></button>
+                                		  <a href="../product/product_list.do?type=1" style="color: black"><button class="custom-btn btn-6">가구</button></a>
+                                		  <a href="../product/product_list.do?type=2" style="color: black"><button class="custom-btn btn-6">패브릭</button></a>
+                                		  <a href="../product/product_list.do?type=3" style="color: black"><button class="custom-btn btn-6">조명</button></a>
 		                                </div>
                                 <!--  Select km items End-->
                             </div>
@@ -236,11 +215,13 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 
 <!-- page나누기 -->
 <div class="row justify-content-center">
-        <ul class="pagination">
+  <div class="">
+        <ul class="pagination"> <!-- class="page-item"  -->
           <li v-if="startPage>1"><a href="#" @click="prev()">&laquo; Previous</a></li>
           <li v-for="i in range(startPage,endPage)" :class="i==curpage?'current':''"><a href="#" @click="pageChange(i)">{{i}}</a></li>
           <li v-if="endPage<totalpage"><a href="#" @click="next()">Next &raquo;</a></li>
         </ul>
+  </div>
 </div>
 
 </div>

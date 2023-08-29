@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 public class ProductVO {
 private String poster,title,original_pri,sale,priced_sale,brand,
-	delivery_pri,score,detailposters;
+	delivery_pri,score,detailposters,select_pri,del_pri,final_pri;
 private int no,review_cnt;
 	
 }

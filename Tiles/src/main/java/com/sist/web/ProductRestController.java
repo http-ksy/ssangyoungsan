@@ -17,8 +17,12 @@ public class ProductRestController {
 	@Autowired
 	private ProductDAO dao;
 	
+	@Autowired
+	private MemberDAO mdao;
+	
 	private String[] tables= {"","gagu_detail","fabric_detail","light_detail"};
 	
+	// 목록
 	@GetMapping(value = "product/product_list_vue.do",produces = "text/plain;charset=UTF-8")
 	public String product_list(int page,int type) throws Exception
 	{
@@ -35,6 +39,8 @@ public class ProductRestController {
 		String json=mapper.writeValueAsString(list);
 		return json;
 	}
+	
+	// 페이지
 	@GetMapping(value = "product/product_page_info_vue.do",produces = "text/plain;charset=UTF-8")
 	public String product_page_info(int page, int type) throws Exception
 	{
@@ -58,6 +64,7 @@ public class ProductRestController {
 		return json;
 	}
 	
+	// 검색
 	@GetMapping(value = "product/product_find_vue.do",produces = "text/plain;charset=UTF-8")
 	public String product_find_vue(int page,int type,String fd) throws Exception
 	{
@@ -116,6 +123,7 @@ public class ProductRestController {
 		   return json;
 	   }
 	
+	// 상품 상세
 	@GetMapping(value = "product/product_detail_vue.do",produces = "text/plain;charset=UTF-8")
 	public String product_detail(int no,int type) throws Exception
 	{
@@ -139,12 +147,27 @@ public class ProductRestController {
 	public String cart_insert(ProductCartVO vo,HttpSession session)
 	{
 		String result="";
+		int count=0;
 		try
 		{
 			String id=(String)session.getAttribute("id");
 			vo.setId(id);
-			dao.cartInsert(vo);		
-			result="yes";
+			
+			// no,type으로 장바구니 중복체크
+			Map map=new HashMap();
+			map.put("no", vo.getNo());
+			map.put("type",vo.getType());
+			count=dao.cartCheck(map);
+			if(count==0)
+			{
+				dao.cartInsert(vo);		
+				result="yes";
+			}
+			else
+			{
+				dao.cartUpdate(vo);
+				result="update";
+			}
 			
 		}catch(Exception ex) 
 		{
@@ -205,53 +228,40 @@ public class ProductRestController {
 		return result;
 	}
 	
-	// 결제페이지
-	@PostMapping(value = "product/order_insert_vue.do",produces = "text/plain;charset=UTF-8")
-	public String order_insert(ProductOrderVO vo,HttpSession session,String id) throws Exception
+	@PostMapping(value = "product/cart_update_vue.do",produces = "text/plain;charset=UTF-8")
+	public String cart_update(ProductCartVO vo)
 	{
-		
-		
-		//String result="";
-	//	try
-	//	{
-			id=(String)session.getAttribute("id");
-			vo.setId(id);	
-		     System.out.println("ono: "+vo.getOno());
-		     System.out.println("tt: "+vo.getTitle());
-		     System.out.println("id: "+vo.getId());
-		     System.out.println("brand: "+vo.getBrand());
-			dao.orderInsert(vo);		
-			//result="yes";
+		String result="";
+		try
+		{
+			dao.cartUpdate(vo);
+			result="yes";
 			
-			
-			ObjectMapper mapper=new ObjectMapper();
-			String json=mapper.writeValueAsString(vo);
-			return json;
-			
-		//}catch(Exception ex) 
-		//{
-			//ex.printStackTrace();
-			//result="no";
-	//}
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+			result="no";
+		}
 		
-		//return result;
+		return result;
 	}
-
-//			int no=vo.getNo();
-//			vo.setNo(no);
-//			int type=vo.getType();
-//			vo.setType(type);
-//			String brand=vo.getBrand();
-//			vo.setBrand(brand);
-//			String poster=vo.getPoster();
-//			vo.setPoster(poster);	
 	
-	@GetMapping(value = "product/product_order_vue.do",produces = "text/plain;charset=UTF-8")
-	public String order_read(String id) throws Exception
+	@PostMapping(value = "product/user_info_vue.do",produces = "text/plain;charset=UTF-8")
+	public String user_info(String id) throws Exception
+	{
+		MemberVO vo=mdao.memberInfo(id);
+		
+		ObjectMapper mapper=new ObjectMapper();
+		String json=mapper.writeValueAsString(vo);
+		return json;
+	} 
+	
+	@GetMapping(value = "product/buy_info_vue.do",produces = "text/plain;charset=UTF-8")
+	public String buy_info(String id) throws Exception
 	{
 		Map map=new HashMap();
 		map.put("id", id);
-		List<ProductOrderVO> list=dao.orderListData(map);
+		List<ProductCartVO> list=dao.buyListData(map);
 		ObjectMapper mapper=new ObjectMapper();
 		String json=mapper.writeValueAsString(list);
 		return json;

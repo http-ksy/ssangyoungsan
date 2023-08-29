@@ -45,6 +45,8 @@ public class ProductDAO {
 	{
 		return mapper.cartListData(map);
 	}
+	
+	// 장바구니 삭제
 	public void cartDelete(int cno)
 	{
 		mapper.cartDelete(cno);
@@ -54,16 +56,31 @@ public class ProductDAO {
 		mapper.cartAllDelete(id);
 	}
 	
+	// 장바구니 중복체크
+	public void cartUpdate(ProductCartVO vo)
+	{
+		mapper.cartUpdate(vo);
+	}
+	public int cartCheck(Map map)
+	{
+		return mapper.cartCheck(map);
+	}
+	
+	// 장바구니 => 결제화면
+	public void cartBuyUpdate(int cno)
+	{
+		mapper.cartBuyUpdate(cno);
+	}
 	// 결제
-	public void orderInsert(ProductOrderVO vo)
+	public void finalBuyUpdate(String id)
 	{
-		mapper.orderInsert(vo);
+		mapper.finalBuyUpdate(id);
 	}
-	public List<ProductOrderVO> orderListData(Map map)
+	
+	public List<ProductCartVO> buyListData(Map map)
 	{
-		return mapper.orderListData(map);
+		return mapper.buyListData(map);
 	}
-
 
 
 }
