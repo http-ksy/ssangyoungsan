@@ -192,7 +192,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                 <table style="margin: 0px auto;">
                                   <tr>
                                    <th>
-									<button class="custom-btn btn-6"><a :href="'../product/product_buy.do?select_pri='+select_pri+'&id='+id">구매하기</a></button>
+									<button class="custom-btn btn-6" @click="buyBtn()">구매하기</button>
  									</th>
                                   </tr>
                                 </table>

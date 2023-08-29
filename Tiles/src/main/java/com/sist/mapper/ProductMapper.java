@@ -48,7 +48,7 @@ public interface ProductMapper {
 			+ "WHERE no=#{no} AND type=#{type}")
 	public void cartUpdate(ProductCartVO vo);
 	
-	@Select("SELECT count(amount) FROM product_cart WHERE no=#{no} AND type=#{type}")
+	@Select("SELECT count(amount) FROM product_cart WHERE no=#{no} AND type=#{type} AND buy='n'")
 	public int cartCheck(Map map);
 
     // 장바구니 => 결제화면
