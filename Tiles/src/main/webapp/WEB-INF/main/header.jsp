@@ -106,6 +106,10 @@
 <!-- 								  <b-button class="genric-btn info-border circle arrow">--><a href="../member/join.do" class="genric-btn info-border circle arrow btn">join</a> 
 								  
 								  <!-- 로그인 버튼 끝 -->
+								<!-- 장바구니 버튼 -->
+								  <tr v-if="sessionId!=''">
+								    &nbsp;&nbsp;&nbsp;&nbsp;<a :href="'../product/product_cart.do?id='+id"><img src="../assets/img/product/cart.png" style="width:50px;height:50px"></a>
+								  </tr>
                             </div>
                           
                             
@@ -124,17 +128,7 @@
                             <!-- Search Box -->
                             <div class="search d-none d-md-block">
                                 <ul class="d-flex align-items-center">
-                                    <li class="mr-15">
-                                        <div class="nav-search search-switch">
-                                            <i class="ti-search"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="card-stor">
-                                            <img src="../assets/img/gallery/card.svg" alt="">
-                                            <span>0</span>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -167,7 +161,8 @@ new Vue({
 		sessionck:'',
 		bool:false,
 		ck:false,
-		sessionname:''
+		sessionname:'',
+		sessionId:'${id}'
 	},
 	mounted:function(){
 		this.sessionname='${sessionScope.name}'

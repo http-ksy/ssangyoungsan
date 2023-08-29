@@ -132,13 +132,13 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
         <!-- listing Area Start -->
         <div class="category-area">
             <div class="container">
-                        <div class="section-tittle mb-50">
+                        <div class="section-tittle">
                           <table>
                             <tr>
-                              <td>
+                              <td width=96%>
                               <h2>{{title}}</h2> 
                               </td>
-                              <td class="text-right" style="text-align: right;">
+                              <td width=4% class="text-right" >
                                 <a :href="'../product/product_cart.do?id='+id"><img src="../assets/img/product/cart.png" style="width:100px;height:100px"></a>
                               </td>
                             </tr>
@@ -195,14 +195,6 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                         <div class="popular-caption text-left">
                                            <h4>[ {{vo.brand}} ]</h4>
                                            <h3><a :href="'../product/product_detail.do?no='+vo.no+'&type='+type" style="color: black">{{vo.title}}</a></h3>
-                                           <div class="rating mb-10">
-                                              <i class="fas fa-star"></i>
-                                              <i class="fas fa-star"></i>
-                                              <i class="fas fa-star"></i>
-                                              <i class="fas fa-star"></i>
-                                              <i class="fas fa-star"></i>
-                                            
-                                           </div>
                                            <div class="text-right">
 	                                         <span v-if="vo.priced_sale!==null"><s>{{vo.original_pri}}원</s></span><span v-else>{{vo.original_pri}}원</span>
 	                                         <span v-if="vo.priced_sale!==null"><span style="color: red;">{{vo.sale}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vo.priced_sale}}원</span>
