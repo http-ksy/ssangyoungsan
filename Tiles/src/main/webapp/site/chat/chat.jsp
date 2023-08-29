@@ -23,7 +23,8 @@
   font-size: 13pt;
   border-radius:10px;
   margin-top: 5px;
-  width:170px;
+  width:250px;
+  background-color: red;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
