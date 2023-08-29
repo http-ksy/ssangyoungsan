@@ -163,6 +163,10 @@
         <div class="popular-product pt-50 row1">
                <div class="small-tittle mb-30 row1">
                    <h1>후기</h1>
+                   <div class="rating mb-10">
+                       <i class="fas fa-star" v-for="index in Math.round(clean_detail.score)" :key="index" style="color: yellow;display: inline-block;"></i>
+                   </div> 
+                   <span>{{clean_detail.score}}점</span>
                </div>
             
              <div style="height: 20px"></div>

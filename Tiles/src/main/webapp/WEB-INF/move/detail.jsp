@@ -165,6 +165,10 @@
             <div class="row">
                <div class="small-tittle mb-30 row1">
                    <h1>후기</h1>
+                   <div class="rating mb-10">
+                       <i class="fas fa-star" v-for="index in Math.round(move_detail.score)" :key="index" style="color: yellow;"></i>
+                   </div> 
+                   <span>{{move_detail.score}}점</span>
                </div>
             </div>
              <div style="height: 20px"></div>
