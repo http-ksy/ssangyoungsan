@@ -22,6 +22,7 @@
 #recvMsg1 > h5 {
   font-size: 13pt;
   border-radius:10px;
+  color:white;
   width:170px;
 }
 #recvMsg1{
