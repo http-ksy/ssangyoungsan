@@ -87,7 +87,7 @@ new Vue({
 	methods:{
 		getList:function(bno){
 			this.boardno=bno
-			axios.get('http://localhost/web/landboard/landboard_list.do',{
+			axios.get('../landboard/landboard_list.do',{
 				params:{
 					bno:bno,
 					page:this.curpage
@@ -111,7 +111,7 @@ new Vue({
 				this.perPage=this.pageList.totalpage
 				this.curPage=this.pageList.curpage
 			}) */
-			axios.get('http://localhost/web/landboard/landboard_page.do',{
+			axios.get('../landboard/landboard_page.do',{
 				params:{
 				   bno:bno,
 				   page:this.curpage
