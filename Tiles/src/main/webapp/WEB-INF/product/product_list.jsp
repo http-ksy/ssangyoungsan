@@ -248,7 +248,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 	  },
 	  methods:{
 		  dataRecv:function(){
-			  axios.get('http://localhost/web/product/product_list_vue.do',{
+			  axios.get('../product/product_list_vue.do',{
 				  params:{
 					  page:this.curpage,
 					  type:this.type,
@@ -261,7 +261,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 				  console.log(error.response);
 			  })
 			  
-			  axios.get('http://localhost/web/product/product_page_info_vue.do',{
+			  axios.get('../product/product_page_info_vue.do',{
 				  params:{
 					  page:this.curpage,
 					  type:this.type,
@@ -278,7 +278,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 				  console.log(error.response)
 			  })
 			  
-			  axios.get('http://localhost/web/product/product_find_vue.do',{
+			  axios.get('../product/product_find_vue.do',{
 				  params:{
 					  fd:this.fd,
 					  type:this.type,
@@ -291,7 +291,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 				  console.log(error.response)
 			  })
 			  
-			  axios.get('http://localhost/web/product/page_info_vue.do',{
+			  axios.get('../product/page_info_vue.do',{
 				   params:{
 					   page:this.curpage,
 					   fd:this.fd,
