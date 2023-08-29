@@ -34,7 +34,7 @@
                    <div class="footer-social">
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
         <div class="single-footer-caption mb-50">
