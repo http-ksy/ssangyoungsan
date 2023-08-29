@@ -135,11 +135,8 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                         <div class="section-tittle">
                           <table>
                             <tr>
-                              <td width=96%>
-                              <h2>{{title}}</h2> 
-                              </td>
-                              <td width=4% class="text-right" >
-                                <a :href="'../product/product_cart.do?id='+id"><img src="../assets/img/product/cart.png" style="width:100px;height:100px"></a>
+                              <td>
+                                <h2>{{title}}</h2> 
                               </td>
                             </tr>
                           </table>

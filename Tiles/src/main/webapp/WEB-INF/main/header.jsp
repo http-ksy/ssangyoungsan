@@ -44,7 +44,7 @@
                                         <li><a href="../main/main.do">home</a></li> 
                                         <li><a href="../zip/zip_list.do">.zip 사러가기</a></li>
                                         <li><a href="../inte/inte_list.do">.zip 인테리어하기 </a></li>
-                                        <li><a href="#">.zip 스토어 </a>
+                                        <li><a href="../product/product_list.do?type=1">.zip 스토어 </a>
 										  <ul class="submenu">
                                             <li><a href="../product/product_list.do?type=1">.zip 가구</a></li>
                                             <li><a href="../product/product_list.do?type=2">.zip 패브릭</a></li>
@@ -106,10 +106,7 @@
 <!-- 								  <b-button class="genric-btn info-border circle arrow">--><a href="../member/join.do" class="genric-btn info-border circle arrow btn">join</a> 
 								  
 								  <!-- 로그인 버튼 끝 -->
-								<!-- 장바구니 버튼 -->
-								  <tr v-if="sessionId!=''">
-								    &nbsp;&nbsp;&nbsp;&nbsp;<a :href="'../product/product_cart.do?id='+id"><img src="../assets/img/product/cart.png" style="width:50px;height:50px"></a>
-								  </tr>
+								
                             </div>
                           
                             
@@ -122,8 +119,13 @@
 <!--                              <a href="#" v-if="sessionck=='사용자'">My🏠</a> -->
 <!--                              <a href="#" v-if="sessionck=='사장님'">C🏠</a> -->
                              &nbsp;<a href="../member/logout.do" class="genric-btn info-border circle arrow btn">logout</a>
-                             
+                             <!-- 장바구니 버튼 -->
+							    <tr v-if="sessionId!==''">
+									&nbsp;&nbsp;&nbsp;&nbsp;<a :href="'../product/product_cart.do?id='+id"><img src="../assets/img/product/cart.png" style="width:50px;height:50px"></a>
+							 	</tr>
                              </div>
+                             
+                             
                              
                             <!-- Search Box -->
                             <div class="search d-none d-md-block">
