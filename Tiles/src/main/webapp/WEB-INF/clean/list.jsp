@@ -71,7 +71,7 @@
                                 <div v-for="vo in clean_list" class="col-xl-4 col-lg-4 col-md-6 col-sm-5" >
                                     <div class="single-new-arrival mb-50 text-center">
                                         <div class="popular-img">
-                                            <a :href="'../clean/detail.do?cno='+vo.cno"><img :src="vo.poster" alt=""></a>
+                                            <a :href="'../clean/detail.do?cno='+vo.cno"><img :src="vo.poster" style="width: 270"height="270"></a>
                                         </div>
                                         <div class="popular-caption">
                                          <h3><a :href="'../clean/detail.do?cno='+vo.cno">{{vo.title}}</a></h3>
@@ -105,16 +105,6 @@
 </div>
 <!--? Services Area End -->
 </main>
-<!--? Search model Begin -->
-<div class="search-model-box">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-btn">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Searching key.....">
-        </form>
-    </div>
-</div>
-<!-- Search model end -->
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
@@ -142,7 +132,7 @@
 		},
 		methods:{
 			send:function(){
-				axios.get("http://localhost/web/clean/list_vue.do",{
+				axios.get("../clean/list_vue.do",{
 					params:{
 						column:this.column,
 						fd:this.fd,
@@ -159,7 +149,7 @@
 				}).catch(error=>{
 					console.log(error.response)
 				})
-				axios.get('http://localhost/web/clean/page_vue.do',{
+				axios.get('../clean/page_vue.do',{
 					params:{
 						column:this.column,
 						fd:this.fd,

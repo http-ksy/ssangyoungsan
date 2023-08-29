@@ -72,7 +72,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6" v-for="vo in move_list">
                                     <div class="single-new-arrival mb-50 text-center">
                                         <div class="popular-img">
-                                            <a :href="'../move/detail.do?mno='+vo.mno"><img :src="vo.poster" alt=""></a>
+                                            <a :href="'../move/detail.do?mno='+vo.mno"><img :src="vo.poster" style="width: 270"height="270"></a>
                                         </div>
                                         <div class="popular-caption">
                                          <h3><a :href="'../move/detail.do?mno='+vo.mno">{{vo.title}}</a></h3>
@@ -137,7 +137,7 @@
 		},
 		methods:{
 			send:function(){
-				axios.get("http://localhost/web/move/list_vue.do",{
+				axios.get("../move/list_vue.do",{
 					params:{
 						column:this.column,
 						fd:this.fd,
@@ -149,7 +149,7 @@
 				}).catch(error=>{
 					console.log(error.response)
 				})
-				axios.get('http://localhost/web/move/page_vue.do',{
+				axios.get('../move/page_vue.do',{
 					params:{
 						column:this.column,
 						fd:this.fd,

@@ -258,7 +258,7 @@
 		},
 		mounted:function(){
 			this.today = this.getToday();
-			axios.get('http://localhost/web/clean/detail_vue.do',{
+			axios.get('../clean/detail_vue.do',{
 				params:{
 					cno:this.cno
 				}

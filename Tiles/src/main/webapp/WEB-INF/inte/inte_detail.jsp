@@ -423,7 +423,7 @@
 			  e.preventDefault()
 			  let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=800, height=580, top=0,left=0";
 
-			  window.open("http://localhost/web/site/chat/chat.jsp","_blank", options);
+			  window.open("../site/chat/chat.jsp","_blank", options);
 			},
 		   replyRead:function(){
 			   axios.get('../inte/reply_read_vue.do',{

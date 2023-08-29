@@ -261,7 +261,7 @@
 		},
 		mounted:function(){
 			this.today = this.getToday();
-			axios.get('http://localhost/web/move/detail_vue.do',{
+			axios.get('../move/detail_vue.do',{
 				params:{
 					mno:this.mno
 				}
