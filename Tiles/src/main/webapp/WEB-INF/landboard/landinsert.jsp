@@ -138,7 +138,7 @@ new Vue({
 					boardData.append('files['+i+']',this.files[i])
 				}
 			}
-			axios.post('http://localhost/web/landboard/landboard_insert.do',boardData,{
+			axios.post('../landboard/landboard_insert.do',boardData,{
 				headers:{
 					'Content-Type':'multipart/form-data'
 				}

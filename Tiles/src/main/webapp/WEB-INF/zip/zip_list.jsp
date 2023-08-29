@@ -230,7 +230,7 @@
 			 ListData:function(etype){
 				 this.etype=etype
 				 this.fd=''
-				 axios.get('http://localhost/web/zip/zip_list_vue.do',{
+				 axios.get('../zip/zip_list_vue.do',{
 					 params:{
 						 etype:etype,
 						 page:1
@@ -242,7 +242,7 @@
 				 }).catch(error=>{
 					 console.log(error.response)
 				 })
-				 axios.get('http://localhost/web/zip/zip_page_vue.do',{
+				 axios.get('../zip/zip_page_vue.do',{
 						params:{
 							page:1,
 							etype:this.etype,
@@ -259,7 +259,7 @@
 			 },
 			 pageData:function(etype){
 				 this.etype=etype
-				 axios.get('http://localhost/web/zip/zip_find_vue.do',{
+				 axios.get('../zip/zip_find_vue.do',{
 					 params:{
 						 etype:etype,
 						 page:this.curpage,
@@ -272,7 +272,7 @@
 				 }).catch(error=>{
 					 console.log(error.response)
 				 })
-				axios.get('http://localhost/web/zip/zip_find_page_vue.do',{
+				axios.get('../zip/zip_find_page_vue.do',{
 					params:{
 						page:this.curpage,
 						etype:this.etype,
@@ -322,7 +322,7 @@
 			},
 			findData:function(){
 				 this.etype=etype
-				 axios.get('http://localhost/web/zip/zip_find_vue.do',{
+				 axios.get('../zip/zip_find_vue.do',{
 					 params:{
 						 etype:etype,
 						 page:1,
@@ -334,7 +334,7 @@
 				 }).catch(error=>{
 					 console.log(error.response)
 				 })
-				 axios.get('http://localhost/web/zip/zip_find_page_vue.do',{
+				 axios.get('../zip/zip_find_page_vue.do',{
 						params:{
 							page:1,
 							etype:this.etype,
