@@ -66,7 +66,7 @@
                             <h2>부동산</h2>
                             <p style="width:100px;float:left">${total } 개의 정보</p>
                             <div class="text-right" style="float:right;">
-		                        <input type="text" ref="fd" class="input-sm" size="25" style="height: 41px;" v-model="fd" placeholder="주소,이름,가격,중개사로 검색...">
+		                        <input type="text" ref="fd" class="input-sm" size="25" style="height: 41px;" v-model="fd" placeholder="주소,이름,가격,중개사로 검색..." @keyup.enter="find()">
 	          					<input type="button" class="genric-btn info-border" style="height: 43px;" value="검색" @click="find()">
           					</div>
                         </div>

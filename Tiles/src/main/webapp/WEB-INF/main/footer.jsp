@@ -46,7 +46,7 @@
                 <h4>.zip사기 베스트 Top7</h4>
 			      <ul class="nospace linklist">
 			        <c:forEach var="vo" items="${elist}">
-			        <li><a href="../zip/zip_list.do">${vo.name}<br>(${vo.dprice})</a></li>
+			        <li><a href="../zip/zip_detail.do?no=${vo.no }">${vo.name}<br>(${vo.dprice})</a></li>
 			        
 					</c:forEach>
 			      </ul>
