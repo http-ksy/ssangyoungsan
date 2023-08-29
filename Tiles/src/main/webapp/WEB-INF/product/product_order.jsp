@@ -16,10 +16,11 @@
 <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
 <style type="text/css">
 .container{
-	width: 1200px;
+	width: 1000px;
 }
 </style>
 <style type="text/css">
@@ -144,13 +145,10 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                             </tr>
                             <tr>
                               <td>
-                                <h3>배송지</h3>
-                                
-                                <p>주소 | </p>
-                                <p>{{product_order.addr1}}</p>
-                                <p>{{product_order.addr2}}</p>
-                                <p>배송 요청사항 | </p>
-                                <p>부재시 경비실에 맡겨주세요</p>
+                                <h4>배송지 | </h4>
+                                <h4>{{product_order.addr1}} {{product_order.addr2}}</h4>
+                                <h4>배송 요청사항 | </h4>
+                                <h4>부재시 경비실에 맡겨주세요</h4>
                               </td>
                             </tr>
                           </table>
@@ -164,12 +162,9 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                             </tr>
                             <tr>
                               <td>
-                                <p>이름 | </p>
-                                <p>{{product_order.name}}</p>
-                                <p>이메일 | </p>
-                                <p>{{product_order.email}}</p>
-                                <p>휴대전화 | </p>
-                                <p>{{product_order.phone}}</p>
+                                <h4>이름 | {{product_order.name}}</h4>
+                                <h4>이메일 | {{product_order.email}}</h4>
+                                <h4>휴대전화 | {{product_order.phone}}</h4>
                               </td>
                             </tr>
                           </table>
@@ -177,7 +172,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                       </div>                                
                     </div>
                     <div class="col-lg-5">
-                        <div class="blog_right_sidebar" style="border: 2px solid gray; border-radius: 30px; padding: 35px;">
+                        <div class="blog_right_sidebar" style="border: 2px solid gray; border-radius: 30px; padding: 28px;margin-top: 60px">
                             <div>
                               <div>
                                 <table class="table">
@@ -194,18 +189,18 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                     <td width=70%>{{final_pri | currency }}원</td>
                                   </tr>
                                 </table>
-                                <table>
-                                  <tr class="text-center">
+                                <table style="margin: 0px auto;">
+                                  <tr>
                                    <th>
-                                    <button class="custom-btn btn-6"><a :href="'../product/product_buy.do?select_pri='+select_pri+'&id='+id">구매하기</a></button>
-                                   </th>
+									<button class="custom-btn btn-6"><a :href="'../product/product_buy.do?select_pri='+select_pri+'&id='+id">구매하기</a></button>
+ 									</th>
                                   </tr>
                                 </table>
                             </div>
                         </div>
                     </div>                    
                 </div>
-                <template>myCheck : {{myCheck}}</template>
+               <!--  <template>myCheck : {{myCheck}}</template> -->
         <!-- Blog Area End -->
       </div>
      
@@ -224,7 +219,8 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  select_pri:${select_pri},
 		  del_pri:3000,
 		  final_pri:0,
-		  myCheck:[]
+		  myCheck:[],
+		  name:'${name}'
 	  },
 	  filters:{
           currency: function(value){
@@ -235,7 +231,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
               let final_pri = new Number(value);
               return final_pri.toFixed(0).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
           }
-      }, 
+      },
 	  mounted:function(){
 		  this.final_pri=this.select_pri+this.del_pri;
 		  axios.post('../product/user_info_vue.do',null,{
@@ -251,8 +247,46 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 	  },
 	  
 	  methods:{
-		  
-	  } 
+		  requestPay:function() {
+				console.log('clicked');
+				let _this = this;
+				var IMP = window.IMP; // 생략 가능
+				IMP.init("imp21528410"); // 예: imp00000000
+				IMP.request_pay({
+				    pg : 'html5_inicis', // version 1.1.0부터 지원.
+				        /*
+				            'kakao':카카오페이,
+				            'inicis':이니시스, 'html5_inicis':이니시스(웹표준결제),
+				            'nice':나이스,
+				            'jtnet':jtnet,
+				            'uplus':LG유플러스
+				        */
+				    pay_method : 'card', // 'card' : 신용카드 | 'trans' : 실시간계좌이체 | 'vbank' : 가상계좌 | 'phone' : 휴대폰소액결제
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : this.name,
+				    amount : this.select_pri,
+				    buyer_email : 'iamport@siot.do',
+				    buyer_name : '구매자이름',
+				    buyer_tel : '010-1234-5678',
+				    buyer_addr : '서울특별시 강남구 삼성동',
+				    buyer_postcode : '123-456',
+				    app_scheme : 'iamporttest' //in app browser결제에서만 사용
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				    } else {
+				        location.href='../product/product_buy.do?select_pri='+_this.select_pri+'&id='+_this.id;
+				    }
+				});
+			},
+			buyBtn:function(){
+				this.requestPay()
+			}
+	  }
   })
 </script>
 </body>

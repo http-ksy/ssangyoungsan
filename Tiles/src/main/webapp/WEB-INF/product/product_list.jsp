@@ -136,7 +136,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                           <table>
                             <tr>
                               <td>
-                                <h2>{{title}}</h2> 
+                                <h2>{{title}}</h2>
                               </td>
                             </tr>
                           </table>

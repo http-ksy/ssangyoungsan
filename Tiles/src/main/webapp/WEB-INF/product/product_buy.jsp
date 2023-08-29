@@ -18,7 +18,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style type="text/css">
 .container{
-	width: 1200px;
+	width: 830px;
 }
 </style>
 <style type="text/css">
@@ -142,10 +142,10 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                 <h1>구매 완료</h1>
                                 <table class="table" v-for="vo in product_buy">
                                   <tr>
-                                    <td><img :src="vo.poster" style="width:40px;height:40px;"></td>
-                                    <td width=65% calss="text-left"><a :href="'../product/product_detail.do?no='+vo.no+'&type='+vo.type" type="button" style="color:black;background-color:white">[{{vo.brand}}]{{vo.title}}</a></td>
-                                    <th width=15%>수량</th>
-									<td width=10%>{{vo.amount}}개</td>
+                                    <td width=10%><img :src="vo.poster" style="width:70px;height:50px;"></td>
+                                    <td width=70% class="text-left"><a :href="'../product/product_detail.do?no='+vo.no+'&type='+vo.type" type="button" style="color:black;background-color:white">[{{vo.brand}}]{{vo.title}}</a></td>
+                                    <th width=10%>수량</th>
+									<td width=15%>{{vo.amount}}개</td>
                                   </tr>
                                 </table>
                                 </div>
@@ -161,8 +161,10 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                   </tr>
                                   </div>
                                 </table>
-                                <table>
-                                  <tr class="text-center">
+                                </div>
+                                <div class="text-center">
+                                <table style="margin: 0px auto;">
+                                  <tr>
                                    <th>
                                     <button class="custom-btn btn-6"><a href="../member/user_purchase.do" style="color: black">주문내역확인</a></button>
                                    </th>

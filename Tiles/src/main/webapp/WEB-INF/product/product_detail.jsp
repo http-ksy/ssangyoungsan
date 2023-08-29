@@ -179,7 +179,6 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                   <tr v-if="product_detail.priced_sale!==''">
                                     <th width=40%>할인가</th>
                                     <td width=60%>{{product_detail.priced_sale|currency}}원</td>
-                                    
                                   </tr>
                                   <tr>
                                     <th width=40%>배송</th>
@@ -188,9 +187,6 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                   <tr>
                                     <th width=40%><label for="sb-inline">수량</label></th>
                                     <td width=60% class="text-right">
-                                      <!-- <select ref="amount" @change="update_pri()">
-                                        <option v-for="i in maxAmount" :value="i">{{i}}개<*/option>
-                                      </select> -->
 									    <b-form-spinbutton style="height: 4rem;font-size: 13px" v-model="amount" inline max="10" @change="ups()"></b-form-spinbutton>
                                     </td>
                                   </tr>
@@ -202,7 +198,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                   </tr>
                                 </table>
                                 <table>
-                                  <tr>
+                                  <tr v-if="sessionId!==''">
                                    <th>
                                     <a :href="'../product/product_cart.do?id='+id" style="color: black"><button class="custom-btn btn-6" @click="plusCart()">장바구니</button></a>
                                     <a :href="'../product/product_order.do?id='+id" style="color: black"><button class="custom-btn btn-6">구매하기</button></a>
@@ -311,8 +307,10 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
 		  }).then(response=>{
 			  console.log(response.data);
 			  this.product_detail=response.data;
-			  this.total_price=response.data.original_pri;
-			  this.total_price=response.data.priced_sale
+			  this.total_price=response.data.original_pri;  // 할인가 없는 물품도 결제금액 출력되게 하는
+			  if(response.data.priced_sale!=''){
+				  this.total_price=response.data.priced_sale
+			  }
 		  }).catch(error=>{
 			  console.log(error.response);
 		  })

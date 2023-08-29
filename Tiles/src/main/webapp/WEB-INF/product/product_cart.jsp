@@ -133,8 +133,12 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
     <main>
         <!--? Blog Area Start-->
             <div class="container">
-<!-- 상품 정보 -->                    
-                    <div class="col-lg-8" >
+<!-- 상품 정보 --><div class="col-lg-8" >                   
+				<div v-if="product_cart.length===0" class="text-center">
+				  <h1>장바구니가 비어있습니다</h1> 
+				</div>
+				<div v-else>
+                    
                       <div class="blog_right_sidebar">
                         <div class="text-right">
                           <button class="genric-btn info-border circle arrow" @click="cartAllDelete(id)">모두삭제</button>
@@ -167,12 +171,13 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                         </div>
                       </div>                    
                     </div>
+                    </div>
                     <div class="col-lg-4" >
-                        <div class="blog_right_sidebar" style="border: 2px solid gray; border-radius: 30px; padding: 35px;">
+                        <div class="blog_right_sidebar" style="border: 2px solid gray; border-radius: 30px; padding: 28px;">
                             <div>
                               <div>
                               <!-- <form method="post" action="../product/product_order.do" @submit="buy()"> -->
-                                <table class="table">
+                                <table class="table text-right">
                                   <tr>
                                     <th width=30%>상품금액</th>
                                     <td width=70% >{{ myCheckTotalPri() | currency }}원</td>
@@ -185,8 +190,10 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                                     <th width=30%>결제금액</th>
                                     <td width=70% >{{ (myCheckTotalPri() + del_pri) | currency }}원</td>
                                   </tr>
-                                  <tr class="text-center" v-if="sessionId!=''">
-                                   <th>
+                                </table>
+                                <table style="margin: 0px auto;">
+                                  <tr v-if="sessionId!=''">
+                                   <th v-if="product_cart.length!==0">
                                     <a :href="'../product/product_order.do?select_pri='+select_pri+'&mycheck='+myCheck"><button class="custom-btn btn-6" >구매하기</button></a>
                                    </th>
                                   </tr>
@@ -195,7 +202,7 @@ background: radial-gradient(circle, rgba(245, 203, 221,1) 0%, rgba(204, 226, 252
                         </div>
                     </div>                    
                 </div>
-                <template>myCheck : {{myCheck}}</template>
+                <!-- <template>myCheck : {{myCheck}}</template> -->
         <!-- Blog Area End -->
       </div>
      
