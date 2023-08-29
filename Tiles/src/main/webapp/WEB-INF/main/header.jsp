@@ -83,7 +83,7 @@
 								        <tr>
 								          <th width=25% class="text-right">Password</th>
 								          <td width=75%>
-								            <input type=password ref="pwd" size=15 class="input-sm" v-model="pwd">
+								            <input type=password ref="pwd" size=15 class="input-sm" v-model="pwd" @keyup.enter="login()">
 								          </td>
 								        </tr>
 								        <tr>

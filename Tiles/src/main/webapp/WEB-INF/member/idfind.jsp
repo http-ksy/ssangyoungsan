@@ -69,7 +69,7 @@
 	   					email:this.email
 	   				}
 	   			}).then(response=>{
-	   				if(response==='이메일이 없습니다.x`')
+	   				if(response==='이메일이 없습니다.')
 	   				{
 	   					this.emailmsg=response.data
 	   				}
