@@ -89,7 +89,7 @@
                                 <div class="" v-if="sessionId!=''">
                                         <c:if test="${jjim_count == 0 }">
                                            <!-- <button class="btn btn-default" type="submit" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></button> -->
-                                         <a href="../clean/jjim_insert.do?cno=${ cno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:45px; height:45px;" alt=""></a>
+                                         <a href="../clean/jjim_insert.do?cno=${ cno}" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:45px; height:45px;" alt="">{{clean_detail.suggest}}</a>
                                          <!-- <a :href="'../inte/like_insert.do?ino='+ino" class="btn btn-default" style="width:85px;height: 61px;border-radius: 10px;"><img src="../assets/img/inte/nlike.png" style="width:25px; height:25px;" alt=""></a> -->
 						                </c:if> 
 						                 <c:if test="${jjim_count != 0 }">
@@ -129,7 +129,7 @@
 											</template>
 											
 											<div class="row" style="margin: 15px;"></div>
-										<div class="select-job-items2"><h1>방갯수</h1>
+										<div class="select-job-items2" v-if="rday && rtime!=''"><h1>방갯수</h1>
 		                                    <select name="select2" v-model="room">
 		                                        <option>방갯수</option>
 		                                        <option v-for="i in roomcount">{{i}}</option>
@@ -141,7 +141,7 @@
 						</div>
 						<div class="row">
 						 <b-col>
-							<b style="display: block;">날짜 : '{{ rday }}'</b>
+							<b style="display: block;"	>날짜 : '{{ rday }}'</b>
 							<b style="display: block;">시간 : '{{ rtime }}'</b>
 							<b style="display: block;">방 갯수 : {{room}}</b>		     
 						</b-col>

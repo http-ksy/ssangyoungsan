@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-xl-7 col-lg-8 col-md-10">
                         <div class="section-tittle mb-50">
-                            <h2>.zip 청소하기</h2>
+                            <h2>.zip 청소하기🚛</h2>
                             <div class="select-job-items2">
   	                            <select name="select2" ref="column">
 	                            	<option value="all">전체</option>
