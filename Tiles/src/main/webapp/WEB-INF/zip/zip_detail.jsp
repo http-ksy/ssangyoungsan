@@ -139,7 +139,7 @@ $(function(){
 					<button class="genric-btn info-border" @click="zipZim()">찜 취소</button>
 				</td>
 				<td>
-					<button class="genric-btn info-border" type="button" onclick="javascript:history.back()">목록</button>
+					<button class="genric-btn info-border" type="button" onclick="location.href='../zip/zip_list.do'">목록</button>
 				</td>
 			</tr>
 		</table>
