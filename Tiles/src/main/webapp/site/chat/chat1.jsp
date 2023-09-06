@@ -36,7 +36,7 @@ let websocket;
 function connection() // 연결
 {
 	 // websocket => 웹에서 연결이 되게 만드는 소프트웨어 
-	 websocket=new WebSocket("ws://211.238.142.118/web/site/chat/chat-ws");
+	 websocket=new WebSocket("ws://54.180.221.210/web/site/chat/chat-ws");
 	 websocket.onopen=onOpen;//callback(시스템 자동으로 호출)
 	 websocket.onclose=onClose;
 	 websocket.onmessage=onMessage;
